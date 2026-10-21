@@ -9,8 +9,8 @@
 (function () {
   "use strict";
 
-  var AMBER = "#e8861d", EDGE = "#2a2a2a", FILL = "#0d0d0d", FILL_HOT = "#141414";
-  var TEXT = "#e5e5e5", MUTED = "#8a8a8a", DIM = "#525252";
+  var AMBER = "#b65c38", EDGE = "#93805f", FILL = "#f3ead4", FILL_HOT = "#e9dec4";
+  var TEXT = "#44321f", MUTED = "#6e5a40", DIM = "#93805f";
   var NODE_W = 120, NODE_H = 40, H_GAP = 40, ROW_GAP = 12, V_GAP = 64, PAD = 56;
   var EDGE_MS = 600, HOVER_MS = 150, STAGGER_MS = 110;
   var MONO = '"IBM Plex Mono", Menlo, Monaco, "Courier New", monospace';

@@ -5,7 +5,7 @@
   'use strict';
 
   var C = {
-    bg: '#0d0d0d', ink: '#e8861d', mut: '#8a8a8a',
+    bg: '#f3ead4', ink: '#b65c38', mut: '#6e5a40',
     hot: '#fb923c', cool: '#3a5a72', edge: '#333333'
   };
 
