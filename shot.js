@@ -67,6 +67,23 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     });
 
     if (evalFile) {
+      // Wait for the target to actually be on the requested URL, then for the
+      // document to finish loading. Without this, an evaluate() issued right
+      // after the target appears can land in the pre-navigation execution
+      // context and be silently discarded when the page commits.
+      let host = "";
+      try { host = new URL(url).host; } catch (e) { host = url; }
+      for (let i = 0; i < 200; i++) {
+        const nav = await send("Runtime.evaluate", {
+          expression: "location.href + '|' + document.readyState", returnByValue: true,
+        });
+        const v = nav.result && nav.result.result && nav.result.result.value;
+        if (typeof v === "string") {
+          const [href, state] = v.split("|");
+          if (href.indexOf(host) > -1 && (state === "complete" || state === "interactive")) break;
+        }
+        await sleep(100);
+      }
       const r = await send("Runtime.evaluate", {
         expression: fs.readFileSync(evalFile, "utf8"), returnByValue: true, awaitPromise: true,
       });
