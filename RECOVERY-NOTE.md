@@ -180,3 +180,67 @@ C:\Users\stagh\AppData\Local\hermes\node\node.exe serve.js
 - **Deploy**: git init + push to 0xhzsa/unpacked, GitHub Pages enabled (project page).
 - `test-open.html` driver deleted; check-journey.js ALL OK (10 chains), check-imgs.js
   missing [] unused [] mapped 49/49.
+
+## Session 5 log (2026-10-21) — banagale motor-blog redesign + bug fixes
+
+The whole visual system was re-skinned to match **banagale.com/the-way-the-motor-works**
+("The Way Things Work" / David Macaulay illustrated-engineering-book look): warm parchment
+page, dark brown ink, terracotta accent, Alegreya + Alegreya SC + Caveat handwriting.
+
+### Palette + type (new design tokens in `css/style.css`)
+- `--paper: #e9dec4` (page), `--paper-plate: #f3ead4` (panels), `--ink: #44321f` (text),
+  `--ink-faded: #6e5a40`, `--ink-faint: #93805f`
+- `--brick: #b65c38` (primary accent, was amber `#e8861d`), `--brick-deep: #94472a`,
+  `--mustard: #c9a04e`, `--steel: #6e8896`, `--sage: #8a9471`, `--cream: #f6efdd`
+- Fonts: `Alegreya` (serif body), `Alegreya SC` (small caps), `Caveat` (handwritten
+  annotation labels), `IBM Plex Mono` (technical labels) — replaces Archivo/Newsreader.
+- Paper grain: inline-SVG `feTurbulence` noise on `body`; warm vignette on `#grade`.
+- Canvas palettes updated in `js/graph.js` (AMBER/EDGE/FILL/FILL_HOT/TEXT/MUTED/DIM),
+  `js/press.js` (BG/AMBER/WARM/STEEL/EDGE), `js/plates.js` (bg/ink/mut).
+
+### Layout translations
+- **Text column** is now a paper sheet over the plate:
+  `#content` gets a horizontal parchment gradient (0.975 → 0 alpha) instead of relying on a
+  dark scrim, so ink text is always legible on bright photos. `#scrim` flipped from a dark
+  to a light warm wash.
+- **Annotation callouts** are paper chips (`.albl` = parchment bg + 1px ink border +
+  Caveat) and `#anno` z-index raised 15 → 22 so they render *above* the text sheet.
+  `#anno` dot got a paper ring so it reads on both paper and photo.
+- **Picker cards** (`.pk`) rebuilt: photo under a parchment wash, ink border, brick-deep
+  "N STOPS DEEP" label, mono name, italic serif tagline. `#picker` is a flex-wrap row.
+- **Header** z-index 25 → 45 (was being washed out by `#home`), backdrop parchment.
+- `#cue` = small paper tag (arrow + "GO DEEPER"); `#depth` = paper chip; `#pips` on paper.
+- Home hero: parchment sheet over the room photo, `margin-top:auto` on `.eyebrow` so it
+  bottom-aligns on desktop and scrolls cleanly on mobile.
+- Favicon + `theme-color` moved from `#151515` to `#e9dec4`.
+
+### Bugs found and fixed (pre-existing, not caused by the redesign)
+1. **`openPress()` never showed the press simulator** — it did
+   `classList.add("show")` and then immediately called `closePress()`, which *removed*
+   the class. Reordered: `closePress()` first, then `add("show")`, then `mount()`.
+2. **`.show { display: block !important; }`** — a global utility I added during the
+   reskin was overriding `#press-overlay.show { display: flex; }`, so the press panel
+   rendered un-centred in the top-left. Utility removed; element rules own `.show`.
+3. **`#details` was a floating panel** — the JS toggles `.open` on it, and the original
+   was an in-column grid accordion (`grid-template-rows: 0fr → 1fr`). Restored; the
+   "THE DETAILS +" button now actually expands the spec table + history note.
+4. **Press canvas resize spiral** — `press.js` read the parent's `clientHeight` while the
+   parent was sized by the canvas. Now the canvas's own CSS box is the source of truth
+   (`#press-overlay canvas { display:block; width:100%; height:440px; }`), parent only as
+   first-paint fallback.
+5. **Finale canvas collapsed** — `#finale` had been made a flex column and
+   `#full-graph { flex:1 }` broke the canvas sizing, so the graph drew in the top-left
+   corner. Restored `display:block` + `#finale canvas { position:absolute; inset:0 }`.
+6. **Mobile CSS ordering** — legacy base rules (`.pk`, `.eyebrow`, …) sat *after* the
+   mobile media query and won on equal specificity, so mobile cards were not full-width.
+   All mobile overrides now live in a final media block at the end of the file.
+7. **Mobile header overflow** — `hbtns:448` / `btn-room:448` exceeded the 390px
+   viewport. `#brand-sub` hidden ≤720px, `.hbtn` shrunk ≤480px.
+8. **Finale graph bottom reserve** — `setChrome` bottom bumped to 300px ≤860px so the
+   mobile stats/quote block stops covering the last echelon.
+
+### Verification
+Headless Edge (CDP `shot.js`) at 1600×900 and 390×844:
+home, room stop, candle stop, details expanded, press overlay, finale (full + object-only),
+mobile home/descent/finale. `check-journey.js` ALL OK (10 chains);
+`check-imgs.js` missing [] unused [] mapped 49/49.

@@ -229,7 +229,7 @@
       b.className = "pk";
       b.type = "button";
       b.style.backgroundImage =
-        "linear-gradient(180deg, rgba(10,8,6,.18), rgba(10,8,6,.86)), url('" + srcFor(st) + "')";
+        "linear-gradient(180deg, rgba(233,222,196,.58), rgba(233,222,196,.94)), url('" + srcFor(st) + "')";
       b.innerHTML =
         '<span class="m">' + (o.stops.length - 1) + " STOPS DEEP</span>" +
         '<span class="n">' + o.name + "</span>" +
@@ -538,8 +538,13 @@
       var api = window.GraphAPI;
       api.init($("#full-graph"));
       // the finale chrome owns the top-left (title) and bottom-left (quote):
-      // keep graph nodes clear of both regions.
-      api.setChrome({ top: 62, bottom: 204, stats: false });
+      // keep graph nodes clear of both regions. The mobile quote block is
+      // taller (stats wrap onto three rows), so reserve more there.
+      api.setChrome({
+        top: 62,
+        bottom: window.innerWidth <= 860 ? 300 : 204,
+        stats: false
+      });
       var stats;
       if (S.finaleMode === "object") {
         api.renderFor(obj().id);
@@ -615,9 +620,9 @@
 
   function openPress() {
     if (!window.PressSim) return;
+    closePress();                              // tear down any previous instance first
     el.pressOverlay.classList.add("show");
     $("#press-title").textContent = stop().name + " — 30 s CYCLE";
-    closePress();
     S.press = window.PressSim.mount($("#press-canvas"), {
       speed: 1,
       onPhase: function (i) {

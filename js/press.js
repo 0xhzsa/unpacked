@@ -538,13 +538,19 @@
 
     function resize() {
       if (!alive) return;
-      /* Parent box is the source of truth: it never feeds back into the
-         canvas backing-store size, so dpr scaling can't spiral. */
-      var par = el.parentElement;
-      var w = (par && par.clientWidth) || 0, h = (par && par.clientHeight) || 0;
+      /* The canvas's own CSS box is the source of truth. The parent is only a
+         fallback for the first paint — reading the parent while the parent is
+         sized by the canvas would feed back and spiral. */
+      var w = 0, h = 0;
+      var rect = el.getBoundingClientRect();
+      if (rect.width > 1) w = rect.width;
+      if (rect.height > 1) h = rect.height;
       if (!(w > 1) || !(h > 1)) {
-        var rect = el.getBoundingClientRect();
-        w = rect.width; h = rect.height;
+        var par = el.parentElement;
+        if (par) {
+          if (!(w > 1)) w = par.clientWidth || 0;
+          if (!(h > 1)) h = par.clientHeight || 0;
+        }
       }
       if (!(w > 1)) w = 800;
       if (!(h > 1)) h = 440;
