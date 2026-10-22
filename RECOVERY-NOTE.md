@@ -38,7 +38,7 @@ Chrome dropped views verified via headless Edge screenshots + DOM dumps (see sta
 ## Layout
 ```
 index.html            entry point (favicon, OG/twitter meta, theme-color)
-css/style.css         industrial brutalism sheet (1px borders, no radius, #e8861d amber accent)
+css/style.css         ORIGINAL v1 paper-look chrome sheet (pre-banagale; see session log
 js/content.js         object chains: parts -> machines -> molds -> materials -> sources (data)
 js/journey.js         the ordered descent per object (first-person narration + zooms)
 js/descent.js         descent UX (stage layers, annotations, IMG map, details toggle, finale)
@@ -119,10 +119,9 @@ C:\Users\stagh\AppData\Local\hermes\node\node.exe serve.js
 
 ## Deployment notes (for when needed)
 - Static host (Netlify/GitHub Pages/S3): upload the folder as-is; favicon/docs fine.
-- The one external reference: Google Fonts stylesheet in `index.html` (Archivo, IBM Plex Mono,
-  Newsreader). Self-host if the host must be fully offline.
-- OG image: none yet — add `assets/og.jpg` (room.jpg crop 1200x630) + one line og:image tags
-  when desired.
+- The one external reference: Google Fonts stylesheet in `index.html` (Alegreya, Alegreya SC,
+  Caveat, IBM Plex Mono). Self-host if the host must be fully offline.
+- OG image: `assets/og.jpg` (1200x630, banagale parchment cover) + og meta tags in `index.html`.
 
 ## Session 3 log (2026-10-21) — plug-in layer + mobile
 - **Affiliate layer**: new `js/affiliate.js` (the ONLY file to edit to monetize). `tag: ""`
@@ -244,3 +243,27 @@ Headless Edge (CDP `shot.js`) at 1600×900 and 390×844:
 home, room stop, candle stop, details expanded, press overlay, finale (full + object-only),
 mobile home/descent/finale. `check-journey.js` ALL OK (10 chains);
 `check-imgs.js` missing [] unused [] mapped 49/49.
+
+
+## Session 6 log (2026-10-22) - data-layer banagale migration
+
+- js/content.js: all 120 `color:` values migrated (110 nodes at every echelon + 10 chains).
+  Finale-graph node borders (graph.js drawNode paints n.color) now run only on banagale
+  tokens: machines #6e8896 steel; metals/electronics/oil #44321f; plastics/glaze #b65c38;
+  bauxite #94472a; sand/kaolin/feldspar/glass/paper #93805f; plants/rattan/cotton #8a9471;
+  wood/timber/stoneware #6e5a40; wax/candle/copper/adhesive #c9a04e.
+- js/press.js: 12 cold near-black machine fills (#101010/#121212/#0f0f0f/#141414/#131313/#111)
+  warmed to ink #2b2115 (ink-on-paper schematic).
+- js/graph.js: node default fallback #666666 -> #44321f.
+- assets/og.jpg: rebuilt for banagale (1200x630 parchment cover, five-object strip,
+  System.Drawing jpeg q88, ~112KB); og:image:alt updated in index.html.
+- brand.md: old brutalism kit marked HISTORICAL; new "13. banagale - CURRENT" token table
+  appended (tokens, fonts, node border semantics). AUTHORING.md node `color` guidance and
+  example rewritten to the semantic palette. RECOVERY-NOTE stale lines (css sheet
+  description, old font list, OG image note) corrected.
+- css/style.css: mobile stop sheet now scrolls cleanly (overflow-y auto + pointer-events
+  auto + bottom pad 200) so details-expanded specs clear the GO DEEPER cue.
+- Verification: node --check content/press OK; check-journey ALL OK; check-imgs 49/49;
+  local screenshots: finale full + keyboard/mug/lamp object modes, press sim, spring stop,
+  book source stop, escape-to-home, mobile details expanded/collapsed.
+

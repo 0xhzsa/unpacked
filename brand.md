@@ -3,7 +3,15 @@
 **Project:** UNPACKED  
 **Format:** Interactive website  
 **Premise:** Start in a modern room. Zoom into any object. Unpack its entire manufacturing chain — raw material, tooling, process, logistics — the engineer's answer to "I, Pencil" (Leonard Read, 1958).  
-**Art direction:** Industrial brutalism. Computed, not hand-drawn. Macaulay-style cutaway aesthetic generated from technical data.
+**Art direction:** Banagale parchment (2026-10-21 redesign) — a printed technical-manual page: warm paper ground, warm-brown ink linework, brick accent, hand-written annotations. Live tokens in **§ 13 banagale — CURRENT** (bottom of file).
+
+---
+
+> **⚠ HISTORICAL:** every section between here and § 13 documents the ORIGINAL
+> "industrial brutalism" direction (near-black canvas, amber `#e8861d` accent, Archivo /
+> Newsreader fonts). It shipped 2026-09 → 2026-10-21 and is superseded. Kept for
+> archaeology only — do not build new surfaces from it. Many of its sections (Tailwind
+> config, Sharp Grotesk stack) never matched the shipped pure-CSS implementation.
 
 ---
 
@@ -487,3 +495,50 @@ Precise, specific, technical. Real materials, real specs, real history. No marke
 - **Zoom:** Clicking an object hotspot zooms linearly `300–500ms` into the object. Room dissolves into the first echelon panel; graph node for echelon 0 opens.
 - **Drill-down:** Clicking a graph node advances to the next echelon, stepped `steps(4, jump-end)`, one echelon per frame. Path edge fills amber as traversed.
 - **No parallax, no floating elements, no decorative motion.** Camera moves are computed linear translations.
+
+---
+
+## 13. banagale — CURRENT direction (2026-10-21 redesign)
+
+**Banagale parchment.** The site reads like a page from a printed technical manual or a
+field notebook: warm paper ground, warm-brown ink linework, brick-red accent, hand-written
+caveats. Photography stays full-color and unfiltered; the ink system is data (CSS tokens +
+canvas constants), applied like presswork.
+
+Non-negotiables (same anti-slop spine as the historical sections above):
+
+- No flat SVG illustration; photography is the image layer.
+- No decorative gradients. The one allowed exception is the content text sheet's vertical
+  cream-to-paper tint — a material reference for sheet paper, not a color wash.
+- No drop shadows, no floating cards, no rounded corners (radius 0 everywhere),
+  no looping decorative animation, no AI-tell copy.
+- Depth comes from hairline 1px ink borders and value steps between paper tones, never blur.
+
+### Tokens (css/style.css `:root`)
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--paper` | `#e9dec4` | Page ground, canvas bg, palette fallback, theme-color, favicon |
+| `--paper-plate` | `#f3ead4` | Panels, chips, graph node fill, press/schematic plate |
+| `--cream` | `#f6efdd` | Lightest sheet tone (text sheet top edge) |
+| `--ink` | `#44321f` | Primary text, metals/electronics/oil node borders |
+| `--ink-faded` | `#6e5a40` | Muted text, wood/timber/stoneware borders |
+| `--pale` | `#93805f` | Hairlines, dimension lines, minerals/paper/glass borders |
+| `--brick` | `#b65c38` | Accent: active, focus, current node, machine echelon, picks |
+| `--brick-deep` | `#94472a` | Accent hover/pressed, bauxite border |
+| `--mustard` | `#c9a04e` | Wax/candle/copper/adhesive borders, warm marks |
+| `--sage` | `#8a9471` | Plant/fiber borders, quiet tags |
+| `--steel` | `#6e8896` | Machine borders, steel lines in schematics |
+
+Typography: **Alegreya SC** (small-caps display), **Alegreya** (body serif),
+**Caveat** (hand annotations), **IBM Plex Mono** (technical labels). Text is warm brown
+ink on paper — never neutral gray.
+
+### Finale-graph node border colors (`js/content.js`, painted by `js/graph.js`)
+
+Semantic, every hex must sit on parchment: machines `#6e8896` · metals/electronics/oil
+`#44321f` · plastics/glaze `#b65c38` · bauxite `#94472a` · sand/kaolin/feldspar/glass/paper
+`#93805f` · plants/rattan/cotton `#8a9471` · wood/timber/stoneware `#6e5a40` ·
+wax/candle/copper/adhesive `#c9a04e`. Current node = brick 2px border + hot fill; visited
+= brick text; future = dimmed. Same list is in AUTHORING.md §2 — pick by material family
+when adding nodes.

@@ -38,14 +38,17 @@ Append at the end (before the closing `],\n};`), following the exact node shape 
 ceiling-fan chain (it's the newest, cleanest example). Per node: `id`, `name`, `echelon`,
 `description` (2 sentences, physical, no adjectives you can't photograph), `specs` (4,
 real numbers with units), `history` (ONE dated fact, ≤ 20 words), `process` (4 steps,
-verb-first, ≤ 8 words each), `color` (hex from the file's muted palette), `inputs`
-(node ids this node is made from).
+verb-first, ≤ 8 words each), `color` (hex from the banagale node palette — semantic, this
+is the node's border color in the finale graph: machines `#6e8896`, metals/electronics/oil
+`#44321f`, plastics/glaze `#b65c38`, minerals/paper/glass `#93805f`, plants/rattan/cotton
+`#8a9471`, wood/timber `#6e5a40`, wax/candle/copper/adhesive `#c9a04e`, bauxite `#94472a`),
+`inputs` (node ids this node is made from).
 
 ```js
 {
   id: "airbuds-01", name: "Wireless Earbuds", echelon: 0,
   description: "...", specs: [...], history: "...", process: [...],
-  color: "#37474F",
+  color: "#44321f",
   inputs: ["airbuds-battery-01", "airbuds-driver-01"]
 }
 ```
