@@ -115,7 +115,7 @@
       if (!nodes.length) return;
       out += '<h3 class="l-ec reveal">E' + e + " — " + (ECHE_WORD[e] || "").toUpperCase() +
         ' <span class="l-count">' + nodes.length + " node" + (nodes.length > 1 ? "s" : "") + "</span></h3>";
-      out += '<div class="l-grid">';
+      out += '<div class="l-grid' + (nodes.length === 1 ? " single" : "") + '">';
       nodes.forEach(function (n) {
         out += '<article class="nrc reveal" style="--nc:' + esc(n.color || "#44321f") + '">' +
           '<h4>' + esc(n.name) +

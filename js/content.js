@@ -2653,7 +2653,7 @@ window.CONTENT = {
           specs: [
             { label: "Volume", value: "1180", unit: "ml" },
             { label: "Ice retention", value: "24", unit: "h" },
-            { label: "Heat retention", value: "9", unit: "h" },
+            { label: "Heat retention", value: "12", unit: "h" },
             { label: "Mass", value: "0.55", unit: "kg" },
           ],
           history:
@@ -2676,15 +2676,15 @@ window.CONTENT = {
           name: "Double-Wall Steel Shell",
           echelon: 1,
           description:
-            "Two drawn 304 cups become one wall: they are necked together and laser-welded at a vacuum port, then the gap is pumped to around 0.007 pascal and pinched shut. The vacuum does the insulation — the steel only holds it.",
+            "Two drawn 304 cups become one wall: they are necked together and laser-welded at a vacuum port, then the few-millimetre gap is pumped to a trace of air and pinched shut. The vacuum does the insulating; the steel only holds it.",
           specs: [
             { label: "Wall gauge", value: "0.5", unit: "mm" },
-            { label: "Gap pressure", value: "0.007", unit: "Pa" },
-            { label: "Copper film", value: "1", unit: "µm" },
-            { label: "Seal life", value: "10", unit: "yr" },
+            { label: "Vacuum gap", value: "3", unit: "mm" },
+            { label: "Liner coating", value: "Copper", unit: "" },
+            { label: "Construction", value: "Two drawn cups", unit: "" },
           ],
           history:
-            "Dewar sketched his vacuum flask in 1892 to keep liquefied air cold; Thermos patented the household version for soup in 1904.",
+            "Dewar never patented his 1892 vacuum flask — commercial versions were patented by others, and he lost the later court case over it.",
           process: [
             "Deep-draw two cups from 304 coil",
             "Neck the rims and align the walls",
@@ -2699,7 +2699,7 @@ window.CONTENT = {
           name: "PP Straw Lid",
           echelon: 1,
           description:
-            "The lid that sold the trend is polypropylene, not heroics: a screw cap, a hinged spout and a floating straw ball that drinks from any angle the bottle is tipped. Three moldings snap together with one silicone seal ring, all dishwasher-safe.",
+            "The lid that sold the trend is plain polypropylene: a screw cap, a hinged spout and a floating straw ball that drinks from any angle the bottle is tipped. Three moldings snap together with one silicone seal ring, all dishwasher-safe.",
           specs: [
             { label: "Body", value: "Polypropylene", unit: "" },
             { label: "Straw", value: "Two-way valve", unit: "" },
@@ -2707,7 +2707,7 @@ window.CONTENT = {
             { label: "Dishwasher", value: "Top rack", unit: "" },
           ],
           history:
-            "Straw lids carried the tumbler trend: insulated-bottle sales roughly doubled between 2021 and 2023.",
+            "Straw lids carried the trend: Stanley's yearly sales ran from $73 million in 2019 to $750 million in 2023, almost all 40-ounce tumblers.",
           process: [
             "Injection-mold the PP body and cap",
             "Mold the silicone seal ring",
@@ -2730,7 +2730,7 @@ window.CONTENT = {
             { label: "Fit", value: "Shrink, no glue", unit: "" },
           ],
           history:
-            "It borrows the same food-grade elastomer used for baby-bottle nipples since the 1940s.",
+            "Silicone rubber began as a paste protecting airplane ignition parts in the 1940s; the same inertness now takes dishwasher heat.",
           process: [
             "Mill the silicone gum with platinum cure",
             "Injection-mold on a warm tool",
@@ -2745,19 +2745,19 @@ window.CONTENT = {
           name: "Deep-Drawing Press",
           echelon: 2,
           description:
-            "A mechanical press with a blank holder draws flat 304 sheet into a deep cup in one stroke: the metal flows, thins by about ten percent, and work-hardens exactly where the wall needs it. Tandem lines hand a drawn shell forward every couple of seconds.",
+            "A mechanical press with a blank holder draws flat 304 sheet into a cup in one stroke; a redraw press takes it the rest of the way to vessel height. The metal flows, thins by about ten percent, and work-hardens exactly where the wall needs it.",
           specs: [
             { label: "Press force", value: "320", unit: "t" },
-            { label: "Draw depth", value: "260", unit: "mm" },
+            { label: "Redraw passes", value: "2", unit: "" },
             { label: "Stroke rate", value: "30", unit: "/min" },
             { label: "Wall thinning", value: "10", unit: "%" },
           ],
           history:
-            "E. W. Bliss built the first double-action drawing presses for cartridge brass in the 1860s.",
+            "E. W. Bliss built double-action drawing presses in Brooklyn from 1867; brass cartridge caps were the trade's first mass run.",
           process: [
             "Cut a blank from the steel coil",
             "Clamp it under the blank holder",
-            "Draw the cup in one stroke",
+            "Draw the cup, then redraw it taller",
             "Pass the shell to trim and anneal",
           ],
           color: "#6e8896",
@@ -2793,17 +2793,17 @@ window.CONTENT = {
           description:
             "The line where the tumbler gets its trick: drawn shells are necked together, laser-welded around a straw-thin vacuum port, evacuated through it, and the port is pinched and soldered shut. Every bottle is leak-checked, because one hairline crack ends the vacuum and the product.",
           specs: [
-            { label: "Gap pressure", value: "7", unit: "mPa" },
+            { label: "Gap size", value: "3", unit: "mm" },
             { label: "Weld", value: "Laser, one pass", unit: "" },
             { label: "Leak test", value: "100", unit: "%" },
-            { label: "Pump-down", value: "90", unit: "s" },
+            { label: "Residual air", value: "A trace", unit: "" },
           ],
           history:
             "The 1913 Thermos already used a vacuum gap; only the pump-down time has shrunk since.",
           process: [
             "Neck inner and outer shells together",
             "Laser-weld the seam with a port",
-            "Evacuate the gap to 0.007 Pa",
+            "Evacuate the gap to a near vacuum",
             "Pinch and seal the port shut",
           ],
           color: "#6e8896",
@@ -2837,12 +2837,12 @@ window.CONTENT = {
           name: "Polypropylene Pellets",
           echelon: 3,
           description:
-            "Polypropylene is propylene chained into a thermoplastic that shrugs off solvents, fatigue-flips a hinge ten thousand times, and survives the dishwasher. Dried, colored food-safe and delivered as pellets to the molding press.",
+            "Polypropylene is propylene chained into a thermoplastic that shrugs off solvents, folds a living hinge ten thousand times, and survives the dishwasher. Dried, colored food-safe and delivered as pellets to the molding press.",
           specs: [
             { label: "Molding temp", value: "220", unit: "°C" },
+            { label: "Melt point", value: "165", unit: "°C" },
             { label: "Density", value: "0.90", unit: "g/cm³" },
             { label: "Type", value: "Homopolymer", unit: "" },
-            { label: "Dishwasher cycles", value: "1000", unit: "" },
           ],
           history:
             "Propylene went from unwanted refinery gas to the world's second-largest plastic once Ziegler-Natta catalysts worked in 1954.",
@@ -2860,7 +2860,7 @@ window.CONTENT = {
           name: "Silicone Rubber Compound",
           echelon: 3,
           description:
-            "Silicone starts as quartz: silicon smelted from silica sand at two thousand degrees becomes a silicon-oxygen polymer backbone with methyl groups hung on it. It takes -40 °C mornings and a dishwasher at ninety without complaint, and it never wants glue.",
+            "Silicone starts as quartz: sand smelted into silicon at 2,000 °C opens into a silicon-oxygen backbone with methyl groups attached. It takes dishwasher heat and freezer mornings without complaint, and it grips without glue.",
           specs: [
             { label: "From", value: "Quartz sand", unit: "" },
             { label: "Cure", value: "Platinum", unit: "" },
@@ -2868,10 +2868,10 @@ window.CONTENT = {
             { label: "Shore hardness", value: "35", unit: "A" },
           ],
           history:
-            "Eugene Rochow reacted methyl chloride with silicon at Corning in 1940; silicone rubber left the lab within three years.",
+            "Eugene Rochow reacted methyl chloride with silicon at General Electric in 1940 — nine tenths of all silicone still follows that route.",
           process: [
             "Smelt quartz into silicon metal",
-            "React silicon with methyl chloride",
+            "React silicon with methyl chloride over copper",
             "Polymerize the siloxane backbone",
             "Add filler, catalyst and mill to gum",
           ],

@@ -246,6 +246,20 @@
       b.addEventListener("click", function () { if (window.openStory) openStory(i); else open(i, 1); });
       p.appendChild(b);
     });
+    if (objects().length % 3 === 2) {
+      var r = document.createElement("button");
+      r.className = "pk pk-room";
+      r.type = "button";
+      r.style.backgroundImage =
+        "linear-gradient(180deg, rgba(233,222,196,.58), rgba(233,222,196,.94)), url('assets/img/room.jpg')";
+      r.innerHTML =
+        '<span class="m">ALL ' + objects().length + " AT ONCE</span>" +
+        '<span class="n">The Whole Room</span>' +
+        '<span class="m rm-cta">OPEN THE GRAPH →</span>' +
+        '<span class="m">Everything they share: machines, materials and mines.</span>';
+      r.addEventListener("click", function () { openFinale("full"); });
+      p.appendChild(r);
+    }
   }
 
   function showHome() {

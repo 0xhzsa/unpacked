@@ -635,3 +635,29 @@ header {
    so the img must contribute a definite width for fit-content to hug */
 .hero-media.has-portrait img { width: 460px; max-width: calc(100vw - 96px); height: auto; }
 .ch-media.has-portrait img { width: min(100%, 460px); }
+
+/* ── Session 8: layout hygiene + polish ───────────────────────────────── */
+
+/* the home slide's full-bleed layers sit wider than the viewport: clip at
+   the root so no scrollbar and no stray geometry ever reaches the user */
+html { overflow-x: clip; }
+
+/* the whole-room card spends the grid's open last cell */
+#picker .pk-room { border-style: dashed; }
+#picker .pk-room .m:nth-child(3) {
+  font-family: var(--mono); font-style: normal; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--brick-deep); font-weight: 600; margin-top: 4px;
+}
+
+/* keyboard users get a visible ring on every affordance */
+:is(.hbtn, .cbtn, #cue):focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; }
+
+/* pressed feedback on cards */
+#picker .pk:active { transform: translateY(1px) scale(0.995); }
+
+/* a one-node echelon card spans the full ledger width */
+.l-grid.single { grid-template-columns: 1fr; }
+
+/* Nº11 card thumb: crop lower where the photo carries contrast */
+#picker .pk:nth-child(11) { background-position: 50% 78%; }

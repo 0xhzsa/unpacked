@@ -322,3 +322,70 @@ mobile home/descent/finale. `check-journey.js` ALL OK (10 chains);
   106 processes / 121 links / 9 shared across 11 objects, home picker.
 
 
+
+## Session 8 (2026-10-23): fact-check pass + launch polish
+
+### Fact-check (verified via web sources)
+- Heat retention 9 h -> 12 h (Thermos publishes 24 h cold / 12 h hot).
+  Object specs + journey object stop updated.
+- Shell specs: invented "Gap pressure 0.007 Pa" removed -> verified standard
+  "Vacuum gap 3 mm"; invented "Copper film 1 um" -> "Liner coating: Copper"
+  (the copper layer is real, no verified thickness figure); 4th spec -> "Two
+  drawn cups". Desc now says "pumped to a trace of air" (no fake pressure).
+- Vacuum line specs: gap size 3 mm / weld laser one pass / leak test 100 % /
+  residual air "A trace" (invented 7 mPa + 90 s pump-down removed); process
+  step "Evacuate the gap to 0.007 Pa" -> "to a near vacuum".
+- Press: desc now honest about draw-then-redraw (one-stroke cup + redraw press
+  to full height); spec "Draw depth 260 mm" -> "Redraw passes 2"; process step
+  updated. History: E. W. Bliss built double-action drawing presses in
+  Brooklyn from 1867; brass cartridge caps were the first mass run (verified).
+- Stanley: fabricated "sales doubled 2021-2023" -> verified arc $73M (2019) to
+  $750M (2023), almost all 40-oz tumblers (CNBC).
+- Rochow: Corning -> General Electric, 1940 (direct process still makes nine
+  tenths of all silicone); process step now includes the copper catalyst.
+- Silicone: desc rewritten (quartz -> silicon metal -> Si-O backbone; "grips
+  without glue"); history -> airplane ignition paste, 1940s (verified).
+- PP: unverifiable "Dishwasher cycles 1000" -> "Melt point 165 C"; living-hinge
+  copy fixed ("folds a living hinge ten thousand times").
+- Dewar: shell history -> "never patented his 1892 flask; commercial versions
+  were patented by others; he lost the later court case" (verified).
+- Lid desc: "polypropylene, not heroics" (contrast-tell shape) -> "plain
+  polypropylene".
+
+### Voice / copy fixes
+- Object stop narration: removed "The trick isn't the paint - it's the nothing"
+  contrast-reveal; new voice: "My paint gets the shelf; between my walls is a
+  gap of almost nothing, so a sun-hot beach never reaches my water."
+- Lid stop narration grammar: "the family the viral straw lids belongs to" ->
+  "belong to".
+- Home lead rewritten (no em-dashes, no redundancy): "Every object in this room
+  hides a long story. Pick one and follow it: every part, every machine, every
+  material, to the ground it came from."
+- Home scroll hint: "click any object to begin" -> "choose an object · every
+  story ends in the ground" (sets the payoff promise).
+
+### Broken parts + design
+- Home grid's open last cell -> new dashed "The Whole Room" card (buildPicker
+  appends when objects().length % 3 === 2; click opens the full finale graph;
+  tested: click -> finale open=true).
+- CC-compliance strip under the grid: "Photos: Wikimedia Commons · CC BY /
+  CC BY-SA · per-file credits in RECOVERY-NOTE.md".
+- Recurring GEO "img:13xx": root cause = the home stage's full-bleed cover
+  layer (background-size: cover) extends past the viewport by design; never
+  user-visible. New html { overflow-x: clip } + existing body overflow-x
+  hidden guarantee no horizontal scroll on any browser (incl. iOS quirk where
+  body-only hidden softens). GEO still lists the rect; sw === iw on every shot
+  proves no pannable overflow.
+- Ledger: single-node echelon grids (E0) render full width (.l-grid.single).
+- A11y: :focus-visible rings on header/control buttons + dive cue; cards get
+  :active press feedback.
+- Tumbler card thumb: background-position 50% 78% (higher-contrast region,
+  avoids a filter distorting card text).
+
+### Verification (session 8)
+- node --check: content / journey / descent / story OK.
+- check-journey: ALL OK (11 chains; insulated-bottle stops=6 seq=0..5).
+- check-imgs: mapped 51/51, missing [] unused [].
+- Shots: home (room card, fixed thumb, new lead + hint + credits), bottle
+  story hero (heat 12 h, new narration), ledger E0 full width, room-card
+  click -> full finale "THE WHOLE ROOM" (open=true).
