@@ -195,7 +195,7 @@
 
     /* --------------------------------------------------------- machine art */
     function drawBed(g) {
-      g.fillStyle = '#101010'; g.fillRect(40, BED_Y, 930, BED_H);
+      g.fillStyle = '#2b2115'; g.fillRect(40, BED_Y, 930, BED_H);
       g.save(); g.beginPath(); g.rect(40, BED_Y, 930, BED_H); g.clip();
       g.strokeStyle = 'rgba(138,138,138,0.3)'; g.lineWidth = 1;
       for (var x = 24; x < 990; x += 13) line(g, x, BED_Y + BED_H, x + 38, BED_Y);
@@ -222,7 +222,7 @@
     }
 
     function drawBarrel(g) {
-      g.fillStyle = '#121212'; g.fillRect(BX0, BAR_T, BX1 - BX0, BAR_B - BAR_T);
+      g.fillStyle = '#2b2115'; g.fillRect(BX0, BAR_T, BX1 - BX0, BAR_B - BAR_T);
       g.strokeStyle = AMBER; g.lineWidth = 1.4;
       g.strokeRect(BX0 + 0.5, BAR_T + 0.5, BX1 - BX0 - 1, BAR_B - BAR_T - 1);
       g.lineWidth = 1; g.strokeStyle = 'rgba(232,134,29,0.55)';
@@ -245,7 +245,7 @@
     }
 
     function drawHopper(g) {
-      g.fillStyle = '#0f0f0f';
+      g.fillStyle = '#2b2115';
       g.beginPath();
       g.moveTo(HOP.x0, HOP.yt); g.lineTo(HOP.x1, HOP.yt); g.lineTo(HOP.x1, HOP.yj);
       g.lineTo(HOP.tx1, HOP.yb); g.lineTo(HOP.tx0, HOP.yb); g.lineTo(HOP.x0, HOP.yj);
@@ -258,7 +258,7 @@
       g.stroke();
       var j;
       for (j = 0; j < st.hopper.length; j++) {
-        g.fillStyle = '#141414'; g.fillRect(st.hopper[j].x - 2.5, st.hopper[j].y - 2.5, 5, 5);
+        g.fillStyle = '#2b2115'; g.fillRect(st.hopper[j].x - 2.5, st.hopper[j].y - 2.5, 5, 5);
         g.strokeStyle = 'rgba(232,134,29,0.55)'; g.lineWidth = 1;
         g.strokeRect(st.hopper[j].x - 2.5, st.hopper[j].y - 2.5, 5, 5);
       }
@@ -267,7 +267,7 @@
     function drawScrew(g, tip, rot, pool, t, amps) {
       var j;
       g.strokeStyle = AMBER;
-      g.fillStyle = '#141414'; g.lineWidth = 1.4;
+      g.fillStyle = '#2b2115'; g.lineWidth = 1.4;
       g.strokeRect(40.5, 272.5, 60, 55);
       /* drive / thrust end with rotation marker */
       g.lineWidth = 1.2;
@@ -277,14 +277,14 @@
       g.fillStyle = AMBER;
       g.fillRect(70 + Math.cos(a) * 13 - 2, AX + Math.sin(a) * 13 - 2, 4, 4);
       /* shaft + core */
-      g.fillStyle = '#141414';
+      g.fillStyle = '#2b2115';
       g.fillRect(60, AX - 6, tip - 60, 12);
       g.lineWidth = 1; g.strokeStyle = 'rgba(232,134,29,0.75)';
       line(g, 60, AX - 6.5, tip, AX - 6.5); line(g, 60, AX + 6.5, tip, AX + 6.5);
       g.beginPath();
       g.moveTo(SCR_X, AX - 8); g.lineTo(tip, AX - 13); g.lineTo(tip, AX + 13); g.lineTo(SCR_X, AX + 8);
       g.closePath();
-      g.fillStyle = '#101010'; g.fill();
+      g.fillStyle = '#2b2115'; g.fill();
       g.strokeStyle = AMBER; g.lineWidth = 1.2; g.stroke();
       /* flight envelope */
       g.lineWidth = 1; g.strokeStyle = 'rgba(232,134,29,0.65)';
@@ -306,7 +306,7 @@
       g.lineWidth = 1;
       for (j = 0; j < st.pellets.length; j++) {
         var q = st.pellets[j];
-        g.fillStyle = '#141414'; g.fillRect(q.x - 2.5, q.y - 2.5, 5, 5);
+        g.fillStyle = '#2b2115'; g.fillRect(q.x - 2.5, q.y - 2.5, 5, 5);
         g.strokeStyle = 'rgba(232,134,29,0.7)'; g.strokeRect(q.x - 2.5, q.y - 2.5, 5, 5);
       }
       /* melt pool in front of the screw + nozzle channel */
@@ -330,7 +330,7 @@
     function drawMold(g, ret, fill, temp, ext, cooled) {
       var col = mixc(WW, SW, temp * 0.9);
       /* platens + blocks */
-      g.fillStyle = '#131313'; g.strokeStyle = STEEL; g.lineWidth = 1.3;
+      g.fillStyle = '#2b2115'; g.strokeStyle = STEEL; g.lineWidth = 1.3;
       g.strokeRect(PLAT_X + 0.5, PLAT_Y + 0.5, PLAT_W, PLAT_H);
       g.fillRect(PLAT_X, PLAT_Y, PLAT_W, PLAT_H);
       g.strokeRect(MH_X0 + 0.5, MH_Y0 + 0.5, MH_W, MH_Y1 - MH_Y0);
@@ -386,20 +386,20 @@
 
       /* ejector pins (fixed side, push the part into the daylight) */
       var k, py = [282, 310];
-      g.strokeStyle = AMBER; g.lineWidth = 1.2; g.fillStyle = '#131313';
+      g.strokeStyle = AMBER; g.lineWidth = 1.2; g.fillStyle = '#2b2115';
       for (k = 0; k < 2; k++) {
         g.strokeRect(628.5, py[k] - 7.5, 14, 15);
         g.fillRect(628, py[k] - 7, 14, 14);
         line(g, 642, py[k], 665 + ext, py[k]);
         g.fillStyle = AMBER;
         g.fillRect(663 + ext, py[k] - 2.5, 5, 5);
-        g.fillStyle = '#131313';
+        g.fillStyle = '#2b2115';
       }
     }
 
     function drawGauge(g, press) {
       var gx = 478, gy = 214, gh = 44, gw = 12;
-      g.fillStyle = '#111'; g.fillRect(gx, gy, gw, gh);
+      g.fillStyle = '#2b2115'; g.fillRect(gx, gy, gw, gh);
       g.fillStyle = AMBER;
       var h = (gh - 4) * cl(press, 0, 1);
       g.fillRect(gx + 2, gy + gh - 2 - h, gw - 4, h);

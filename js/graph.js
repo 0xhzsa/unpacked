@@ -43,7 +43,7 @@
         return node;
       }
       node = {
-        id: key, name: src.name, echelon: src.echelon | 0, color: src.color || "#666666",
+        id: key, name: src.name, echelon: src.echelon | 0, color: src.color || "#44321f",
         chains: [chain.id], x: 0, y: 0, w: NODE_W, h: NODE_H, band: 0,
         state: "default", hover: 0, portTop: false, portBot: false
       };
