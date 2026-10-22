@@ -37,7 +37,8 @@ window.UNPACKED_AFFILIATE = {
     "hardcover-book": "hardcover book",
     "ceiling-fan":    "ceiling fan",
     "candle":         "scented candle",
-    "armchair":       "rattan armchair"
+    "armchair":       "rattan armchair",
+    "insulated-bottle": "40 oz insulated tumbler"
   },
 
   // Honest, required disclosure. Shown in small print with the button.

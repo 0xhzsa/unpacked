@@ -267,3 +267,58 @@ mobile home/descent/finale. `check-journey.js` ALL OK (10 chains);
   local screenshots: finale full + keyboard/mug/lamp object modes, press sim, spring stop,
   book source stop, escape-to-home, mobile details expanded/collapsed.
 
+
+## Session 7 log (2026-10-22) — story field notes, toggle + node sheet, 11th object
+
+### Storey (scroll field notes) replaces slide-descent as the default
+- `js/story.js` (new): banagale-style reader over each object's journey data — hero
+  (object stop, first-person lead, animated spec counters, hand note), prologue (room),
+  one chapter per non-room/object stop in order, **"The complete chain" ledger detailing
+  every echelon including E0 (the object node itself)**, closing (finale + affiliate).
+  Portrait originals auto-plate (`tagPortrait` adds `.has-portrait` when
+  naturalHeight > naturalWidth) instead of cover-cropping.
+- Layer stack: header 45 > story 43 > home 40; finale 50 > node sheet 52; press 55.
+- Routes: picker card click + digit keys (1–9 → objects #1–#9, **0** → #10; #11 is
+  card-click only) → `window.openStory(oi)`; `g` from home/story → full finale; Escape order
+  press → node sheet → finale → story → home; last stop + right arrow → full finale.
+- `descent.js` exports `DescentAPI` (openFinaleFull / runPress / showHome / showNodeSheet)
+  and `window.UnpackedIMG = IMG` (single image source of truth for descent + story).
+- `.hand::before` copy changed to `content: "N.B. — "`.
+
+### Whole-room toggle (user: "make sure when i choose 'whole room' it does go to the whole room")
+- Last stop `next()` now opens the FULL graph finale (`openFinale("full")`), not the
+  object-only mode; object-mode finale keeps a visible "The whole room" toggle; clicking
+  any graph node in EITHER mode opens the node sheet (not a direct jump).
+
+### Node detail sheet (user: "make sure everything get detailed")
+- Graph node click (id match, then normalized-name match across chains) opens a sheet:
+  description, process steps, 4 specs, history, shared-by chips, and
+  **"Read its chapter ↓"** (opens the story at that node's chapter anchor).
+- Story ledger covers all nodes `[0,1,2,3,4]` echelons.
+
+### 11th object — Insulated Steel Bottle (`insulated-bottle`, TikTok 40 oz trend)
+- `content.js`: 13-node chain (object; shell/lid/boot; deep-draw press, injection press
+  *(name-merge: "Injection Molding Press")*, vacuum-seal line; 304 coil / PP pellets /
+  silicone compound; merges "Iron Ore Mine", "Crude Oil Well", "Silica Sand Quarry").
+- `journey.js`: 6 stops (room→object→straw lid→draw press→steel coil→iron ore mine);
+  all 10 earlier room stops updated "Objects in room" 10 → 11.
+- Photos: `assets/img/bottle.jpg` = Commons *A stainless steel thermoflask.jpg*,
+  `assets/img/lid.jpg` = its *(open)* variant (cap off, red silicone seal ring visible —
+  lid stop copy/chips recalibrated to what the photo actually shows). Both by
+  **Shypoetess**, CC BY-SA 4.0, Wikimedia Commons, 1280px thumbs.
+- `descent.js` IMG entries: room / bottle / lid / stamping / coil / mine (51 keys);
+  `affiliate.js`: `"insulated-bottle": "40 oz insulated tumbler"`.
+- CSS: portrait plate block (`.hero-media/.ch-media.has-portrait { width: fit-content }`,
+  hero img `width:460px; max-width: calc(100vw - 96px)` — a `%` inside
+  `min(460px,100%)` was indefinite during the wrapper's intrinsic sizing, which kept the
+  hero wrapper at full width; definite widths fix the hug).
+
+### Verification (session 7)
+- node --check: content / journey / descent / affiliate / story OK.
+- `check-journey.js`: ALL OK — 11 chains, insulated-bottle stops=6 seq=0..5 e=001234.
+- `check-imgs.js`: missing [] unused [] mapped 51/51.
+- Headless Edge shots: tumbler story hero (plate hugs photo, chips on-subject), lid
+  chapter plate (chips land on cap + seal ring), ledger E0–E4, full graph
+  106 processes / 121 links / 9 shared across 11 objects, home picker.
+
+

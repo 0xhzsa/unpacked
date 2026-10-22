@@ -2634,5 +2634,320 @@ window.CONTENT = {
         },
       ],
     },
+
+    // =====================================================================
+    // OBJECT: Insulated Steel Bottle (the TikTok-era 40 oz vacuum tumbler)
+    // Echelon 0: object -> 1: components -> 2: machines -> 3: raw materials -> 4: sources
+    // =====================================================================
+    {
+      id: "insulated-bottle",
+      name: "Insulated Steel Bottle",
+      color: "#44321f",
+      nodes: [
+        {
+          id: "insulated-bottle-01",
+          name: "Insulated Steel Bottle",
+          echelon: 0,
+          description:
+            "A double-wall vacuum vessel: two 304 stainless shells drawn from steel coil, welded neck to neck and evacuated so the gap conducts next to nothing. Forty ounces that keep ice for a day on a hot beach and steam quietly on a cold morning.",
+          specs: [
+            { label: "Volume", value: "1180", unit: "ml" },
+            { label: "Ice retention", value: "24", unit: "h" },
+            { label: "Heat retention", value: "9", unit: "h" },
+            { label: "Mass", value: "0.55", unit: "kg" },
+          ],
+          history:
+            "The 2020s' 40-ounce tumbler wave revived a 1913 design — and 'TikTok made me buy it' became a real retail channel.",
+          process: [
+            "Draw two steel shells on a press",
+            "Weld, neck and evacuate the vessel",
+            "Mold and fit the PP lid",
+            "Leak-test every bottle under water",
+          ],
+          color: "#44321f",
+          inputs: [
+            "insulated-bottle-shell-01",
+            "insulated-bottle-lid-01",
+            "insulated-bottle-boot-01",
+          ],
+        },
+        {
+          id: "insulated-bottle-shell-01",
+          name: "Double-Wall Steel Shell",
+          echelon: 1,
+          description:
+            "Two drawn 304 cups become one wall: they are necked together and laser-welded at a vacuum port, then the gap is pumped to around 0.007 pascal and pinched shut. The vacuum does the insulation — the steel only holds it.",
+          specs: [
+            { label: "Wall gauge", value: "0.5", unit: "mm" },
+            { label: "Gap pressure", value: "0.007", unit: "Pa" },
+            { label: "Copper film", value: "1", unit: "µm" },
+            { label: "Seal life", value: "10", unit: "yr" },
+          ],
+          history:
+            "Dewar sketched his vacuum flask in 1892 to keep liquefied air cold; Thermos patented the household version for soup in 1904.",
+          process: [
+            "Deep-draw two cups from 304 coil",
+            "Neck the rims and align the walls",
+            "Laser-weld the seam and vacuum port",
+            "Pull a vacuum, then pinch the port shut",
+          ],
+          color: "#44321f",
+          inputs: ["insulated-bottle-vacuum-02"],
+        },
+        {
+          id: "insulated-bottle-lid-01",
+          name: "PP Straw Lid",
+          echelon: 1,
+          description:
+            "The lid that sold the trend is polypropylene, not heroics: a screw cap, a hinged spout and a floating straw ball that drinks from any angle the bottle is tipped. Three moldings snap together with one silicone seal ring, all dishwasher-safe.",
+          specs: [
+            { label: "Body", value: "Polypropylene", unit: "" },
+            { label: "Straw", value: "Two-way valve", unit: "" },
+            { label: "Seal", value: "One silicone ring", unit: "" },
+            { label: "Dishwasher", value: "Top rack", unit: "" },
+          ],
+          history:
+            "Straw lids carried the tumbler trend: insulated-bottle sales roughly doubled between 2021 and 2023.",
+          process: [
+            "Injection-mold the PP body and cap",
+            "Mold the silicone seal ring",
+            "Snap in the floating straw ball",
+            "Cycle-test the hinge and threads",
+          ],
+          color: "#b65c38",
+          inputs: ["insulated-bottle-injpress-02"],
+        },
+        {
+          id: "insulated-bottle-boot-01",
+          name: "Silicone Boot",
+          echelon: 1,
+          description:
+            "A soft silicone bumper stretched onto the base: it takes the desk drops, keeps the steel from ringing on tile, and survives dishwasher after dishwasher. It is the part that lets a viral bottle be used, not just displayed.",
+          specs: [
+            { label: "Material", value: "LSR silicone", unit: "" },
+            { label: "Hardness", value: "35", unit: "Shore A" },
+            { label: "Heat resistance", value: "200", unit: "°C" },
+            { label: "Fit", value: "Shrink, no glue", unit: "" },
+          ],
+          history:
+            "It borrows the same food-grade elastomer used for baby-bottle nipples since the 1940s.",
+          process: [
+            "Mill the silicone gum with platinum cure",
+            "Injection-mold on a warm tool",
+            "Stretch-fit it over the base",
+            "Drop- and dishwasher-cycle test",
+          ],
+          color: "#b65c38",
+          inputs: ["insulated-bottle-injpress-02", "insulated-bottle-silicone-03"],
+        },
+        {
+          id: "insulated-bottle-press-02",
+          name: "Deep-Drawing Press",
+          echelon: 2,
+          description:
+            "A mechanical press with a blank holder draws flat 304 sheet into a deep cup in one stroke: the metal flows, thins by about ten percent, and work-hardens exactly where the wall needs it. Tandem lines hand a drawn shell forward every couple of seconds.",
+          specs: [
+            { label: "Press force", value: "320", unit: "t" },
+            { label: "Draw depth", value: "260", unit: "mm" },
+            { label: "Stroke rate", value: "30", unit: "/min" },
+            { label: "Wall thinning", value: "10", unit: "%" },
+          ],
+          history:
+            "E. W. Bliss built the first double-action drawing presses for cartridge brass in the 1860s.",
+          process: [
+            "Cut a blank from the steel coil",
+            "Clamp it under the blank holder",
+            "Draw the cup in one stroke",
+            "Pass the shell to trim and anneal",
+          ],
+          color: "#6e8896",
+          inputs: ["insulated-bottle-coil-03"],
+        },
+        {
+          id: "insulated-bottle-injpress-02",
+          name: "Injection Molding Press",
+          echelon: 2,
+          description:
+            "The same machine class that molds ABS keycaps molds the PP lid and the silicone boot: a hydraulic clamp shuts a tool-steel mold at 80 tons and injects 220 °C polymer at over 1000 bar, running 30-second cycles of injection, packing, cooling and ejection.",
+          specs: [
+            { label: "Clamp force", value: "80", unit: "tons" },
+            { label: "Melt temperature", value: "220", unit: "°C" },
+            { label: "Cycle time", value: "30", unit: "s" },
+            { label: "Cavities", value: "2", unit: "" },
+          ],
+          history:
+            "John Wesley Hyatt patented the first injection molding machine in 1872, for celluloid billiard balls as an ivory substitute.",
+          process: [
+            "Clamp the tool-steel mold shut",
+            "Inject 220 °C polymer into cavities",
+            "Pack and cool for 25 seconds",
+            "Eject the part onto the conveyor",
+          ],
+          color: "#6e8896",
+          inputs: ["insulated-bottle-pp-03"],
+        },
+        {
+          id: "insulated-bottle-vacuum-02",
+          name: "Vacuum-Seal Line",
+          echelon: 2,
+          description:
+            "The line where the tumbler gets its trick: drawn shells are necked together, laser-welded around a straw-thin vacuum port, evacuated through it, and the port is pinched and soldered shut. Every bottle is leak-checked, because one hairline crack ends the vacuum and the product.",
+          specs: [
+            { label: "Gap pressure", value: "7", unit: "mPa" },
+            { label: "Weld", value: "Laser, one pass", unit: "" },
+            { label: "Leak test", value: "100", unit: "%" },
+            { label: "Pump-down", value: "90", unit: "s" },
+          ],
+          history:
+            "The 1913 Thermos already used a vacuum gap; only the pump-down time has shrunk since.",
+          process: [
+            "Neck inner and outer shells together",
+            "Laser-weld the seam with a port",
+            "Evacuate the gap to 0.007 Pa",
+            "Pinch and seal the port shut",
+          ],
+          color: "#6e8896",
+          inputs: ["insulated-bottle-press-02"],
+        },
+        {
+          id: "insulated-bottle-coil-03",
+          name: "304 Steel Coil",
+          echelon: 3,
+          description:
+            "18/8 stainless — eighteen percent chromium, eight percent nickel — rolled to half a millimetre and annealed. The chromium grabs oxygen at the surface and grows a self-healing oxide film, which is why the inside of the bottle never rusts from ice.",
+          specs: [
+            { label: "Chromium", value: "18", unit: "%" },
+            { label: "Nickel", value: "8", unit: "%" },
+            { label: "Gauge", value: "0.5", unit: "mm" },
+            { label: "Finish", value: "2B mill", unit: "" },
+          ],
+          history:
+            "Harry Brearley added chromium to iron in 1913 while chasing rifle-barrel steel; cutlery took the first prize.",
+          process: [
+            "Melt iron with chromium and nickel",
+            "Continuous-cast and hot-roll to strip",
+            "Cold-roll to half a millimetre",
+            "Anneal, pickle and slit to coils",
+          ],
+          color: "#44321f",
+          inputs: ["insulated-bottle-ironmine-04"],
+        },
+        {
+          id: "insulated-bottle-pp-03",
+          name: "Polypropylene Pellets",
+          echelon: 3,
+          description:
+            "Polypropylene is propylene chained into a thermoplastic that shrugs off solvents, fatigue-flips a hinge ten thousand times, and survives the dishwasher. Dried, colored food-safe and delivered as pellets to the molding press.",
+          specs: [
+            { label: "Molding temp", value: "220", unit: "°C" },
+            { label: "Density", value: "0.90", unit: "g/cm³" },
+            { label: "Type", value: "Homopolymer", unit: "" },
+            { label: "Dishwasher cycles", value: "1000", unit: "" },
+          ],
+          history:
+            "Propylene went from unwanted refinery gas to the world's second-largest plastic once Ziegler-Natta catalysts worked in 1954.",
+          process: [
+            "Crack naphtha into propylene feedstock",
+            "Chain propylene with Ziegler-Natta catalyst",
+            "Pelletize, dry and color the resin",
+            "Load the molding press hopper",
+          ],
+          color: "#b65c38",
+          inputs: ["insulated-bottle-oil-04"],
+        },
+        {
+          id: "insulated-bottle-silicone-03",
+          name: "Silicone Rubber Compound",
+          echelon: 3,
+          description:
+            "Silicone starts as quartz: silicon smelted from silica sand at two thousand degrees becomes a silicon-oxygen polymer backbone with methyl groups hung on it. It takes -40 °C mornings and a dishwasher at ninety without complaint, and it never wants glue.",
+          specs: [
+            { label: "From", value: "Quartz sand", unit: "" },
+            { label: "Cure", value: "Platinum", unit: "" },
+            { label: "Elongation", value: "500", unit: "%" },
+            { label: "Shore hardness", value: "35", unit: "A" },
+          ],
+          history:
+            "Eugene Rochow reacted methyl chloride with silicon at Corning in 1940; silicone rubber left the lab within three years.",
+          process: [
+            "Smelt quartz into silicon metal",
+            "React silicon with methyl chloride",
+            "Polymerize the siloxane backbone",
+            "Add filler, catalyst and mill to gum",
+          ],
+          color: "#b65c38",
+          inputs: ["insulated-bottle-sand-04"],
+        },
+        {
+          id: "insulated-bottle-ironmine-04",
+          name: "Iron Ore Mine",
+          echelon: 4,
+          description:
+            "Banded iron formations blasted from an open pit that deepens year by year: hauled, crushed, beneficiated and pelletized at about sixty-two percent metal. Every gram of steel in the tumbler above was once loose rock like this.",
+          specs: [
+            { label: "Iron content", value: "62", unit: "%" },
+            { label: "Silica content", value: "4", unit: "%" },
+            { label: "Strip ratio", value: "2.5", unit: "w:o" },
+            { label: "Transport", value: "Rail to mill", unit: "" },
+          ],
+          history:
+            "Lake Superior's Mesabi Range ran the American steel age; its open pits still load trains this morning.",
+          process: [
+            "Drill and blast the iron formation",
+            "Load ore into the haul trucks",
+            "Crush, screen and concentrate",
+            "Pelletize and rail to the steelworks",
+          ],
+          color: "#44321f",
+          inputs: [],
+        },
+        {
+          id: "insulated-bottle-oil-04",
+          name: "Crude Oil Well",
+          echelon: 4,
+          description:
+            "Crude oil is drilled, not made: rotary rigs reach buried marine sediments, casing and cement keep the borehole alive, and distillation takes the light naphtha fraction off first. The propylene that becomes the lid's polypropylene starts down here.",
+          specs: [
+            { label: "Drilling depth", value: "3000", unit: "m" },
+            { label: "Flow rate", value: "500", unit: "bbl/day" },
+            { label: "API gravity", value: "35", unit: "°API" },
+            { label: "Sulfur content", value: "0.5", unit: "%" },
+          ],
+          history:
+            "Edwin Drake's Titusville well of 1859 launched the industry; modern wells only drill deeper and steer sideways.",
+          process: [
+            "Survey to find the hydrocarbon trap",
+            "Drill and case the wellbore",
+            "Cement the casing to isolate layers",
+            "Pump the crude and associated gas",
+          ],
+          color: "#44321f",
+          inputs: [],
+        },
+        {
+          id: "insulated-bottle-sand-04",
+          name: "Silica Sand Quarry",
+          echelon: 4,
+          description:
+            "Quartz sandstone is blasted at the face, washed, screened and magnetic-separated until less than a hundredth of a percent iron survives — the tint that would ruin glass. From this same sand, smelted to silicon metal, the silicone boot above begins.",
+          specs: [
+            { label: "Silica content", value: "98", unit: "%" },
+            { label: "Iron oxide", value: "0.03", unit: "%" },
+            { label: "Grain size", value: "0.3", unit: "mm" },
+            { label: "Moisture", value: "0.5", unit: "%" },
+          ],
+          history:
+            "Sand has been the main ingredient of glass since the first furnaces in Egypt and Mesopotamia, thousands of years ago.",
+          process: [
+            "Drill and blast the sandstone face",
+            "Load and haul to the wash plant",
+            "Wash, screen and magnetic-separate",
+            "Dry and ship to glass and silicon plants",
+          ],
+          color: "#93805f",
+          inputs: [],
+        },
+      ],
+    },
   ],
 };

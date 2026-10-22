@@ -100,8 +100,17 @@
     "armchair-frame-01": "frame",
     "armchair-splitter-02": "splitter",
     "armchair-peels-03": "peels",
-    "armchair-grove-04": "grove"
+    "armchair-grove-04": "grove",
+
+    // insulated steel bottle (TikTok-era vacuum tumbler)
+    "insulated-bottle-room": "room",
+    "insulated-bottle-01": "bottle",
+    "insulated-bottle-lid-01": "lid",
+    "insulated-bottle-press-02": "stamping",
+    "insulated-bottle-coil-03": "coil",
+    "insulated-bottle-ironmine-04": "mine"
   };
+  window.UnpackedIMG = IMG;   // shared with story.js (single source of truth)
 
   var KIND_WORD = {
     room: "ROOM", object: "THE OBJECT", component: "COMPONENT",
@@ -234,13 +243,14 @@
         '<span class="m">' + (o.stops.length - 1) + " STOPS DEEP</span>" +
         '<span class="n">' + o.name + "</span>" +
         '<span class="m">' + o.tagline + "</span>";
-      b.addEventListener("click", function () { open(i, 1); });
+      b.addEventListener("click", function () { if (window.openStory) openStory(i); else open(i, 1); });
       p.appendChild(b);
     });
   }
 
   function showHome() {
     S.mode = "home";
+    if (window.closeStory) closeStory(true);
     closeFinale();
     closePress();
     el.home.classList.remove("hide");
@@ -516,7 +526,7 @@
   }
 
   function next() {
-    if (S.si >= stops().length - 1) { openFinale("object"); return; }
+    if (S.si >= stops().length - 1) { openFinale("full"); return; }
     goTo(S.si + 1, 1);
   }
   function prev() {
@@ -550,21 +560,15 @@
         api.renderFor(obj().id);
         stats = api.stats();
         $("#finale-title").textContent = obj().name.toUpperCase();
-        el.finaleToggle.style.display = "none";
+        // toggle stays reachable in object mode -> its label flips to "The whole room"
+        el.finaleToggle.style.display = "";
+        api.setOnNodeClick(function (id) { showNodeSheet(id); });
       } else {
         api.renderFull();
         stats = api.stats();
         $("#finale-title").textContent = "THE WHOLE ROOM";
         el.finaleToggle.style.display = "";
-        api.setOnNodeClick(function (id) {
-          // jump into the object that owns the clicked node
-          for (var i = 0; i < objects().length; i++) {
-            var o = objects()[i];
-            for (var j = 0; j < o.stops.length; j++) {
-              if (o.stops[j].id === id) { open(i, j); return; }
-            }
-          }
-        });
+        api.setOnNodeClick(function (id) { showNodeSheet(id); });
       }
       renderQuote(stats);
     });
@@ -572,6 +576,81 @@
 
   function closeFinale() {
     if (el.finale) el.finale.classList.remove("show");
+  }
+
+  /* ============================================================ NODE SHEET */
+  // Clicking ANY node in either graph mode opens its full record: description,
+  // process steps, specs, history, who shares it, and a jump into its chapter.
+  function normName(s) { return String(s || "").trim().toLowerCase().replace(/\s+/g, " "); }
+  function findNode(id) {
+    var chains = (window.CONTENT && window.CONTENT.chains) || [];
+    var i, j, hit = null;
+    for (i = 0; i < chains.length; i++) {
+      for (j = 0; j < chains[i].nodes.length; j++) {
+        if (chains[i].nodes[j].id === id) return { node: chains[i].nodes[j], chain: chains[i] };
+      }
+    }
+    for (i = 0; i < chains.length; i++) {
+      for (j = 0; j < chains[i].nodes.length; j++) {
+        if (normName(chains[i].nodes[j].name) === normName(id) && !hit) {
+          hit = { node: chains[i].nodes[j], chain: chains[i] };
+        }
+      }
+    }
+    return hit;
+  }
+  var NODE_EW = { 0: "THE OBJECT", 1: "PART", 2: "MACHINE", 3: "MATERIAL", 4: "SOURCE" };
+  function showNodeSheet(id) {
+    var sheet = document.getElementById("node-sheet");
+    var f = findNode(id);
+    if (!sheet || !f) return;
+    var n = f.node;
+    var o = objects(), k, m, p, stopAt = null, shared = [];
+    for (k = 0; k < o.length; k++) {
+      for (m = 0; m < o[k].stops.length; m++) {
+        if (o[k].stops[m].id === n.id) { stopAt = { oi: k, anchor: n.id }; break; }
+      }
+      for (m = 0; m < (window.CONTENT.chains || []).length; m++) {
+        var c = window.CONTENT.chains[m];
+        if (c.id !== o[k].id) continue;
+        for (p = 0; p < c.nodes.length; p++) {
+          if (normName(c.nodes[p].name) === normName(n.name) && shared.indexOf(o[k].name) < 0) shared.push(o[k].name);
+        }
+      }
+    }
+    var ew = NODE_EW[n.echelon] || ("E" + n.echelon);
+    sheet.innerHTML =
+      '<div class="ns-top"><span class="ns-ec">E' + n.echelon + " · " + ew + "</span></div>" +
+      "<h4>" + n.name + "</h4>" +
+      '<p class="nd">' + n.description + "</p>" +
+      '<ol class="np">' + (n.process || []).map(function (s) { return "<li>" + s + "</li>"; }).join("") + "</ol>" +
+      '<table class="spt">' + (n.specs || []).map(function (sp) {
+        return "<tr><td>" + sp.label + "</td><td>" + sp.value +
+          (sp.unit ? '<span class="u"> ' + sp.unit + "</span>" : "") + "</td></tr>";
+      }).join("") + "</table>" +
+      (n.history ? '<div class="hand">' + n.history + "</div>" : "") +
+      '<div class="ns-shared">' + (shared.length
+        ? "SHARED BY: " + shared.map(function (s) { return "<b>" + s + "</b>"; }).join("")
+        : "UNIQUE TO THE " + f.chain.name.toUpperCase()) + "</div>" +
+      (stopAt ? '<div class="ns-cta"><button class="cbtn primary" type="button">Read its chapter ↓</button></div>' : "");
+    if (stopAt) {
+      sheet.querySelector(".ns-cta button").addEventListener("click", function () {
+        closeNodeSheet();
+        closeFinale();
+        if (window.openStory) window.openStory(stopAt.oi, stopAt.anchor);
+      });
+    }
+    var x = document.createElement("button");
+    x.className = "hbtn ns-x"; x.type = "button"; x.textContent = "Close ✕";
+    x.addEventListener("click", closeNodeSheet);
+    sheet.appendChild(x);
+    sheet.style.setProperty("--nc", n.color || "#44321f");
+    sheet.classList.add("show");
+    sheet.setAttribute("aria-hidden", "false");
+  }
+  function closeNodeSheet() {
+    var s = document.getElementById("node-sheet");
+    if (s) { s.classList.remove("show"); s.setAttribute("aria-hidden", "true"); }
   }
 
   function countUp(node, to, suffix) {
@@ -618,11 +697,11 @@
     ["PLASTICIZE", "The screw rotates and pulls back, plasticizing the next shot from fresh pellets."]
   ];
 
-  function openPress() {
+  function openPress(title) {
     if (!window.PressSim) return;
     closePress();                              // tear down any previous instance first
     el.pressOverlay.classList.add("show");
-    $("#press-title").textContent = stop().name + " — 30 s CYCLE";
+    $("#press-title").textContent = title || (stop().name + " — 30 s CYCLE");
     S.press = window.PressSim.mount($("#press-canvas"), {
       speed: 1,
       onPhase: function (i) {
@@ -642,14 +721,21 @@
   function onKey(e) {
     if (e.key === "Escape") {
       if (el.pressOverlay.classList.contains("show")) { closePress(); return; }
+      if (S.mode === "finale" && document.getElementById("node-sheet") &&
+          document.getElementById("node-sheet").classList.contains("show")) { closeNodeSheet(); return; }
       if (S.mode === "finale") { closeFinale(); S.mode = "descent"; return; }
+      if (window.storyIsOpen && storyIsOpen()) { window.closeStory(); return; }
       showHome(); return;
+    }
+    if (window.storyIsOpen && storyIsOpen()) {
+      if (e.key === "g" || e.key === "G") { openFinale("full"); return; }
+      return;
     }
     if (S.mode === "finale") return;
     if (S.mode === "home") {
       var n = e.key === "0" ? 10 : parseInt(e.key, 10);
-      if (n >= 1 && n <= objects().length) open(n - 1, 1);
-      if (e.key === "ArrowDown" || e.key === "Enter") open(0, 1);
+      if (n >= 1 && n <= objects().length) { if (window.openStory) openStory(n - 1); else open(n - 1, 1); }
+      if (e.key === "ArrowDown" || e.key === "Enter") { if (window.openStory) openStory(0); else open(0, 1); }
       if (e.key === "g" || e.key === "G") openFinale("full");
       return;
     }
@@ -740,6 +826,7 @@
     $("#btn-room").addEventListener("click", function () { openFinale("full"); });
     $("#finale-close").addEventListener("click", function () {
       closeFinale();
+      if (window.storyIsOpen && storyIsOpen()) { S.mode = "home"; return; }
       if (S.mode === "finale") S.mode = stops() && obj() ? "descent" : "home";
     });
     el.finaleToggle.addEventListener("click", function () {
@@ -752,6 +839,17 @@
         if (S.press && S.press.setSpeed) S.press.setSpeed(parseFloat(b.dataset.speed));
       });
     });
+
+    // node detail sheet (every graph node answers back) + story-mode bridge
+    var ns = document.createElement("div");
+    ns.id = "node-sheet"; ns.setAttribute("aria-hidden", "true");
+    document.body.appendChild(ns);
+    window.DescentAPI = {
+      openFinaleFull: function () { openFinale("full"); },
+      runPress: function (title) { openPress(title); },
+      showHome: showHome,
+      showNodeSheet: showNodeSheet
+    };
 
     document.addEventListener("keydown", onKey);
     window.addEventListener("wheel", onWheel, { passive: true });
