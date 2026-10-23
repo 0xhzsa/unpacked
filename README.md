@@ -4,6 +4,11 @@
 
 Live: **[0xhzsa.github.io/unpacked](https://0xhzsa.github.io/unpacked/)**
 
+**The mechanic, in ten seconds**: the home sheet &rarr; an object's scroll story &rarr;
+the live 30-second press cycle &rarr; the whole-room supply-chain graph.
+
+![UNPACKED demo: pick a keyboard, descend to its machines and materials, then the whole room](docs/demo.gif)
+
 It is an interactive, scroll-through field note — an engineer's answer to *"I, Pencil."*
 You start in one ordinary room. Pick any of the 11 objects and the story walks you down
 its supply chain: the part, the machine that made it, the material the machine shaped,
@@ -65,6 +70,11 @@ node shot.js "http://127.0.0.1:8931/" 1280 900 shot.png 5500
 # validate chains + image references
 node check-journey.js
 node check-imgs.js
+
+# regenerate the demo GIF: frames.js keeps one headless page alive and drives
+# the whole mechanic (home -> story -> press cycle -> ledger -> graph)
+node frames.js "http://127.0.0.1:8931/" 1280 720 "%TEMP%/frames" 4200
+# then resize/quantize the captured PNGs into docs/demo.gif
 ```
 
 `tools/og.html` is the live-draft for the social share card: screenshot that page at

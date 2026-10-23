@@ -538,3 +538,19 @@ Keyboard / field note") and Escape clears the hash; /story/keyboard/index.html
 redirects and opens. NOTE: local serve shows 404 for directory walks
 (/story/<id>/) - GitHub Pages serves directory index.html, so the production
 path works; index.html fallback exists for any host that does not.
+
+### Session 12: demo GIF for README + social
+
+- frames.js (repo root, next to shot.js): same CDP pattern but keeps ONE page
+  alive and runs a 18-step drive of the whole mechanic, capturing 11 PNG frames
+  at 1280x720: home sheet -> keyboard story hero -> injection chapter ->
+  press simulator running (INJECT/FILL phase, 3 frames) -> ledger ->
+  closing -> whole-room graph with the stats bar.
+- Pillow: resize 960x540, 128-color adaptive palette per frame, per-frame
+  durations (~7.4s loop) -> docs/demo.gif (813 KB).
+- README: GIF embedded right under the "Live:" line with a one-line mechanic
+  caption; dev section documents frames.js regeneration.
+
+Preview-checked: press frame shows full 02 INJECT/FILL diagram with hopper,
+screw, heater bands, melt pool, clamp unit and phase meter; graph frame shows
+the 106/121/9/11 stats bar + Ben Reinhardt quote.
