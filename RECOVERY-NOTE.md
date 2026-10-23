@@ -516,3 +516,25 @@ Lazarenko 1943.
 Verification: node --check OK x2, check-journey ALL OK, check-imgs 51/51.
 DOM test: opened candle story - "James Young" present, "Boyd"/"Robert Wells"/
 "1857" absent; ledger N.B. renders the new story. Screenshot reviewed.
+
+### Session 11: shareable per-object story links
+
+Story URLs now exist for every object:
+
+- story.js: open() writes #obj/<chain-id> via history.replaceState; close() strips
+  it; boot-open parses location.hash on load (deferred to DOMContentLoaded like
+  descent's boot - the first attempt without the guard was immediately closed by
+  descent's DOMContentLoaded showHome()).
+- "Copy link" (story closing) now copies location.href, so an open story copies
+  the deep #obj/ link.
+- 11 door pages story/<id>/index.html: static OG metas per object (title,
+  one-liner, og:image = the object photo), canonical to the site root, and a
+  0s meta refresh + location.replace into ../../#obj/<id>. Link previews on
+  social show the object card; human visitors land in the story.
+- sitemap.xml regenerated: 12 URLs (root + 11 story doors).
+
+Tested locally: /#obj/keyboard boot-opens the keyboard story ("Mechanical
+Keyboard / field note") and Escape clears the hash; /story/keyboard/index.html
+redirects and opens. NOTE: local serve shows 404 for directory walks
+(/story/<id>/) - GitHub Pages serves directory index.html, so the production
+path works; index.html fallback exists for any host that does not.

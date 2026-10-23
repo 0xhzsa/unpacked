@@ -22,7 +22,9 @@ One place where the steel desk, the hardcover book and the ceiling fan all spill
 - **The whole room** (button top-right, `G`, or the dashed card): all 106 processes
   in one graph — see where the 11 chains merge, split and reuse each other.
 - **Keyboard**: `1–9` and `0` open objects Nº1–10, `-` opens Nº11, `G` = whole room,
-  `Escape` backs out one layer.
+  `Escape` backs out one layer. Every story also has a **real URL**: open one and the
+  address becomes `/#obj/<id>`, "Copy link" copies it, and the `story/` door pages
+  (one per object) carry the object's own link-preview card when a link is shared.
 - Machine chapters can **run the 30-second injection cycle** as a live simulation.
 
 ## What's in the box

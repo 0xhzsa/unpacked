@@ -305,7 +305,7 @@
 
     var share = $("#story-share");
     if (share) share.addEventListener("click", function () {
-      var link = location.origin + location.pathname;
+      var link = location.href;
       var reset = function () { setTimeout(function () { share.textContent = "Copy link"; }, 2400); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(link).then(
@@ -325,6 +325,7 @@
     var sub = $("#brand-sub");
     if (sub) sub.textContent = o.name + " · field note";
     document.title = o.name + " — UNPACKED";
+    try { history.replaceState(null, "", "#obj/" + o.id); } catch (e) {}
   }
 
   function close(silent) {
@@ -340,9 +341,23 @@
       if (window.DescentAPI) window.DescentAPI.showHome();
       else { var h = $("#home"); if (h) h.classList.remove("hide"); }
     }
+    if (location.hash) {
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    }
   }
 
   window.openStory = open;
   window.closeStory = close;
   window.storyIsOpen = function () { return S.open; };
+
+  var hm = location.hash.match(/^#obj\/([a-z0-9-]+)/i);
+  function bootStory() {
+    if (!hm) return;
+    var objs = objects();
+    for (var hbi = 0; hbi < objs.length; hbi++) {
+      if (objs[hbi].id === hm[1]) { open(hbi); break; }
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bootStory);
+  else bootStory();
 })();
