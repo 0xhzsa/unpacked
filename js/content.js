@@ -478,7 +478,7 @@ window.CONTENT = {
             { label: "Control", value: "CNC", unit: "" },
           ],
           history:
-            "Wafios, founded in Reutlingen, Germany in 1921, pioneered CNC spring coiling machines now used for lamp balances and vehicle suspension springs worldwide.",
+            "Wafios has built spring-coiling machinery in Reutlingen, Germany since 1914, and its first electronically controlled coiler of 1978 still defines the trade.",
           process: [
             "Feed music wire from spool into straightening rollers",
             "Coil wire around mandrel to programmed pitch",
@@ -673,7 +673,7 @@ window.CONTENT = {
             { label: "Standard", value: "BIFMA X5.1", unit: "" },
           ],
           history:
-            "Thomas Jefferson invented the swivel chair in 1776 by fitting a Windsor chair with iron casters and a central spindle.",
+            "Thomas Jefferson is credited with the first swivel chair: a Windsor he fitted with iron casters and a spindle while drafting the Declaration.",
           process: [
             "Assemble mesh back, seat foam, and mechanism",
             "Attach five-star base and gas lift cylinder",
@@ -747,7 +747,7 @@ window.CONTENT = {
             { label: "Star diameter", value: "640", unit: "mm" },
           ],
           history:
-            "The five-star swivel base debuted with the Eames Aluminum Group in 1958; gas-assist molding was commercialized in the 1970s for thick hollow parts.",
+            "The Aluminum Group office chair of 1958 put a cast-aluminum swivel base under office workers; gas-assist molding was commercialized in the 1970s for hollow parts.",
           process: [
             "Inject PA66 GF30 at 280 °C into five-star mold",
             "Introduce nitrogen gas to hollow out thick sections",
@@ -1474,7 +1474,7 @@ window.CONTENT = {
             { label: "Profile", value: "Hollow frame", unit: "" },
           ],
           history:
-            "Extrusion pressing was patented by Joseph Bramah in 1795 for lead pipe, and aluminum extrusion for windows spread after World War II.",
+            "Extrusion pressing was patented by Joseph Bramah in 1797 for lead pipe, and aluminum extrusion for windows spread after World War II.",
           process: [
             "Preheat 6063-T5 billet to 450-500 °C",
             "Extrude through hollow window-profile die",
@@ -1520,7 +1520,7 @@ window.CONTENT = {
             { label: "Exit speed", value: "10", unit: "m/min" },
           ],
           history:
-            "Extrusion pressing was patented by Joseph Bramah in 1795 for lead pipe, and aluminum extrusion for windows spread after World War II.",
+            "Extrusion pressing was patented by Joseph Bramah in 1797 for lead pipe, and aluminum extrusion for windows spread after World War II.",
           process: [
             "Preheat billet in induction furnace",
             "Ram billet through extrusion die",
@@ -1841,7 +1841,7 @@ window.CONTENT = {
             { label: "Weight", value: "7", unit: "kg" },
           ],
           history:
-            "Philip Diehl adapted his sewing-machine motor into a ceiling fan in New Jersey in 1885, a few years after the first electric fans went on sale.",
+            "Philip Diehl adapted his sewing-machine motor into a ceiling fan in New Jersey in the late 1880s, a few years after the first electric fans went on sale.",
           process: [
             "Stamp and pitch five steel blades",
             "Wind, connect and varnish the stator",
@@ -1979,7 +1979,7 @@ window.CONTENT = {
             { label: "Breakdown", value: "4", unit: "kV" },
           ],
           history:
-            "Wire enamel replaced wound cotton and silk insulation in the 1920s, doubling the copper that fits in a motor.",
+            "By the 1920s wire enamel had largely replaced wound cotton and silk insulation, doubling the copper that fits in a motor.",
           process: [
             "Draw copper rod through diamond dies",
             "Anneal soft again at 450 °C",
@@ -2048,7 +2048,7 @@ window.CONTENT = {
             { label: "Rail haul", value: "40", unit: "km" },
           ],
           history:
-            "Hematite mining at Kiruna, Sweden has moved a billion tonnes of ore since 1900, most of it to steel mills.",
+            "Magnetite mining at Kiruna, Sweden has moved a billion tonnes of ore since 1900, most of it to steel mills.",
           process: [
             "Drill and blast benches in the ore zone",
             "Load ore with 400-ton haul trucks",
@@ -2082,7 +2082,7 @@ window.CONTENT = {
             { label: "Wax origin", value: "Crude oil", unit: "" },
           ],
           history:
-            "Paraffin wax was first distilled from petroleum in the 1830s; by 1890 it had displaced tallow and beeswax as the world's candle material almost overnight.",
+            "Paraffin wax was first isolated in 1830, from wood tar; James Young made it commercial out of Scottish coal and shale in the 1850s.",
           process: [
             "Dewax lube oil and filter the wax fraction",
             "Cast paraffin around a sized cotton wick",
@@ -2104,7 +2104,7 @@ window.CONTENT = {
             { label: "Shrink on cooling", value: "2", unit: "%" },
           ],
           history:
-            "Until the 1850s candles were rendered animal fat; paraffin made a cleaner, whiter, cheaper candle and ended the tallow trade within a decade.",
+            "Until the 1850s candles were rendered from animal fat; paraffin burned cleaner, whiter and cheaper, and swept the market.",
           process: [
             "Solvent-dewax lube oil to separate wax",
             "Filter and hydrofinish until white",
@@ -2148,7 +2148,7 @@ window.CONTENT = {
             { label: "Capillary", value: "0.5", unit: "mm" },
           ],
           history:
-            "Braided wicks replaced twisted ones in 1834, when Robert Wells patented the plait that curls the burnt tip into the flame and keeps the candle from smoking.",
+            "Braided wicks replaced twisted ones from the 1820s; the plait curls its burnt tip into the flame, trims itself and keeps the candle from smoking.",
           process: [
             "Spin cotton to fine yarn",
             "Braid three plies at a fixed angle",
@@ -2214,7 +2214,7 @@ window.CONTENT = {
             { label: "Drop melting point", value: "58", unit: "°C" },
           ],
           history:
-            "In 1857 the Boyd candle works in Scotland first sold petroleum paraffin candles at scale; within thirty years whaling ships were no longer in the candle business.",
+            "James Young's paraffin works at Bathgate sold Scotland's coal-to-candle wax from the 1850s; within thirty years whalers were out of the candle trade.",
           process: [
             "Chill and crystallize the dewaxed oil",
             "Filter the wax cake free of oil",
@@ -2258,7 +2258,7 @@ window.CONTENT = {
             { label: "Short fibre removed", value: "15", unit: "%" },
           ],
           history:
-            "Combing cotton to remove short fibres was mechanised in Lancashire in the 1820s; the resulting yarn was strong enough for the first cotton sailcloth.",
+            "Josué Heilmann patented the first cotton-combing machine in 1845; combing out short fibres is what lets fine, strong yarns exist.",
           process: [
             "Card the ginned lint into sliver",
             "Comb out short fibres and neps",
@@ -2358,7 +2358,7 @@ window.CONTENT = {
             { label: "Load", value: "120", unit: "kg" },
           ],
           history:
-            "Cane furniture spread through Europe after Portuguese traders shipped rattan from Southeast Asia in the 1650s; every conservatory chair since descends from that cargo.",
+            "Cane furniture spread through Europe after Portuguese traders shipped rattan from Southeast Asia in the seventeenth century; every conservatory chair since descends from that cargo.",
           process: [
             "Mortise and tenon the teak frame",
             "Steam-bend the arms and back rails",
@@ -2380,7 +2380,7 @@ window.CONTENT = {
             { label: "Joint", value: "Mortise & tenon", unit: "" },
           ],
           history:
-            "Teak has held its reputation since shipwrights found it would outlast iron fastenings; the Admiralty built its fleets on Burmese teak in the age of sail.",
+            "Teak has held its reputation since shipwrights found it shrugged off rot and sea water; the Admiralty built its fleets on Burmese teak.",
           process: [
             "Kiln-dry the sawn teak to 10%",
             "Cut mortises and shape tenons",
@@ -2424,7 +2424,7 @@ window.CONTENT = {
             { label: "Buttons", value: "4", unit: "" },
           ],
           history:
-            "Loose cushions came west with cotton from India; the word itself is from quishion, the French for a stuffed case.",
+            "Loose cushions came west with cotton from India; the word itself arrived through Old French, coissin, a stuffed case.",
           process: [
             "Weave and pre-shrink the canvas",
             "Cut and sew the ticking",
@@ -2512,7 +2512,7 @@ window.CONTENT = {
             { label: "Skin hardness", value: "High", unit: "" },
           ],
           history:
-            "Rattan trade from Southeast Asia reached Europe by 1605; within a century cane had replaced willow in nearly every chair seat it touched.",
+            "Rattan from Southeast Asia reached Europe in the seventeenth century; within a hundred years cane had replaced willow in nearly every chair seat.",
           process: [
             "Harvest the climbing cane",
             "Soak and peel the skin",
@@ -2556,7 +2556,7 @@ window.CONTENT = {
             { label: "Short fibre removed", value: "15", unit: "%" },
           ],
           history:
-            "Combing cotton to remove short fibres was mechanised in Lancashire in the 1820s; the resulting yarn was strong enough for the first cotton sailcloth.",
+            "Josué Heilmann patented the first cotton-combing machine in 1845; combing out short fibres is what lets fine, strong yarns exist.",
           process: [
             "Card the ginned lint into sliver",
             "Comb out short fibres and neps",

@@ -467,3 +467,52 @@ renders ("READ THE NEXT ONE WHILE THE KETTLE BOILS"), closing buttons row OK.
   for No.11" (digits were invisible before; now discoverable).
 - README: "Own it / monetize" section pointing at js/affiliate.js (tag in one
   place; disclosure included; empty tag = live-but-unmonetized).
+
+### Session 10: deep fact-audit of the 10 older chains
+
+Every one of the 196 history claims across all 11 chains was extracted and checked.
+26 fixes landed across content.js (16) + journey.js (10):
+
+- Buckling spring: journey said "first key switches were patented by IBM" - IBM
+  patented THE buckling spring (1970s, US4118611 issued 1978); not the first
+  keyswitch. Reworded both files.
+- Molding timeline: Hyatt celluloid 1869 / machine 1872 kept (verified).
+- EDM Moscow 1943 (Lazarenko) kept (verified).
+- Swivel chair: softened "Jefferson invented" to "is credited with" (anecdotal).
+- Eames base: 1958 Aluminum Group debuted with a cast-aluminum pedestal, NOT the
+  five-star (5-star came in later generations) - fixed both files.
+- Diehl ceiling fan: 1885 not defensible (patent 1889, ISMACS says 1887;
+  Wheeler's electric fan 1882) - "in the late 1880s" both files.
+- Wafios: founded 1893/merged 1914, NOT 1921 (wafios.com history page); first
+  electronically-controlled coiler 1978 is their own milestone - rewrote.
+- Bramah extrusion: 1797, not 1795 (hydraulic press is 1795; extrusion is 1797).
+- Kiruna: magnetite, not hematite (banded-iron "hematite deposits" generic word.
+  ing kept - it is correct generic usage).
+- Paraffin REMIX: first isolated 1830 from wood tar (Reichenbach); James "Paraffin"
+  Young made it commercial from Scottish coal/shale - Bathgate works = world's
+  first commercial oil-works (patent Oct 1850). "Boyd candle works 1857" and
+  "Robert Wells 1834" and "petroleum in the 1830s" were fabricated - all three
+  names/claims removed or replaced with the verified Young story.
+- Tallow dominance claims softened (tallow persisted; "ended within a
+  decade" overstated).
+- Braided wicks: credited to "from the 1820s" manufacture, no patent/name.
+- Cotton combing: Josue Heilmann, France, 1845 (patented 1845) - NOT "Lancashire
+  1820s"; dropped "first cotton sailcloth" tail (false).
+- Enamel wire: "By the 1920s enamel had largely replaced..." (enamel wire predates
+  1920; the softening is defensible).
+- Teak: shipwrights prized it for rot/sea-water resistance; teak's acid actually
+  CORRODES iron fastenings, so "outlast iron fastenings" was backwards - fixed.
+- Cushion etymology: "quishion" (not a real form) -> Old French "coissin".
+- Rattan trade dates unified: "the seventeenth century" (kills the unverifiable
+  "1605"/"1650s" specific years, both files consistent).
+
+Verified still-true-and-kept: Drake 1859, Diderot 1751, Holonyak 1962 red LED,
+Tesla 1888, Argand 1784 glass chimney, Owens 1903 bottle machine, Carothers nylon
+66 1935, Pilkington 1952/1959, Fourdrinier 1803, Keller 1843, Rubel 1904 offset,
+Feinan ~7,000 yr copper, Aeron 1994 Stumpf/Chadwick, Warren 1849 armchair,
+Fisher 1876 casters, Steelcase 1912, Meissen 1710, Gaoling kaolin, Cherry MX 1980s,
+Lazarenko 1943.
+
+Verification: node --check OK x2, check-journey ALL OK, check-imgs 51/51.
+DOM test: opened candle story - "James Young" present, "Boyd"/"Robert Wells"/
+"1857" absent; ledger N.B. renders the new story. Screenshot reviewed.
