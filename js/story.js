@@ -152,6 +152,7 @@
           "Multiply by the whole room.</p>" +
         '<div class="c-btns">' +
           '<button class="cbtn primary" id="story-finale">The whole room →</button>' +
+          '<button class="cbtn ghost" id="story-share">Copy link</button>' +
           '<button class="cbtn ghost" id="story-home">All objects ↑</button>' +
         "</div>" + aff +
       "</div>" +
@@ -300,6 +301,19 @@
     }
     $("#story-finale").addEventListener("click", function () {
       window.DescentAPI.openFinaleFull();
+    });
+
+    var share = $("#story-share");
+    if (share) share.addEventListener("click", function () {
+      var link = location.origin + location.pathname;
+      var reset = function () { setTimeout(function () { share.textContent = "Copy link"; }, 2400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(
+          function () { share.textContent = "Copied ✓"; reset(); },
+          function () { share.textContent = link; reset(); });
+      } else {
+        share.textContent = link; reset();
+      }
     });
 
     // hide descent chrome + home, keep header on top

@@ -426,3 +426,33 @@ Styling: credits strip (.pfoot) now centered mono small-caps under a hairline.
 Verification: check-imgs 51/51 (recompressed, missing [], unused []),
 check-journey ALL OK, story render unchanged, desktop tall + mobile home
 shots reviewed, room-card -> finale still opens.
+
+### Session 9: viral surface prep
+
+New files:
+- README.md - repo front door for HN/Reddit: the pitch, how-to-play, keys, what's
+  in the box, fact-discipline statement, dev/verify commands, links to docs shots.
+- llms.txt - machine-readable digest for AI-assistant citation (objects, breadth,
+  fact policy, live link).
+- tools/og.html - live draft of the social share card (kill/redo anytime: shoot at
+  1200x630 -> JPEG q88 -> assets/og.jpg).
+- docs/share-home.jpg + docs/share-story.jpg - README screenshots (1000px, q84).
+
+Regenerated assets/og.jpg (1200x630, 130 KB): parchment cover with the UNPACKED
+wordmark, italic lead, accurate stats line (11 OBJECTS / 106 PROCESSES / 121 LINKS),
+site URL, and a 3x4 mosaic of all 11 objects + room photo. Replaces the stale
+five-object strip. og:image:alt updated to describe it.
+
+Metadata: twitter:description added (mirrors og:description).
+
+Story closing: added "Copy link" share button between the two existing CTAs
+(clipboard.writeText with an honest fallback: printer the raw URL if the API
+refuses). Tested: headless shows fallback URL (untrusted click), real user
+clicks on https will get "Copied OK".
+
+Keyboard: "-" now opens object #11 (completes the digit map 1-9, 0 -> #10,
+"-" -> #11). Tested via synthetic keydown -> story opens with
+"Insulated Steel Bottle / field note".
+
+Verification: syntax OK, check-journey ALL OK, check-imgs 51/51, footer
+renders ("READ THE NEXT ONE WHILE THE KETTLE BOILS"), closing buttons row OK.

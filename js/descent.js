@@ -745,7 +745,7 @@
     }
     if (S.mode === "finale") return;
     if (S.mode === "home") {
-      var n = e.key === "0" ? 10 : parseInt(e.key, 10);
+      var n = e.key === "0" ? 10 : e.key === "-" ? 11 : parseInt(e.key, 10);
       if (n >= 1 && n <= objects().length) { if (window.openStory) openStory(n - 1); else open(n - 1, 1); }
       if (e.key === "ArrowDown" || e.key === "Enter") { if (window.openStory) openStory(0); else open(0, 1); }
       if (e.key === "g" || e.key === "G") openFinale("full");

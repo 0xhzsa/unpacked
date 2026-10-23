@@ -1,0 +1,12 @@
+# UNPACKED
+
+> An interactive field guide that traces 11 everyday objects from an ordinary room — keyboard, lamp, office chair, mug, steel desk, window, book, ceiling fan, candle, armchair, insulated steel bottle — down their supply chains: every part, every machine, every material, to the mine, oil well, forest or quarry it came from. 106 processes, 121 links, 9 shared sources. Live at https://0xhzsa.github.io/unpacked/
+
+Each object has a scroll-story chapter (first-person for parts and products,
+third-person for machines, materials and sources), an appendix ledger of verified
+specs and histories, and a whole-room graph where the 11 chains visibly merge over
+shared machines, materials and mines. Photos are Wikimedia Commons (CC BY / CC BY-SA);
+per-file credits live in the repo's RECOVERY-NOTE.md and a credit strip is on the home page.
+Facts are sourced: manufacturer-published specs only (e.g. Thermos 24 h cold / 12 h hot),
+widely reported figures kept attributable (Stanley $73M (2019) → $750M (2023)), and any
+unverifiable number removed during an explicit fact-check pass.
