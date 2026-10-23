@@ -137,6 +137,14 @@
 
   function closingHtml(o, objStop) {
     var aff = "";
+    var nextBtnHtml = "";
+    var objs = objects();
+    var oi = 0;
+    for (var nbi = 0; nbi < objs.length; nbi++) {
+      if (objs[nbi].id === o.id) { oi = nbi; break; }
+    }
+    var next = objs[(oi + 1) % objs.length];
+    if (next) nextBtnHtml = '<button class="cbtn ghost" id="story-next">Next: ' + esc(next.name) + " →</button>";
     if (typeof window.UNPACKED_AFFILIATE_URL === "function") {
       var url = window.UNPACKED_AFFILIATE_URL(o.id, o.name);
       if (url) {
@@ -152,6 +160,7 @@
           "Multiply by the whole room.</p>" +
         '<div class="c-btns">' +
           '<button class="cbtn primary" id="story-finale">The whole room →</button>' +
+          nextBtnHtml +
           '<button class="cbtn ghost" id="story-share">Copy link</button>' +
           '<button class="cbtn ghost" id="story-home">All objects ↑</button>' +
         "</div>" + aff +
@@ -301,6 +310,11 @@
     }
     $("#story-finale").addEventListener("click", function () {
       window.DescentAPI.openFinaleFull();
+    });
+
+    var nbtn = $("#story-next");
+    if (nbtn) nbtn.addEventListener("click", function () {
+      open((S.oi + 1) % objects().length);
     });
 
     var share = $("#story-share");

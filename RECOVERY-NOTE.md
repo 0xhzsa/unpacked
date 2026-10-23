@@ -587,3 +587,15 @@ Re-verified every major state on a phone viewport after sessions 10-12:
   (temp script) - sitemap's 12 URLs unchanged.
 - llms.txt: added an "Object chapters" section listing all 11 door URLs by name.
 - Validators green (check-imgs 51/51 mapped, check-journey ALL OK).
+
+### Session 15: "Next object" in the story closing
+
+- closingHtml now emits a third CTA: "Next: <name> ->" placed between the
+  whole-room primary and Copy link. Clicking it calls open((S.oi + 1) % len):
+  the next story renders in place (scroll resets to top, sub-title, hash
+  replaceState and reveal observers all re-run through open()).
+- Wraps at the end of the roster (bottle -> keyboard), so a reader can walk
+  the whole room in one sitting.
+- Tested end-to-end: keyboard -> click "Next: LED Desk Lamp ->" -> lamp story
+  opens, hash #obj/desk-lamp, header sub-title updates; button row fits on
+  one line at 1280 (rowRight 1142 < 1280).
