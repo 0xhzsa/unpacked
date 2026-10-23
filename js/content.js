@@ -7,7 +7,7 @@ window.CONTENT = {
     {
       id: "keyboard",
       name: "Mechanical Keyboard",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "keyboard-01",
@@ -29,7 +29,7 @@ window.CONTENT = {
             "Flash QMK firmware and run key-by-key continuity test",
             "Package with detachable cable and keycap puller",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [
             "keyboard-keycap-01",
             "keyboard-pcba-01",
@@ -56,7 +56,7 @@ window.CONTENT = {
             "Pack, cool, and eject after a 30-second cycle",
             "Pad-print or dye-sublimate legends onto cap surface",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["keyboard-inj-02"],
         },
         {
@@ -79,7 +79,7 @@ window.CONTENT = {
             "Reflow solder at 245 °C peak temperature",
             "Flash firmware and test every matrix contact",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["keyboard-smt-02"],
         },
         {
@@ -102,7 +102,7 @@ window.CONTENT = {
             "Contour-mill the chassis profile with a 6 mm carbide end mill",
             "Deburr, then anodize and seal in sulfuric acid bath",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["keyboard-cnc-02"],
         },
         {
@@ -125,7 +125,7 @@ window.CONTENT = {
             "Pack and cool parts for 20-30 seconds",
             "Eject keycaps with ejector pins",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["keyboard-abs-03"],
         },
         {
@@ -148,7 +148,7 @@ window.CONTENT = {
             "Reflow solder in five-zone oven at 245 °C peak",
             "Inspect solder joints with automated optical inspection",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["keyboard-fr4-03"],
         },
         {
@@ -171,7 +171,7 @@ window.CONTENT = {
             "Contour-mill outer chassis profile with carbide end mill",
             "Deburr edges and inspect dimensions with CMM",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["keyboard-alu-03"],
         },
         {
@@ -194,7 +194,7 @@ window.CONTENT = {
             "Dry resin to below 0.05 % moisture content",
             "Feed pellets into injection molding machine hopper",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["keyboard-petroleum-04"],
         },
         {
@@ -217,7 +217,7 @@ window.CONTENT = {
             "Laminate copper foil to both sides under heat and pressure",
             "Cut and drill panels to PCB fabrication dimensions",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["keyboard-silica-04"],
         },
         {
@@ -240,7 +240,7 @@ window.CONTENT = {
             "Alloy with magnesium and silicon, cast into billets",
             "Solution heat treat and artificially age to T6 temper",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["keyboard-bauxite-04"],
         },
         {
@@ -263,7 +263,7 @@ window.CONTENT = {
             "Install casing and cement to isolate formations",
             "Pump crude oil to surface via artificial lift or natural flow",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
         {
@@ -286,7 +286,7 @@ window.CONTENT = {
             "Wash and screen to remove clay and iron",
             "Dry and stockpile for glass and silicon feedstock",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: [],
         },
         {
@@ -309,7 +309,7 @@ window.CONTENT = {
             "Crush and wash bauxite to remove clay and silica",
             "Transport washed ore to Bayer refinery for alumina extraction",
           ],
-          color: "#94472a",
+          color: "#b93a1d",
           inputs: [],
         },
       ],
@@ -321,7 +321,7 @@ window.CONTENT = {
     {
       id: "desk-lamp",
       name: "LED Desk Lamp",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "desk-lamp-01",
@@ -343,7 +343,7 @@ window.CONTENT = {
             "Photometric test for flux, CCT, and uniformity",
             "Package with power adapter and user manual",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [
             "desk-lamp-head-01",
             "desk-lamp-base-01",
@@ -370,7 +370,7 @@ window.CONTENT = {
             "Wire constant-current driver to PCB header",
             "Age-test each head for 24 hours at full brightness",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-smt-02"],
         },
         {
@@ -393,7 +393,7 @@ window.CONTENT = {
             "Fill base cavity with concrete ballast",
             "Electrostatic powder coat and cure at 180 °C",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-press-02"],
         },
         {
@@ -416,7 +416,7 @@ window.CONTENT = {
             "Swage steel tubing around spring inner core",
             "Rivet friction hinges at arm joints",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-coiler-02"],
         },
         {
@@ -439,7 +439,7 @@ window.CONTENT = {
             "Reflow solder in vapor-phase oven",
             "Test LED strings with automated test fixture",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["desk-lamp-mcpcb-03"],
         },
         {
@@ -462,7 +462,7 @@ window.CONTENT = {
             "Deep-draw shell in single 100-ton stroke",
             "Trim flange and inspect for wrinkles or tears",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["desk-lamp-spcc-03"],
         },
         {
@@ -485,7 +485,7 @@ window.CONTENT = {
             "Cut spring to length and form end hooks",
             "Stress-relieve spring in oven at 450 °C",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["desk-lamp-musicwire-03"],
         },
         {
@@ -508,7 +508,7 @@ window.CONTENT = {
             "Drill mounting holes and route board outline",
             "Apply solder mask and surface finish",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-bauxite-04"],
         },
         {
@@ -531,7 +531,7 @@ window.CONTENT = {
             "Anneal in bell furnace to restore ductility",
             "Temper roll and coil for stamping feedstock",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-ironore-04"],
         },
         {
@@ -554,7 +554,7 @@ window.CONTENT = {
             "Cold draw to final spring wire diameter",
             "Spool and inspect for surface defects",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-ironore-04"],
         },
         {
@@ -577,7 +577,7 @@ window.CONTENT = {
             "Stencil-print paste over every PCB pad",
             "Reflow at 235 °C so pads wet and bond",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["desk-lamp-cassiterite-04"],
         },
         {
@@ -600,7 +600,7 @@ window.CONTENT = {
             "Crush and wash bauxite to remove clay and silica",
             "Transport washed ore to Bayer refinery for alumina extraction",
           ],
-          color: "#94472a",
+          color: "#b93a1d",
           inputs: [],
         },
         {
@@ -623,7 +623,7 @@ window.CONTENT = {
             "Crush and screen to lump and fines products",
             "Stockpile or rail to steel mill blast furnace",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
         {
@@ -646,7 +646,7 @@ window.CONTENT = {
             "Roast to strip sulfur and other impurities",
             "Smelt at 1200 °C into tin metal ingots",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
       ],
@@ -658,7 +658,7 @@ window.CONTENT = {
     {
       id: "office-chair",
       name: "Ergonomic Office Chair",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "office-chair-01",
@@ -680,7 +680,7 @@ window.CONTENT = {
             "Fit dual-wheel casters and armrests",
             "Load-test to BIFMA seating durability standard",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [
             "office-chair-mesh-01",
             "office-chair-frame-01",
@@ -708,7 +708,7 @@ window.CONTENT = {
             "Heat-set mesh to stabilize dimensions",
             "Laminate to seat pan or bond to back frame",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["office-chair-loom-02"],
         },
         {
@@ -731,7 +731,7 @@ window.CONTENT = {
             "Weld frame subassemblies with resistance spot welds",
             "Zinc-plate and powder coat for corrosion resistance",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["office-chair-stamping-02"],
         },
         {
@@ -754,7 +754,7 @@ window.CONTENT = {
             "Cool and eject base with center bore for gas lift",
             "Deflash and load-test to BIFMA standard",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["office-chair-injection-02"],
         },
         {
@@ -777,7 +777,7 @@ window.CONTENT = {
             "Assemble wheels, ball race, and yoke",
             "Swage caster stem into five-star base bore",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["office-chair-injection-02"],
         },
         {
@@ -800,7 +800,7 @@ window.CONTENT = {
             "Roll and inspect fabric for dropped stitches",
             "Heat-set and ship to upholstery cutter",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["office-chair-nylon-03"],
         },
         {
@@ -823,7 +823,7 @@ window.CONTENT = {
             "Blank and form brackets through subsequent stations",
             "Separate finished parts and stack",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["office-chair-steel-03"],
         },
         {
@@ -846,7 +846,7 @@ window.CONTENT = {
             "Hold pressure and cool part in mold",
             "Eject base and trim gate and runner",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["office-chair-pa-03"],
         },
         {
@@ -869,7 +869,7 @@ window.CONTENT = {
             "Draw and heat-set monofilament yarn",
             "Wind onto spools for knitting machines",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["office-chair-petroleum-04"],
         },
         {
@@ -892,7 +892,7 @@ window.CONTENT = {
             "Cold roll, anneal, and galvanize sheet",
             "Coil DP600 for stamping plant delivery",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["office-chair-ironore-04"],
         },
         {
@@ -915,7 +915,7 @@ window.CONTENT = {
             "Extrude and pelletize compounded resin",
             "Dry pellets before molding to prevent hydrolysis",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["office-chair-petroleum-04"],
         },
         {
@@ -938,7 +938,7 @@ window.CONTENT = {
             "Install casing and cement to isolate formations",
             "Pump crude oil to surface via artificial lift or natural flow",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
         {
@@ -961,7 +961,7 @@ window.CONTENT = {
             "Crush and screen to lump and fines products",
             "Stockpile or rail to steel mill blast furnace",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
       ],
@@ -973,7 +973,7 @@ window.CONTENT = {
     {
       id: "ceramic-mug",
       name: "Ceramic Mug",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "ceramic-mug-01",
@@ -995,7 +995,7 @@ window.CONTENT = {
             "Bisque fired at 900 °C, then glazed",
             "Glost fired at 1250 °C to vitrify body and melt glaze",
           ],
-          color: "#6e5a40",
+          color: "#5c564c",
           inputs: ["ceramic-mug-body-01", "ceramic-mug-glaze-01"],
         },
         {
@@ -1018,7 +1018,7 @@ window.CONTENT = {
             "Jigger profile against rotating plaster mold",
             "Trim leather-hard mug and attach handle",
           ],
-          color: "#6e5a40",
+          color: "#5c564c",
           inputs: ["ceramic-mug-pugmill-02"],
         },
         {
@@ -1041,7 +1041,7 @@ window.CONTENT = {
             "Sieve and adjust specific gravity",
             "Dip or spray glaze onto bisque-fired mug",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["ceramic-mug-ballmill-02"],
         },
         {
@@ -1064,7 +1064,7 @@ window.CONTENT = {
             "Extrude solid clay column through die",
             "Cut column into sections for forming",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["ceramic-mug-kaolin-03"],
         },
         {
@@ -1087,7 +1087,7 @@ window.CONTENT = {
             "Check particle size by wet sieving",
             "Pump slurry to storage tank for glazing",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["ceramic-mug-feldspar-03"],
         },
         {
@@ -1110,7 +1110,7 @@ window.CONTENT = {
             "Filter press clay into cakes",
             "Dry and mill to powder for body mixing",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["ceramic-mug-kaolinmine-04"],
         },
         {
@@ -1133,7 +1133,7 @@ window.CONTENT = {
             "Magnetic-separate iron contaminants",
             "Blend into body or glaze recipes",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["ceramic-mug-feldsparmine-04"],
         },
         {
@@ -1156,7 +1156,7 @@ window.CONTENT = {
             "Slurry and centrifuge to remove grit",
             "Filter press and dry kaolin cake",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: [],
         },
         {
@@ -1179,7 +1179,7 @@ window.CONTENT = {
             "Crush, mill, and magnetic-separate iron",
             "Bag and ship to ceramic factory",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: [],
         },
       ],
@@ -1191,7 +1191,7 @@ window.CONTENT = {
     {
       id: "steel-desk",
       name: "Steel Desk",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "steel-desk-01",
@@ -1213,7 +1213,7 @@ window.CONTENT = {
             "Assemble drawer box and slides",
             "Powder coat and package for shipment",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [
             "steel-desk-top-01",
             "steel-desk-legs-01",
@@ -1240,7 +1240,7 @@ window.CONTENT = {
             "Powder coat and cure at 180 °C",
             "Spot-weld to leg frame assembly",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["steel-desk-press-02"],
         },
         {
@@ -1263,7 +1263,7 @@ window.CONTENT = {
             "Cut tube to leg length and deburr",
             "Weld to desktop and fit plastic glides",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["steel-desk-erw-02"],
         },
         {
@@ -1286,7 +1286,7 @@ window.CONTENT = {
             "Spot-weld box assembly and fit slides",
             "Powder coat and install cam lock",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["steel-desk-press-02"],
         },
         {
@@ -1309,7 +1309,7 @@ window.CONTENT = {
             "Blank and form desktop and drawer parts",
             "Separate finished parts and stack",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["steel-desk-spcc-03"],
         },
         {
@@ -1332,7 +1332,7 @@ window.CONTENT = {
             "Trim weld flash and size tube",
             "Cut to leg length and deburr ends",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["steel-desk-skmp-03"],
         },
         {
@@ -1355,7 +1355,7 @@ window.CONTENT = {
             "Anneal in bell furnace to restore ductility",
             "Temper roll and coil for stamping feedstock",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["steel-desk-ironore-04"],
         },
         {
@@ -1378,7 +1378,7 @@ window.CONTENT = {
             "Anneal and temper roll for weldability",
             "Slit to coil width for tube mill",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["steel-desk-ironore-04"],
         },
         {
@@ -1401,7 +1401,7 @@ window.CONTENT = {
             "Crush and screen to lump and fines products",
             "Stockpile or rail to steel mill blast furnace",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
       ],
@@ -1413,7 +1413,7 @@ window.CONTENT = {
     {
       id: "glass-window",
       name: "Float Glass Window",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "glass-window-01",
@@ -1435,7 +1435,7 @@ window.CONTENT = {
             "Glaze pane with gaskets and spacers",
             "Weather-seal and package for shipment",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["glass-window-pane-01", "glass-window-frame-01"],
         },
         {
@@ -1458,7 +1458,7 @@ window.CONTENT = {
             "Float glass ribbon on molten tin bath",
             "Anneal in lehr and cut to jumbo sheets",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["glass-window-float-02"],
         },
         {
@@ -1481,7 +1481,7 @@ window.CONTENT = {
             "Quench, stretch, and age to T5 temper",
             "Cut, drill, and anodize frame members",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["glass-window-extrusion-02"],
         },
         {
@@ -1504,7 +1504,7 @@ window.CONTENT = {
             "Float ribbon on molten tin bath to flatness",
             "Anneal in lehr and cut jumbo sheets",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["glass-window-soda-03"],
         },
         {
@@ -1527,7 +1527,7 @@ window.CONTENT = {
             "Quench profile on run-out table",
             "Stretch and artificially age to T5",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["glass-window-alu-03"],
         },
         {
@@ -1550,7 +1550,7 @@ window.CONTENT = {
             "Charge to furnace with batch charger",
             "Melt at 1550 °C for float line feed",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["glass-window-sand-04"],
         },
         {
@@ -1573,7 +1573,7 @@ window.CONTENT = {
             "Alloy with magnesium and silicon, cast billet",
             "Solution heat treat and artificially age to T5",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["glass-window-bauxite-04"],
         },
         {
@@ -1596,7 +1596,7 @@ window.CONTENT = {
             "Wash, screen, and magnetic-separate iron",
             "Dry and stockpile for glass batch",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: [],
         },
         {
@@ -1619,7 +1619,7 @@ window.CONTENT = {
             "Crush and wash bauxite to remove clay and silica",
             "Transport washed ore to Bayer refinery for alumina extraction",
           ],
-          color: "#94472a",
+          color: "#b93a1d",
           inputs: [],
         },
       ],
@@ -1631,7 +1631,7 @@ window.CONTENT = {
     {
       id: "hardcover-book",
       name: "Hardcover Book",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "hardcover-book-01",
@@ -1653,7 +1653,7 @@ window.CONTENT = {
             "Round and back the block, thump it square",
             "Glue endpapers and case the block in boards",
           ],
-          color: "#6e5a40",
+          color: "#5c564c",
           inputs: ["hardcover-book-pages-01", "hardcover-book-cover-01"],
         },
         {
@@ -1676,7 +1676,7 @@ window.CONTENT = {
             "Sew through the fold on a gathering-sewing machine",
             "Trim three edges flush on a guillotine",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["hardcover-book-press-02"],
         },
         {
@@ -1699,7 +1699,7 @@ window.CONTENT = {
             "Glue boards and spine cloth into one case",
             "Casing-in machine glues block to endpapers",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["hardcover-book-paper-03", "hardcover-book-glue-03"],
         },
         {
@@ -1722,7 +1722,7 @@ window.CONTENT = {
             "Print both sides of the moving paper web",
             "Dry, chill and fold the web into signatures",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["hardcover-book-paper-03"],
         },
         {
@@ -1745,7 +1745,7 @@ window.CONTENT = {
             "Form the sheet on a Fourdrinier wire",
             "Press, dry, size and calender onto the reel",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["hardcover-book-forest-04"],
         },
         {
@@ -1768,7 +1768,7 @@ window.CONTENT = {
             "Roll a 0.4 mm film onto the spine",
             "Chill and cure seconds after casing-in",
           ],
-          color: "#c9a04e",
+          color: "#e0a52f",
           inputs: ["hardcover-book-petroleum-04"],
         },
         {
@@ -1791,7 +1791,7 @@ window.CONTENT = {
             "Haul chips by truck to the pulp mill",
             "Replant for the next rotation",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: [],
         },
         {
@@ -1814,7 +1814,7 @@ window.CONTENT = {
             "Steam-crack naphtha into ethylene and VAM",
             "Polymerize into EVA binding resin",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
       ],
@@ -1826,7 +1826,7 @@ window.CONTENT = {
     {
       id: "ceiling-fan",
       name: "Ceiling Fan",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "ceiling-fan-01",
@@ -1848,7 +1848,7 @@ window.CONTENT = {
             "Die-cast the aluminum rotor and shaft",
             "Assemble, balance and burn-in under test",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["ceiling-fan-motor-01", "ceiling-fan-blades-01", "ceiling-fan-hardware-01"],
         },
         {
@@ -1871,7 +1871,7 @@ window.CONTENT = {
             "Connect, dip in varnish and bake",
             "Press the shaft into the rotor, fit bearings",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["ceiling-fan-winder-02"],
         },
         {
@@ -1894,7 +1894,7 @@ window.CONTENT = {
             "Powder-coat and bake the blade",
             "Weigh-match blades before assembly",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["ceiling-fan-stamping-02"],
         },
         {
@@ -1917,7 +1917,7 @@ window.CONTENT = {
             "Heat-treat to grade 8.8",
             "Zinc-plate and pack loose hardware",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["ceiling-fan-ironore-04"],
         },
         {
@@ -1940,7 +1940,7 @@ window.CONTENT = {
             "Wind the turn count and cross over",
             "Cut, crimp and unload the finished coil",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["ceiling-fan-magwire-03"],
         },
         {
@@ -1963,7 +1963,7 @@ window.CONTENT = {
             "Form pitch and flanges mid-stroke",
             "Eject, deburr and carton to pallets",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["ceiling-fan-bladesteel-03"],
         },
         {
@@ -1986,7 +1986,7 @@ window.CONTENT = {
             "Bake on enamel in successive passes",
             "Spark-test every meter before spooling",
           ],
-          color: "#c9a04e",
+          color: "#e0a52f",
           inputs: ["ceiling-fan-copper-04"],
         },
         {
@@ -2009,7 +2009,7 @@ window.CONTENT = {
             "Anneal in a bell furnace",
             "Temper-roll and oil the finished coil",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["ceiling-fan-ironore-04"],
         },
         {
@@ -2032,7 +2032,7 @@ window.CONTENT = {
             "Smelt and convert to blister copper",
             "Electrorefine to cathodes for wire",
           ],
-          color: "#c9a04e",
+          color: "#e0a52f",
           inputs: [],
         },
         {
@@ -2055,7 +2055,7 @@ window.CONTENT = {
             "Crush, screen and stockpile at the mine",
             "Rail to the steel mill blast furnace",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
       ],
@@ -2067,7 +2067,7 @@ window.CONTENT = {
     {
       id: "candle",
       name: "Candle",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "candle-01",
@@ -2089,7 +2089,7 @@ window.CONTENT = {
             "Blow the glass chimney and seat base to base",
             "Light it: the flame melts a pool, the pool feeds the wick",
           ],
-          color: "#c9a04e",
+          color: "#e0a52f",
           inputs: ["candle-wax-01", "candle-chimney-01", "candle-wick-01"],
         },
         {
@@ -2111,7 +2111,7 @@ window.CONTENT = {
             "Cast into blocks, then pillar molds",
             "Age the cast so crystals settle uniform",
           ],
-          color: "#c9a04e",
+          color: "#e0a52f",
           inputs: ["candle-distill-02", "candle-paraffin-03"],
         },
         {
@@ -2133,7 +2133,7 @@ window.CONTENT = {
             "Anneal slowly so no stress is locked in",
             "Fire-polish the rim and fit the collar",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["candle-blow-02", "candle-batch-03"],
         },
         {
@@ -2155,7 +2155,7 @@ window.CONTENT = {
             "Size in starch and cut to length",
             "Prime the tip with wax before packing",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["candle-cotton-03"],
         },
         {
@@ -2177,7 +2177,7 @@ window.CONTENT = {
             "Draw lube cuts from the side",
             "Send the wax-rich raffinate to dewaxing",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["candle-paraffin-03"],
         },
         {
@@ -2199,7 +2199,7 @@ window.CONTENT = {
             "Blow the parison against the mold wall",
             "Transfer, final-blow, and anneal",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["candle-batch-03"],
         },
         {
@@ -2221,7 +2221,7 @@ window.CONTENT = {
             "Bleach and filter until white",
             "Grade by melting point for casting",
           ],
-          color: "#c9a04e",
+          color: "#e0a52f",
           inputs: ["candle-crude-04"],
         },
         {
@@ -2243,7 +2243,7 @@ window.CONTENT = {
             "Charge the furnace at 1550 °C",
             "Skim the melt and refine it",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: ["candle-quarry-04"],
         },
         {
@@ -2265,7 +2265,7 @@ window.CONTENT = {
             "Draw to an even strand",
             "Spin and wind onto tubes",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["candle-field-04"],
         },
         {
@@ -2287,7 +2287,7 @@ window.CONTENT = {
             "Separate fines and grade by size",
             "Stockpile under cover, dry",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: [],
         },
         {
@@ -2309,7 +2309,7 @@ window.CONTENT = {
             "Lift oil with reservoir pressure",
             "Separate oil, gas and formation water",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
         {
@@ -2331,7 +2331,7 @@ window.CONTENT = {
             "Bale the lint at 220 kg",
             "Grade the bale by staple and colour",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: [],
         },
       ],
@@ -2343,7 +2343,7 @@ window.CONTENT = {
     {
       id: "armchair",
       name: "Rattan Armchair",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "armchair-01",
@@ -2365,7 +2365,7 @@ window.CONTENT = {
             "Weave cane webbing into the frame",
             "Fit the loose cotton cushion",
           ],
-          color: "#6e5a40",
+          color: "#5c564c",
           inputs: ["armchair-frame-01", "armchair-cane-01", "armchair-cushion-01"],
         },
         {
@@ -2387,7 +2387,7 @@ window.CONTENT = {
             "Glue, clamp and pin the frame",
             "Sand and oil the assembled frame",
           ],
-          color: "#6e5a40",
+          color: "#5c564c",
           inputs: ["armchair-mortiser-02", "armchair-teak-03"],
         },
         {
@@ -2409,7 +2409,7 @@ window.CONTENT = {
             "Soak, stretch and peg into the rebate",
             "Let it dry drum-tight",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["armchair-splitter-02", "armchair-peels-03"],
         },
         {
@@ -2431,7 +2431,7 @@ window.CONTENT = {
             "Fill with carded wadding",
             "Button through and close the seam",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["armchair-rapier-02", "armchair-cotton-03"],
         },
         {
@@ -2453,7 +2453,7 @@ window.CONTENT = {
             "Split to even strands",
             "Dry and grade the strands",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["armchair-peels-03"],
         },
         {
@@ -2475,7 +2475,7 @@ window.CONTENT = {
             "Clear the chips from the pocket",
             "Check the mortise against the tenon",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["armchair-teak-03"],
         },
         {
@@ -2497,7 +2497,7 @@ window.CONTENT = {
             "Beat the pick into the cloth fell",
             "Wind the cloth onto the take-up",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["armchair-cotton-03"],
         },
         {
@@ -2519,7 +2519,7 @@ window.CONTENT = {
             "Split into even strands",
             "Sun-dry and bundle by grade",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["armchair-grove-04"],
         },
         {
@@ -2541,7 +2541,7 @@ window.CONTENT = {
             "Kiln-dry to ten percent",
             "Grade and sticker the stock",
           ],
-          color: "#6e5a40",
+          color: "#5c564c",
           inputs: ["armchair-teakplant-04"],
         },
         {
@@ -2563,7 +2563,7 @@ window.CONTENT = {
             "Draw to an even strand",
             "Spin and wind onto tubes",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: ["armchair-field-04"],
         },
         {
@@ -2585,7 +2585,7 @@ window.CONTENT = {
             "Drag canes to the river or road",
             "Sell by diameter and length",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: [],
         },
         {
@@ -2607,7 +2607,7 @@ window.CONTENT = {
             "Prune for clear boles",
             "Fell and replant at year thirty",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: [],
         },
         {
@@ -2629,7 +2629,7 @@ window.CONTENT = {
             "Bale the lint at 220 kg",
             "Grade the bale by staple and colour",
           ],
-          color: "#8a9471",
+          color: "#7d9a5e",
           inputs: [],
         },
       ],
@@ -2642,7 +2642,7 @@ window.CONTENT = {
     {
       id: "insulated-bottle",
       name: "Insulated Steel Bottle",
-      color: "#44321f",
+      color: "#181410",
       nodes: [
         {
           id: "insulated-bottle-01",
@@ -2664,7 +2664,7 @@ window.CONTENT = {
             "Mold and fit the PP lid",
             "Leak-test every bottle under water",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [
             "insulated-bottle-shell-01",
             "insulated-bottle-lid-01",
@@ -2691,7 +2691,7 @@ window.CONTENT = {
             "Laser-weld the seam and vacuum port",
             "Pull a vacuum, then pinch the port shut",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["insulated-bottle-vacuum-02"],
         },
         {
@@ -2714,7 +2714,7 @@ window.CONTENT = {
             "Snap in the floating straw ball",
             "Cycle-test the hinge and threads",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["insulated-bottle-injpress-02"],
         },
         {
@@ -2737,7 +2737,7 @@ window.CONTENT = {
             "Stretch-fit it over the base",
             "Drop- and dishwasher-cycle test",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["insulated-bottle-injpress-02", "insulated-bottle-silicone-03"],
         },
         {
@@ -2760,7 +2760,7 @@ window.CONTENT = {
             "Draw the cup, then redraw it taller",
             "Pass the shell to trim and anneal",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["insulated-bottle-coil-03"],
         },
         {
@@ -2783,7 +2783,7 @@ window.CONTENT = {
             "Pack and cool for 25 seconds",
             "Eject the part onto the conveyor",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["insulated-bottle-pp-03"],
         },
         {
@@ -2806,7 +2806,7 @@ window.CONTENT = {
             "Evacuate the gap to a near vacuum",
             "Pinch and seal the port shut",
           ],
-          color: "#6e8896",
+          color: "#5b7f96",
           inputs: ["insulated-bottle-press-02"],
         },
         {
@@ -2829,7 +2829,7 @@ window.CONTENT = {
             "Cold-roll to half a millimetre",
             "Anneal, pickle and slit to coils",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: ["insulated-bottle-ironmine-04"],
         },
         {
@@ -2852,7 +2852,7 @@ window.CONTENT = {
             "Pelletize, dry and color the resin",
             "Load the molding press hopper",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["insulated-bottle-oil-04"],
         },
         {
@@ -2875,7 +2875,7 @@ window.CONTENT = {
             "Polymerize the siloxane backbone",
             "Add filler, catalyst and mill to gum",
           ],
-          color: "#b65c38",
+          color: "#e0472b",
           inputs: ["insulated-bottle-sand-04"],
         },
         {
@@ -2898,7 +2898,7 @@ window.CONTENT = {
             "Crush, screen and concentrate",
             "Pelletize and rail to the steelworks",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
         {
@@ -2921,7 +2921,7 @@ window.CONTENT = {
             "Cement the casing to isolate layers",
             "Pump the crude and associated gas",
           ],
-          color: "#44321f",
+          color: "#181410",
           inputs: [],
         },
         {
@@ -2944,7 +2944,7 @@ window.CONTENT = {
             "Wash, screen and magnetic-separate",
             "Dry and ship to glass and silicon plants",
           ],
-          color: "#93805f",
+          color: "#a49e92",
           inputs: [],
         },
       ],

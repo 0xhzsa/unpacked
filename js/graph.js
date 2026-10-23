@@ -9,8 +9,8 @@
 (function () {
   "use strict";
 
-  var AMBER = "#b65c38", EDGE = "#93805f", FILL = "#f3ead4", FILL_HOT = "#e9dec4";
-  var TEXT = "#44321f", MUTED = "#6e5a40", DIM = "#93805f";
+  var AMBER = "#e0472b", EDGE = "#a49e92", FILL = "#f0ede4", FILL_HOT = "#faf9f5";
+  var TEXT = "#181410", MUTED = "#5c564c", DIM = "#7a7365";
   var NODE_W = 120, NODE_H = 40, H_GAP = 40, ROW_GAP = 12, V_GAP = 64, PAD = 56;
   var EDGE_MS = 600, HOVER_MS = 150, STAGGER_MS = 110;
   var MONO = '"IBM Plex Mono", Menlo, Monaco, "Courier New", monospace';
@@ -43,7 +43,7 @@
         return node;
       }
       node = {
-        id: key, name: src.name, echelon: src.echelon | 0, color: src.color || "#44321f",
+        id: key, name: src.name, echelon: src.echelon | 0, color: src.color || "#181410",
         chains: [chain.id], x: 0, y: 0, w: NODE_W, h: NODE_H, band: 0,
         state: "default", hover: 0, portTop: false, portBot: false
       };

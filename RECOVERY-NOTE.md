@@ -599,3 +599,33 @@ Re-verified every major state on a phone viewport after sessions 10-12:
 - Tested end-to-end: keyboard -> click "Next: LED Desk Lamp ->" -> lamp story
   opens, hash #obj/desk-lamp, header sub-title updates; button row fits on
   one line at 1280 (rowRight 1142 < 1280).
+
+### Session 16: full re-theme - print-shop riso/zine palette + UX pass
+
+- User called the parchment theme "looking bad to navigate" and asked for ALL colors
+  changed; delegated the choice ("no AI slop"). Direction decided: print-shop riso/zine -
+  near-white paper #faf9f5, true near-black ink #181410, ONE loud vermilion accent
+  #e0472b, saturated flat tag colors (mustard #e0a52f, steel #5b7f96, sage #7d9a5e,
+  brick-deep #b93a1d, ink-faded #5c564c, ink-faint #a49e92), white cream, magnet-n
+  #e0562f. Editorial identity kept: hairlines, mono labels, radius 0, no shadows,
+  Caveat annotations, full-color photos.
+- Method: mechanical literal swap of every old token (hex + spaced/unspaced rgba
+  triples) across css/style.css, js/content.js, js/graph.js, js/press.js, js/descent.js,
+  js/story.js, index.html, 404.html, tools/og.html, tools/og-item.html - journey.js had
+  none. Grep-verified ZERO leftovers of any old value.
+- Canvas overrides post-swap: press.js EDGE #a49e92 -> #8e8778, graph.js DIM -> #7a7365
+  (canvas stroke/text legibility on the lighter plate).
+- UX contrast pass: text uses of --ink-faint bumped to --ink-faded (#specs .l, .text-dim,
+  .aff-note, .k, .ch-kick span2); .hscrollhint + #depth .d.on .lb switched from mustard
+  text (too weak) to brick; .pfoot 0.62 -> 0.7; .hkeys 0.5 -> 0.62. New mobile block:
+  .schips (decorative chapter rail labels) hidden at <=640px (clipped at 390 before);
+  header .hbtn min-height 44px touch targets. Focus rules already existed (line 670 +
+  .pk) and auto-followed the accent swap.
+- brand.md: section 13 marked HISTORICAL, new section 14 riso/zine = CURRENT (tokens,
+  node-color semantics carried over, canvas constants, text-contrast policy).
+- All themed share assets regenerated under the new theme: assets/og.jpg (136 KB),
+  11x docs/og/<id>.jpg (71-129 KB, q88), docs/share-home.jpg (110 KB) +
+  docs/share-story.jpg (56 KB) for the README, docs/demo.gif re-driven via frames.js
+  (11 frames -> 960x540, 128 colors, 788 KB). Screenshots verified desktop + mobile,
+  story closing row, press overlay, finale graph - all on-brand.
+- Validators: node --check x5 OK, check-journey ALL OK, check-imgs 51/51.

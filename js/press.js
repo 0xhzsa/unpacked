@@ -6,7 +6,7 @@
   'use strict';
 
   /* ---- palette (duotone technical plate) ---- */
-  var BG = '#f3ead4', AMBER = '#b65c38', WARM = '#c9a04e', STEEL = '#6e8896', EDGE = '#93805f';
+  var BG = '#f0ede4', AMBER = '#e0472b', WARM = '#e0a52f', STEEL = '#5b7f96', EDGE = '#8e8778';
   var AW = [232, 134, 29], WW = [251, 146, 60], SW = [138, 138, 138];
   var MONO = '"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace';
 

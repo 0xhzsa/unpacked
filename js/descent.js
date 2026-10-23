@@ -656,7 +656,7 @@
     x.className = "hbtn ns-x"; x.type = "button"; x.textContent = "Close ✕";
     x.addEventListener("click", closeNodeSheet);
     sheet.appendChild(x);
-    sheet.style.setProperty("--nc", n.color || "#44321f");
+    sheet.style.setProperty("--nc", n.color || "#181410");
     sheet.classList.add("show");
     sheet.setAttribute("aria-hidden", "false");
   }

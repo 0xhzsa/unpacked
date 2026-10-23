@@ -3,7 +3,12 @@
 **Project:** UNPACKED  
 **Format:** Interactive website  
 **Premise:** Start in a modern room. Zoom into any object. Unpack its entire manufacturing chain — raw material, tooling, process, logistics — the engineer's answer to "I, Pencil" (Leonard Read, 1958).  
-**Art direction:** Banagale parchment (2026-10-21 redesign) — a printed technical-manual page: warm paper ground, warm-brown ink linework, brick accent, hand-written annotations. Live tokens in **§ 13 banagale — CURRENT** (bottom of file).
+**Art direction:** Print-shop riso/zine (2026-10-23 re-theme) — near-white paper ground,
+true near-black ink linework, one loud vermilion accent, saturated flat tag colors,
+hand-written annotations. Editorial structure (hairlines, mono labels, radius 0, no
+shadows) unchanged from the parchment-era manual look. Live tokens in **§ 14 riso/zine —
+CURRENT** (bottom of file). Superseded directions: § 1–12 industrial brutalism (historical),
+§ 13 banagale parchment (historical).
 
 ---
 
@@ -498,7 +503,12 @@ Precise, specific, technical. Real materials, real specs, real history. No marke
 
 ---
 
-## 13. banagale — CURRENT direction (2026-10-21 redesign)
+## 13. banagale — HISTORICAL direction (2026-10-21 redesign, superseded 2026-10-23)
+
+> **⚠ SUPERSEDED by § 14.** Kept for archaeology; the hexes below describe the old
+> parchment theme and no longer match the shipped tokens. The structural rules
+> (anti-slop spine, node color SEMANTICS, photography unfiltered) all carried into § 14 —
+> only the values changed.
 
 **Banagale parchment.** The site reads like a page from a printed technical manual or a
 field notebook: warm paper ground, warm-brown ink linework, brick-red accent, hand-written
@@ -542,3 +552,58 @@ Semantic, every hex must sit on parchment: machines `#6e8896` · metals/electron
 wax/candle/copper/adhesive `#c9a04e`. Current node = brick 2px border + hot fill; visited
 = brick text; future = dimmed. Same list is in AUTHORING.md §2 — pick by material family
 when adding nodes.
+
+---
+
+## 14. riso/zine — CURRENT direction (2026-10-23 re-theme)
+
+**Print-shop riso.** The site reads like a page fresh off a risograph: near-white paper,
+true near-black ink, one loud vermilion accent, saturated flat tag colors. Same editorial
+spine as before — hairline 1px rules, small-caps and mono labels, radius 0, no shadows,
+hand-written Caveat annotations, full-color unfiltered photography — but the ground switched
+from sepia parchment to crisp gallery-white for legibility and punch (millennials/Gen Z read
+it as zine/riso-print culture, not AI gradient mush).
+
+Non-negotiables (unchanged): no flat SVG illustration, no decorative gradients (the one
+content-sheet cream-to-paper tint stays as a material reference), no drop shadows, no
+rounded corners, no looping decorative animation, no AI-tell copy. Depth from hairlines and
+value steps between paper tones, never blur.
+
+### Tokens (css/style.css `:root`)
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--paper` | `#faf9f5` | Page ground, canvas bg, palette fallback, theme-color, favicon |
+| `--paper-plate` | `#f0ede4` | Panels, chips, graph node fill, press/schematic plate |
+| `--cream` | `#ffffff` | Lightest sheet tone (text sheet top edge), button fills |
+| `--ink` | `#181410` | Primary text, dark linework, metals/electronics/oil node borders |
+| `--ink-faded` | `#5c564c` | Muted text (incl. labels formerly at ink-faint), wood/timber/stoneware borders |
+| `--ink-faint` | `#a49e92` | Hairlines, dimension lines, borders only — never text |
+| `--brick` | `#e0472b` | THE accent: vermilion — active, focus, current node, machine echelon, picks, scroll hint |
+| `--brick-deep` | `#b93a1d` | Accent hover/pressed, bauxite border |
+| `--mustard` | `#e0a52f` | Wax/candle/copper/adhesive borders, warm marks |
+| `--sage` | `#7d9a5e` | Plant/fiber borders, quiet tags |
+| `--steel` | `#5b7f96` | Machine borders, steel lines in schematics, magnet south |
+| `--iron` | `#77848c` | Iron-toned accents |
+| `--magnet-n` | `#e0562f` | Magnet north pole |
+
+Canvas constants (js): press.js `BG #f0ede4, AMBER #e0472b, WARM #e0a52f, STEEL #5b7f96,
+EDGE #8e8778` (EDGE lifted from the hairline tone for canvas stroke legibility);
+graph.js `FILL #f0ede4, FILL_HOT #faf9f5, TEXT #181410, MUTED #5c564c, DIM #7a7365,
+EDGE #a49e92`.
+
+### Finale-graph node border colors (`js/content.js`, painted by `js/graph.js`)
+
+Semantic, every hex must sit on near-white paper: machines `#5b7f96` ·
+metals/electronics/oil `#181410` · plastics/glaze `#e0472b` · bauxite `#b93a1d` ·
+sand/kaolin/feldspar/glass/paper `#a49e92` · plants/rattan/cotton `#7d9a5e` ·
+wood/timber/stoneware `#5c564c` · wax/candle/copper/adhesive `#e0a52f`. Current node =
+vermilion 2px border + hot fill; visited = vermilion text; future = dimmed. Same list is in
+AUTHORING.md §2 — pick by material family when adding nodes.
+
+### Contrast policy (moving forward)
+
+Text-only minimums on `--paper`: labels ≥ `--ink-faded` (`#5c564c`) or 62%+ ink alpha;
+`--ink-faint` is reserved for hairlines and non-text borders. Small text in the accent uses
+`--brick-deep` when below 14px. `--mustard`/`--sage`/`--iron` are fill/border tones — not
+small-text colors.

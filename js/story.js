@@ -117,7 +117,7 @@
         ' <span class="l-count">' + nodes.length + " node" + (nodes.length > 1 ? "s" : "") + "</span></h3>";
       out += '<div class="l-grid' + (nodes.length === 1 ? " single" : "") + '">';
       nodes.forEach(function (n) {
-        out += '<article class="nrc reveal" style="--nc:' + esc(n.color || "#44321f") + '">' +
+        out += '<article class="nrc reveal" style="--nc:' + esc(n.color || "#181410") + '">' +
           '<h4>' + esc(n.name) +
             (stMap[n.id] ? '<a class="nl" href="#' + esc(n.id) + '" title="read its chapter">↓ story</a>' : "") +
           "</h4>" +
