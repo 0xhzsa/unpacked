@@ -389,3 +389,40 @@ mobile home/descent/finale. `check-journey.js` ALL OK (10 chains);
 - Shots: home (room card, fixed thumb, new lead + hint + credits), bottle
   story hero (heat 12 h, new narration), ledger E0 full width, room-card
   click -> full finale "THE WHOLE ROOM" (open=true).
+
+### Session 8 continued: cleanup + "specimen plate" home redesign
+
+Deleted (authorization granted to delete instead of overwrite):
+- js/app.js (445 lines legacy UI, referenced rail/mini-graph/scene elements that
+  do not exist; never loaded by index.html -> it partially executed nothing).
+- js/plates.js (76.6 KB window.Plates canvas plates, referenced only by app.js).
+- js/scene.js (33.2 KB window.SceneAPI 3D room, referenced only by app.js).
+  ~125 KB of dead code removed; loaded scripts untouched.
+
+Image optimization (pillow via uv, assets/img/*.jpg, names unchanged):
+- Every file capped at 1280 px max dimension, recompressed q82-86 progressive.
+  34.2 MB -> 10.3 MB (-70%). Pages/finale/story load ~3x lighter; card thumbs,
+  plates and full-bleed cover layers all render at <=1280 px so quality is
+  visually unchanged (verified on shots).
+
+Home redesign: "specimen plate" cards (flat, brand.md rules hold):
+- Removed the heavy parchment wash gradient over photos; the button bg is now
+  the raw photo. A ::before block covers everything below 64 px in solid paper
+  with the ledger hairline on top -> photo strip above, ink rule, parchment
+  text block below. Photos finally read at full color; text never sits on
+  imagery anymore. min-height 178 px unifies all rows (room card's 4 lines
+  included). Mobile keeps 74 px photo strip with a 140 px card.
+
+Fix: #home bottom-anchoring clipped the hero when the sheet grew taller than
+the viewport. Root cause: margin-top:auto on .eyebrow bottom-aligns the flex
+column; overflow content before a scrolled flex container's origin cannot be
+reached by scrolling, so the eyebrow row vanished at 900 px viewports.
+Replaced with a shrinkable/growable head spacer pseudo-item (basis
+clamp(36px,9vh,96px), max 220px): tall screens still sink the sheet toward
+the bottom; short screens scroll cleanly from the top.
+
+Styling: credits strip (.pfoot) now centered mono small-caps under a hairline.
+
+Verification: check-imgs 51/51 (recompressed, missing [], unused []),
+check-journey ALL OK, story render unchanged, desktop tall + mobile home
+shots reviewed, room-card -> finale still opens.

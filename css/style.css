@@ -290,8 +290,15 @@ header {
   transition: opacity 500ms ease;
 }
 #home.hide { opacity: 0; pointer-events: none; }
-/* margin-top:auto pushes the sheet to the bottom but still scrolls cleanly on overflow */
-#home .eyebrow { margin-top: auto; }
+/* bottom-anchor the sheet on tall screens via a shrinkable head spacer.
+   A margin-top:auto here would bottom-align the flex column and, once the
+   grid grows past the viewport, clip the hero top into an unscrollable
+   region (flex overflow bug) — the spacer keeps the scroll origin clean. */
+#home::before {
+  content: ""; display: block; flex-grow: 1; flex-shrink: 0;
+  flex-basis: clamp(36px, 9vh, 96px); min-height: clamp(36px, 9vh, 96px); max-height: 220px;
+}
+#home .eyebrow { margin-top: 0; }
 #home .htitle { margin-bottom: 18px; }
 #home .hlead { max-width: 44ch; margin-bottom: 18px; }
 #home .hscrollhint { margin-bottom: 18px; }
@@ -437,7 +444,7 @@ header {
   #home .hscrollhint { margin-bottom: 14px; font-size: 10px; }
   #home .eyebrow { margin-top: 0; }
   #picker { gap: 8px; }
-  .pk { flex: 1 1 44%; min-width: 0; max-width: none; padding: 12px 14px; }
+  .pk { flex: 1 1 44%; min-width: 0; max-width: none; padding: 74px 14px 14px; min-height: 140px; }
   .pk .m:last-child { display: none; }
   #finale .quote { max-width: 82vw; font-size: 12.5px; left: 16px; bottom: 16px; }
   #finale .qstat b { font-size: 22px; }
@@ -661,3 +668,20 @@ html { overflow-x: clip; }
 
 /* Nº11 card thumb: crop lower where the photo carries contrast */
 #picker .pk:nth-child(11) { background-position: 50% 78%; }
+
+/* specimen-plate cards: live photo strip above, solid parchment text block
+   below, split by the same hairline rule the ledger uses */
+#picker .pk { position: relative; overflow: hidden; padding-top: 74px; min-height: 178px; }
+#picker .pk::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 64px; bottom: 0;
+  background: var(--paper); border-top: 1px solid rgba(68, 50, 31, 0.55);
+}
+#picker .pk > span { position: relative; z-index: 1; }
+
+.pfoot {
+  margin: 30px auto 64px; padding-top: 14px; max-width: 1005px;
+  border-top: 1px solid rgba(68, 50, 31, 0.3);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; text-align: center;
+  color: rgba(68, 50, 31, 0.62);
+}

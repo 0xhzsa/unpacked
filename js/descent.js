@@ -237,8 +237,7 @@
       var b = document.createElement("button");
       b.className = "pk";
       b.type = "button";
-      b.style.backgroundImage =
-        "linear-gradient(180deg, rgba(233,222,196,.58), rgba(233,222,196,.94)), url('" + srcFor(st) + "')";
+      b.style.backgroundImage = "url('" + srcFor(st) + "')";
       b.innerHTML =
         '<span class="m">' + (o.stops.length - 1) + " STOPS DEEP</span>" +
         '<span class="n">' + o.name + "</span>" +
@@ -250,8 +249,7 @@
       var r = document.createElement("button");
       r.className = "pk pk-room";
       r.type = "button";
-      r.style.backgroundImage =
-        "linear-gradient(180deg, rgba(233,222,196,.58), rgba(233,222,196,.94)), url('assets/img/room.jpg')";
+      r.style.backgroundImage = "url('assets/img/room.jpg')";
       r.innerHTML =
         '<span class="m">ALL ' + objects().length + " AT ONCE</span>" +
         '<span class="n">The Whole Room</span>' +
