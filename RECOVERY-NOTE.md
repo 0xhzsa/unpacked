@@ -554,3 +554,21 @@ path works; index.html fallback exists for any host that does not.
 Preview-checked: press frame shows full 02 INJECT/FILL diagram with hopper,
 screw, heater bands, melt pool, clamp unit and phase meter; graph frame shows
 the 106/121/9/11 stats bar + Ben Reinhardt quote.
+
+### Session 13: mobile QA pass (390x844) + press canvas fix
+
+Re-verified every major state on a phone viewport after sessions 10-12:
+
+- home sheet: plain render, sw===iw, only the known by-design cover bleed.
+- keyboard story (via #obj/keyboard boot): meta line, hero, spec trio, corrected
+  N.B. in handwriting, plate + chips all correct.
+- press simulator: WAS crowded (labels collided at 390px canvas). Fix: at
+  <=640px the panel gets overflow-x:auto and the canvas a 640px min-width, so
+  the diagram keeps its designed layout and pans horizontally instead of
+  squeezing. Verified: phase label clean, progress meter clean, labels
+  readable (right-side labels visible after pan; GEO flags the canvas by
+  design inside its own scroll container - page sw stays 390).
+- door page -> redirect -> story on mobile: works (explicit index.html path
+  locally; directory path serves on GitHub Pages).
+- finale graph at 390px: whole room scaled to fit (2.75:1) with stats bar +
+  quote stacked below; per-object graph remains the mobile-friendly zoom.
