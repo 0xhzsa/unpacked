@@ -8,9 +8,11 @@
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
     background:
-      radial-gradient(ellipse 130% 95% at 45% 0%, rgba(255,255,255,0.55), transparent 62%),
-      radial-gradient(ellipse 150% 125% at 50% 115%, rgba(34,28,22,0.2), transparent 66%),
-      #faf9f5;
+      radial-gradient(ellipse 130% 95% at 45% -8%, rgba(255,255,255,0.9), transparent 60%),
+      radial-gradient(ellipse 140% 120% at 50% 115%, rgba(24,20,16,0.10), transparent 64%),
+      linear-gradient(180deg, rgba(224,71,43,0.04) 0%, rgba(224,71,43,0) 34%),
+      linear-gradient(180deg, #fbfbf8 0%, #f3f5f1 58%, #e9ece6 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     color: #181410;
     font-family: 'Alegreya', serif;
   }

@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var AMBER = "#e0472b", EDGE = "#a49e92", FILL = "#f0ede4", FILL_HOT = "#faf9f5";
+  var AMBER = "#e0472b", EDGE = "#a49e92", FILL = "#eef1ec", FILL_HOT = "#f6f7f2";
   var TEXT = "#181410", MUTED = "#5c564c", DIM = "#7a7365";
   var NODE_W = 120, NODE_H = 40, H_GAP = 40, ROW_GAP = 12, V_GAP = 64, PAD = 56;
   var EDGE_MS = 600, HOVER_MS = 150, STAGGER_MS = 110;

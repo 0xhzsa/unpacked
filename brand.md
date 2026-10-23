@@ -564,17 +564,20 @@ hand-written Caveat annotations, full-color unfiltered photography — but the g
 from sepia parchment to crisp gallery-white for legibility and punch (millennials/Gen Z read
 it as zine/riso-print culture, not AI gradient mush).
 
-Non-negotiables (unchanged): no flat SVG illustration, no decorative gradients (the one
-content-sheet cream-to-paper tint stays as a material reference), no drop shadows, no
-rounded corners, no looping decorative animation, no AI-tell copy. Depth from hairlines and
-value steps between paper tones, never blur.
+Non-negotiables (unchanged): no flat SVG illustration, no decorative gradient WASHES on
+components (the one exemption is the page-ground atmosphere in `--atmo` — a light/falloff
+treatment like a photo on lit paper, plus the content-sheet cream-to-paper tint as a
+material reference), no drop shadows, no rounded corners, no looping decorative animation,
+no AI-tell copy. Depth from hairlines and value steps between paper tones, never blur.
 
 ### Tokens (css/style.css `:root`)
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--paper` | `#faf9f5` | Page ground, canvas bg, palette fallback, theme-color, favicon |
-| `--paper-plate` | `#f0ede4` | Panels, chips, graph node fill, press/schematic plate |
+| `--paper` | `#f6f7f2` | Page ground, canvas bg, palette fallback, theme-color, favicon |
+| `--paper-plate` | `#eef1ec` | Panels, chips, graph node fill, press/schematic plate |
+| `--atmo` | (CSS var, gradient stack) | Page/stage atmosphere: white top light, sage floor falloff (`#f7f8f4 → #dde3d8`), faint vermilion dawn at top-left (8%), soft ink floor shadow — shared by `body` and `#stage` so every view sits in the same "lit paper" |
+| `--tooth` | (CSS var, SVG feTurbulence) | Static paper-grain overlay (5% alpha ink noise) applied over body + stage |
 | `--cream` | `#ffffff` | Lightest sheet tone (text sheet top edge), button fills |
 | `--ink` | `#181410` | Primary text, dark linework, metals/electronics/oil node borders |
 | `--ink-faded` | `#5c564c` | Muted text (incl. labels formerly at ink-faint), wood/timber/stoneware borders |

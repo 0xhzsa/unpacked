@@ -629,3 +629,22 @@ Re-verified every major state on a phone viewport after sessions 10-12:
   (11 frames -> 960x540, 128 colors, 788 KB). Screenshots verified desktop + mobile,
   story closing row, press overlay, finale graph - all on-brand.
 - Validators: node --check x5 OK, check-journey ALL OK, check-imgs 51/51.
+
+### Session 17: paper atmosphere v2 + trending-objects research
+
+- User: paper still read flat / AI-ish; asked for "cool gradients background", more
+  alive. Design response (kept zine-real, no mesh-gradient slop): cooled the paper family
+  (#faf9f5 -> #f6f7f2 ground, #f0ede4 -> #eef1ec plates) and replaced both flat body and
+  #stage backdrops with one shared --atmo stack (white top light, faint vermilion dawn at
+  top-left 8%, sage floor falloff #f7f8f4 -> #dde3d8, soft ink floor shadow) + the static
+  paper tooth (feTurbulence grain, 5%) — both live in :root as --atmo / --tooth so body,
+  the fixed stage and the OG card templates share the identical atmosphere. OG cards got
+  the same stack for print-like consistency.
+- Global literal cooling swap (faf9f5/f0ede4 + rgb triples, spaced+unspaced) across css,
+  js and html; grep-verified ZERO leftovers; validators green (node --check, ALL OK).
+- All themed share assets re-regenerated under the final atmosphere: assets/og.jpg
+  (136 KB), 11x docs/og/<id>.jpg, docs/share-home.jpg + docs/share-story.jpg,
+  docs/demo.gif re-driven (11 frames -> 960x540, 813 KB). Verifies: desktop home with
+  deeper paper, mobile home, story closing row fine.
+- Trending-objects menu researched (TikTok/Kalodata-adjacent/Reddit) for the NEXT object
+  chains; user picks.
