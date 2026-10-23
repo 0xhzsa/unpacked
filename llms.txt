@@ -7,6 +7,21 @@ third-person for machines, materials and sources), an appendix ledger of verifie
 specs and histories, and a whole-room graph where the 11 chains visibly merge over
 shared machines, materials and mines. Photos are Wikimedia Commons (CC BY / CC BY-SA);
 per-file credits live in the repo's RECOVERY-NOTE.md and a credit strip is on the home page.
-Facts are sourced: manufacturer-published specs only (e.g. Thermos 24 h cold / 12 h hot),
+Facts are sourced: manufacturer-published specs only (e.g. Thermos 24h cold / 12h hot),
 widely reported figures kept attributable (Stanley $73M (2019) → $750M (2023)), and any
 unverifiable number removed during an explicit fact-check pass.
+
+## Object chapters (each has its own shareable link and link-preview card)
+
+- https://0xhzsa.github.io/unpacked/story/keyboard/ — Mechanical Keyboard
+- https://0xhzsa.github.io/unpacked/story/desk-lamp/ — LED Desk Lamp
+- https://0xhzsa.github.io/unpacked/story/office-chair/ — Ergonomic Office Chair
+- https://0xhzsa.github.io/unpacked/story/ceramic-mug/ — Ceramic Mug
+- https://0xhzsa.github.io/unpacked/story/steel-desk/ — Steel Desk
+- https://0xhzsa.github.io/unpacked/story/glass-window/ — Float Glass Window
+- https://0xhzsa.github.io/unpacked/story/hardcover-book/ — Hardcover Book
+- https://0xhzsa.github.io/unpacked/story/ceiling-fan/ — Ceiling Fan
+- https://0xhzsa.github.io/unpacked/story/candle/ — Candle
+- https://0xhzsa.github.io/unpacked/story/armchair/ — Rattan Armchair
+- https://0xhzsa.github.io/unpacked/story/insulated-bottle/ — Insulated Steel Bottle
+

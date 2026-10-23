@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@500;600;700&family=Alegreya:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(ellipse 130% 95% at 45% 0%, rgba(255,250,235,0.55), transparent 62%),
+      radial-gradient(ellipse 150% 125% at 50% 115%, rgba(94,72,40,0.2), transparent 66%),
+      #e9dec4;
+    color: #44321f;
+    font-family: 'Alegreya', serif;
+  }
+  .frame { position: absolute; inset: 13px; border: 2px solid #44321f; }
+  .kick {
+    position: absolute; left: 66px; top: 62px;
+    font: 700 16px/1 'IBM Plex Mono', monospace; letter-spacing: 0.28em; color: #b65c38;
+  }
+  .kick .rule { display: inline-block; width: 44px; height: 0; border-top: 2px solid #b65c38; vertical-align: 4px; margin-right: 14px; }
+  h1 {
+    position: absolute; left: 66px; top: 94px; width: 590px;
+    font-family: 'Alegreya SC', serif; font-weight: 700; font-size: 72px; line-height: 1.08;
+  }
+  .lead {
+    position: absolute; left: 68px; top: 330px; width: 560px;
+    font: italic 500 25px/1.5 'Alegreya', serif;
+  }
+  .ground {
+    position: absolute; left: 68px; top: 452px;
+    font: 600 13px/1 'IBM Plex Mono', monospace; letter-spacing: 0.2em; color: #6e5a40;
+  }
+  .url {
+    position: absolute; left: 68px; bottom: 47px;
+    font: 700 14.5px/1 'IBM Plex Mono', monospace; letter-spacing: 0.2em; color: #b65c38;
+  }
+  .photo {
+    position: absolute; right: 43px; top: 63px; width: 458px; height: 458px;
+    border: 1.5px solid #44321f; background-size: cover; background-position: center;
+  }
+  .credit {
+    position: absolute; right: 43px; top: 537px; width: 458px; text-align: center;
+    font: 500 11.5px/1 'IBM Plex Mono', monospace; letter-spacing: 0.16em; color: rgba(68,50,31,0.62);
+  }
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="kick"><span class="rule"></span><span id="kick">UNPACKED · OBJECT Nº 1</span></div>
+  <h1 id="name">Mechanical Keyboard</h1>
+  <div class="lead" id="blurb">From the click under your finger down to the iron ore it all came from.</div>
+  <div class="ground">TRACED PART BY PART TO THE GROUND IT CAME FROM</div>
+  <div class="url">0xhzsa.github.io/unpacked/story</div>
+  <div class="photo" id="photo"></div>
+  <div class="credit">FIELD PHOTO &middot; VIA WIKIMEDIA COMMONS</div>
+<script>
+  var q = new URLSearchParams(location.search);
+  document.getElementById("kick").textContent = "UNPACKED · OBJECT Nº " + (q.get("num") || "1");
+  document.getElementById("name").textContent = q.get("name") || "Mechanical Keyboard";
+  document.getElementById("blurb").textContent = q.get("blurb") || "";
+  document.getElementById("photo").style.backgroundImage = 'url("../assets/img/' + (q.get("img") || "keyboard.jpg") + '")';
+</script>
+</body>
+</html>

@@ -572,3 +572,18 @@ Re-verified every major state on a phone viewport after sessions 10-12:
   locally; directory path serves on GitHub Pages).
 - finale graph at 390px: whole room scaled to fit (2.75:1) with stats bar +
   quote stacked below; per-object graph remains the mobile-friendly zoom.
+
+### Session 14: purpose-built OG cards for the 11 story doors
+
+- tools/og-item.html: single 1200x630 template driven by query params
+  (?num=&name=&blurb=&img=) - kicker (UNPACKED / OBJECT Nx), Alegreya SC title,
+  italic one-liner, ground line, brick URL, large framed field photo, and the
+  VIA WIKIMEDIA COMMONS credit line.
+- Shot all 11 via the query-param template (clean GEO every time), then
+  Pillow -> docs/og/<id>.jpg at q88 (66-124 KB each, ~950 KB total).
+- Door pages regenerated: og:image now points at the per-object card (was the
+  raw asset photo), with og:image:width/height 1200/630 and a descriptive
+  og:image:alt. twitter:* mirrored. Regenerated with a rewritten gen-doors.js
+  (temp script) - sitemap's 12 URLs unchanged.
+- llms.txt: added an "Object chapters" section listing all 11 door URLs by name.
+- Validators green (check-imgs 51/51 mapped, check-journey ALL OK).
