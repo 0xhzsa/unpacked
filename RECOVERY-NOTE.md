@@ -456,3 +456,14 @@ Keyboard: "-" now opens object #11 (completes the digit map 1-9, 0 -> #10,
 
 Verification: syntax OK, check-journey ALL OK, check-imgs 51/51, footer
 renders ("READ THE NEXT ONE WHILE THE KETTLE BOILS"), closing buttons row OK.
+
+### Session 9 continued: SEO + keys + monetize-doc
+
+- robots.txt (allow all + sitemap pointer) and sitemap.xml (root URL, weekly).
+- 404.html: self-contained branded page ("NOTHING AT THIS DEPTH / Page not found"),
+  parchment system, mono button back to the room. GitHub Pages serves it on
+  unknown paths with HTTP 404.
+- Home: keyboard affordance line under the payoff hint - "or press 1-9 - 0 - '-'
+  for No.11" (digits were invisible before; now discoverable).
+- README: "Own it / monetize" section pointing at js/affiliate.js (tag in one
+  place; disclosure included; empty tag = live-but-unmonetized).

@@ -43,6 +43,14 @@ Every number on the site is either verified against a manufacturer/source
 or phrased qualitatively. The rule from `AUTHORING.md` holds: *no number you can't defend.*
 Found something wrong? Open an issue — the fact-check pass is ongoing.
 
+## Own it / monetize
+
+The site ships **unmonetized**. To turn purchases on, edit one file —
+`js/affiliate.js`: set `tag: "yourtag-20"` and "Where to get one" buttons appear on
+every object's first chapter, with the required disclosure line included.
+Per-object search terms and direct-store URLs are already configured; an empty tag
+keeps the site fully functional, simply without buy buttons.
+
 ## Develop & verify
 
 ```bash

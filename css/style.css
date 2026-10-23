@@ -302,6 +302,11 @@ header {
 #home .htitle { margin-bottom: 18px; }
 #home .hlead { max-width: 44ch; margin-bottom: 18px; }
 #home .hscrollhint { margin-bottom: 18px; }
+#home .hkeys {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(68, 50, 31, 0.5);
+  margin-top: -13px; margin-bottom: 18px;
+}
 #picker { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* ── Mobile ────────────────────────────────────────────────────────────── */
