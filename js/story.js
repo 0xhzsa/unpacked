@@ -251,10 +251,23 @@
   }
 
   function onScrollPips() {
-    if (!SCROLL) return;
-    var max = SCROLL.scrollHeight - SCROLL.clientHeight;
-    var p = max > 0 ? SCROLL.scrollTop / max : 0;
-    SCROLL.style.setProperty("--sp", (p * 100).toFixed(2) + "%");
+    var sc = SCROLL;
+    if (!sc) return;
+    var rail = sc.querySelector(".s-rail");
+    var chs = sc.querySelectorAll(".chapter");
+    if (!rail || !chs.length) return;
+    if (rail.childElementCount !== chs.length) {
+      var chipHtml = "";
+      chs.forEach(function () { chipHtml += '<span class="s-chip"></span>'; });
+      rail.innerHTML = chipHtml;
+    }
+    var mid = sc.scrollTop + sc.clientHeight * 0.38;
+    var on = 0;
+    chs.forEach(function (c, i) { if (c.offsetTop <= mid) on = i; });
+    var kids = rail.children;
+    for (var i = 0; i < kids.length; i++) {
+      kids[i].className = "s-chip" + (i < on ? " past" : i === on ? " on" : "");
+    }
   }
 
   /* ------------------------------------------------------------ open / close */
@@ -279,7 +292,7 @@
 
     var sc = $("#story");
     sc.innerHTML =
-      '<div class="s-rail" aria-hidden="true"><i></i></div>' +
+      '<div class="s-rail" aria-hidden="true"></div>' +
       '<div class="s-wrap">' +
         '<div class="s-top reveal vis">' +
         '<span class="sn">OBJECT Nº ' + (oi + 1) + '</span>' +

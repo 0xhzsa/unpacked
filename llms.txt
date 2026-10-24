@@ -1,10 +1,10 @@
 # UNPACKED
 
-> An interactive field guide that traces 11 everyday objects from an ordinary room — keyboard, lamp, office chair, mug, steel desk, window, book, ceiling fan, candle, armchair, insulated steel bottle — down their supply chains: every part, every machine, every material, to the mine, oil well, forest or quarry it came from. 106 processes, 121 links, 9 shared sources. Live at https://0xhzsa.github.io/unpacked/
+> An interactive field guide that traces 19 everyday objects from an ordinary room — keyboard, lamp, office chair, mug, steel desk, window, book, ceiling fan, candle, armchair, steel bottle, earbuds, matcha whisk, LED strip, power bank, ball, blender, SSD and ballpoint pen — down their supply chains: every part, every machine, every material, to the mine, oil well, forest or quarry it came from. 210 processes, 223 links; four chains end in crude oil, three in iron ore, three in copper. Live at https://0xhzsa.github.io/unpacked/
 
 Each object has a scroll-story chapter (first-person for parts and products,
 third-person for machines, materials and sources), an appendix ledger of verified
-specs and histories, and a whole-room graph where the 11 chains visibly merge over
+specs and histories, and a whole-room graph where the 19 chains visibly merge over
 shared machines, materials and mines. Photos are Wikimedia Commons (CC BY / CC BY-SA);
 per-file credits live in the repo's RECOVERY-NOTE.md and a credit strip is on the home page.
 Facts are sourced: manufacturer-published specs only (e.g. Thermos 24h cold / 12h hot),
@@ -24,4 +24,12 @@ unverifiable number removed during an explicit fact-check pass.
 - https://0xhzsa.github.io/unpacked/story/candle/ — Candle
 - https://0xhzsa.github.io/unpacked/story/armchair/ — Rattan Armchair
 - https://0xhzsa.github.io/unpacked/story/insulated-bottle/ — Insulated Steel Bottle
+- https://0xhzsa.github.io/unpacked/story/wireless-earbuds/ — Wireless Earbuds
+- https://0xhzsa.github.io/unpacked/story/matcha-whisk/ — Matcha Whisk
+- https://0xhzsa.github.io/unpacked/story/led-strip/ — LED Strip Light
+- https://0xhzsa.github.io/unpacked/story/magnet-power-bank/ — Magnetic Power Bank
+- https://0xhzsa.github.io/unpacked/story/slow-rebound-ball/ — Slow-Rebound Ball
+- https://0xhzsa.github.io/unpacked/story/mini-blender/ — Mini Portable Blender
+- https://0xhzsa.github.io/unpacked/story/portable-ssd/ — Portable SSD
+- https://0xhzsa.github.io/unpacked/story/ballpoint-pen/ — Ballpoint Pen
 

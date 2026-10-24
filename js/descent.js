@@ -108,7 +108,76 @@
     "insulated-bottle-lid-01": "lid",
     "insulated-bottle-press-02": "stamping",
     "insulated-bottle-coil-03": "coil",
-    "insulated-bottle-ironmine-04": "mine"
+    "insulated-bottle-ironmine-04": "mine",
+    // wireless earbuds
+    "wireless-earbuds-room": "room",
+    "wireless-earbuds-01": "earbuds",
+    "wireless-earbuds-driver-01": "coil",
+    "wireless-earbuds-cell-01": "battery",
+    "wireless-earbuds-coiler-02": "magwire",
+    "wireless-earbuds-magnets-03": "magnets",
+    "wireless-earbuds-coppermine-04": "mine",
+
+    // matcha whisk
+    "matcha-whisk-room": "room",
+    "matcha-whisk-01": "chasen",
+    "matcha-whisk-tines-01": "bamboo",
+    "matcha-whisk-knot-01": "chasen",
+    "matcha-whisk-splitter-02": "splitter",
+    "matcha-whisk-grove-04": "bamboo",
+
+    // led strip
+    "led-strip-room": "room",
+    "led-strip-01": "ledreel",
+    "led-strip-emitter-01": "ledstrip",
+    "led-strip-fpcb-01": "pcb",
+    "led-strip-smt-02": "cnc",
+    "led-strip-copper-03": "magwire",
+    "led-strip-mine-04": "mine",
+
+    // magnetic power bank
+    "magnet-power-bank-room": "room",
+    "magnet-power-bank-01": "powerbank",
+    "magnet-power-bank-coil-01": "magwire",
+    "magnet-power-bank-board-01": "pb-internals",
+    "magnet-power-bank-smt-02": "cnc",
+    "magnet-power-bank-magnets-03": "magnets",
+    "magnet-power-bank-saltlake-04": "sand",
+
+    // slow-rebound ball
+    "slow-rebound-ball-room": "room",
+    "slow-rebound-ball-01": "stressball",
+    "slow-rebound-ball-mold-tooling": "mold",
+    "slow-rebound-ball-mill-02": "press",
+    "slow-rebound-ball-foam-03": "pellets",
+    "slow-rebound-ball-oil-04": "oil",
+
+    // mini blender
+    "mini-blender-room": "room",
+    "mini-blender-01": "blender",
+    "mini-blender-motor-01": "coil",
+    "mini-blender-blades-01": "stamping",
+    "mini-blender-inj-02": "press",
+    "mini-blender-pellets-03": "pellets",
+    "mini-blender-oil-04": "oil",
+
+    // portable ssd
+    "portable-ssd-room": "room",
+    "portable-ssd-01": "ssd",
+    "portable-ssd-controller-01": "pb-internals",
+    "portable-ssd-nand-01": "pcb",
+    "portable-ssd-smt-02": "cnc",
+    "portable-ssd-alum-03": "aluminum",
+    "portable-ssd-bauxite-04": "bauxite",
+
+    // ballpoint pen
+    "ballpoint-pen-room": "room",
+    "ballpoint-pen-01": "pen",
+    "ballpoint-pen-ball-01": "penball",
+    "ballpoint-pen-spring-01": "spring",
+    "ballpoint-pen-grinder-02": "cnc",
+    "ballpoint-pen-carbide-03": "carbide",
+    "ballpoint-pen-mine-04": "mine"
   };
   window.UnpackedIMG = IMG;   // shared with story.js (single source of truth)
 
@@ -234,30 +303,36 @@
     p.innerHTML = "";
     objects().forEach(function (o, i) {
       var st = o.stops[1] || o.stops[0];
+      var ends = "";
+      var room = o.stops[0];
+      if (room && room.specs) {
+        room.specs.forEach(function (sp) { if (sp.label === "We end at") ends = sp.value; });
+      }
       var b = document.createElement("button");
       b.className = "pk";
       b.type = "button";
-      b.style.backgroundImage = "url('" + srcFor(st) + "')";
       b.innerHTML =
-        '<span class="m">' + (o.stops.length - 1) + " STOPS DEEP</span>" +
+        '<span class="ph" style="background-image:url(\'' + srcFor(st) + '\')" aria-hidden="true"></span>' +
+        '<span class="no">Nº ' + (i + 1) + '</span>' +
         '<span class="n">' + o.name + "</span>" +
-        '<span class="m">' + o.tagline + "</span>";
+        '<span class="tag">' + o.tagline + "</span>" +
+        '<span class="meta">' + (o.stops.length - 1) + " stops · ends in " + ends + "</span>";
+      b.setAttribute("aria-label", o.name + ": " + (o.stops.length - 1) + " stops, ends in " + ends);
       b.addEventListener("click", function () { if (window.openStory) openStory(i); else open(i, 1); });
       p.appendChild(b);
     });
-    if (objects().length % 3 === 2) {
-      var r = document.createElement("button");
-      r.className = "pk pk-room";
-      r.type = "button";
-      r.style.backgroundImage = "url('assets/img/room.jpg')";
-      r.innerHTML =
-        '<span class="m">ALL ' + objects().length + " AT ONCE</span>" +
-        '<span class="n">The Whole Room</span>' +
-        '<span class="m rm-cta">OPEN THE GRAPH →</span>' +
-        '<span class="m">Everything they share: machines, materials and mines.</span>';
-      r.addEventListener("click", function () { openFinale("full"); });
-      p.appendChild(r);
-    }
+    var r = document.createElement("button");
+    r.className = "pk pk-room";
+    r.type = "button";
+    r.innerHTML =
+      '<span class="ph" style="background-image:url(\'assets/img/room.jpg\')" aria-hidden="true"></span>' +
+      '<span class="no">ALL ' + objects().length + " AT ONCE</span>" +
+      '<span class="n">The Whole Room</span>' +
+      '<span class="tag">Everything they share: machines, materials and mines.</span>' +
+      '<span class="meta">open the graph →</span>';
+    r.setAttribute("aria-label", "The Whole Room: the shared graph of all objects and their sources");
+    r.addEventListener("click", function () { openFinale("full"); });
+    p.appendChild(r);
   }
 
   function showHome() {
@@ -680,14 +755,12 @@
     var q = el.finaleQuote;
     var nodes = (stats && stats.nodes) || 0;
     var edges = (stats && stats.edges) || 0;
-    var shared = (stats && stats.shared) || 0;
     var ob = (stats && stats.objects) || 0;
     var ech = (stats && stats.echelons) || 0;
     q.innerHTML =
       '<div class="qstat">' +
         '<span><b data-n="' + nodes + '">0</b> processes</span>' +
         '<span><b data-n="' + edges + '">0</b> links</span>' +
-        '<span><b data-n="' + shared + '">0</b> shared sources</span>' +
         '<span><b data-n="' + ob + '">0</b> objects</span>' +
         '<span class="flat">' + ech + " echelons</span>" +
       "</div>" +
@@ -745,7 +818,10 @@
     }
     if (S.mode === "finale") return;
     if (S.mode === "home") {
-      var n = e.key === "0" ? 10 : e.key === "-" ? 11 : parseInt(e.key, 10);
+      var n = parseInt(e.key, 10);
+      if (!n) {
+        n = { "0": 10, "-": 11, "=": 12, q: 13, w: 14, e: 15, r: 16, t: 17, y: 18, u: 19 }[e.key] || 0;
+      }
       if (n >= 1 && n <= objects().length) { if (window.openStory) openStory(n - 1); else open(n - 1, 1); }
       if (e.key === "ArrowDown" || e.key === "Enter") { if (window.openStory) openStory(0); else open(0, 1); }
       if (e.key === "g" || e.key === "G") openFinale("full");

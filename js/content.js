@@ -2949,5 +2949,2104 @@ window.CONTENT = {
         },
       ],
     },
+
+// =====================================================================
+    // OBJECT: Wireless Earbuds (true wireless pair + charging case)
+    // Echelon 0: object -> 1: components -> 2: machines -> 3: raw materials -> 4: sources
+    // =====================================================================
+    {
+      id: "wireless-earbuds",
+      name: "Wireless Earbuds",
+      color: "#181410",
+      nodes: [
+        {
+          id: "wireless-earbuds-01",
+          name: "Wireless Earbuds",
+          echelon: 0,
+          description:
+            "A pair of true-wireless earbuds is two independent computers: each carries a Bluetooth radio, a codec that compresses then rebuilds the audio, a micro loudspeaker motor with a neodymium magnet, microphones for calls and noise cancelling, and a button-cell lithium battery, all inside an injection-molded shell that a charging case tops up when the pair docks.",
+          specs: [
+            { label: "Per-ear cell", value: "Class ≈50", unit: "mAh" },
+            { label: "Radio", value: "Bluetooth 5-class", unit: "" },
+            { label: "Driver", value: "8-13", unit: "mm dynamic" },
+            { label: "Run time", value: "5-7", unit: "h per charge" },
+          ],
+          history:
+            "Apple shipped AirPods in 2016 and the category grew around them; the parts inside go back further: Bluetooth from a 1998 industry consortium, commercial lithium cells from 1991, sintered neodymium magnets from 1984.",
+          process: [
+            "Assemble driver, radio board, battery and antenna into the shell",
+            "Pair, acoustic-tune and leak-test each earbud",
+            "Foreign-object and charge-cycle test in the case",
+            "Pack with cable, spare tips and case",
+          ],
+          color: "#181410",
+          inputs: [
+            "wireless-earbuds-driver-01",
+            "wireless-earbuds-cell-01",
+            "wireless-earbuds-shell-01",
+          ],
+        },
+        {
+          id: "wireless-earbuds-driver-01",
+          name: "Micro Loudspeaker Driver",
+          echelon: 1,
+          description:
+            "The driver is a miniature loudspeaker motor: an 8-13 mm cone glued to a tiny voice coil that sits in the gap of a neodymium ring magnet. Current through the coil pushes and pulls the cone against the magnet field thousands of times a second, which is the sound.",
+          specs: [
+            { label: "Cone", value: "8-13", unit: "mm" },
+            { label: "Magnet", value: "Sintered NdFeB", unit: "" },
+            { label: "Voice coil", value: "Enameled copper", unit: "" },
+            { label: "Tuned with", value: "Semi-open mesh", unit: "" },
+          ],
+          history:
+            "Every dynamic driver descends from the 1925 cone loudspeakers of Rice and Kellogg; miniaturizing theirs is what put a full-range speaker inside an ear.",
+          process: [
+            "Assemble the magnet ring into the yoke",
+            "Wind and center the voice coil in the gap",
+            "Glue the cone and surround to the frame",
+            "Frequency-sweep test before the shell seals it",
+          ],
+          color: "#e0472b",
+          inputs: ["wireless-earbuds-coiler-02", "wireless-earbuds-magnets-03"],
+        },
+        {
+          id: "wireless-earbuds-cell-01",
+          name: "Button-Cell Lithium Battery",
+          echelon: 1,
+          description:
+            "Each earbud carries a small lithium battery, and the case carries its own larger one: the dynamics are the same as every lithium cell since 1991 - an intercalating carbon anode, a metal-oxide cathode, and lithium ions that shuttle back and forth between them across hundreds of charge cycles.",
+          specs: [
+            { label: "Chemistry", value: "Lithium-ion", unit: "" },
+            { label: "Nominal voltage", value: "3.7-3.85", unit: "V" },
+            { label: "Shape", value: "Pouch / button", unit: "" },
+            { label: "Cycles", value: "300-500", unit: "typical" },
+          ],
+          history:
+            "John Goodenough, Akira Yoshino and colleagues built the first practical rechargeable lithium cell, commercialized by Sony in 1991; all three shared the 2019 Nobel Prize for it.",
+          process: [
+            "Coat metal-oxide cathode and carbon anode foils",
+            "Stack or wind layers with separator paper",
+            "Fill with electrolyte and seal the pouch",
+            "Format and cycle-test every cell",
+          ],
+          color: "#e0472b",
+          inputs: ["wireless-earbuds-stacking-02", "wireless-earbuds-lithium-03"],
+        },
+        {
+          id: "wireless-earbuds-shell-01",
+          name: "Acoustic Housing",
+          echelon: 1,
+          description:
+            "The housing is a two-part injection-molded shell that closes around everything else: driver, board, battery, antenna, microphone ports and the acoustic vents that tune how much outside sound leaks in. A silicone tip seals the whole assembly against the ear canal.",
+          specs: [
+            { label: "Material", value: "PC / ABS blend", unit: "" },
+            { label: "Molded in", value: "Two-part shells", unit: "" },
+            { label: "Tip", value: "Silicone, 3 sizes", unit: "" },
+            { label: "Finish", value: "Matte, gloss nose", unit: "" },
+          ],
+          history:
+            "Molding a shell this small with acoustic ports that actually tune sound became practical only with high-precision multi-cavity tooling of the 2010s.",
+          process: [
+            "Mold shell halves in a two-cavity tool",
+            "Insert the driver, board and battery",
+            "Ultrasonically weld or glue the halves shut",
+            "Fit the silicone tip and mesh screens",
+          ],
+          color: "#e0472b",
+          inputs: ["wireless-earbuds-inj-02", "wireless-earbuds-pellets-03"],
+        },
+        {
+          id: "wireless-earbuds-coiler-02",
+          name: "Voice-Coil Winder",
+          echelon: 2,
+          description:
+            "A dedicated winder spins a few hundred turns of hair-thin enameled copper around the coil former at constant tension, then cuts and terminates the leads. The conductor is thinner than the adult hair it replaces in full-size speakers.",
+          specs: [
+            { label: "Wire", value: "≈0.03-0.05", unit: "mm" },
+            { label: "Turns", value: "Dozens-hundreds", unit: "" },
+            { label: "Tension", value: "Servo-controlled", unit: "" },
+            { label: "Rate", value: "Seconds per coil", unit: "" },
+          ],
+          history:
+            "Coil winders mechanized in the 1920s to mass-produce loudspeaker and radio coils; the same class of machine, scaled down, winds earbud voice coils today.",
+          process: [
+            "Load the former onto the spindle",
+            "Wind the turn count under constant tension",
+            "Cut, strip and terminate the leads",
+            "Microscope-inspect the winding crest",
+          ],
+          color: "#5b7f96",
+          inputs: ["wireless-earbuds-magwire-03"],
+        },
+        {
+          id: "wireless-earbuds-stacking-02",
+          name: "Cell Stacking Line",
+          echelon: 2,
+          description:
+            "Pouch cells are built on a stacking line: cathode sheets, separator and anode sheets are laid alternately, tab-welded, folded into a flat stack, dried, soaked in electrolyte under vacuum and sealed into the aluminum-laminate pouch.",
+          specs: [
+            { label: "Environment", value: "Dry room", unit: "" },
+            { label: "Filling", value: "Vacuum soak", unit: "" },
+            { label: "Seal", value: "Heat + pressure", unit: "" },
+            { label: "Checked", value: "Every cell", unit: "" },
+          ],
+          history:
+            "Stacked-pouch cells came out of the 1990s consumer-electronics boom, when phone makers needed flat batteries shaped to fit the case instead of cylindrical cans.",
+          process: [
+            "Stack cathode, separator, anode sheets",
+            "Weld tabs and fold the stack",
+            "Vacuum-fill with electrolyte in a dry room",
+            "Heat-seal the pouch and age-test",
+          ],
+          color: "#5b7f96",
+          inputs: ["wireless-earbuds-lithium-03"],
+        },
+        {
+          id: "wireless-earbuds-inj-02",
+          name: "Injection Molding Press",
+          echelon: 2,
+          description:
+            "The same machine class that molds keycaps molds earbud housings: a clamp shuts a hard steel mold at tens of tons, injects molten polymer into cavities smaller than a fingernail, packs it, cools it and ejects finished shells every few seconds.",
+          specs: [
+            { label: "Clamp force", value: "30-80", unit: "tons" },
+            { label: "Melt temp", value: "200-240", unit: "°C" },
+            { label: "Cycle", value: "10-30", unit: "s" },
+            { label: "Cavities", value: "2-8", unit: "" },
+          ],
+          history:
+            "John Wesley Hyatt patented the first injection molding machine in 1872 as a way to mold celluloid, an ivory substitute for billiard balls.",
+          process: [
+            "Dry the resin pellets before molding",
+            "Clamp the mold and inject the melt",
+            "Pack, hold, cool and eject the shells",
+            "Sort visually and ultrasonic-weld pairs",
+          ],
+          color: "#5b7f96",
+          inputs: ["wireless-earbuds-pellets-03"],
+        },
+        {
+          id: "wireless-earbuds-magnets-03",
+          name: "Sintered NdFeB Magnet",
+          echelon: 3,
+          description:
+            "Neodymium-iron-boron magnets are sintered like porcelain: rare-earth alloy powder is pressed in a magnetic field, baked below melting until the grains fuse, then cut and magnetized. Gram for gram it is the strongest permanent-magnet material anyone sells.",
+          specs: [
+            { label: "Composition", value: "Nd-Fe-B", unit: "" },
+            { label: "Invented", value: "1984", unit: "" },
+            { label: "Grades", value: "N35-N52", unit: "" },
+            { label: "Energy product", value: "Up to ~50", unit: "MGOe" },
+          ],
+          history:
+            "Masato Sagawa and colleagues at Sumitomo announced neodymium magnets in 1984, roughly doubling the strength ceiling of the best magnets then in production.",
+          process: [
+            "Melt the alloy under argon",
+            "Mill to a fine powder in an inert mill",
+            "Press the powder while magnetically aligned",
+            "Sinter, cut, coat, then magnetize",
+          ],
+          color: "#e0a52f",
+          inputs: ["wireless-earbuds-mine-04", "wireless-earbuds-ironore-04"],
+        },
+        {
+          id: "wireless-earbuds-magwire-03",
+          name: "Enameled Copper Wire",
+          echelon: 3,
+          description:
+            "Voice-coil wire starts as electrolytic copper drawn beyond hair thickness and baked thin in enamel so thousands of adjacent turns can sit side by side without letting current jump.",
+          specs: [
+            { label: "Diameter", value: "0.03-0.05", unit: "mm" },
+            { label: "Conductor", value: "99.99", unit: "% Cu" },
+            { label: "Insulation", value: "Enamel layers", unit: "" },
+            { label: "Breakdown", value: "kV-class", unit: "" },
+          ],
+          history:
+            "The same enameled wire technology that wraps ceiling-fan motors in the 1920s is drawn thinner and thinner toward earbud scales today.",
+          process: [
+            "Draw copper rod through diamond dies",
+            "Anneal soft again after drawing",
+            "Bake on enamel in successive passes",
+            "Spark-test every meter before spooling",
+          ],
+          color: "#e0a52f",
+          inputs: ["wireless-earbuds-coppermine-04"],
+        },
+        {
+          id: "wireless-earbuds-lithium-03",
+          name: "Lithium Compounds",
+          echelon: 3,
+          description:
+            "Battery-grade lithium arrives as lithium carbonate or hydroxide - a white industrial salt - refined far enough that metallic contaminants are tracked in parts per million, because a stray iron particle can short a micro-thin separator.",
+          specs: [
+            { label: "Form", value: "Li2CO3 / LiOH", unit: "" },
+            { label: "Purity", value: "99.5", unit: "% battery grade" },
+            { label: "Contaminants", value: "Tracked in ppm", unit: "" },
+            { label: "From", value: "Brine or spodumene", unit: "" },
+          ],
+          history:
+            "Battery-grade lithium refining scaled with the laptop boom of the 1990s and then the smartphone decade; every earbud cell is fed from the same salt.",
+          process: [
+            "Extract lithium from brine or ore",
+            "Concentrate and precipitate the salts",
+            "Refine to battery-grade purity",
+            "Bag, lab-check and ship dry",
+          ],
+          color: "#e0a52f",
+          inputs: ["wireless-earbuds-saltlake-04"],
+        },
+        {
+          id: "wireless-earbuds-pellets-03",
+          name: "PC / ABS Pellets",
+          echelon: 3,
+          description:
+            "The housing resin is a blend: polycarbonate for stiffness and toughness, ABS for gloss and cost. It arrives at the molder as small dried pellets, colored, so every shell in a run matches.",
+          specs: [
+            { label: "Blend", value: "PC + ABS", unit: "" },
+            { label: "Dried before molding", value: "80-100", unit: "°C" },
+            { label: "Pellet size", value: "2-4", unit: "mm" },
+            { label: "Pellet spec", value: "Color-matched", unit: "" },
+          ],
+          history:
+            "ABS grew out of the 1950s rubber-modified plastics of Marbon; polycarbonate arrived from GE's Dan Fox in 1955.",
+          process: [
+            "Compound the PC and ABS in an extruder",
+            "Pelletize, dry and package the resin",
+            "Color to the customer's swatch",
+            "Ship to molding shops in sealed bags",
+          ],
+          color: "#e0472b",
+          inputs: ["wireless-earbuds-oil-04"],
+        },
+        {
+          id: "wireless-earbuds-coppermine-04",
+          name: "Copper Mine",
+          echelon: 4,
+          description:
+            "Coil, antenna and board traces begin in copper ore so low-grade that a tonne of rock carries barely one percent metal, concentrated by flotation, smelted and electrorefined to cathode purity.",
+          specs: [
+            { label: "Ore grade", value: "0.5-1", unit: "% Cu" },
+            { label: "Rock per kg", value: "≈125", unit: "kg" },
+            { label: "Cathode purity", value: "99.99", unit: "% Cu" },
+            { label: "Smelters", value: "Concentrate-fed", unit: "" },
+          ],
+          history:
+            "Chuquicamata in Chile has been mined for a century and remains one of the largest copper pits on Earth; the same copper wiring world descends from pits like it.",
+          process: [
+            "Blast and haul ore from the pit benches",
+            "Flotation-concentrate to tens of percent",
+            "Smelt and convert to blister copper",
+            "Electrorefine to cathode sheets",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "wireless-earbuds-ironore-04",
+          name: "Iron Ore Mine",
+          echelon: 4,
+          description:
+            "The alloy called neodymium magnet is mostly iron - about two-thirds by weight - so the strongest magnet inside each earbud is, structurally, refined iron ore.",
+          specs: [
+            { label: "Iron content", value: "62-64", unit: "% Fe" },
+            { label: "Form", value: "Hematite", unit: "" },
+            { label: "Blasted in", value: "Terraced pits", unit: "" },
+            { label: "Hauled by", value: "Rail and truck", unit: "" },
+          ],
+          history:
+            "Iron ore mining scaled to open pits in the twentieth century around Lake Superior in America and the Hamersley ranges of western Australia.",
+          process: [
+            "Drill and blast the banded iron formation",
+            "Load ore with the haul fleet",
+            "Crush and beneficiate to pellets",
+            "Ship to steel and alloy mills",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "wireless-earbuds-saltlake-04",
+          name: "Lithium Salt Flat",
+          echelon: 4,
+          description:
+            "Nearly half of the world's lithium comes out of salt flats: brine pumped into vast evaporation ponds, sun-dried for months, then refined. The rest is hard-rock spodumene, open-pit mined in Western Australia.",
+          specs: [
+            { label: "Brine Li", value: "0.04-0.15", unit: "%" },
+            { label: "Evaporation", value: "6-18", unit: "months" },
+            { label: "Hard rock", value: "Spodumene pits", unit: "" },
+            { label: "Share", value: "Roughly half brine", unit: "" },
+          ],
+          history:
+            "Salar de Atacama in Chile became a lithium brine source in the 1990s; the lithium age scaled on that water and the Australian pits that followed.",
+          process: [
+            "Pump lithium-bearing brine to ponds",
+            "Evaporate for months, stage by stage",
+            "Precipitate lithium salts",
+            "Refine to battery grade",
+          ],
+          color: "#a49e92",
+          inputs: [],
+        },
+        {
+          id: "wireless-earbuds-oil-04",
+          name: "Crude Oil Well",
+          echelon: 4,
+          description:
+            "Everything polymer in the pair - housing, tips, case, cable jacket, pellets - begins as crude oil: drilled, refined, cracked into small molecules and chained long enough to be a plastic.",
+          specs: [
+            { label: "Drilling depth", value: "1-3", unit: "km typical" },
+            { label: "First well", value: "1859", unit: "Titusville" },
+            { label: "Cracks to", value: "Naphtha", unit: "" },
+            { label: "Then chained", value: "PC / ABS", unit: "" },
+          ],
+          history:
+            "Edwin Drake's 1859 Titusville well launched the industry that now, through cracking and polymerization, also supplies the world's plastics.",
+          process: [
+            "Survey and drill the reservoir",
+            "Case, cement and perforate the well",
+            "Lift crude to atmospheric pressure",
+            "Refine and crack for plastic feedstock",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: Matcha Whisk (chasen, hand-split bamboo)
+    // =====================================================================
+    {
+      id: "matcha-whisk",
+      name: "Matcha Whisk",
+      color: "#5c564c",
+      nodes: [
+        {
+          id: "matcha-whisk-01",
+          name: "Chasen (Bamboo Tea Whisk)",
+          echelon: 0,
+          description:
+            "A chasen is carved and split from a single joint of bamboo: the upper fiber bundle is divided into tines, the outer skin kept where the shape should show, and the lower rows bound with thread to set the form. It whips matcha and hot water into the froth the tea ceremony expects - no other whisk shape does it as well.",
+          specs: [
+            { label: "Tines", value: "50-120", unit: "" },
+            { label: "Made from", value: "One bamboo culm", unit: "" },
+            { label: "Bound with", value: "Black thread", unit: "" },
+            { label: "Retired", value: "When bent,", unit: "yrs" },
+          ],
+          history:
+            "Chasen making settled in the Takayama district of Nara, Japan in the Muromachi period, roughly five hundred years ago, and its craft families still make nearly every whisk by hand.",
+          process: [
+            "Soak and quarter the seasoned bamboo culm",
+            "Split and shave the fiber bundle into tines",
+            "Curve the inner and outer tine rows",
+            "Bind the lower rows with thread to set the hips",
+          ],
+          color: "#5c564c",
+          inputs: ["matcha-whisk-tines-01", "matcha-whisk-knot-01"],
+        },
+        {
+          id: "matcha-whisk-tines-01",
+          name: "The Tines",
+          echelon: 1,
+          description:
+            "The tines are the business end: the culm's fiber bundle divided lengthwise down to a hundred flexible prongs, each skived thinner toward the tip so the whole head flexes as one instrument. The craft is in the taper - a whisk cut carelessly whips unevenly or snaps.",
+          specs: [
+            { label: "Count", value: "50-120", unit: "per whisk" },
+            { label: "Skived to", value: "Under 1", unit: "mm tip" },
+            { label: "Rows", value: "Inner and outer", unit: "" },
+            { label: "Flex", value: "Tuned by taper", unit: "" },
+          ],
+          history:
+            "The tine count is a craft signature: thicker whisks for strong usucha, fewer and stiffer ones for the thick koicha served in the formal ceremony.",
+          process: [
+            "Mark the split lines around the fiber bundle",
+            "Split with a knife down to the counted prongs",
+            "Skive each tine thinner toward its tip",
+            "Shape the curve of the bloom against a form",
+          ],
+          color: "#7d9a5e",
+          inputs: ["matcha-whisk-splitter-02", "matcha-whisk-culm-03"],
+        },
+        {
+          id: "matcha-whisk-knot-01",
+          name: "The Binding",
+          echelon: 1,
+          description:
+            "Black silk thread winds around the lower rows of tines, lifted with an awl, pulled tight, and locked - the binding sets the 'hips' that give a chasen its spring. It is both structure and the whisk's whole ornament.",
+          specs: [
+            { label: "Thread", value: "Silk", unit: "" },
+            { label: "Color", value: "Black", unit: "" },
+            { label: "Wraps", value: "Two bands", unit: "" },
+            { label: "Function", value: "Sets the hips", unit: "" },
+          ],
+          history:
+            "The binding is applied to hold the pushed-up curve while the bamboo dries, then left on permanently; a chasen without it relaxes open and whips weakly.",
+          process: [
+            "Lift the tine rows with an awl",
+            "Wrap the thread band around the hips",
+            "Pull to tension and lock the knot",
+            "Check the bloom geometry against a form",
+          ],
+          color: "#7d9a5e",
+          inputs: [],
+        },
+        {
+          id: "matcha-whisk-splitter-02",
+          name: "The Splitting Blade",
+          echelon: 2,
+          description:
+            "The key tool is a stiff, curved blade worked by hand: it follows the marked lines and divides the fiber bundle without sawing. Industrial bamboo splitters run poles past a ring of blades for sticks and skewers; the chasen counterpart is one blade in steady hands, doing the same division at human speed.",
+          specs: [
+            { label: "Tool", value: "Hand splitting knife", unit: "" },
+            { label: "Cuts per whisk", value: "Dozens", unit: "" },
+            { label: "Quality gate", value: "No sawn fibers", unit: "" },
+            { label: "Kin", value: "Industrial splitters", unit: "" },
+          ],
+          history:
+            "Industrial splitting machines made bamboo skewers and chopstick blanks cheap worldwide; craft splitting survived in tea-whisk workshops because the fiber bundle must stay joined at its base.",
+          process: [
+            "Clamp the culm section in the vise",
+            "Score the lines with the splitting knife",
+            "Drive the blade down the fiber bundle",
+            "Set the split rows aside for shaping",
+          ],
+          color: "#5b7f96",
+          inputs: ["matcha-whisk-culm-03"],
+        },
+        {
+          id: "matcha-whisk-culm-03",
+          name: "Seasoned Bamboo Culm",
+          echelon: 3,
+          description:
+            "Whisk bamboo is cut mature, then air-dried for years. Seasoning drops the moisture, sharpens the fibers, and turns the tan culm the color the craft expects; green wood would warp, soften, and smell of sap in the bowl.",
+          specs: [
+            { label: "Drying", value: "Air, ~2 years", unit: "" },
+            { label: "Moisture down to", value: "≈10", unit: "%" },
+            { label: "Species", value: "Madake bamboo", unit: "" },
+            { label: "Signal", value: "Tan skin, hard", unit: "" },
+          ],
+          history:
+            "The Japanese craft standard for whisk bamboo, madake, grows fast enough to harvest in years - one of the few stem crops that renews on a craftsman's timetable.",
+          process: [
+            "Cut mature winter culms",
+            "Stack under cover to air-dry for years",
+            "Sort culms by diameter and wall",
+            "Cut whisk blanks from the best joints",
+          ],
+          color: "#7d9a5e",
+          inputs: ["matcha-whisk-grove-04"],
+        },
+        {
+          id: "matcha-whisk-grove-04",
+          name: "The Bamboo Grove",
+          echelon: 4,
+          description:
+            "It ends in a grove: bamboo pushes stems that harden to timber in a single season, so a managed grove yields on a few-year rotation instead of a generation's. The whisk above began inside one of those green stems.",
+          specs: [
+            { label: "Growth", value: "Season to timber", unit: "" },
+            { label: "Rotation", value: "3-5", unit: "yr" },
+            { label: "Grain", value: "Fiber bundle", unit: "" },
+            { label: "Renewal", value: "Clump keeps", unit: "" },
+          ],
+          history:
+            "Bamboo has fed and furnished East Asia for millennia; its speed of growth is why everything from scaffolding to whisk tines can be cut without ever felling a mature tree.",
+          process: [
+            "Select mature culms in the managed grove",
+            "Cut at the base with the clump intact",
+            "Trim branches and haul the poles",
+            "Cure and stack under cover",
+          ],
+          color: "#7d9a5e",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: LED Strip Light (addressable RGB ribbon)
+    // =====================================================================
+    {
+      id: "led-strip",
+      name: "LED Strip Light",
+      color: "#181410",
+      nodes: [
+        {
+          id: "led-strip-01",
+          name: "LED Strip Light",
+          echelon: 0,
+          description:
+            "An LED strip is a flexible printed circuit carrying repeating tiles of LED packages and, on addressable ribbons, a driver chip per tile: cut one edge, tin the pad, rewire the supply, and the light runs. Addressable 'RGBIC-style' strips control each tile separately, which is what makes the chasing and gradient effects.",
+          specs: [
+            { label: "LEDs", value: "30-96", unit: "per meter" },
+            { label: "Voltage", value: "5 / 12 / 24", unit: "V DC" },
+            { label: "Control", value: "Per-tile addressable", unit: "" },
+            { label: "Sold as", value: "5 m reels", unit: "" },
+          ],
+          history:
+            "The blue LED that made white light practical won Akasaki, Amano and Nakamura the 2014 Nobel Prize; the flexible-circuit strip came out of the same 2010s maker boom and the neon-rope products it later replaced.",
+          process: [
+            "Etch and laminate the flexible circuit reel",
+            "Pick, place and reflow LED tiles onto it",
+            "Test colors section by section",
+            "Coat or sleeve, then wind onto reels",
+          ],
+          color: "#181410",
+          inputs: ["led-strip-emitter-01", "led-strip-fpcb-01"],
+        },
+        {
+          id: "led-strip-emitter-01",
+          name: "LED Package",
+          echelon: 1,
+          description:
+            "Each emitter is a plastic package holding red, green and blue LED chips wired to share one cathode; adding a phosphor over a blue chip makes white. The package is the interface between a crystal too fragile to handle and a circuit built by a placement machine.",
+          specs: [
+            { label: "Chips", value: "RGB (or +W)", unit: "" },
+            { label: "Chips grow on", value: "GaN wafers", unit: "" },
+            { label: "Package", value: "SMD 5050-class", unit: "" },
+            { label: "Pads", value: "Four to six", unit: "" },
+          ],
+          history:
+            "The first high-brightness blue LED came from GaN work at Nagoya and Nichia in the early 1990s; without it there is no white LED and no color-mixing strip.",
+          process: [
+            "Grow and dice the LED chips",
+            "Bond chips onto the lead frame",
+            "Wire, mold and cure the package",
+            "Sort bins by brightness and color",
+          ],
+          color: "#e0472b",
+          inputs: ["led-strip-smt-02", "led-strip-wafer-03"],
+        },
+        {
+          id: "led-strip-fpcb-01",
+          name: "Flex Circuit",
+          echelon: 1,
+          description:
+            "The strip's body is a flexible printed circuit: rolled copper foil laminated to polyimide film, etched into traces, tinned on the pads. It bends around furniture and carries the current headroom that keeps voltage drop and dulling ends away.",
+          specs: [
+            { label: "Copper", value: "1-2", unit: "oz foil" },
+            { label: "Substrate", value: "Polyimide film", unit: "" },
+            { label: "Width", value: "8-12", unit: "mm" },
+            { label: "Cut line", value: "Every tile", unit: "" },
+          ],
+          history:
+            "Flexible circuits date to the 1940s patent literature and took off with camera and printer electronics; LED strips turned them into building decor.",
+          process: [
+            "Laminate copper foil to polyimide",
+            "Print and etch the tile pattern",
+            "Apply the solder-mask ink and legend",
+            "Apply the adhesive backing and die-cut",
+          ],
+          color: "#e0472b",
+          inputs: ["led-strip-smt-02", "led-strip-copper-03"],
+        },
+        {
+          id: "led-strip-smt-02",
+          name: "Placement Line",
+          echelon: 2,
+          description:
+            "The reel runs through a placement line like any other board: paste-printed on the pads, LED packages and driver chips set by machines accurate to a few hundredths of a millimeter, then reflowed so every joint is one controlled temperature curve.",
+          specs: [
+            { label: "Placed per hour", value: "Tens of thousands", unit: "" },
+            { label: "Accuracy", value: "≈0.05", unit: "mm" },
+            { label: "Reflow peak", value: "245", unit: "°C" },
+            { label: "Tested", value: "Every tile", unit: "" },
+          ],
+          history:
+            "Surface-mount assembly became the default way electronics get built in the 1980s; LED strips ride the exact same production economics.",
+          process: [
+            "Feed the etched reel through paste printing",
+            "Pick-and-place the LED packages and ICs",
+            "Reflow-solder through the oven curve",
+            "Optical-inspect and section-test each strip",
+          ],
+          color: "#5b7f96",
+          inputs: ["led-strip-copper-03"],
+        },
+        {
+          id: "led-strip-copper-03",
+          name: "Rolled Copper Foil",
+          echelon: 3,
+          description:
+            "The strip's conductor is copper foil rolled to thicknesses similar to kitchen foil - thin enough to flex ten thousand times, thick enough to carry several amperes the length of a five-meter reel.",
+          specs: [
+            { label: "Gauge", value: "35-70", unit: "µm" },
+            { label: "Purity", value: "99.9", unit: "% Cu" },
+            { label: "Rolled", value: "Cold, tight tolerance", unit: "" },
+            { label: "Carries", value: "Up to ~5", unit: "A" },
+          ],
+          history:
+            "Rolled-annealed foil came out of printed-circuit board making in the 1950s; flexible circuits ask more of it than rigid boards ever did.",
+          process: [
+            "Cast or roll copper to foil gauge",
+            "Anneal soft for the flex cycle",
+            "Slit to laminate width",
+            "Ship on reels to circuit laminate plants",
+          ],
+          color: "#e0a52f",
+          inputs: ["led-strip-mine-04"],
+        },
+        {
+          id: "led-strip-wafer-03",
+          name: "GaN-on-Sapphire Wafer",
+          echelon: 3,
+          description:
+            "The blue LED chip begins as gallium nitride grown atom-layer by atom-layer on a sapphire disc; the crystal is diced into chips smaller than a grain of sand. A billion of them a year go into everything from traffic lights to strip tiles.",
+          specs: [
+            { label: "Layer", value: "GaN epitaxy", unit: "" },
+            { label: "Substrate", value: "Sapphire disc", unit: "" },
+            { label: "Chip size", value: "Fraction of a mm", unit: "" },
+            { label: "Built in", value: "Cleanroom class", unit: "" },
+          ],
+          history:
+            "Growing usable gallium nitride on sapphire was the breakthrough Akasaki and Amano solved at Nagoya University in 1992, and Nakamura turned it into a manufacturable blue LED at Nichia.",
+          process: [
+            "Polish sapphire discs to optical flatness",
+            "Grow GaN layers in epitaxy reactors",
+            "Add doping layers for color and drive",
+            "Dice, test and bin the chips",
+          ],
+          color: "#e0a52f",
+          inputs: ["led-strip-mine-04"],
+        },
+        {
+          id: "led-strip-mine-04",
+          name: "The Copper Mine",
+          echelon: 4,
+          description:
+            "Foil, wires and board traces all begin in copper ore carrying under one percent metal from an open pit, concentrated and refined until it is pure enough for a circuit that flexes.",
+          specs: [
+            { label: "Ore grade", value: "0.5-1", unit: "% Cu" },
+            { label: "Rock per kg", value: "≈125", unit: "kg" },
+            { label: "Cathode", value: "99.99", unit: "% Cu" },
+            { label: "Shipped", value: "To foil mills", unit: "" },
+          ],
+          history:
+            "The copper that lights the strip descends from the same pit-to-refinery machine as every wiring harness on Earth.",
+          process: [
+            "Blast and haul the ore",
+            "Concentrate by flotation",
+            "Smelt, convert and fire-refine",
+            "Electrorefine to cathode",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "led-strip-oil-04",
+          name: "Crude Oil Well",
+          echelon: 4,
+          description:
+            "The strip's sleeve, adhesive and carrier film come from oil: drilled crude, refined to naphtha, cracked into monomers and polymerized into the silicone or elastomer jacket that sheds weather and keeps dust off the light.",
+          specs: [
+            { label: "Depth", value: "1-3", unit: "km wells" },
+            { label: "Cracks to", value: "Naphtha", unit: "" },
+            { label: "Polymerizes to", value: "Sleeve polymers", unit: "" },
+            { label: "Same well as", value: "Candles, jars", unit: "" },
+          ],
+          history:
+            "Every plastic that coats and cases electronics is a branch of the same petrochemical tree planted at Titusville in 1859.",
+          process: [
+            "Drill and case the well",
+            "Refine crude to naphtha",
+            "Crack naphtha into monomers",
+            "Polymerize into engineering plastics",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: Magnetic Power Bank (magnet-ring charger, Qi + coil)
+    // =====================================================================
+    {
+      id: "magnet-power-bank",
+      name: "Magnetic Power Bank",
+      color: "#181410",
+      nodes: [
+        {
+          id: "magnet-power-bank-01",
+          name: "Magnetic Power Bank",
+          echelon: 0,
+          description:
+            "This is a battery pack whose face is a ring of magnets around a charging coil: snap it to a phone and the coil lines up with the phone's receiver coil, and inductive charging starts without a cable. The magnet ring is what made snap-on charging a product category in late 2020.",
+          specs: [
+            { label: "Battery", value: "5000-10000", unit: "mAh class" },
+            { label: "Snap", value: "Magnet ring", unit: "" },
+            { label: "Charging", value: "Qi inductive", unit: "" },
+            { label: "Category", value: "Since Oct 2020", unit: "" },
+          ],
+          history:
+            "Apple introduced MagSafe with the iPhone 12 in October 2020, reviving the name from the 2006 MacBook charger; snap-on power banks followed within a season.",
+          process: [
+            "Stack cells, board and coil into the shell",
+            "Align the magnet ring to the coil axis",
+            "Calibrate and certify the Qi handshake",
+            "Pack with cable and polarity card",
+          ],
+          color: "#181410",
+          inputs: [
+            "magnet-power-bank-coil-01",
+            "magnet-power-bank-board-01",
+            "magnet-power-bank-cells-01",
+            "magnet-power-bank-ring-01",
+          ],
+        },
+        {
+          id: "magnet-power-bank-coil-01",
+          name: "The Charging Coil",
+          echelon: 1,
+          description:
+            "Behind the face sits a flat pancake coil: a disk of enameled copper wound in a spiral, which induces a matching current in the phone's receiver coil across a gap of millimeters. Alignment is everything - which is what the magnet ring guarantees.",
+          specs: [
+            { label: "Coil type", value: "Litz / spiral wound", unit: "" },
+            { label: "Inductive gap", value: "2-8", unit: "mm" },
+            { label: "Standard", value: "Qi (WPC, 2008)", unit: "" },
+            { label: "Efficiency", value: "Tens of percent", unit: "" },
+          ],
+          history:
+            "The Wireless Power Consortium published the Qi standard in 2008; before it, device-specific inductive pads fought each other with incompatible frequencies.",
+          process: [
+            "Wind the spiral onto the ferrite former",
+            "Terminate the leads to the board",
+            "Alignment-check against the magnet ring",
+            "Cycle-test charge efficiency",
+          ],
+          color: "#e0472b",
+          inputs: ["magnet-power-bank-winder-02", "magnet-power-bank-copper-03"],
+        },
+        {
+          id: "magnet-power-bank-board-01",
+          name: "The Control Board",
+          echelon: 1,
+          description:
+            "A small protection and power board sits between the cells, the coil and the USB port: battery guards, a charge controller that negotiates with the phone, and the wake circuitry that notices when a device draws current.",
+          specs: [
+            { label: "Built as", value: "Multilayer PCB", unit: "" },
+            { label: "Parts", value: "Chips + passives", unit: "" },
+            { label: "Safety", value: "Overcurrent guards", unit: "" },
+            { label: "Tests", value: "Every board", unit: "" },
+          ],
+          history:
+            "Battery-protection boards became standard after early lithium incidents; every cell pack now ships with electronics that cut current long before the chemistry notices.",
+          process: [
+            "Etch and laminate the small board",
+            "Place the controller and protection ICs",
+            "Reflow, wash and function-test each board",
+            "Mate it to the cells and the coil",
+          ],
+          color: "#e0472b",
+          inputs: ["magnet-power-bank-smt-02", "magnet-power-bank-copper-03"],
+        },
+        {
+          id: "magnet-power-bank-cells-01",
+          name: "The Cells",
+          echelon: 1,
+          description:
+            "Inside are lithium cells - cylindrical 18650-class or flat pouch cells - protected by a board that meters charge, guards against shorts, and reports state. The current that charges your phone has been shuttled by intercalation chemistry since Sony's 1991 cell.",
+          specs: [
+            { label: "Shape", value: "18650 / pouch", unit: "" },
+            { label: "Nominal", value: "3.6-3.7", unit: "V" },
+            { label: "Chemistry", value: "Li-ion", unit: "" },
+            { label: "Cycle life", value: "300-500", unit: "typical" },
+          ],
+          history:
+            "18650 cells powered the laptop era and then Tesla's first cars; pouch cells followed when phones wanted every millimeter inside the case.",
+          process: [
+            "Spot-weld or solder cell tabs",
+            "Balance-charge the bank in groups",
+            "Guard every cell against over-discharge",
+            "Age and thermal-test the pack",
+          ],
+          color: "#e0472b",
+          inputs: ["magnet-power-bank-stacking-02", "magnet-power-bank-lithium-03"],
+        },
+        {
+          id: "magnet-power-bank-ring-01",
+          name: "The Magnet Ring",
+          echelon: 1,
+          description:
+            "A dozen or more arc magnets, alternating north-south around the coil's axis, form the ring that finds and holds the phone. The mechanical alignment they promise is why a snap-on bank still charges at full speed while it hangs off the back of a bag.",
+          specs: [
+            { label: "Count", value: "12-16", unit: "arc magnets" },
+            { label: "Pattern", value: "Alternating poles", unit: "" },
+            { label: "Grade", value: "N52-class NdFeB", unit: "" },
+            { label: "Role", value: "Self-alignment", unit: "" },
+          ],
+          history:
+            "Magnet arrays for self-aligning accessories date back to laptop dock designs; the 1984 neodymium magnet is what made rings this small strong enough to matter.",
+          process: [
+            "Magnetize the arcs in alternating directions",
+            "Glue them into the ring carrier",
+            "Check pull strength and alignment",
+            "Fit the ring under the face shell",
+          ],
+          color: "#e0472b",
+          inputs: ["magnet-power-bank-magnets-03"],
+        },
+        {
+          id: "magnet-power-bank-winder-02",
+          name: "The Coil Winder",
+          echelon: 2,
+          description:
+            "Pancake coils are wound by machine: the winder lays enameled copper in continuous spiral turns under servo tension, splices the layer transitions, and finishes each coil in seconds. Hand winding cannot hold the turn count and consistency the Qi standard expects.",
+          specs: [
+            { label: "Turns", value: "Hundreds", unit: "" },
+            { label: "Tension", value: "Constant servo", unit: "" },
+            { label: "Wire", value: "Enameled copper", unit: "" },
+            { label: "Rate", value: "Seconds per coil", unit: "" },
+          ],
+          history:
+            "Winding machines date to the 1920s motor industry; Qi coils stretched them to flat spiral geometry with the same controlled-tension principle.",
+          process: [
+            "Load the flat former onto the spindle",
+            "Wind the spiral turn count",
+            "Guide the layer transition",
+            "Cut, terminate and resistance-check",
+          ],
+          color: "#5b7f96",
+          inputs: ["magnet-power-bank-copper-03"],
+        },
+        {
+          id: "magnet-power-bank-stacking-02",
+          name: "The Cell Line",
+          echelon: 2,
+          description:
+            "Cell assembly lines run at battery suppliers: dry rooms, stacking and folding machines, vacuum electrolyte filling, cleanroom discipline and full electrical testing. A power bank maker simply buys the cells and welds them into a pack.",
+          specs: [
+            { label: "Environment", value: "Dry room", unit: "" },
+            { label: "Filling", value: "Vacuum soak", unit: "" },
+            { label: "Welding", value: "Ultrasonic / laser", unit: "" },
+            { label: "Screening", value: "Every cell", unit: "" },
+          ],
+          history:
+            "Cell-stack assembly changed little conceptually since Sony's 1991 line; dry-room discipline is the constant that keeps moisture out of lithium chemistry.",
+          process: [
+            "Cut and stack the electrode set",
+            "Tab-weld, fold and vacuum-fill",
+            "Heat-seal the pouch or crimp the can",
+            "Format and test before shipping",
+          ],
+          color: "#5b7f96",
+          inputs: ["magnet-power-bank-lithium-03"],
+        },
+        {
+          id: "magnet-power-bank-smt-02",
+          name: "The Placement Line",
+          echelon: 2,
+          description:
+            "The bank's board is assembled on a surface-mount line like any other circuit: paste printed, parts placed by machine, reflowed, washed and tested before it meets a cell.",
+          specs: [
+            { label: "Placed per hour", value: "Tens of thousands", unit: "" },
+            { label: "Reflow peak", value: "245", unit: "°C" },
+            { label: "Accuracy", value: "≈0.05", unit: "mm" },
+            { label: "Tested", value: "Every board", unit: "" },
+          ],
+          history:
+            "Surface-mount assembly set the template for modern circuit boards in the 1980s; a charger board rides the same machines.",
+          process: [
+            "Print solder paste on the bare board",
+            "Place the ICs and passives",
+            "Reflow in the oven curve",
+            "Inspect and function-test",
+          ],
+          color: "#5b7f96",
+          inputs: ["magnet-power-bank-copper-03"],
+        },
+        {
+          id: "magnet-power-bank-magnets-03",
+          name: "Sintered NdFeB Magnet",
+          echelon: 3,
+          description:
+            "The ring magnets are sintered neodymium-iron-boron: pressed rare-earth alloy powder, baked and magnetized. Grade N52 remains near the practical ceiling of permanent-magnet strength for a part this small - a few grams per ring that grip a phone across a case.",
+          specs: [
+            { label: "Composition", value: "Nd-Fe-B", unit: "" },
+            { label: "Invented", value: "1984", unit: "" },
+            { label: "Grade", value: "N52-class", unit: "" },
+            { label: "Coat", value: "Ni-Cu-Ni", unit: "" },
+          ],
+          history:
+            "Masato Sagawa and Sumitomo Special Metals announced sintered neodymium magnets in 1984, roughly doubling the strength ceiling any magnet could reach.",
+          process: [
+            "Melt the alloy under argon",
+            "Mill to magnetically aligned powder",
+            "Press and sinter the blanks",
+            "Cut, coat and magnetize each arc",
+          ],
+          color: "#e0a52f",
+          inputs: ["magnet-power-bank-mine-04", "magnet-power-bank-ironore-04"],
+        },
+        {
+          id: "magnet-power-bank-copper-03",
+          name: "Enameled Copper",
+          echelon: 3,
+          description:
+            "The coil wire is copper refined to four nines, drawn to under a third of a millimeter, and baked in enamel; every turn of the pancake sits millimeters from its neighbors carrying amps without a single short.",
+          specs: [
+            { label: "Diameter", value: "0.1-0.3", unit: "mm" },
+            { label: "Purity", value: "99.99", unit: "% Cu" },
+            { label: "Enamel", value: "Polyester-imide", unit: "" },
+            { label: "Tested", value: "Spark per meter", unit: "" },
+          ],
+          history:
+            "Enameled magnet wire industrialized in the 1920s, doubling the copper that fits in a motor - and transferring the same trick to wireless charging coils a century later.",
+          process: [
+            "Draw copper rod through diamond dies",
+            "Anneal between reductions",
+            "Bake on the enamel layers",
+            "Spark-test and spool",
+          ],
+          color: "#e0a52f",
+          inputs: ["magnet-power-bank-mine-04"],
+        },
+        {
+          id: "magnet-power-bank-lithium-03",
+          name: "Lithium Compounds",
+          echelon: 3,
+          description:
+            "The cells' cathodes begin as battery-grade lithium carbonate or hydroxide, refined from brine or ore to purities where metal contaminants get measured in parts per million.",
+          specs: [
+            { label: "Form", value: "Li2CO3 / LiOH", unit: "" },
+            { label: "Purity", value: "99.5", unit: "% battery grade" },
+            { label: "From", value: "Brine or spodumene", unit: "" },
+            { label: "Contaminants", value: "Tracked in ppm", unit: "" },
+          ],
+          history:
+            "Lithium refining scaled with laptops and phones; the power bank carries the same salt refinery inside its case.",
+          process: [
+            "Concentrate lithium from brine or ore",
+            "Precipitate and wash the salts",
+            "Refine to battery grade",
+            "Dry-pack for cell makers",
+          ],
+          color: "#e0a52f",
+          inputs: ["magnet-power-bank-saltlake-04"],
+        },
+        {
+          id: "magnet-power-bank-mine-04",
+          name: "The Copper Mine",
+          echelon: 4,
+          description:
+            "Coil wire, board traces and cell tab foils all begin in copper ore so lean that producing a bank's worth of winding means crushing a wheelbarrow of rock for every coin of metal.",
+          specs: [
+            { label: "Ore grade", value: "0.5-1", unit: "% Cu" },
+            { label: "Rock per kg", value: "≈125", unit: "kg" },
+            { label: "Cathode purity", value: "99.99", unit: "% Cu" },
+            { label: "Concentrator", value: "Flotation-fed", unit: "" },
+          ],
+          history:
+            "Open-pit copper mining has done this job - low-grade rock in, refined metal out - for a century.",
+          process: [
+            "Blast and haul the ore",
+            "Concentrate by flotation",
+            "Smelt and convert",
+            "Electrorefine to cathode",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "magnet-power-bank-ironore-04",
+          name: "Iron Ore Mine",
+          echelon: 4,
+          description:
+            "Two-thirds of every magnet is iron by weight; the rare earths supply is smaller and earlier in the supply chain, but the structural bulk of a ring magnet comes from refined ore at 60-percent-plus iron.",
+          specs: [
+            { label: "Iron content", value: "62-64", unit: "% Fe" },
+            { label: "Form", value: "Pellets", unit: "" },
+            { label: "Blasted in", value: "Open pits", unit: "" },
+            { label: "Shipped", value: "By rail and sea", unit: "" },
+          ],
+          history:
+            "Pelletized ore from pits like the Mesabi Range fed twentieth-century steelmaking - and now feeds rare-earth alloying too.",
+          process: [
+            "Drill and blast the formation",
+            "Load and haul the ore",
+            "Beneficiate and pelletize",
+            "Rail to alloying mills",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "magnet-power-bank-saltlake-04",
+          name: "Lithium Salt Flat",
+          echelon: 4,
+          description:
+            "On salt flats like Atacama, brine is pumped to sun-evaporation ponds and dried for months to a lithium-rich concentrate; inland, mines crush spodumene ore for the same supply chain. Both end as the white battery-grade powder inside these cells.",
+          specs: [
+            { label: "Brine Li", value: "0.04-0.15", unit: "%" },
+            { label: "Pond time", value: "6-18", unit: "months" },
+            { label: "Hard rock", value: "Spodumene ore", unit: "" },
+            { label: "Product", value: "Carbonate", unit: "" },
+          ],
+          history:
+            "Salar de Atacama brine fed the first commercial battery-lithium supply chains in the 1990s and still carries much of today's production.",
+          process: [
+            "Pump brine to evaporation ponds",
+            "Dry by sun, stage by stage",
+            "Precipitate lithium salts",
+            "Refine to battery grade",
+          ],
+          color: "#a49e92",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: Slow-Rebound Stress Ball (memory-foam squeezee)
+    // =====================================================================
+    {
+      id: "slow-rebound-ball",
+      name: "Slow-Rebound Ball",
+      color: "#5b7f96",
+      nodes: [
+        {
+          id: "slow-rebound-ball-01",
+          name: "Slow-Rebound Ball",
+          echelon: 0,
+          description:
+            "The slow-rebound (squishy) ball is soft polyurethane foam formed in a two-part mold: squeeze it and the foam cells collapse and vent; let go and the cell walls re-inflate slowly - seconds, not milliseconds - which is why it crawls back to shape. The rebound rate is set by the foam chemistry itself.",
+          specs: [
+            { label: "Material", value: "Viscoelastic PU", unit: "" },
+            { label: "Diameter", value: "40-70", unit: "mm" },
+            { label: "Rebound time", value: "A few s", unit: "" },
+            { label: "Skin", value: "Cast PU, painted", unit: "" },
+          ],
+          history:
+            "The foam class came from NASA Ames work in 1966 - a material called 'Temper Foam', invented to cushion aircraft seats - and leaked into stress toys, mattresses and headphones.",
+          process: [
+            "Meter and mix the polyol and isocyanate",
+            "Add pigment to the pour",
+            "Fill and close the two-part mold",
+            "Cure, demold, wash and paint",
+          ],
+          color: "#5b7f96",
+          inputs: ["slow-rebound-ball-mold-tooling", "slow-rebound-ball-foam-03"],
+        },
+        {
+          id: "slow-rebound-ball-mold-tooling",
+          name: "The Mold",
+          echelon: 1,
+          description:
+            "The ball is a hollow shell a few millimeters thick, shaped by a mating pair of aluminum molds: pour the reactive mix in, close, and let the foam expand to fill the cavity with its own gas. Edge parting lines, vent pins and surface grain all live inside these mold halves.",
+          specs: [
+            { label: "Tooling", value: "Aluminum pairs", unit: "" },
+            { label: "Shots per mold", value: "One ball", unit: "" },
+            { label: "Finish", value: "Textured skin", unit: "" },
+            { label: "Vent", value: "Pin + parting", unit: "" },
+          ],
+          history:
+            "Reaction-injection molding grew from polyurethane chemistry commercialized in the 1960s; where it parts from injection molding is that the melt heats itself - the reaction makes the heat.",
+          process: [
+            "Machine the two mold halves",
+            "Drill vent and sprue pins",
+            "Texture the cavity by etching",
+            "Trial-shot and adjust the venting",
+          ],
+          color: "#5c564c",
+          inputs: ["slow-rebound-ball-mill-02"],
+        },
+        {
+          id: "slow-rebound-ball-mill-02",
+          name: "The Casting Line",
+          echelon: 2,
+          description:
+            "On the line, a metering head mixes the two chemical streams at the face of a closed mold; the liquid fill foams, expands, cures in minutes, and a break pin pops the finished ball out onto a belt for washing, drying and painting.",
+          specs: [
+            { label: "Shot", value: "Grams-metered", unit: "" },
+            { label: "Mix time", value: "Fractions of a s", unit: "" },
+            { label: "Cure", value: "5-15", unit: "min" },
+            { label: "Then", value: "Wash, paint", unit: "" },
+          ],
+          history:
+            "Reaction-injection molding machines turned polyurethane chemistry from batch buckets into continuously molded parts in the late 1960s.",
+          process: [
+            "Temperature-condition both resin streams",
+            "Meter and impinge-mix at the head",
+            "Shoot and dwell the mold",
+            "Demold, wash, oven and paint",
+          ],
+          color: "#5b7f96",
+          inputs: ["slow-rebound-ball-foam-03"],
+        },
+        {
+          id: "slow-rebound-ball-foam-03",
+          name: "The Foam Chemistry",
+          echelon: 3,
+          description:
+            "Viscoelastic polyurethane is a polyol and an isocyanate stirred together with water, catalysts and silicone surfactant: the water makes the gas that blows the foam, and the chosen polyol controls how fast cells collapse and re-open - the 'slow rebound' is engineered in the formulation.",
+          specs: [
+            { label: "B-side", value: "Polyol blend", unit: "" },
+            { label: "A-side", value: "MDI isocyanate", unit: "" },
+            { label: "Blowing", value: "Water + CO2", unit: "" },
+            { label: "Rebound", value: "Tuned by formula", unit: "" },
+          ],
+          history:
+            "Otto Bayer's polyurethane chemistry dates to the late 1930s; NASA's 1966 slow-rebound version is just a formulation tuned for a long collapse curve.",
+          process: [
+            "Prepolymerize the isocyanate side",
+            "Blend the polyol with water, pigment, catalyst",
+            "Meter the two at a fixed ratio",
+            "Let the reaction blow the foam",
+          ],
+          color: "#e0a52f",
+          inputs: ["slow-rebound-ball-oil-04"],
+        },
+        {
+          id: "slow-rebound-ball-ipaint-03",
+          name: "The Paint Skin",
+          echelon: 3,
+          description:
+            "Slow-rebound balls are painted in two passes: a flexible base coat that stretches with the foam, then the colored top. The paint has to cycle with the foam across thousands of squeezes or the ball loses its face.",
+          specs: [
+            { label: "Base coat", value: "Flexible PU", unit: "" },
+            { label: "Top coat", value: "Pigmented", unit: "" },
+            { label: "Drying", value: "Warm force", unit: "" },
+            { label: "Requirement", value: "Cycles with foam", unit: "" },
+          ],
+          history:
+            "Flexible-coating chemistry matured with the same polyurethane tree; the paint that wraps the ball is a cousin of its foam.",
+          process: [
+            "Preheat the cured ball",
+            "Spray the flexible base coat",
+            "Tack the colored top coat on",
+            "Cycle-test and pack",
+          ],
+          color: "#e0472b",
+          inputs: ["slow-rebound-ball-oil-04"],
+        },
+        {
+          id: "slow-rebound-ball-oil-04",
+          name: "Crude Oil Well",
+          echelon: 4,
+          description:
+            "Both chemical streams begin as oil: cracked naphtha feeds the benzene routes to MDI and the propylene routes to polyols - the ball's whole body is petroleum rearranged.",
+          specs: [
+            { label: "Feed", value: "Naphtha", unit: "" },
+            { label: "Cracker", value: "Thermal", unit: "" },
+            { label: "Routes", value: "Benzene, propylene", unit: "" },
+            { label: "First well", value: "1859", unit: "" },
+          ],
+          history:
+            "The first commercial oil well in 1859 supplied kerosene for lamps; every urethane feedstock now draws on that same energy flow.",
+          process: [
+            "Drill and case the well",
+            "Refine crude to naphtha",
+            "Crack to aromatics and olefins",
+            "Route to isocyanate and polyol plants",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: Mini Portable Blender (USB, motor-in-a-jar)
+    // =====================================================================
+    {
+      id: "mini-blender",
+      name: "Mini Portable Blender",
+      color: "#181410",
+      nodes: [
+        {
+          id: "mini-blender-01",
+          name: "Mini Portable Blender",
+          echelon: 0,
+          description:
+            "The portable blender collapses Stephen Poplawski's 1922 idea - a motor spinning blades at the bottom of a cup - into a single bottle: the jar, the blades, the motor, the battery and the board all live in one compact unit you charge over USB-C.",
+          specs: [
+            { label: "Jar", value: "Tritan, 400-650", unit: "ml" },
+            { label: "Battery", value: "≈2000", unit: "mAh class" },
+            { label: "Motor speed", value: "13,000-20,000", unit: "rpm class" },
+            { label: "Charge", value: "USB-C", unit: "" },
+          ],
+          history:
+            "Poplawski built the first drink mixer with spinning blades inside a cup in 1922; Fred Waring's team commercialized the blender in 1937, and in the 2010s a lithium battery made a version the size of a water bottle.",
+          process: [
+            "Fit motor, board and battery into the base",
+            "Spin-balance the blade assembly",
+            "Leak-test the jar seal",
+            "Charge-cycle and safety-test",
+          ],
+          color: "#181410",
+          inputs: ["mini-blender-motor-01", "mini-blender-blades-01", "mini-blender-jar-01"],
+        },
+        {
+          id: "mini-blender-motor-01",
+          name: "The DC Motor",
+          echelon: 1,
+          description:
+            "A small brushed DC motor with a permanent-magnet stator: current flows through copper windings on the armature, the magnetic field pushes the rotor around, and the shaft carries the blade directly. It is the same physics Poplawski used in 1922, in a few dozen grams.",
+          specs: [
+            { label: "Type", value: "Brushed DC", unit: "" },
+            { label: "Speed class", value: "≈20,000", unit: "rpm" },
+            { label: "Magnets", value: "Ferrite or NdFeB", unit: "" },
+            { label: "Windings", value: "Enameled copper", unit: "" },
+          ],
+          history:
+            "Brushed commutator motors powered everything from sewing machines to toothbrushes; ferrite magnets of the 1950s made pocket-scale DC motors cheap.",
+          process: [
+            "Stack the laminated armature core",
+            "Wind and terminate the coil groups",
+            "Fit brushes, magnets and the commutator",
+            "Run-in and balance the shaft",
+          ],
+          color: "#e0472b",
+          inputs: ["mini-blender-winder-02", "mini-blender-magwire-03"],
+        },
+        {
+          id: "mini-blender-blades-01",
+          name: "The Blades",
+          echelon: 1,
+          description:
+            "Four to six stainless blades, stamped flat and pressed into a curve, cut fruit by shear speed rather than sharpness of edge. Kitchen-grade stainless holds against acid and salt and survives a dishwasher or a decade of rinsing.",
+          specs: [
+            { label: "Count", value: "4-6", unit: "" },
+            { label: "Steel", value: "Stainless", unit: "" },
+            { label: "Formed by", value: "Stamping", unit: "" },
+            { label: "Mounted on", value: "Bushed shaft", unit: "" },
+          ],
+          history:
+            "Fred Osius's 1930s Waring Blendor spun the first mass-market blade set; blade geometry has barely changed since.",
+          process: [
+            "Blank the blade outline from strip steel",
+            "Stamp the curve and formed edges",
+            "Grind the cutting edge radius",
+            "Weigh-match blades for spin balance",
+          ],
+          color: "#e0472b",
+          inputs: ["mini-blender-stamper-02", "mini-blender-bladesteel-03"],
+        },
+        {
+          id: "mini-blender-jar-01",
+          name: "The Tritan Jar",
+          echelon: 1,
+          description:
+            "The jar that doubles as a travel bottle is injection-molded Tritan copolyester - glass-clear, drop-resistant, and rated for food contact. On this part, the jar is the frame: on almost every product in the category, the motor and blades bolt to its base.",
+          specs: [
+            { label: "Material", value: "Tritan copolyester", unit: "" },
+            { label: "Molding", value: "Injection", unit: "" },
+            { label: "Volume", value: "400-650", unit: "ml" },
+            { label: "Mouth", value: "Screw-cap", unit: "" },
+          ],
+          history:
+            "Eastman brought Tritan to market in the 2000s as a BPA-free replacement for polycarbonate bottles; portable blenders picked it up for its clarity and toughness.",
+          process: [
+            "Dry the resin before molding",
+            "Inject into a single-cavity jar tool",
+            "Cut, inspect and leak-check the jar",
+            "Fit the silicone seal and screw cap",
+          ],
+          color: "#e0472b",
+          inputs: ["mini-blender-inj-02", "mini-blender-pellets-03"],
+        },
+        {
+          id: "mini-blender-winder-02",
+          name: "The Winder",
+          echelon: 2,
+          description:
+            "The motor's copper coils are wound by machine: spun under constant tension through tenths-of-a-millimeter wire, cut and soldered to the commutator. Consistent turn counts keep the coil groups balanced.",
+          specs: [
+            { label: "Wire", value: "≈0.2", unit: "mm" },
+            { label: "Turns", value: "Hundreds", unit: "" },
+            { label: "Tension", value: "Servo-controlled", unit: "" },
+            { label: "Tested", value: "Every armature", unit: "" },
+          ],
+          history:
+            "Automatic winding machines replaced benches of hand winders in the 1930s and are the reason a DC motor can now be a commodity part.",
+          process: [
+            "Load the armature slot stack",
+            "Wind the coil groups to turn count",
+            "Cut, strip and commutator-solder",
+            "Insulation-test at production speed",
+          ],
+          color: "#5b7f96",
+          inputs: ["mini-blender-magwire-03"],
+        },
+        {
+          id: "mini-blender-stamper-02",
+          name: "The Blade Stamper",
+          echelon: 2,
+          description:
+            "Blades blank from strip steel on a press stroke: a progressive die cuts the outline, forms the curve and punches the shaft hole in one pass. The same presses that make keyboard springs make blender blades.",
+          specs: [
+            { label: "Press force", value: "40-80", unit: "t" },
+            { label: "Strokes", value: "40-60", unit: "per minute" },
+            { label: "Die", value: "Progressive", unit: "" },
+            { label: "Tolerance", value: "Hundredths of mm", unit: "" },
+          ],
+          history:
+            "Progressive die stamping spread from the automotive industry of the 1920s and turned flat metal into shaped parts at commodity prices.",
+          process: [
+            "Feed stainless strip into the die",
+            "Blank, form and punch in one stroke",
+            "Grind and deburr the cutting edges",
+            "Balance-check each finished blade",
+          ],
+          color: "#5b7f96",
+          inputs: ["mini-blender-bladesteel-03"],
+        },
+        {
+          id: "mini-blender-inj-02",
+          name: "Injection Molding Press",
+          echelon: 2,
+          description:
+            "The jar, cap and blade housing are injection-molded polymer: a clamp shuts the tool, molten polymer fills the cavity, packs, cools and ejects. Clarity is a molding-class challenge - jar warpage of a tenth of a millimeter shows in every pour.",
+          specs: [
+            { label: "Clamp", value: "80-150", unit: "tons" },
+            { label: "Cycle", value: "20-40", unit: "s" },
+            { label: "Cavity count", value: "1-2", unit: "" },
+            { label: "Finish", value: "Water-clear", unit: "" },
+          ],
+          history:
+            "Hyatt's 1872 injection patent made shaped plastics cheap; Tritan-era jar molding is only more controlled.",
+          process: [
+            "Dry and convey the resin to the hopper",
+            "Inject, pack and cool the jar",
+            "Eject and degate the part",
+            "Inspect for warp and clarity",
+          ],
+          color: "#5b7f96",
+          inputs: ["mini-blender-pellets-03"],
+        },
+        {
+          id: "mini-blender-magwire-03",
+          name: "Enameled Copper Wire",
+          echelon: 3,
+          description:
+            "Motor wire is electrolytic copper drawn thin and coated in bake-on enamel so its own turns can sit touching without ever shorting; the coil groups of this motor are the same chemistry as a ceiling fan's, scaled to a few grams.",
+          specs: [
+            { label: "Diameter", value: "≈0.2", unit: "mm" },
+            { label: "Purity", value: "99.99", unit: "% Cu" },
+            { label: "Enamel", value: "Polyester-imide", unit: "" },
+            { label: "Breakdown", value: "kV-class", unit: "" },
+          ],
+          history:
+            "Wire enamel replaced wound cotton insulation in the 1920s, which is what let motors double their winding density.",
+          process: [
+            "Draw copper rod to gauge",
+            "Anneal between passes",
+            "Bake on enamel in layers",
+            "Spark-test before spooling",
+          ],
+          color: "#e0a52f",
+          inputs: ["mini-blender-mine-04"],
+        },
+        {
+          id: "mini-blender-bladesteel-03",
+          name: "Cold-Rolled Strip Steel",
+          echelon: 3,
+          description:
+            "Blade strip begins as low-carbon stainless, rolled cold to gauge and annealed soft enough to curve in the press without cracking; the chromium in it is what keeps fruit acid and years of salt from ever pitting the edge.",
+          specs: [
+            { label: "Thickness", value: "0.4-0.8", unit: "mm" },
+            { label: "Steel", value: "Stainless strip", unit: "" },
+            { label: "Finish", value: "2B mill", unit: "" },
+            { label: "Annealed", value: "Full soft", unit: "" },
+          ],
+          history:
+            "Harry Brearley's 1913 chromium steel found its way to cutlery first; the same class of steel blades this cup.",
+          process: [
+            "Hot-roll and pickle the slab",
+            "Cold-roll to trim strip",
+            "Anneal in a bell furnace",
+            "Slit and edge-round the coil",
+          ],
+          color: "#e0a52f",
+          inputs: ["mini-blender-ironore-04"],
+        },
+        {
+          id: "mini-blender-pellets-03",
+          name: "Tritan Pellets",
+          echelon: 3,
+          description:
+            "The jar's resin arrives as clear pellets: Tritan copolyester, BPA-free and glass-clear, tough enough to survive a drop off the counter. The pellets must be dried before molding or the finished jar picks up a haze.",
+          specs: [
+            { label: "Resin", value: "Tritan copolyester", unit: "" },
+            { label: "Form", value: "Pellets", unit: "" },
+            { label: "Melt point", value: "≈230", unit: "°C" },
+            { label: "Dried to", value: "Low moisture", unit: "" },
+          ],
+          history:
+            "BPA-free, glass-clear plastic for bottles is a 2000s-to-2010s story; Tritan's chemistry entered the market in the mid-2000s.",
+          process: [
+            "Polymerize in the reactor",
+            "Pelletize and spiral-dry",
+            "Bag to moisture spec",
+            "Ship to molding shops",
+          ],
+          color: "#e0472b",
+          inputs: ["mini-blender-oil-04"],
+        },
+        {
+          id: "mini-blender-mine-04",
+          name: "The Copper Mine",
+          echelon: 4,
+          description:
+            "The motor's copper starts in ore: low-grade rock hauled to a concentrator, smelted and refined - the same wheelbarrows do everything electrical in the room.",
+          specs: [
+            { label: "Ore grade", value: "0.5-1", unit: "% Cu" },
+            { label: "Rock per kg", value: "≈125", unit: "kg" },
+            { label: "Cathode", value: "99.99", unit: "% Cu" },
+            { label: "Pit", value: "Open, terraced", unit: "" },
+          ],
+          history:
+            "Copper has been mined open-pit for a century; the winding in a quiet fan and the winding in this motor came from the same kind of pit.",
+          process: [
+            "Blast and haul the ore",
+            "Concentrate by flotation",
+            "Smelt, then fire-refine",
+            "Electrorefine to cathode",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "mini-blender-ironore-04",
+          name: "Iron Ore Mine",
+          echelon: 4,
+          description:
+            "Steel's base is iron ore: titanium-scale hematite pelletized from beneficiated rock, then alloyed with chromium for the blade strip or left plain for the frame parts.",
+          specs: [
+            { label: "Iron content", value: "62-64", unit: "% Fe" },
+            { label: "Pit", value: "Open, benches", unit: "" },
+            { label: "Haul", value: "Rail to mill", unit: "" },
+            { label: "Beneficiated to", value: "Pellets", unit: "" },
+          ],
+          history:
+            "Mesabi-range ore ran the steel age; every stamped blade carries its iron through the same furnace.",
+          process: [
+            "Drill and blast the formation",
+            "Load and transport by rail",
+            "Beneficiate and pelletize",
+            "Charge the mill furnace",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "mini-blender-oil-04",
+          name: "Crude Oil Well",
+          echelon: 4,
+          description:
+            "The jar's resin begins as oil: drilled, refined, cracked into monomers and polymerized into copolyester, then shipped as pellets to the molder.",
+          specs: [
+            { label: "Depth", value: "1-3", unit: "km" },
+            { label: "Cracked to", value: "Monomers", unit: "" },
+            { label: "Polymerized", value: "Copolyester", unit: "" },
+            { label: "First well", value: "1859", unit: "" },
+          ],
+          history:
+            "The same refinery that feeds kerosene and polypropylene also feeds the jar's polymer - a branch of Titusville's tree.",
+          process: [
+            "Drill and case the well",
+            "Refine to naphtha",
+            "Crack to monomers",
+            "Polymerize and pelletize",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: Portable SSD (pocket NVMe drive)
+    // =====================================================================
+    {
+      id: "portable-ssd",
+      name: "Portable SSD",
+      color: "#181410",
+      nodes: [
+        {
+          id: "portable-ssd-01",
+          name: "Portable SSD",
+          echelon: 0,
+          description:
+            "A pocket SSD is a NAND chip set, a controller and a cable port inside a milled or stamped aluminum case: no moving parts, thousands of times faster per seek than the spinning drives it replaced, and designed to write terabytes back and forth for years.",
+          specs: [
+            { label: "Capacity", value: "500-2000", unit: "GB class" },
+            { label: "Interface", value: "USB 3.2 / NVMe", unit: "" },
+            { label: "Speed class", value: "≈1 GB/s", unit: "" },
+            { label: "Form", value: "M.2 in shell", unit: "" },
+          ],
+          history:
+            "Fujio Masuoka of Toshiba presented flash memory in 1984 and NAND in 1987; the consumer SSD reached pocket form when controllers and stacked NAND finally fit an M.2 profile.",
+          process: [
+            "Assemble NAND and controller on the PCB",
+            "Program, test and identify the drive",
+            "Fold, insert and seal in the shell",
+            "Long-run endurance-test and pack",
+          ],
+          color: "#181410",
+          inputs: ["portable-ssd-controller-01", "portable-ssd-nand-01", "portable-ssd-shell-01"],
+        },
+        {
+          id: "portable-ssd-controller-01",
+          name: "The Controller",
+          echelon: 1,
+          description:
+            "The controller is a small ARM-core computer dedicated to a single job of translation: pretending a shrinking, wear-prone NAND array is a uniform disk. It manages pages, blocks, wear levelling, garbage collection and error-correction - in real time, for the life of the drive.",
+          specs: [
+            { label: "SoC", value: "ARM-core class", unit: "" },
+            { label: "Runs", value: "Flash translation", unit: "" },
+            { label: "Protocols", value: "NVMe / USB", unit: "" },
+            { label: "Cache", value: "SRAM + DRAM class", unit: "" },
+          ],
+          history:
+            "Flash translation layers were engineered in the 1990s; by the late 2000s vendors like SandForce shipped them as merchant controllers, and today they are SoCs bought in bulk by drive brands.",
+          process: [
+            "Design and tape out the SoC",
+            "Fab the silicon on advanced nodes",
+            "Package as the final ball-grid array",
+            "Load firmware, test and bin",
+          ],
+          color: "#e0472b",
+          inputs: ["portable-ssd-smt-02"],
+        },
+        {
+          id: "portable-ssd-nand-01",
+          name: "The NAND Flash",
+          echelon: 1,
+          description:
+            "NAND flash stores bits as charge trapped in floating-gate cells stacked vertically in dozens of layers. It forgets slowly, wears with every write, and is the archival medium of the whole modern computer.",
+          specs: [
+            { label: "Invented", value: "1987", unit: "Toshiba" },
+            { label: "3D layers", value: "Hundreds", unit: "" },
+            { label: "Bits per cell", value: "2-4", unit: "TLC / QLC" },
+            { label: "Production", value: "300 mm wafers", unit: "" },
+          ],
+          history:
+            "Fujio Masuoka's NAND invention at Toshiba in 1987 replaced NOR's parallel access with serial blocks - the dense, cheap format that now holds the world's files.",
+          process: [
+            "Stack and etch the storage layers",
+            "Dice wafers into dies",
+            "Stack dies into bare-die packages",
+            "Test, bin and ship the flash",
+          ],
+          color: "#e0472b",
+          inputs: ["portable-ssd-wafer-03"],
+        },
+        {
+          id: "portable-ssd-shell-01",
+          name: "The Aluminum Shell",
+          echelon: 1,
+          description:
+            "The shell is aluminum because it is the heat sink: the case touches the PCB's thermal pads, pulls NAND heat away during long writes, and doubles as the product's whole skin - extruded, machined, anodized.",
+          specs: [
+            { label: "Alloy", value: "6063 / 6061", unit: "" },
+            { label: "Thermal", value: "≈200", unit: "W/mK" },
+            { label: "Process", value: "Extrude + CNC", unit: "" },
+            { label: "Finish", value: "Anodized", unit: "" },
+          ],
+          history:
+            "Extruded aluminum heatsinks spread through electronics in the 1970s; a pocket SSD's shell is one of the few external surfaces still shaped by metal rather than plastic.",
+          process: [
+            "Extrude the profile and cut to length",
+            "Machine the PCB bay",
+            "Anodize for a hard finish",
+            "Fit silicone pads and assemble",
+          ],
+          color: "#e0472b",
+          inputs: ["portable-ssd-stamp-02", "portable-ssd-alum-03"],
+        },
+        {
+          id: "portable-ssd-smt-02",
+          name: "The Assembly Line",
+          echelon: 2,
+          description:
+            "Controllers and NAND packages are set on the PCB by pick-and-place, reflowed at a tight temperature curve, then flashed, formatted and burn-in tested before they ever see a USB port.",
+          specs: [
+            { label: "Placement accuracy", value: "≈0.04", unit: "mm" },
+            { label: "Reflow peak", value: "245", unit: "°C" },
+            { label: "Tested", value: "Every drive", unit: "" },
+            { label: "Tracked", value: "Chip-level serials", unit: "" },
+          ],
+          history:
+            "SMT placement lines industrialized in the 1980s; an SSD is one of the cleanest, simplest boards such a line assembles for consumers.",
+          process: [
+            "Paste-print and load the bare PCB",
+            "Place NAND, controller and power parts",
+            "Reflow and optical-inspect",
+            "Flash firmware and burn-in test",
+          ],
+          color: "#5b7f96",
+          inputs: ["portable-ssd-wafer-03", "portable-ssd-copper-03"],
+        },
+        {
+          id: "portable-ssd-stamp-02",
+          name: "The Extrusion Line",
+          echelon: 2,
+          description:
+            "Heated aluminum billet is forced through a die in one long push, emerging as the case's profile; cut, machined, straightened and heat-treated before anodizing. A continuous profile from one push is the whole price advantage.",
+          specs: [
+            { label: "Billet temp", value: "≈500", unit: "°C" },
+            { label: "Press force", value: "Thousands of t", unit: "" },
+            { label: "Profile", value: "Continuous", unit: "" },
+            { label: "Aging", value: "T6 temper", unit: "" },
+          ],
+          history:
+            "The extrusion process spread through aluminum products in the twentieth century; pocket SSDs simply inherited a well-run process.",
+          process: [
+            "Heat the billet to press temperature",
+            "Push through the die in one stroke",
+            "Cool, stretch and straighten",
+            "T6-age, cut to length and anodize",
+          ],
+          color: "#5b7f96",
+          inputs: ["portable-ssd-alum-03"],
+        },
+        {
+          id: "portable-ssd-wafer-03",
+          name: "The Silicon Wafer",
+          echelon: 3,
+          description:
+            "Both silicon parts of the drive - the controller SoC and the NAND die - start as wafers of single-crystal silicon grown in crucible furnaces from electronics-grade silicon refined out of sand.",
+          specs: [
+            { label: "Diameter", value: "300", unit: "mm standard" },
+            { label: "Purity", value: "9 nines", unit: "%" },
+            { label: "Grown as", value: "Single crystal", unit: "" },
+            { label: "Diced to", value: "Chips", unit: "" },
+          ],
+          history:
+            "Czochralski's crystal-growing method of 1916 became the puller that has grown semiconductor-grade silicon since the 1960s.",
+          process: [
+            "Refine sand to trichlorosilane",
+            "Reduce to polysilicon (Siemens route)",
+            "Melt and pull the crystal boule",
+            "Slice, lap, polish and ship wafers",
+          ],
+          color: "#a49e92",
+          inputs: ["portable-ssd-quarry-04"],
+        },
+        {
+          id: "portable-ssd-copper-03",
+          name: "Copper and Laminates",
+          echelon: 3,
+          description:
+            "Under the silicon sits the PCB: glass-fiber laminate with etched copper traces and finished pads. The drive's copper starts like every other wire on Earth.",
+          specs: [
+            { label: "Laminate", value: "FR-4 class", unit: "" },
+            { label: "Foil", value: "1-2", unit: "oz copper" },
+            { label: "Pads", value: "Ni-Au finish", unit: "" },
+            { label: "Layers", value: "Multilayer", unit: "" },
+          ],
+          history:
+            "Printed circuits took off with wartime radios and reframed electronics as a flat board; FR-4 has been standard for half a century.",
+          process: [
+            "Laminate copper to glass-fiber cloth",
+            "Etch the circuit pattern",
+            "Silk-screen the legend",
+            "Finish pads for assembly",
+          ],
+          color: "#e0a52f",
+          inputs: ["portable-ssd-mine-04"],
+        },
+        {
+          id: "portable-ssd-alum-03",
+          name: "Aluminum Billet",
+          echelon: 3,
+          description:
+            "The case began as high-grade aluminum alloy billet: bauxite refined to alumina in a caustic-and-electricity process, smelted in electrolysis cells, then alloyed and cast for the extrusion line.",
+          specs: [
+            { label: "Ore", value: "Bauxite", unit: "" },
+            { label: "Refined to", value: "Alumina", unit: "" },
+            { label: "Smelted by", value: "Electrolysis", unit: "" },
+            { label: "Alloys with", value: "Mg, Si", unit: "" },
+          ],
+          history:
+            "Bauxite ore was identified at Les Baux in 1821; electrolytic aluminum from 1886 is the same route every can and case takes.",
+          process: [
+            "Mine and wash the bauxite",
+            "Bayer-refine to alumina",
+            "Smelt by Hall-Héroult electrolysis",
+            "Alloy and cast the billet",
+          ],
+          color: "#e0a52f",
+          inputs: ["portable-ssd-bauxite-04"],
+        },
+        {
+          id: "portable-ssd-mine-04",
+          name: "The Copper Mine",
+          echelon: 4,
+          description:
+            "Every trace on the PCB traces back to a copper pit: ore at under one percent metal, hauled to a concentrator, smelted, refined into foil thick enough to bend.",
+          specs: [
+            { label: "Ore grade", value: "0.5-1", unit: "% Cu" },
+            { label: "Rock per kg", value: "≈125", unit: "kg" },
+            { label: "Cathode", value: "99.99", unit: "% Cu" },
+            { label: "Producers", value: "Chile, Peru, DRC", unit: "" },
+          ],
+          history:
+            "Chile's Atacama has produced copper at industrial scale for a hundred years; the copper sea never recedes.",
+          process: [
+            "Blast and haul the ore",
+            "Concentrate by flotation",
+            "Smelt to blister copper",
+            "Electrorefine to cathode",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "portable-ssd-quarry-04",
+          name: "The Quartz Quarry",
+          echelon: 4,
+          description:
+            "High-purity quartzite is mined, washed and chemically refined into electronic-grade silicon; an SSD's chips are essentially washed rock that learned to remember.",
+          specs: [
+            { label: "Rock", value: "Quartzite", unit: "" },
+            { label: "Refined to", value: "9-nines silicon", unit: "" },
+            { label: "Route", value: "Siemens process", unit: "" },
+            { label: "Crystals", value: "Czochralski", unit: "" },
+          ],
+          history:
+            "The Siemens process has refined high-purity polysilicon since the mid-twentieth century and remains the standard route from sand to wafer.",
+          process: [
+            "Quarry silica at industrial purity",
+            "Refine to trichlorosilane",
+            "Reduce to polysilicon",
+            "Pull the wafer-grade boule",
+          ],
+          color: "#a49e92",
+          inputs: [],
+        },
+        {
+          id: "portable-ssd-bauxite-04",
+          name: "The Bauxite Mine",
+          echelon: 4,
+          description:
+            "The case's aluminum began as laterite soil - red, iron-stained - strip-mined in tropical pits and shipped for refinement.",
+          specs: [
+            { label: "Ore", value: "Bauxite soil", unit: "" },
+            { label: "Pit type", value: "Tropical strip", unit: "" },
+            { label: "Alumina", value: "≈45", unit: "%" },
+            { label: "Named for", value: "Les Baux, 1821", unit: "" },
+          ],
+          history:
+            "Bauxite was named after Les Baux in Provence in 1821; today the largest mines run through tropical Australia, Guinea and Brazil.",
+          process: [
+            "Strip the soil, face the ore",
+            "Crush and wash the bauxite",
+            "Bayer-refine to alumina",
+            "Smelt and cast ingots",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
+
+// =====================================================================
+    // OBJECT: Ballpoint Pen (twist-action, carbide ball)
+    // =====================================================================
+    {
+      id: "ballpoint-pen",
+      name: "Ballpoint Pen",
+      color: "#181410",
+      nodes: [
+        {
+          id: "ballpoint-pen-01",
+          name: "Ballpoint Pen",
+          echelon: 0,
+          description:
+            "A ballpoint pen writes by carrying thick paste ink on a rotating ball seated at the tip: as the ball rolls, ink transfers to paper and the gap recharges from the reservoir behind it. The twist action carries a spring that pushes the refill forward - an entire mechanism in a hand's width.",
+          specs: [
+            { label: "Ball", value: "0.5-1.0", unit: "mm carbide" },
+            { label: "Refill", value: "G2-class", unit: "" },
+            { label: "Action", value: "Twist", unit: "" },
+            { label: "Weight", value: "≈35", unit: "g steel-barreled" },
+          ],
+          history:
+            "László Bíró patented the practical ballpoint in 1938; his insight was not the ball alone but pairing it with thicker, pasty ink that would not leak or flood the socket.",
+          process: [
+            "Assemble refill, spring and mechanism into the barrel",
+            "Torque-fit the twist mechanism",
+            "Write-test the stroke on paper",
+            "Inspect, cap and box",
+          ],
+          color: "#181410",
+          inputs: ["ballpoint-pen-ball-01", "ballpoint-pen-spring-01", "ballpoint-pen-refill-01"],
+        },
+        {
+          id: "ballpoint-pen-ball-01",
+          name: "The Carbide Ball",
+          echelon: 1,
+          description:
+            "The writing ball is sintered tungsten carbide: powder pressed into a sphere, sintered, and ground to roundness within a few ten-thousandths of a millimeter. It has to roll on paper for kilometers without deforming or dissolving in ink.",
+          specs: [
+            { label: "Diameter", value: "0.5-1.0", unit: "mm" },
+            { label: "Material", value: "Tungsten carbide", unit: "" },
+            { label: "Roundness", value: "Micron-class", unit: "" },
+            { label: "Sintered from", value: "WC powder", unit: "" },
+          ],
+          history:
+            "Tungsten carbide entered mass production as tooling in the 1920s; its hardness is what lets a ball smaller than a pin's head outlast the pen's ink.",
+          process: [
+            "Press the WC-cobalt powder into blanks",
+            "Sinter near 1400 °C",
+            "Roll-grind the balls to final size",
+            "Sort and fit into the socket",
+          ],
+          color: "#e0472b",
+          inputs: ["ballpoint-pen-grinder-02", "ballpoint-pen-carbide-03"],
+        },
+        {
+          id: "ballpoint-pen-spring-01",
+          name: "The Twist Spring",
+          echelon: 1,
+          description:
+            "A small coiled spring inside the mechanism holds the refill forward against the tip and returns it under the twist action. It is the quietest part of the pen and the one every turn's torque pushes through.",
+          specs: [
+            { label: "Type", value: "Compression", unit: "" },
+            { label: "Wire", value: "Stainless or music wire", unit: "" },
+            { label: "Rate", value: "Fixed, matched", unit: "" },
+            { label: "Cycles", value: "Thousands", unit: "" },
+          ],
+          history:
+            "Compression springs wound from tempered wire are older industrial hardware than the pen itself; wire-drawing made them cheap in the late nineteenth century.",
+          process: [
+            "Draw the wire to gauge",
+            "Coil on a multi-spindle winder",
+            "Heat-treat the spring temper",
+            "Load-test every batch",
+          ],
+          color: "#e0472b",
+          inputs: ["ballpoint-pen-winder-02", "ballpoint-pen-steel-03"],
+        },
+        {
+          id: "ballpoint-pen-refill-01",
+          name: "The Refill",
+          echelon: 1,
+          description:
+            "The refill is the standardized cartridge inside every twist pen: a tube of ink, a socketed nib carrying the ball, and a rear that seats into the mechanism. Standardized sizes are why a refill from one brand fits hundreds of pen bodies.",
+          specs: [
+            { label: "Standard", value: "G2 / D1 classes", unit: "" },
+            { label: "Ink", value: "Pasty oil-based", unit: "" },
+            { label: "Writes", value: "1-2", unit: "km class" },
+            { label: "Fits", value: "Many pen brands", unit: "" },
+          ],
+          history:
+            "After Bíró's patent, Marcel Bich launched the BIC Cristal in 1950 on a pen built around an easily replaced refill; the standardization that followed is why this one still fits.",
+          process: [
+            "Draw and cut the brass tube",
+            "Extrude the paste into the barrel",
+            "Seal the socket with the ball assembly",
+            "Write-test each cartridge",
+          ],
+          color: "#e0472b",
+          inputs: ["ballpoint-pen-filler-02", "ballpoint-pen-ink-03"],
+        },
+        {
+          id: "ballpoint-pen-grinder-02",
+          name: "The Ball Grinder",
+          echelon: 2,
+          description:
+            "Sintered carbide blanks are rolled between grinding plates until every ball falls within its grade: micron-class roundness and diameter that decides whether the pen writes a hairline of ink or floods it.",
+          specs: [
+            { label: "Method", value: "Roll-grinding plates", unit: "" },
+            { label: "Tolerance", value: "±0.001", unit: "mm class" },
+            { label: "Sorted by", value: "Grade bins", unit: "" },
+            { label: "Rate", value: "Thousands per hour", unit: "" },
+          ],
+          history:
+            "Ball-grinding machines are as old as ball bearings; pen tips specify the same micron-class sorting.",
+          process: [
+            "Load sintered blanks into the grinder",
+            "Roll between grooved plates",
+            "Lap to final size and finish",
+            "Gauge-sort balls by diameter",
+          ],
+          color: "#5b7f96",
+          inputs: ["ballpoint-pen-carbide-03"],
+        },
+        {
+          id: "ballpoint-pen-winder-02",
+          name: "Spring Winding",
+          echelon: 2,
+          description:
+            "Spring wire is coiled on controlled spindles: winders hold pitch and tension so every spring yields the same force rate, then the coil is heat-treated and stress-relieved.",
+          specs: [
+            { label: "Coil", value: "Right-hand pitch", unit: "" },
+            { label: "Temper", value: "Set after heat", unit: "" },
+            { label: "Force", value: "Rated per length", unit: "" },
+            { label: "Tested", value: "Load on every batch", unit: "" },
+          ],
+          history:
+            "Coil springs industrialized in the mid-nineteenth century; today's winder holds a tolerance the hand winder could not.",
+          process: [
+            "Draw the spring wire to spec",
+            "Wind to turn count and pitch",
+            "Stress-relieve and square the ends",
+            "Load-test before assembly",
+          ],
+          color: "#5b7f96",
+          inputs: ["ballpoint-pen-steel-03"],
+        },
+        {
+          id: "ballpoint-pen-filler-02",
+          name: "The Refill Assembly Line",
+          echelon: 2,
+          description:
+            "Cartridge assembly runs as a small dedicated line: tube drawn and cut to length, ink extruded under vacuum to eliminate bubbles, ball socket sealed by press, and every single refill writes a stroke before packing.",
+          specs: [
+            { label: "Filling", value: "Vacuum extrude", unit: "" },
+            { label: "Seal", value: "Crimp socket", unit: "" },
+            { label: "Tested", value: "Every refill", unit: "" },
+            { label: "Rate", value: "Tens per minute", unit: "" },
+          ],
+          history:
+            "Refill assembly mechanized in the decades after Bich; the full write-test rule is how the category escaped the leaky reputation of its early years.",
+          process: [
+            "Draw and cut the tube stock",
+            "Vacuum-fill the ink paste",
+            "Set and crimp the nib socket",
+            "Write-test, cap and tray",
+          ],
+          color: "#5b7f96",
+          inputs: ["ballpoint-pen-ink-03"],
+        },
+        {
+          id: "ballpoint-pen-carbide-03",
+          name: "Tungsten Carbide Powder",
+          echelon: 3,
+          description:
+            "Tungsten carbide is half tungsten metal from a wolframite or scheelite mine and half carbon, sintered with cobalt as the binder. Its hardness rides just below diamond - which is why it rolls and never flattens.",
+          specs: [
+            { label: "Formula", value: "WC", unit: "" },
+            { label: "Hardness", value: "≈90", unit: "HRA" },
+            { label: "Binder", value: "Cobalt", unit: "" },
+            { label: "Sintered at", value: "≈1450", unit: "°C" },
+          ],
+          history:
+            "Sintered tungsten carbide took hold in 1920s Germany for cutting tools; its use in pen balls is a mid-century spin-off.",
+          process: [
+            "Mill ore and refine to APT",
+            "Reduce to tungsten powder",
+            "Carburize with carbon to WC",
+            "Blend cobalt binder and mill the powder",
+          ],
+          color: "#e0a52f",
+          inputs: ["ballpoint-pen-wolframite-04"],
+        },
+        {
+          id: "ballpoint-pen-steel-03",
+          name: "Spring Wire Steel",
+          echelon: 3,
+          description:
+            "Spring wire begins as steel rod drawn repeatedly through drawing dies until it reaches tenths of a millimeter, with temper and fatigue life preserved the whole way down.",
+          specs: [
+            { label: "Wire grade", value: "Spring steel", unit: "" },
+            { label: "Gauge", value: "0.2-0.4", unit: "mm" },
+            { label: "Drawn", value: "Multiple passes", unit: "" },
+            { label: "Yield", value: "1.5-2", unit: "GPa class" },
+          ],
+          history:
+            "Wire drawing dates back centuries; modern spring wire is a mid-nineteenth-century refinement of the same schedule.",
+          process: [
+            "Rough-draw from rod",
+            "Intermediate anneal between passes",
+            "Finish-draw to final gauge",
+            "Temper and spool",
+          ],
+          color: "#e0a52f",
+          inputs: ["ballpoint-pen-mine-04"],
+        },
+        {
+          id: "ballpoint-pen-ink-03",
+          name: "The Paste Ink",
+          echelon: 3,
+          description:
+            "Ballpoint ink is deliberately pasty: dye or pigment in an oil-based carrier thickened to the point it will not flow on its own - the ball spreads what gravity alone would not deliver. Bíró's viscosity insight is the reason the category ever worked.",
+          specs: [
+            { label: "Base", value: "Oil / glycol", unit: "" },
+            { label: "Consistency", value: "Paste", unit: "" },
+            { label: "Dry time", value: "Seconds", unit: "" },
+            { label: "Waterproof", value: "Largely", unit: "" },
+          ],
+          history:
+            "Bíró and his brother refined the paste formulation in Argentina in the late 1930s; RAF navigators carried it into the war, and the writing world followed.",
+          process: [
+            "Dissolve dyes in the carrier",
+            "Blend thickener to paste viscosity",
+            "Degass and filter the ink",
+            "Fill cartridges under vacuum",
+          ],
+          color: "#e0472b",
+          inputs: ["ballpoint-pen-oil-04"],
+        },
+        {
+          id: "ballpoint-pen-wolframite-04",
+          name: "The Wolframite Mine",
+          echelon: 4,
+          description:
+            "Tungsten starts as wolframite or scheelite ore from hard-rock veins; it is milled, refined to APT, reduced to tungsten metal powder, then joined to carbon. The ball in the pen is a mining province compressed to a pin's head.",
+          specs: [
+            { label: "Ore", value: "Wolframite / scheelite", unit: "" },
+            { label: "Refined to", value: "APT", unit: "" },
+            { label: "Reduced to", value: "W powder", unit: "" },
+            { label: "Producers", value: "China-led", unit: "" },
+          ],
+          history:
+            "Tungsten mining concentrated in China and the Iberian peninsula; the metal's hardness made it famous in tooling long before it came to pens.",
+          process: [
+            "Mine the vein and crush the ore",
+            "Concentrate the tungsten minerals",
+            "Refine to ammonium paratungstate",
+            "Reduce to tungsten and carburize",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "ballpoint-pen-mine-04",
+          name: "The Iron Ore Mine",
+          echelon: 4,
+          description:
+            "Spring wire's steel begins in iron ore pit benches like every other steel the room holds, alloyed and drawn to a wire thinner than the ball it pushes forward.",
+          specs: [
+            { label: "Ore", value: "62", unit: "% Fe" },
+            { label: "Blasted in", value: "Open pits", unit: "" },
+            { label: "Hauled", value: "Rail to mill", unit: "" },
+            { label: "Feed", value: "Blast furnace", unit: "" },
+          ],
+          history:
+            "Open-pit iron ore ran the twentieth century's steel supply; a pen spring is one of its quietest descendants.",
+          process: [
+            "Drill and blast the bench",
+            "Load and haul the ore",
+            "Beneficiate the feed",
+            "Charge the blast furnace",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+        {
+          id: "ballpoint-pen-oil-04",
+          name: "Crude Oil Well",
+          echelon: 4,
+          description:
+            "The ink's oil carrier and the barrel's polymers begin as crude: drilled, refined, cracked and chained. The oil carrier that keeps the ink pasty runs on the same wellhead as the barrel's plastic.",
+          specs: [
+            { label: "Carrier", value: "Oil / glycol", unit: "" },
+            { label: "Cracked", value: "Feedstock", unit: "" },
+            { label: "Depth", value: "1-3", unit: "km" },
+            { label: "Same well as", value: "Candles, jars", unit: "" },
+          ],
+          history:
+            "The carrier that keeps ballpoint ink pasty refines out of the same naphtha stream that feeds polypropylene and wax.",
+          process: [
+            "Drill and case the well",
+            "Refine crude to carrier stock",
+            "Blend with dyes and thickeners",
+            "Ship to the refill line",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
   ],
 };

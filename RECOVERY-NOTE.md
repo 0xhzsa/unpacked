@@ -1,4 +1,4 @@
-# UNPACKED — recovery note (updated 2026-10-20, second-session build-out)
+# UNPACKED — recovery note (updated 2026-10-24, second-session build-out)
 
 This is the interactive site built on Oct 20 ("the thing for materials etc — how a chair
 was invented/built…"). The OpenCode session that built it was deleted by mistake; the app
@@ -648,3 +648,84 @@ Re-verified every major state on a phone viewport after sessions 10-12:
   deeper paper, mobile home, story closing row fine.
 - Trending-objects menu researched (TikTok/Kalodata-adjacent/Reddit) for the NEXT object
   chains; user picks.
+
+## Session 18 log (2026-10-24) — full redesign + 8 new objects + attribution recovery
+
+### MEGA-TASK (uncommitted at write time)
+
+Home + story-rail + picker redesign, 8 new trending objects (content chains, journey
+descent stops, photo alts, assets), honest alt-texts, future-proofing. All compiled
+to the flat pile: content.js 244,961 B / journey.js 131,293 B / descent.js IMG
+72 -> 126 entries.
+
+### The redesign (all verified in place)
+
+- Picker cards rebuilt as specimen cards (.ph photo strip w/ hover zoom, .no index,
+  .n name, .tag tagline, .meta "N stops · ends in <ground>"), aria-labels on every
+  card; unconditional "The Whole Room" card (ALL N AT ONCE → open the graph).
+- Keydown expanded: 1-9, 0=10, -=11, ==12, q..u=13..19, g=whole room.
+- Story rail is now a chapter-chip column (8px squares, .past mustard / .on brick,
+  rebuilt from .chapter sections in onScrollPips, midline scrollspy at 38%).
+- How-strip on home (01 Pick an object / 02 Descend / 03 Touch the ground),
+  N-objects lead, updated key legend, og:image:alt -> 19 objects.
+- Grid 4 -> 3 @860 -> 2 @640 (room card spans 2 at @640); dead .m spans,
+  text-shadows, ::before spacer plates and .hscrollhint rules deleted.
+
+### The 8 new objects
+
+wireless-earbuds, matcha-whisk, led-strip, magnet-power-bank, slow-rebound-ball,
+mini-blender, portable-ssd, ballpoint-pen — each with a content chain (19 chains /
+210 nodes / 223 links total), a journey descent with IMG-mapped stops, real facts
+only (audited claims like Poplawski 1922, NASA foam, Bíró, IP5318+8205A, KIOXIA),
+and photo-truthful alt text per stop (verified against the actual shipped bytes).
+
+### Stop-id consistency pass
+
+Journey stop ids now match their content chain node ids 1:1. Renames applied:
+wireless-earbuds-mine-04 -> coppermine-04; slow-rebound-ball-caster-02 -> mill-02
+("The Casting Line"); earbuds source-stop name "The Mine" -> "Copper Mine".
+
+### Photo attribution recovery (SHA-1 / dim + visual matching)
+
+Ten session-18 photo files had lost source records. Recovered ALL of them this
+session by identifying from the actual shipped bytes:
+
+1. sha1s.js hashes each file (crypto.createHash, no re-encode).
+2. Commons API list=allimages&aisha1=<sha1> — NOTE: parameter is `aisha1`
+   (asha1 is NOT a valid MW parameter; a 2025-06 API change also caps free
+   direct thumb requests to standard widths 20/40/60/120/250/330/500/960/
+   1280/1920/3840 — anything else returns 400 "Use thumbnail sizes listed on
+   https://w.wiki/GHai").
+3. For thumb-sourced files: standard-width thumb (1920px/1280px via md5 path)
+   is byte-deterministic — hash the downloaded thumb against the shipped sha1.
+
+Results (9/10 byte-exact, 1 visually confirmed):
+
+- `earbuds.jpg` — "AirPods" (Maurizio Pesce) — CC BY 2.0 — byte-exact (1920px thumb)
+- `chasen.jpg` — "Chasen-side-fs PNr°0499" (D-Kuru) — CC BY-SA 4.0 — byte-exact (1920px thumb)
+- `battery.jpg` — "18650 and 21700 lithium ion battery cell" (Sevenethics) — CC0 — byte-exact original
+- `magnets.jpg` — "NeoCube" (XRDoDRX) — CC BY-SA 3.0 — byte-exact original
+- `ledstrip.jpg` — "LED strip closeup" (Akbermamps) — CC BY 4.0 — byte-exact (1920px thumb)
+- `ledreel.jpg` — "LED strip on reel" (Andrey Gvrv) — CC BY-SA 3.0 — byte-exact (1920px thumb)
+- `powerbank.jpg` — "Power bank" (Ilya Plekhanov) — CC BY-SA 3.0 — byte-exact original
+- `pb-internals.jpg` — "Powerbank integrated charging controller with LEDs and heat sink (Selectec HYT-Q3)" (KalteSonne) — CC BY-SA 4.0 — byte-exact original
+- `ssd.jpg` — "NVMe SSd" (User5515) — CC0 — byte-exact original
+- `sand.jpg` — "Silica Sand deposits, Udupi district,Karnataka 01" (ರವಿಮುಂ) — CC BY-SA 4.0 — dim + visual match (1280×720 re-encode; same mound, same burned-in "BIJADI Silica Sands" caption; shot 2013-06-22, GPS 13.5831/74.6812)
+
+Already-attributed from the research phase (extmetadata, commons-meta.json):
+
+- `stressball.jpg` — "Stress ball" (public domain upload)
+- `blender.jpg` — "Pink portable blender" (Asecretfanfare) — CC BY-SA 4.0, 2017-08-08
+- `bamboo.jpg` — "Golden Green Bamboo Stalks" (Kaviya Rajendran) — CC BY-SA 4.0, 2025-10-22
+
+### Grounds merge (for honest phrasing)
+
+19 chains resolve into 13 grounds: crude oil ×4 (chair, ball, blender, keyboard),
+iron ×3 (desk, bottle, pen), copper ×3 (fan, strip, earbuds), bauxite ×2 (lamp, SSD),
+sand ×2 (window, candle), then kaolin / spruce / rattan grove / whisk grove / lithium
+singles. DO NOT claim "N shared sources" numerically — chain node ids do not
+cross-reference; phrase as "the 19 chains end in 13 grounds".
+
+### Honest-count facts (verify with stats.js pattern before citing)
+
+19 chains · 210 nodes · 223 links · 66 photo files · 126 descent stops.

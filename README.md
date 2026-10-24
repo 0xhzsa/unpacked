@@ -10,12 +10,12 @@ the live 30-second press cycle &rarr; the whole-room supply-chain graph.
 ![UNPACKED demo: pick a keyboard, descend to its machines and materials, then the whole room](docs/demo.gif)
 
 It is an interactive, scroll-through field note — an engineer's answer to *"I, Pencil."*
-You start in one ordinary room. Pick any of the 11 objects and the story walks you down
+You start in one ordinary room. Pick any of the 19 objects and the story walks you down
 its supply chain: the part, the machine that made it, the material the machine shaped,
 until you reach the mine, oil well, forest or quarry it finally came from.
 
-**11 objects · 106 processes · 121 links · 9 shared sources**
-One place where the steel desk, the hardcover book and the ceiling fan all spill into
+**19 objects · 210 processes · 223 links**
+Four chains end in crude oil, three in iron ore, three in copper. One place where the steel desk, the hardcover book and the ceiling fan all spill into
 *the same iron mine*.
 
 ## How to use it
@@ -24,9 +24,9 @@ One place where the steel desk, the hardcover book and the ceiling fan all spill
   (the whole object's journey is one page; chapter plates flag the machine parts).
 - **Appendix** at the end: every node in the chain with its verified specs, process
   and history in ledger form. Nothing in the picture is left unexplained.
-- **The whole room** (button top-right, `G`, or the dashed card): all 106 processes
-  in one graph — see where the 11 chains merge, split and reuse each other.
-- **Keyboard**: `1–9` and `0` open objects Nº1–10, `-` opens Nº11, `G` = whole room,
+- **The whole room** (button top-right, `G`, or the dashed card): all 210 processes
+  in one graph — see where the 19 chains merge, split and reuse each other.
+- **Keyboard**: `1–9`, `0`, `-`, `=` and `q`–`u` open objects Nº1–19, `G` = whole room,
   `Escape` backs out one layer. Every story also has a **real URL**: open one and the
   address becomes `/#obj/<id>`, "Copy link" copies it, and the `story/` door pages
   (one per object) carry the object's own link-preview card when a link is shared.
@@ -35,9 +35,9 @@ One place where the steel desk, the hardcover book and the ceiling fan all spill
 ## What's in the box
 
 Zero frameworks. One flat pile of browser JS (`content.js`, `journey.js`, `descent.js`,
-`story.js`, `graph.js`, `press.js`, `affiliate.js`), one stylesheet, and 51 Wikimedia
-photographs (CC BY / CC BY-SA — credits per file in `RECOVERY-NOTE.md`, strip on the home page).
-Everything is a static file; deploy is any static host.
+`story.js`, `graph.js`, `press.js`, `affiliate.js`), one stylesheet, and 66 Wikimedia
+photographs (CC BY / CC0 / public domain — credits per file in `RECOVERY-NOTE.md`,
+strip on the home page). Everything is a static file; deploy is any static host.
 
 | Home sheet | Story | Appendix ledger |
 | --- | --- | --- |
@@ -83,7 +83,7 @@ node frames.js "http://127.0.0.1:8931/" 1280 720 "%TEMP%/frames" 4200
 ## History
 
 Built iteratively in sessions logged in [`RECOVERY-NOTE.md`](RECOVERY-NOTE.md):
-content chains → story mode → fact-checking → performance → the specimen-plate home
-sheet. The design language (`brand.md`) is deliberate: parchment and ink, small-caps
+content chains → story mode → fact-checking → performance → the specimen-card home
+grid. The design language (`brand.md`) is deliberate: parchment and ink, small-caps
 field labels, handwriting margin notes, hairline ledger rules — no shadows, no radii,
 one accent.
