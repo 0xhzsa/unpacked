@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIRECTION A — CATALOG DROP</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --ink:#14110c; --paper:#ffffff; --verm:#e8482b; --grep:6d6a63; --line:#14110c;
+  }
+  html { background:var(--paper); }
+  body {
+    font-family:'Cabinet Grotesk',sans-serif; color:var(--ink);
+    width:100%; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono { font-family:'IBM Plex Mono',monospace; letter-spacing:.08em; }
+
+  /* ---------- top bar : hairline ink ---------- */
+  header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 28px; border-bottom:2px solid var(--line);
+  }
+  .brand { display:flex; gap:10px; align-items:center; }
+  .brand .sq { width:14px; height:14px; background:var(--verm); }
+  .brand b { font-weight:800; font-size:17px; letter-spacing:-.01em; }
+  header .mono { font-size:10px; color:var(--grep); }
+
+  /* ---------- hero : asymmetric 7/5 ---------- */
+  .hero {
+    display:grid; grid-template-columns:7fr 5fr; gap:0;
+    border-bottom:2px solid var(--line);
+  }
+  .hero-copy { padding:44px 40px 40px 28px; border-right:2px solid var(--line); display:flex; flex-direction:column; justify-content:center; }
+  .hook-kick { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.22em; color:var(--verm); margin-bottom:18px; }
+  h1 {
+    font-weight:800; font-size:clamp(40px,4.6vw,62px); line-height:.95; letter-spacing:-.025em;
+    text-transform:uppercase; margin-bottom:20px;
+  }
+  h1 em { font-style:normal; color:var(--verm); }
+  .sub { font-size:16px; line-height:1.5; color:#3c3831; max-width:46ch; margin-bottom:26px; font-weight:500; }
+  .cta-row { display:flex; gap:14px; flex-wrap:wrap; }
+  .cta {
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.12em;
+    padding:15px 26px; border:2px solid var(--line); color:var(--ink); text-decoration:none;
+    display:inline-block; transition:transform .12s ease, background .12s ease;
+  }
+  .cta:active { transform:translateY(1px); }
+  .cta.pri { background:var(--verm); color:#fff; border-color:var(--verm); }
+  .cta.pri:hover { background:#c93719; }
+  .cta.gho:hover { background:var(--ink); color:#fff; }
+
+  /* patent-style annotated product photo */
+  .stage { position:relative; background:#f2f1ec; padding:30px; min-height:520px; }
+  .stage img { width:100%; height:100%; object-fit:cover; display:block; outline:2px solid var(--line); outline-offset:-2px; }
+  .callout {
+    position:absolute; font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600;
+    letter-spacing:.14em; background:#fff; border:1.5px solid var(--line); padding:5px 9px; white-space:nowrap;
+  }
+  .callout i { font-style:normal; color:var(--verm); font-weight:700; }
+  .c1 { top:56px; left:22px; } .c2 { bottom:96px; left:22px; } .c3 { top:110px; right:22px; }
+  .stamp {
+    position:absolute; right:26px; bottom:26px; width:96px; height:96px; border:2px solid var(--verm);
+    border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--verm); transform:rotate(-8deg); background:rgba(255,255,255,.92);
+  }
+  .stamp b { font-size:26px; font-weight:800; line-height:1; }
+  .stamp span { font-family:'IBM Plex Mono',monospace; font-size:7px; font-weight:600; letter-spacing:.18em; }
+
+  /* stat strip */
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:2px solid var(--line); }
+  .stats div { padding:22px 28px; border-right:1.5px solid var(--line); }
+  .stats div:last-child { border-right:none; }
+  .stats b { display:block; font-size:46px; font-weight:800; letter-spacing:-.03em; line-height:1; }
+  .stats span { font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:.18em; color:var(--grep); }
+
+  /* horizontal snap strip of product cards */
+  .rail { padding:34px 28px 40px; border-bottom:2px solid var(--line); }
+  .rail-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; }
+  .rail-head h2 { font-size:22px; font-weight:800; text-transform:uppercase; letter-spacing:-.01em; }
+  .rail-head span { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--grep); letter-spacing:.16em; }
+  .cards { display:grid; grid-auto-flow:column; grid-auto-columns:218px; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px; }
+  .card { scroll-snap-align:start; border:1.5px solid var(--line); background:#fff; text-align:left; }
+  .card .ph { height:190px; background-size:cover; background-position:center; border-bottom:1.5px solid var(--line); position:relative; }
+  .card .no {
+    position:absolute; top:10px; left:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700;
+    background:var(--ink); color:#fff; padding:4px 8px; letter-spacing:.14em;
+  }
+  .card .bd { padding:12px 12px 10px; }
+  .card .n { font-weight:800; font-size:15px; letter-spacing:-.01em; display:block; }
+  .card .meta { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--grep); letter-spacing:.1em; display:block; margin-top:5px; }
+  .card:hover .ph { filter:contrast(1.08) saturate(1.05); }
+  .kb { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--grep); margin-top:14px; letter-spacing:.14em; }
+  .kb i { font-style:normal; border:1px solid var(--grep); padding:1px 5px; margin:0 2px; }
+
+  footer { padding:24px 28px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  footer .mono { font-size:9.5px; color:var(--grep); letter-spacing:.14em; }
+
+  @media (max-width:860px){
+    .hero { grid-template-columns:1fr; }
+    .hero-copy { border-right:none; border-bottom:2px solid var(--line); padding:30px 20px; }
+    .stage { min-height:420px; }
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .stats div:nth-child(2) { border-right:none; }
+    .stats div { border-bottom:1.5px solid var(--line); }
+    .stats div:nth-child(3),.stats div:nth-child(4){ border-bottom:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><span class="sq"></span><b>UNPACKED</b></div>
+  <div class="mono">THE SUPPLY-CHAIN ROOM · 19 OBJECTS · EST. 2026</div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hook-kick">POV: YOUR DESK IS A SUPPLY CHAIN</div>
+    <h1>Your desk is a mine in <em>disguise.</em></h1>
+    <p class="sub">19 everyday objects, traced part by part &mdash; to ore, oil, clay, wood and brine. Pick one. Watch it decompose all the way down.</p>
+    <div class="cta-row">
+      <a class="cta pri" href="#">START THE DESCENT ↓</a>
+      <a class="cta gho" href="#">READ THE RECEIPTS</a>
+    </div>
+  </div>
+  <div class="stage">
+    <img src="../assets/img/keyboard.jpg" alt="A mechanical keyboard on a desk">
+    <span class="callout c1"><i>1</i>&ensp;KEYCAP &mdash; PETROLEUM ABS</span>
+    <span class="callout c2"><i>2</i>&ensp;SWITCH &mdash; 5 PARTS DEEP</span>
+    <span class="callout c3"><i>3</i>&ensp;CASE &mdash; CNC ALUMINUM</span>
+    <div class="stamp"><b>13</b><span>PROCESSES DEEP</span></div>
+  </div>
+</section>
+
+<section class="stats">
+  <div><b>19</b><span>OBJECTS ON THE DESK</span></div>
+  <div><b>210</b><span>PROCESSES TRACED</span></div>
+  <div><b>223</b><span>SUPPLY LINKS</span></div>
+  <div><b>13</b><span>GROUNDS THEY REACH</span></div>
+</section>
+
+<section class="rail">
+  <div class="rail-head">
+    <h2>Pick a thing. Break it down.</h2>
+    <span>19 OBJECTS &mdash; SWIPE &rarr;</span>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/keyboard.jpg')"><span class="no">Nº01</span></div><div class="bd"><span class="n">Mechanical Keyboard</span><span class="meta">13 PROCESSES · ENDS IN CRUDE OIL</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/earbuds.jpg')"><span class="no">Nº12</span></div><div class="bd"><span class="n">Wireless Earbuds</span><span class="meta">15 PROCESSES · ENDS IN A COPPER PIT</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/ssd.jpg')"><span class="no">Nº18</span></div><div class="bd"><span class="n">Portable SSD</span><span class="meta">12 PROCESSES · ENDS IN A BAUXITE PIT</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/blender.jpg')"><span class="no">Nº17</span></div><div class="bd"><span class="n">Mini Blender</span><span class="meta">13 PROCESSES · ENDS IN CRUDE OIL</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/powerbank.jpg')"><span class="no">Nº15</span></div><div class="bd"><span class="n">Magnetic Power Bank</span><span class="meta">14 PROCESSES · ENDS IN A LITHIUM FLAT</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/chasen.jpg')"><span class="no">Nº13</span></div><div class="bd"><span class="n">Matcha Whisk</span><span class="meta">6 PROCESSES · ENDS IN A BAMBOO GROVE</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/pen.jpg')"><span class="no">Nº19</span></div><div class="bd"><span class="n">Ballpoint Pen</span><span class="meta">13 PROCESSES · ENDS IN IRON ORE</span></div></div>
+    <div class="card"><div class="ph" style="background-image:url('../assets/img/room.jpg')"><span class="no">ALL</span></div><div class="bd"><span class="n">The Whole Room</span><span class="meta">ALL 19 AT ONCE · OPEN THE GRAPH</span></div></div>
+  </div>
+  <div class="kb">KEYBOARD SHORTCUTS&ensp;<i>1</i>&hellip;<i>9</i>&ensp;<i>0</i>&ensp;<i>Q</i>&hellip;<i>U</i>&ensp;<i>G</i>&ensp;WHOLE ROOM</div>
+</section>
+
+<footer>
+  <div class="mono">ALL PHOTOS: WIKIMEDIA COMMONS · CC BY / CC BY-SA / CC0 · CREDITED PER STOP</div>
+  <div class="mono">NO AI IMAGES · NO INVENTED FACTS · 0xhzsa.github.io/unpacked</div>
+</footer>
+
+</body>
+</html>
