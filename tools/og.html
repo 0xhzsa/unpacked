@@ -2,55 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@500;600;700&family=Alegreya:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family: "Clash Display"; src: url("../assets/fonts/clash-700.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+  @font-face { font-family: "Clash Display"; src: url("../assets/fonts/clash-600.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+  @font-face { font-family: "Clash Display"; src: url("../assets/fonts/clash-500.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+  @font-face { font-family: "Space Grotesk"; src: url("../assets/fonts/space-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/jbmono-700.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/jbmono-400.woff2") format("woff2"); font-weight: 400; font-style: normal; }
   * { margin: 0; padding: 0; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
     background:
-      radial-gradient(ellipse 130% 95% at 45% -8%, rgba(255,255,255,0.9), transparent 60%),
-      radial-gradient(ellipse 140% 120% at 50% 115%, rgba(24,20,16,0.10), transparent 64%),
-      linear-gradient(180deg, rgba(224,71,43,0.04) 0%, rgba(224,71,43,0) 34%),
-      linear-gradient(180deg, #fbfbf8 0%, #f3f5f1 58%, #e9ece6 100%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    color: #181410;
-    font-family: 'Alegreya', serif;
+      radial-gradient(ellipse 120% 90% at 12% -10%, rgba(255,107,139,.16), transparent 55%),
+      radial-gradient(ellipse 120% 100% at 50% 120%, rgba(255,107,139,.07), transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      linear-gradient(165deg, #17141b 0%, #0f0d10 62%, #0c0a0e 100%);
+    color: #f2efe9;
   }
-  .frame { position: absolute; inset: 13px; border: 2px solid #181410; }
   .kicker {
-    position: absolute; left: 66px; top: 62px;
-    font: 700 16px/1 'IBM Plex Mono', monospace; letter-spacing: 0.28em; color: #e0472b;
+    position: absolute; left: 66px; top: 58px;
+    font: 700 15px/1 "JetBrains Mono", monospace; letter-spacing: .26em; color: #ff6b8b;
   }
-  .kicker .rule { display: inline-block; width: 44px; height: 0; border-top: 2px solid #e0472b; vertical-align: 4px; margin-right: 14px; }
+  .kicker .rule { display: inline-block; width: 44px; height: 2px; background: #ff6b8b; vertical-align: 4px; margin-right: 14px; }
   h1 {
-    position: absolute; left: 66px; top: 88px;
-    font-family: 'Alegreya SC', serif; font-weight: 700; font-size: 112px; line-height: 1; letter-spacing: 0.01em;
+    position: absolute; left: 64px; top: 104px;
+    font-family: "Clash Display", sans-serif; font-weight: 700; font-size: 97px; line-height: 1; letter-spacing: 0;
   }
+  h1 i { display: inline-block; width: 13px; height: 13px; border-radius: 999px; background: #ff6b8b; margin-left: 10px; }
   .lead {
-    position: absolute; left: 68px; top: 226px; width: 520px;
-    font: italic 500 25.5px/1.5 'Alegreya', serif; color: #181410;
+    position: absolute; left: 66px; top: 238px; width: 496px;
+    font: 400 23px/1.55 "Space Grotesk", sans-serif; color: #a9a2a8;
   }
+  .lead b { color: #f2efe9; font-weight: 400; }
   .stats {
-    position: absolute; left: 68px; top: 420px;
-    font: 500 13.5px/1 'IBM Plex Mono', monospace; letter-spacing: 0.14em; color: #5c564c;
+    position: absolute; left: 66px; top: 434px;
+    font: 400 13.5px/1.8 "JetBrains Mono", monospace; letter-spacing: .14em; color: #6e6670;
   }
   .url {
-    position: absolute; left: 68px; bottom: 47px;
-    font: 700 14.5px/1 'IBM Plex Mono', monospace; letter-spacing: 0.2em; color: #e0472b;
+    position: absolute; left: 66px; bottom: 44px;
+    font: 700 15px/1 "JetBrains Mono", monospace; letter-spacing: .2em; color: #ff6b8b;
   }
   .grid {
     position: absolute; right: 36px; top: 41px; width: 456px;
     display: grid; grid-template-columns: repeat(4, 108px); grid-auto-rows: 104px; gap: 8px;
   }
-  .cell { border: 1.5px solid #181410; background-size: cover; background-position: center; }
+  .cell { border: 1px solid rgba(255,255,255,.16); border-radius: 10px; background-size: cover; background-position: center; background-color: #17141b; }
 </style>
 </head>
 <body>
-  <div class="frame"></div>
-  <div class="kicker"><span class="rule"></span>AN ENGINEER'S "I, PENCIL", REBUILT</div>
-  <h1>UNPACKED</h1>
-  <div class="lead">What 20 ordinary things are actually made of &mdash; traced part by part, machine by machine, all the way back to the ground they came from.</div>
-  <div class="stats">20 OBJECTS &middot; 216 PROCESSES &middot; 229 LINKS</div>
+  <div class="kicker"><span class="rule"></span>AN ILLUSTRATED SUPPLY-CHAIN GAME</div>
+  <h1>UNPACKED<i></i></h1>
+  <div class="lead">Pick an ordinary thing and ride it down: <b>plastic, steel, clay, glass</b> &mdash; machine by machine, all the way back to the mine, forest or well it came from.</div>
+  <div class="stats">20 OBJECTS &middot; 126 STATIONS &middot; 229 LINKS<br>EVERY STAT VERIFIED</div>
   <div class="url">0xhzsa.github.io/unpacked</div>
   <div class="grid">
     <div class="cell" style="background-image:url('../assets/img/keyboard.jpg')"></div>

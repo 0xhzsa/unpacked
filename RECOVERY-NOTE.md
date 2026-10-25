@@ -1016,3 +1016,66 @@ moved onto the vinyl (35,54) and the tonearm pin up the pivot (65,46) so the two
 labels stop overlapping; journey.js/beats.js bumped ?v=6 -> ?v=7.
 Gates: check-journey ALL OK (fridge-player 7 stops), check-beats 20 chains /
 133 stops / 133 beats OK (2 manual-ok), check-imgs 86/86 mapped.
+
+## Session 24 - game-skin overhaul (wall/ride/ground/share/og) + 4-object photo re-hunt
+
+Design layer `css/over.css?v=1` (wired in index.html) - everything new, no base edits:
+level-select wall cards (`.lvl`, photo thumbs skip the shared room file, per-stop
+`lvl-dot` progress, GROUND CLAIMED chips), career HUD chips (STOPS RIDDEN x/133,
+GROUNDS x/20, RANK ladder TOURIST / FIRST RIDE / BACKDIGGER / LINE HUNTER /
+DEEP RIDER), film grain + saturation grade on every ride photo, slow 17s camera
+drift (off under prefers-reduced-motion), ground `stampbox` + coin burst on
+claim + haptics (ride tap vibrate(8), claim [10,40,18]), transit-map claimed
+chains thickened (opacity .8 / width 7) with CLAIMED tags. app.js ?v=6, img URLs
+?v=5 -> ?v=6 everywhere; fonts.css deduped (clash-500/600 were declared twice)
+-> ?v=5. Wall thumbnails initially picked the per-stop "room" image - fixed to
+skip it so each line thumbs its own object stop.
+
+Share card: `drawShare` replaced by async `buildShare` - awaits
+document.fonts.load for Clash Display 400/500/600/700 + JetBrains Mono, only
+then draws 1080x1350 canvas: 3 real ride-photo tiles (cover-cropped), stat
+fitted to width with `hexA()` real rgba (the old `color-mix()` glow string
+silently no-op'd in canvas), footer split into footer + URL lines. `openShare`
+renders a RENDERING placeholder meanwhile (verified seeded-localStorage shot
+tools/qa-r3-share.png; progress-state wall in tools/qa-r3-wall3.png).
+
+og.html re-skinned dark-arcade with the app's own local fonts (Clash Display
+97px + pink dot; was cream/Alegreya journal look); assets/og.jpg regenerated
+1200x630 q92 168664B; index.html og:image + twitter:image bumped ?v=2.
+Ride GEO "IMG:39x" overflow warning is the drift scale - benign (clipped).
+
+4 object photos re-hunted (Modal fresh-IP pipeline: tools/wmo8.py fetch,
+wmo9.py title probe, wmo10.py named-candidate batch e.g. earbuds-a..e /
+blender-a..e reviewed locally from tools/qa-v/ before choosing):
+
+| file | Commons source file | artist | license | dims / bytes |
+|------|--------------------|--------|---------|--------------|
+| pen.jpg | Ballpoint pen macro.jpg | Przemek P | CC BY-SA 3.0 | 1280x853 / 71647 |
+| earbuds.jpg | Fifth-generation AirPods in their charging case.jpg | Cheeseburgahhh | CC BY-SA 4.0 | 1280x1280 / 178463 |
+| blender.jpg | Blender with ingredients for spicy buffalo chicken nachos on a kitchen counter next to a bottle of wine and cooking utensils (16327931725).jpg | Personal Creations | CC BY 2.0 | 1280x693 (top crop of 1280x853 removes the hand) |
+| ssd.jpg | 2018 Pami\u0119\u0107 Intel Optane 32GB.jpg | Jacek Halicki | CC BY-SA 4.0 | 700x479 (left crop of 1280x479 keeps chip + sticker in the 34-66% ride window) |
+
+Rejected: Jabra Sep-2023 lineup booth wall (earbuds first hit - promo board, no
+pinnable buds; replaced via wmo10 review), all blender-a..e candidates (hands /
+white-backdrop promo / wrong machine class). UNPACKED_CREDITS rows for pen /
+earbuds / blender / ssd replaced (keys are imgmap values, no .jpg).
+
+Pins re-authored for the 4 object stops, beats `call` and journey
+`annotations` mirrored exactly (labels only describe what is visible):
+
+- ballpoint-pen-01: (42,37) "The ball" tungsten-carbide core, (57,45) "The
+  socket" the metal cone that holds it; journey narration's "photo shows all
+  three parts" line re-worded to the tip macro; journey image updated.
+- wireless-earbuds-01: (39,36) The bud, (55,72) The case.
+- mini-blender-01: (46,58) "The jar" loaded fruit, blades below, (46,32) "The
+  lid" seal the jar, then spin; image no longer claims a held pink mini blender.
+- portable-ssd-01: (38,62) "The controller" spreads the writes, (60,48) "The
+  label" the drive's birth certificate; image = bare M.2 board (was SanDisk
+  shell).
+
+Ride-verified at 390x844: tools/qa-r3-pin-{pen,buds2,blend,ssd2}.png. Buds
+ssd2 superseded shots (buds/wall/og/ssd first takes) pruned. The app clamps pin
+dots above the ride sheet (~61%), so low pins stay visible; ssd controller dot
+nudged 35 -> 38 after the first shot landed at the screen edge (chip cut by the
+window). Gates: check-beats 133/133 OK (2 manual-ok), check-journey ALL OK,
+check-imgs 86/86 mapped. wmo8/9/10.py kept as the fetch pipeline pattern.
