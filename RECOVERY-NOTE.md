@@ -1011,6 +1011,8 @@ Pins: all 7 stops verified by ride screenshots tools/qa-o20-*.png (mobile
 tonearm" at (65,52) (was "grille" landing on bare deck), smt chips -> (39,22),
 oxides -> (47,30); mine pins placed from the photo's OWN annotation arrows via a
 10% grid overlay: pit (52,26) on the terraced benches, tailings (63,53) on the
-arrow-marked pond.
+arrow-marked pond. After the first live check the object stop's record pin was
+moved onto the vinyl (35,54) and the tonearm pin up the pivot (65,46) so the two
+labels stop overlapping; journey.js/beats.js bumped ?v=6 -> ?v=7.
 Gates: check-journey ALL OK (fridge-player 7 stops), check-beats 20 chains /
 133 stops / 133 beats OK (2 manual-ok), check-imgs 86/86 mapped.

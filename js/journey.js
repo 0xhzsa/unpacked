@@ -1578,8 +1578,8 @@ window.JOURNEY = {
           specs: [{ label: "Discs", value: "9", unit: "NFC" }, { label: "Memory", value: "128", unit: "MB" }, { label: "Mount", value: "Fridge magnet", unit: "" }, { label: "Light", value: "Rhythm LED", unit: "" }],
           history: "In 1948 Columbia shipped the 33⅓ LP; the fridge version carries nine of them on a card the size of a fingernail.",
           image: "a green suitcase record player with a black vinyl record on its platter and the tonearm resting in the groove",
-          annotations: [{ x: 32, y: 31, label: "The record", sub: "one groove, one song" }, { x: 65, y: 52, label: "The tonearm", sub: "it rides the groove" }],
-          zoom: { x: 34, y: 33, scale: 1.8 },
+          annotations: [{ x: 35, y: 54, label: "The record", sub: "one groove, one song" }, { x: 65, y: 46, label: "The tonearm", sub: "it rides the groove" }],
+          zoom: { x: 45, y: 50, scale: 1.8 },
         },
         {
           id: "fridge-player-speaker-01", stop: 2, echelon: 1, kind: "component",
