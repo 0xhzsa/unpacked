@@ -745,7 +745,7 @@ the scroll-descent in descent.js is dead code while story.js exists. QA at
 queued for the hooks pass: story tagline/narration duplication ("Eighty-seven tiny
 machines" shows twice in the keyboard story).
 
-## Session 20 (2026-10-25/27) - image re-sourcing pass (15 flagged slots -> real Commons photography)
+## Session 20 (2026-10-25/27, shipped 65520b0) - image re-sourcing pass (15 flagged slots -> real Commons photography)
 
 Replaced the remaining placeholder/wrong photos with sourced, verified Commons files.
 Pipeline identical to the attribution-recovery pass above: browser UA, >= 6 s pacing
