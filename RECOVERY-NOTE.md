@@ -976,3 +976,41 @@ insulated-bottle-press-02, mini-blender-blades-01, portable-ssd-smt-02,
 ballpoint-pen-01, ballpoint-pen-carbide-03.
 Image URLs bumped ?v=4 -> ?v=5 so browsers drop the cached round-1 bytes.
 UNPACKED_CREDITS: carbide row replaced, 5 rows added (6 files).
+
+## Session 23 — object #20 (fridge record player) + 20-object sweep
+
+Chain `fridge-player` (code FP, accent #FF4FA3, fam `re` "Rare earth" -> neodymium
+magnets, ground "A rare earth mine" / Mine). 7 stops, e=0011234. DAG:
+object <- [micro driver, NdFeB disc, SMT line]; driver <- [rare earth oxides];
+disc <- [oxides]; oxides <- [mine: Bayan Obo]. Verified facts: 9 NFC discs / 128 MB;
+N35 remanence, 80 C max, 33-36 MGOe, Ni-Cu-Ni plating; SMT 45000 cph / 0.05 mm /
+245 C reflow; 17-element family at 99% by solvent extraction; Bayan Obo 40+%
+of known reserves, ~6% REO, ~70% of China's REO, iron discovered 1927, REE
+recognized 1935 (USGS/NS Energy); Rice & Kellogg cone speaker 1925; LP 1948;
+Magnequench 1984; neodymium isolated by Auer von Welsbach 1885.
+
+Photos (Modal fresh-IP pipeline tools/wmo5-7.py, volume `unpacked-imgs`,
+attribution logs tools/log3-5.txt):
+- turntable.jpg  <- File:Crosley_Record_Player.jpg | HomeSpot HQ | CC BY 2.0 | 1280x1293
+- speaker.jpg    <- File:Lautsprecher 4-wege 2.jpg | CC BY-SA 2.5 | 1092x1800
+- neomagnet.jpg  <- File:NeoCube.jpg | XRDoDRX | CC BY-SA 3.0 | 1200x900
+- neodymium.jpg  <- File:Rareearthoxides.jpg | Peggy Greb USDA | Public domain | 1200x780
+- mine.jpg       <- File:Baiyunebo ast 2006181.jpg | NASA Earth Observatory | Public domain | 720x480
+Rejected: Big_neodymium_magnet.jpg (hands + museum-white backdrop); several
+candidates under 900 px wide skipped (SIZED lines in log3/log4).
+
+19 -> 20 sweep: journey.js 19x room spec value, "Ten things" -> "Twenty things",
+beats.js 14x "nineteen small machines" -> twenty + keyboard room body, meta.js
+intro/groundsNote ("20 lines end in 14 grounds")/fam `re`/LINES FP/5 CREDITS
+rows, affiliate `fridge-player`, index.html description + og:alt + six script
+tags -> ?v=6, tools/og.html (lead "What 20", stats 20/216/229 computed, mosaic
+cell room -> turntable) and assets/og.jpg regenerated (1200x630 q92).
+
+Pins: all 7 stops verified by ride screenshots tools/qa-o20-*.png (mobile
+390x844). Corrections after crop-zoom review: object pin2 relabeled "The
+tonearm" at (65,52) (was "grille" landing on bare deck), smt chips -> (39,22),
+oxides -> (47,30); mine pins placed from the photo's OWN annotation arrows via a
+10% grid overlay: pit (52,26) on the terraced benches, tailings (63,53) on the
+arrow-marked pond.
+Gates: check-journey ALL OK (fridge-player 7 stops), check-beats 20 chains /
+133 stops / 133 beats OK (2 manual-ok), check-imgs 86/86 mapped.

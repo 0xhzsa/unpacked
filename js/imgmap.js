@@ -164,5 +164,14 @@ window.UnpackedIMG = {
     "ballpoint-pen-spring-01": "spring",
     "ballpoint-pen-grinder-02": "cnc",
     "ballpoint-pen-carbide-03": "carbide",
-    "ballpoint-pen-mine-04": "mineiron"
+    "ballpoint-pen-mine-04": "mineiron",
+
+    // fridge record player
+    "fridge-player-room": "room",
+    "fridge-player-01": "turntable",
+    "fridge-player-speaker-01": "speaker",
+    "fridge-player-magnet-01": "neomagnet",
+    "fridge-player-smt-02": "portable-ssd-smt-02",
+    "fridge-player-oxides-03": "neodymium",
+    "fridge-player-mine-04": "mine"
   }

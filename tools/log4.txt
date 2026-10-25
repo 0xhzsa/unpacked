@@ -1,0 +1,10 @@
+OK speaker.jpg <- Lautsprecher_4-wege_2.jpg |  | CC BY-SA 2.5 | 1092x1800 | 850186B | https://commons.wikimedia.org/wiki/File:Lautsprecher_4-wege_2.jpg
+MISS Neodymium_metal_chunk.jpg
+MISS Neodymium-oxide.jpg
+MISS Rare_earth_ore.jpg
+SEARCH neodymium: 7 titles
+OK neodymium.jpg <- Rareearthoxides.jpg | Peggy Greb, US department of agriculture | Public domain | 1200x780 | 586902B | https://commons.wikimedia.org/wiki/File:Rareearthoxides.jpg
+MISS Bingham_Canyon_Mine.jpg
+MISS Chuquicamata_mine.jpg
+SEARCH mine: 21 titles
+OK mine.jpg <- Baiyunebo ast 2006181.jpg | NASA Earth Observatory | Public domain | 720x480 | 169208B | https://commons.wikimedia.org/wiki/File:Baiyunebo_ast_2006181.jpg

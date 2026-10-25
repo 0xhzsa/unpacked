@@ -46,7 +46,8 @@ window.UNPACKED_AFFILIATE = {
     "slow-rebound-ball": "slow rebound squishy ball",
     "mini-blender": "portable blender",
     "portable-ssd": "portable ssd",
-    "ballpoint-pen": "ballpoint pen"
+    "ballpoint-pen": "ballpoint pen",
+    "fridge-player": "mini record player fridge magnet"
   },
 
   // Honest, required disclosure. Shown in small print with the button.

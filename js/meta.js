@@ -5,8 +5,8 @@ window.UNPACKED_META = {
   series: {
     name: "UNPACKED",
     tag: "every ordinary thing starts somewhere",
-    intro: "Nineteen objects in one room. Every one of them has a line: a chain of machines, wells, mines and fields that ends somewhere real. Ride any line down to its ground.",
-    groundsNote: "19 lines end in 13 grounds",
+    intro: "Twenty objects in one room. Every one of them has a line: a chain of machines, wells, mines and fields that ends somewhere real. Ride any line down to its ground.",
+    groundsNote: "20 lines end in 14 grounds",
     shareKicker: "I rode",
     shareFooter: "unpacked. every stop, every stat verified.",
     shareUrl: "https://0xhzsa.github.io/unpacked/"
@@ -20,7 +20,8 @@ window.UNPACKED_META = {
     spruce: { label: "Spruce", gives: "paper" },
     copper: { label: "Copper", gives: "wire, foil" },
     grove: { label: "Palm and bamboo", gives: "cane, tines" },
-    lithium: { label: "Lithium", gives: "brine batteries" }
+    lithium: { label: "Lithium", gives: "brine batteries" },
+    re:      { label: "Rare earth", gives: "neodymium magnets" }
   },
   lines: {
     "keyboard":         { code: "KB", acc: "#FF6B8B", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "Every switch in the room began this story in this hole.",                         tagline: "Eighty-seven tiny machines, none of them from the same place." },
@@ -41,7 +42,8 @@ window.UNPACKED_META = {
     "slow-rebound-ball":{ code: "SB", acc: "#00B3A4", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "The foam is petroleum recalculated as a slow spring.",                            tagline: "A ball that remembers its shape - NASA foam at desk scale." },
     "mini-blender":     { code: "BL", acc: "#FF7A5C", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "Clear plastic is crude oil taught to disappear.",                                 tagline: "Poplawski's 1922 blades, shrunk into a bottle." },
     "portable-ssd":     { code: "SD", acc: "#E4E9F0", fam: "bauxite", ground: "A bauxite pit",     kind: "Pit",    quip: "Same red dirt, last stop: the shell your files sleep in.",                        tagline: "A data center in a coin pocket - no moving parts." },
-    "ballpoint-pen":    { code: "PN", acc: "#D8B04A", fam: "iron",    ground: "Iron ore benches",  kind: "Pit",    quip: "Iron benches feed every spring in every pen.",                                    tagline: "A carbide ball rolling in a paste of ink - Bíró's escaper." }
+    "ballpoint-pen":    { code: "PN", acc: "#D8B04A", fam: "iron",    ground: "Iron ore benches",  kind: "Pit",    quip: "Iron benches feed every spring in every pen.",                                    tagline: "A carbide ball rolling in a paste of ink - Bíró's escaper." },
+    "fridge-player":   { code: "FP", acc: "#FF4FA3", fam: "re",     ground: "A rare earth mine", kind: "Mine",   quip: "The disc on your fridge door was rock in Inner Mongolia last century.",            tagline: "Nine little records, one magnet, traced down to a pit the size of a town." }
   }
 };
 
@@ -89,5 +91,10 @@ window.UNPACKED_CREDITS = {
   "press-b":  { title: "LegoSpritzguss.JPG", licc: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:LegoSpritzguss.JPG" },
   "stamping": { title: "Deep Draw Line example by Pressteck Italy.jpg", licc: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Deep_Draw_Line_example_by_Pressteck_Italy.jpg" },
   "pen":      { title: "03-BICcristal2008-03-26.jpg", licc: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:03-BICcristal2008-03-26.jpg" },
-  "portable-ssd-smt-02": { title: "Smt_closeup.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Smt_closeup.jpg" }
+  "portable-ssd-smt-02": { title: "Smt_closeup.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Smt_closeup.jpg" },
+  "turntable": { title: "Crosley_Record_Player.jpg", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Crosley_Record_Player.jpg" },
+  "speaker": { title: "Lautsprecher 4-wege 2.jpg", licc: "CC BY-SA 2.5", url: "https://commons.wikimedia.org/wiki/File:Lautsprecher_4-wege_2.jpg" },
+  "neomagnet": { title: "NeoCube.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:NeoCube.jpg" },
+  "neodymium": { title: "Rareearthoxides.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Rareearthoxides.jpg" },
+  "mine": { title: "Baiyunebo ast 2006181.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Baiyunebo_ast_2006181.jpg" }
 };

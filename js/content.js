@@ -5048,5 +5048,155 @@ window.CONTENT = {
         },
       ],
     },
+
+    // =====================================================================
+    // OBJECT: Fridge Record Player (object #20, session 23)
+    // Echelon 0: object -> 1: parts -> 2: machine -> 3: material -> 4: source
+    // =====================================================================
+    {
+      id: "fridge-player",
+      name: "Fridge Record Player",
+      color: "#170F14",
+      nodes: [
+        {
+          id: "fridge-player-01",
+          name: "Fridge Record Player",
+          echelon: 0,
+          description:
+            "A palm-sized copy of this suitcase player, built to hang on the fridge door by magnet. Nine NFC discs ride its platter; tapping one picks the song stored on the 128 MB card while an LED pulses with the music.",
+          specs: [
+            { label: "Discs", value: "9", unit: "NFC" },
+            { label: "Memory", value: "128", unit: "MB" },
+            { label: "Mount", value: "Fridge magnet", unit: "" },
+            { label: "Light", value: "Rhythm LED", unit: "" },
+          ],
+          history:
+            "The 12-inch LP arrived in 1948; this player shrinks nine of them onto a card the size of a fingernail.",
+          process: [
+            "Build and test the main board",
+            "Fit speaker, motor and magnets",
+            "Load the card with songs",
+            "Pair and tap-test each disc",
+          ],
+          color: "#181410",
+          inputs: ["fridge-player-speaker-01", "fridge-player-magnet-01", "fridge-player-smt-02"],
+        },
+        {
+          id: "fridge-player-speaker-01",
+          name: "Micro Loudspeaker Driver",
+          echelon: 1,
+          description:
+            "This tower shows the design at full size: a paper cone glued to a surround, a voice coil hanging in a magnet gap, a basket holding the stack square. The player's driver is the same machine, shrunk to two inches.",
+          specs: [
+            { label: "Type", value: "Moving-coil cone", unit: "" },
+            { label: "Impedance", value: "4", unit: "Ω" },
+            { label: "Cone since", value: "1925", unit: "" },
+            { label: "Gap field", value: "NdFeB", unit: "" },
+          ],
+          history:
+            "Chester Rice and Edward Kellogg published the moving-coil cone loudspeaker in 1925.",
+          process: [
+            "Press the paper cone",
+            "Wind the voice coil",
+            "Glue cone to the surround",
+            "Seat the basket on its magnet",
+          ],
+          color: "#e0472b",
+          inputs: ["fridge-player-oxides-03"],
+        },
+        {
+          id: "fridge-player-magnet-01",
+          name: "Sintered NdFeB Magnet",
+          echelon: 1,
+          description:
+            "The disc on the back is sintered neodymium, plated nickel-copper-nickel on both faces: powder pressed in a magnetic field, baked below melting, then magnetized. Against the steel door it carries the whole player with margin.",
+          specs: [
+            { label: "Grade", value: "N35", unit: "" },
+            { label: "Max operating temp", value: "80", unit: "°C" },
+            { label: "Energy product", value: "33-36", unit: "MGOe" },
+            { label: "Plating", value: "Ni-Cu-Ni", unit: "" },
+          ],
+          history:
+            "General Motors' Magnequench put sintered NdFeB powder on the market in 1984.",
+          process: [
+            "Mill the alloy to powder",
+            "Press in a magnetic field",
+            "Sinter below melting",
+            "Plate, slice and magnetize",
+          ],
+          color: "#e0a52f",
+          inputs: ["fridge-player-oxides-03"],
+        },
+        {
+          id: "fridge-player-smt-02",
+          name: "SMT Assembly Line",
+          echelon: 2,
+          description:
+            "The player's board is built by the class of line shown in this closeup: paste printed onto pads, parts placed at machine speed, one pass through the reflow oven. Optical inspection reads every joint before it ships.",
+          specs: [
+            { label: "Throughput", value: "45000", unit: "cph" },
+            { label: "Placement", value: "0.05", unit: "mm" },
+            { label: "Peak reflow", value: "245", unit: "°C" },
+            { label: "After the oven", value: "Optical inspection", unit: "" },
+          ],
+          history:
+            "Surface-mount assembly grew out of IBM's 1960s Saturn guidance-computer boards.",
+          process: [
+            "Print solder paste on pads",
+            "Place parts at machine speed",
+            "Reflow at 245 degrees",
+            "Inspect every joint",
+          ],
+          color: "#5b7f96",
+          inputs: [],
+        },
+        {
+          id: "fridge-player-oxides-03",
+          name: "Rare Earth Oxides",
+          echelon: 3,
+          description:
+            "Before it is metal, the magnet is powder: the ore is roasted and leached until the rare earths come out in solution, then fished apart one element at a time. Seventeen of them leave the same vat; the player needs neodymium.",
+          specs: [
+            { label: "Family", value: "17", unit: "elements" },
+            { label: "Purity", value: "99", unit: "%" },
+            { label: "Separated by", value: "Solvent extraction", unit: "" },
+            { label: "Next step", value: "NdFeB alloy", unit: "" },
+          ],
+          history:
+            "Carl Auer von Welsbach isolated neodymium in 1885 and named it for the Greek for new birth.",
+          process: [
+            "Roast and leach the ore",
+            "Separate each element",
+            "Precipitate the oxides",
+            "Reduce into metal alloy",
+          ],
+          color: "#e0a52f",
+          inputs: ["fridge-player-mine-04"],
+        },
+        {
+          id: "fridge-player-mine-04",
+          name: "Rare Earth Mine",
+          echelon: 4,
+          description:
+            "The ground under all of it is Bayan Obo: an open pit in Inner Mongolia whose benches and tailings ponds hold more than forty percent of the world's known rare earth reserves, at a grade of about six percent REO.",
+          specs: [
+            { label: "Known reserves", value: "40+", unit: "% of world" },
+            { label: "REO grade", value: "6", unit: "%" },
+            { label: "China's REO output", value: "≈70", unit: "%" },
+            { label: "Discovered", value: "1927", unit: "" },
+          ],
+          history:
+            "Iron ore drew geologists to Bayan Obo in 1927; the rare earths in the same rock were recognized in 1935.",
+          process: [
+            "Drill and blast the benches",
+            "Haul ore to the crusher",
+            "Float and concentrate the rock",
+            "Ship to the separation plant",
+          ],
+          color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
   ],
 };

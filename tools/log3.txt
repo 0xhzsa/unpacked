@@ -1,0 +1,14 @@
+OK turntable.jpg <- Crosley_Record_Player.jpg | HomeSpot HQ | CC BY 2.0 | 1280x1293 | 474906B | https://commons.wikimedia.org/wiki/File:Crosley_Record_Player.jpg
+SIZED Fostex_FE206e_(modified)_full-range_drive_unit_loudspeaker,_using_a_whizzer_cone.jpg dim={'h': 513, 'w': 500} bytes=108301
+SIZED Rice_Kellogg_loudspeaker_1.jpg dim={'h': 706, 'w': 672} bytes=70255
+SIZED 4-Wege_Lautsprecher.jpg dim={'h': 1851, 'w': 810} bytes=515222
+FAILED speaker
+OK neomagnet.jpg <- Big_neodymium_magnet.jpg | Saimon (Researcher) | CC BY-SA 4.0 | 1280x854 | 126659B | https://commons.wikimedia.org/wiki/File:Big_neodymium_magnet.jpg
+MISS Neodymium_metal.jpg
+MISS Neodymium-2.jpg
+SIZED Neodymium_magnet_lifting_spheres.jpg dim={'h': 1200, 'w': 400} bytes=147552
+FAILED neodymium
+SIZED Baiyunebo_ast_2006181.jpg dim={'h': 480, 'w': 720} bytes=169208
+MISS Bingham_Canyon_Mine,_Utah.jpg
+SIZED Chuquicamata.jpg dim={'h': 480, 'w': 640} bytes=197502
+FAILED mine
