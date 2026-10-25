@@ -172,7 +172,7 @@ function WallView() {
     num.style.color = m.acc || '#F2EFE9';
     num.style.opacity = '.22';
     card.appendChild(num);
-    var topRow = div('flex items-center justify-between gap-2 mb-2', [
+    var topRow = div('flex items-center gap-2 mb-2', [
       chipCode(m.code || '??', m.acc || '#F2EFE9'),
       pill((ch.stops.length - 1) + ' STOPS DEEP')
     ]);
@@ -600,7 +600,7 @@ function wrapText(ctx, text, x, y, maxW, lineHeight) {
 /* ================= TRANSIT MAP ================= */
 function MapView() {
   var root = el('div', 'min-h-dvh relative');
-  var colW = 64, rowH = 104, padX = 46, padTop = 120, padBot = 200;
+  var colW = 128, rowH = 108, padX = 60, padTop = 120, padBot = 80;
   var maxE = 0;
   (C.chains || []).forEach(function (ch) { (ch.nodes || []).forEach(function (nd) { if (nd.echelon > maxE) maxE = nd.echelon; }); });
   var rows = maxE + 1;
@@ -620,7 +620,24 @@ function MapView() {
   svg.setAttribute('width', W); svg.setAttribute('height', H);
   svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
   scroll.appendChild(svg);
-  root.appendChild(scroll);
+  var mapWrap = div('relative');
+  mapWrap.appendChild(scroll);
+  var fadeL = el('div', 'pointer-events-none absolute inset-y-0 left-0 w-16 z-10');
+  fadeL.style.background = 'linear-gradient(to right, #0F0D10 22%, rgba(15,13,16,0) 100%)';
+  fadeL.style.opacity = '0';
+  var fadeR = el('div', 'pointer-events-none absolute inset-y-0 right-0 w-20 z-10');
+  fadeR.style.background = 'linear-gradient(to left, #0F0D10 22%, rgba(15,13,16,0) 100%)';
+  mapWrap.appendChild(fadeL); mapWrap.appendChild(fadeR);
+  var hint = el('div', 'pointer-events-none absolute bottom-2 right-4 z-10 font-tech text-[10px] tracking-[.2em] text-dim');
+  hint.textContent = 'SCROLL TO EXPLORE \u2192';
+  mapWrap.appendChild(hint);
+  scroll.addEventListener('scroll', function () {
+    var max = scroll.scrollWidth - scroll.clientWidth;
+    fadeR.style.opacity = scroll.scrollLeft < max - 8 ? '1' : '0';
+    fadeL.style.opacity = scroll.scrollLeft > 8 ? '1' : '0';
+    hint.style.opacity = scroll.scrollLeft > 24 ? '0' : '1';
+  });
+  root.appendChild(mapWrap);
 
   var NS = 'http://www.w3.org/2000/svg';
   function mk(tag, attrs, kids) {
@@ -697,8 +714,8 @@ function MapView() {
       g.appendChild(mk('title', {}, [])).textContent = nd.name + (isStop ? ' \u00B7 station' : ' \u00B7 map-only node');
       var label = isStop || isShared;
       if (label) {
-        var nm = nd.name.length > 15 ? nd.name.slice(0, 14) + '\u2026' : nd.name;
-        g.appendChild(mtext(p.x, p.y + 18, nm, { fill: isStop ? '#F2EFE9' : '#6E6670', 'font-size': isStop ? '9' : '8' }));
+        var nm = nd.name.length > 16 ? nd.name.slice(0, 15) + '\u2026' : nd.name;
+        g.appendChild(mtext(p.x, p.y + 18, nm, { fill: isStop ? '#F2EFE9' : '#6E6670', 'font-size': isStop ? '10' : '9' }));
       }
       g.addEventListener('click', function () { go('#/station/' + nd.id); });
       svg.appendChild(g);

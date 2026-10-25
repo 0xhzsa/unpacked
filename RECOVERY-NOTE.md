@@ -908,3 +908,13 @@ repointed from "cnc" -> the 4 new filenames; check-imgs now reports 0 unused.
 
 19 chains x 210 nodes x 223 links x **81 photo files** x 126 descent stops x 126 beats.
 
+
+## Session 21 addendum - fix pass + photo curation (2026-10-25)
+- app.js: Ride stage crossfade bug fixed (current photo layer never received .on -> black photo since v3); pins re-anchored (dot on authored point, flip + font-aware re-place); lighter photo grade; Ground uses .shot-scrim.
+- Wall: per-line accent bar, ghost numerals next to code chip (numeral/STOPS-pill collision fixed), 19-segment grounds meter (4px segs, wraps on mobile).
+- Map: colW 64->128 + padX 60 + label truncation 16 chars @ font 10/9 (labels were unreadable overlap mush); edge fades + "SCROLL TO EXPLORE" hint swapped out as you scroll.
+- room.jpg <- "Laptop and lamp on table (Unsplash).jpg" | Tatiana Lapina veila | CC0 | 1275px thumb (236057 bytes, JPEG magic FFD8FF) | unsplash.com/photos/E3I9thV98kQ
+- mug.jpg <- "Polka-dot mug (Unsplash).jpg" | andrea di anddante | CC0 | 1280px (596359 bytes, FFD8FF) | commons.wikimedia.org/wiki/File:Polka-dot_mug_(Unsplash).jpg
+- ceramic-mug-01 pins re-aimed onto the cup body/rim (was: bean field).
+- chair.jpg kept: corporate task chair matches "Mesh back" pins; museum antiques (MET/V&A, CC0) rejected for pin mismatch.
+- Gates: check-journey ALL OK, check-beats OK, check-imgs 81/81.
