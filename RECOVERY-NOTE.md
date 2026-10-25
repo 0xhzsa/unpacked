@@ -811,3 +811,100 @@ first run's log line was lost.)
 ### Session 20 facts base (updated honest-count)
 
 19 chains x 210 nodes x 223 links x **77 photo files** x 126 descent stops.
+
+## Session 21 (2026-10-27) - v3 full from-scratch visual + interaction rebuild
+
+User verdict on v2: "ass as fuck"; directive: strip the whole thing and redo from scratch,
+no intermediate check-ins ("i'm gonna look at the end"), not AI-sloppy. New UX model:
+Wall (pick) -> Ride the Line (tap-through story beats, IG-style progress bars, one giant
+number per beat) -> Touch the Ground (payoff + share card) -> full-screen Transit Map
+(19 colored lines, shared nodes = interchanges), 19/19 "grounds claimed" (localStorage).
+Content engine (journey.js 19 chains / 210 nodes / attribution ledger) untouched; beats
+replace narrations at render time.
+
+### Stack + files
+
+- Tailwind v4 compiled (npm i -D tailwindcss @tailwindcss/cli, Node v22.23.1): css/tw.src.css
+  -> css/app.css via @tailwindcss/cli v4.3.3 (608 ms, no errors).
+- Fonts self-hosted: 13 woff2 in assets/fonts + css/fonts.css.
+- NEW js/beats.js: 126 story beats (window.UNPACKED_BEATS keyed by stop id:
+  {h, b, stat:{v,u,l}, call:[{x,y,label,sub}]}) - validated via bval.js -> 0 problems,
+  0 warnings (2 manual-ok: magnet-power-bank-board-01 SoC singular, ballpoint-pen-grinder-02
+  sub-micron).
+- NEW js/meta.js: per-line code/acc/fam/ground/groundQuip/tagline + series copy + fam legend
+  (19 lines: KB/LT/CH/MG/DK/GL/BK/FN/CD/AR/BT/EB/MW/LS/PB/SB/BL/SD/PN).
+- NEW js/imgmap.js: 81 stop-id -> photo-filename entries (moved from old descent.js; verbatim
+  IMG map).
+- NEW index.html shell (self-hosted fonts, dark theme-color, v3 title/og).
+- NEW js/app.js (~900 lines): Wall, Ride the Line, Touch the Ground, Transit Map
+  (19 columns x echelon rows, shared-node rings), Station sheet, hash router, localStorage
+  claimed/visited, cover-crop pin math, canvas share card, affiliate wiring.
+- affiliate.js: +8 missing object keys (wireless-earbuds, matcha-whisk, led-strip,
+  magnet-power-bank, slow-rebound-ball, mini-blender, portable-ssd, ballpoint-pen). Tag ""
+  stays (buttons hidden).
+- Old files removed: js/story.js, js/descent.js, js/graph.js, js/press.js, css/style.css
+  (no remaining references except harmless comments).
+
+### Palette (19 line accents, no adjacent repeats in wall order)
+
+KB #FF6B8B, LT #FFD34D, CH #B18CFF, MG #66E8D2, DK #8FA0B5, GL #74E0FF, BK #E8E4D9,
+FN #FF8A3D, CD #FFA94D, AR #D9B98A, BT #5FA8E8, EB #FF4E5E, MW #8AC926, LS #59F07B,
+PB #C084FC, SB #00B3A4, BL #FF7A5C, SD #E4E9F0, PN #D8B04A.
+
+### Gates
+
+- check-journey.js: ALL OK (19 chains).
+- check-beats.js: OK (126/126, 2 manual-ok).
+- check-imgs.js: missing [] unused [] mapped 81 files: 81 (after SMT repoint).
+
+### SMT image pass (4 CNC-machinist photos replaced with real Commons photos)
+
+The 4 SMT/placement stops (desk-lamp-smt-02, led-strip-smt-02, magnet-power-bank-smt-02,
+portable-ssd-smt-02) were showing a CNC-machinist photo; replaced with real Commons
+"pick and place / SMT line" photos. Beats' call labels written generically ("The placement
+head / The reflow oven") so they match after replacement.
+
+| file | Commons title (exact) | artist | license | verify | dims | size |
+|---|---|---|---|---|---|---|
+| desk-lamp-smt-02.jpg | Pick_and_place_internals_of_surface_mount_machine.JPG | Peripitus | CC BY-SA 3.0 | 1600px thumb, JPEG magic FFD8FF, width 1138 | 1138 px wide | 308965 bytes |
+| led-strip-smt-02.jpg | Pick_and_place_internals_of_surface_mount_machine.JPG | Peripitus | CC BY-SA 3.0 | 1600px thumb, JPEG magic FFD8FF, width 1138 | 1138 px wide | 308965 bytes |
+| magnet-power-bank-smt-02.jpg | Reflow_oven.jpg | (Commons file) | (Commons file) | 1600px thumb, JPEG magic FFD8FF, width 1440 | 1440 px wide | 461582 bytes |
+| portable-ssd-smt-02.jpg | Reflow_oven.jpg | (Commons file) | (Commons file) | 1600px thumb, JPEG magic FFD8FF, width 1440 | 1440 px wide | 461582 bytes |
+
+Fetched via Special:FilePath with browser UA; JPEG magic (FFD8FF) + width verified. imgmap.js
+repointed from "cnc" -> the 4 new filenames; check-imgs now reports 0 unused.
+
+### Copy-quality rules enforced
+
+- No em-dashes, no "it's not X it's Y" reveals, no invented numbers; every beat stat sourced
+  from journey/content specs; beat `call` labels reference what's actually IN each photo.
+- Known data conflicts dodged in copy: journey ceiling-fan 9 blades vs content 5 (journey wins);
+  steel-desk object 1.5mm vs 1.2mm (object uses 1200mm stat); candle chimney "1.5 mm" narration
+  vs 1.2mm spec (written as "a millimeter and a bit").
+- Room beats standardized: stat {stops count, "we end in <ground>"}; ground beats (final stop)
+  are payoff copy keyed to stop id.
+- Standing: Wikimedia compliance (browser UA, >=6s pacing, byte-verification); never fabricate
+  attribution; don't claim "N shared sources" (say "19 chains end in 13 grounds"); never touch
+  OpenCode session DB.
+- Affiliate layer untouched (tag "" = buttons hidden); 8 missing object keys added when wiring
+  slabs.
+
+### QA
+
+- serve.js running on 8931 (PID sh_171ef697a001jvopy6WhYDDasK).
+- shot.js captures at 1280x900 and 390x844 for Wall, Ride, Map - all report iw/sw match,
+  bad[] empty (no overflow).
+- Screenshot files saved under C:\Users\stagh\AppData\Local\Temp\opencode\ (v3-wall-d.png,
+  v3-wall-m.png, v3-ride-d.png, v3-map-d.png).
+
+### Deferred
+
+- OG image regen (og.jpg still old banagale cover; og meta updated to v3 title).
+- Credits/attribution ledger: station sheet falls back to generic "Wikimedia Commons" credit;
+  full 77-file attribution map not yet built (fetch logs + RECOVERY-NOTE hold audit trail).
+- ballpoint-pen-grinder-02 keeps its CNC photo + journey calls intentionally.
+
+### Session 21 facts base (updated honest-count)
+
+19 chains x 210 nodes x 223 links x **81 photo files** x 126 descent stops x 126 beats.
+

@@ -38,7 +38,15 @@ window.UNPACKED_AFFILIATE = {
     "ceiling-fan":    "ceiling fan",
     "candle":         "scented candle",
     "armchair":       "rattan armchair",
-    "insulated-bottle": "40 oz insulated tumbler"
+    "insulated-bottle": "40 oz insulated tumbler",
+    "wireless-earbuds": "wireless earbuds",
+    "matcha-whisk": "matcha whisk chasen",
+    "led-strip": "led strip lights",
+    "magnet-power-bank": "magnetic power bank",
+    "slow-rebound-ball": "slow rebound squishy ball",
+    "mini-blender": "portable blender",
+    "portable-ssd": "portable ssd",
+    "ballpoint-pen": "ballpoint pen"
   },
 
   // Honest, required disclosure. Shown in small print with the button.

@@ -1,6 +1,6 @@
 const fs = require('fs');
-const d = fs.readFileSync('js/descent.js', 'utf8');
-const start = d.indexOf('var IMG');
+const d = fs.readFileSync('js/imgmap.js', 'utf8');
+const start = d.indexOf('{', d.indexOf('UnpackedIMG'));
 const b = d.slice(start, d.indexOf('};', start));
 const n = [...new Set([...b.matchAll(/:\s*"([a-z0-9-]+)"/g)].map(m => m[1]))];
 const h = new Set(fs.readdirSync('assets/img').filter(f => f.endsWith('.jpg')).map(f => f.slice(0, -4)));

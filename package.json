@@ -1,0 +1,27 @@
+{
+  "name": "unpacked",
+  "version": "1.0.0",
+  "description": "**Everything in an ordinary room, traced all the way down to the ground it came from.**",
+  "main": "check-imgs.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xhzsa/unpacked.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0xhzsa/unpacked/issues"
+  },
+  "homepage": "https://github.com/0xhzsa/unpacked#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

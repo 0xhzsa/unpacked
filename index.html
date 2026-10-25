@@ -3,20 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UNPACKED — everything in the room, and what it took</title>
-<meta name="description" content="Start in an ordinary room, then zoom inward: keyboard → keycap → injection press → the steel mold → ABS pellets → crude oil. An interactive engineer's answer to I, Pencil.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f6f7f2'/%3E%3Crect x='10' y='10' width='44' height='8' fill='%23181410'/%3E%3Crect x='10' y='26' width='30' height='8' fill='%23e0472b'/%3E%3Crect x='10' y='42' width='18' height='8' fill='%235c564c'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://api.fontshare.com">
-<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,600,700,800&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<title>UNPACKED — pick a line, ride it to the ground</title>
+<meta name="description" content="Nineteen ordinary objects in one room. Pick a line and ride it down: every machine, mine, forest and well behind it, stop by stop, every stat verified.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317141B'/%3E%3Ccircle cx='32' cy='25' r='9' fill='%23FF6B8B'/%3E%3Crect x='18' y='40' width='28' height='4' rx='2' fill='%23F2EFE9'/%3E%3Crect x='24' y='48' width='16' height='4' rx='2' fill='%236E6670'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/app.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="UNPACKED">
-<meta property="og:title" content="UNPACKED — everything in the room, and what it took">
-<meta property="og:description" content="Pick an object in an ordinary room and zoom down its supply chain — plastic, steel, clay, glass — all the way to the mine, forest or well it came from.">
+<meta property="og:title" content="UNPACKED — pick a line, ride it to the ground">
+<meta property="og:description" content="Pick an object in an ordinary room and zoom down its supply chain: plastic, steel, clay, glass, all the way to the mine, forest or well it came from.">
 <meta property="og:url" content="https://0xhzsa.github.io/unpacked/">
 <meta property="og:image" content="https://0xhzsa.github.io/unpacked/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -24,127 +19,23 @@
 <meta property="og:image:alt" content="UNPACKED — the wordmark beside a mosaic of nineteen everyday objects: keyboard, lamp, chair, mug, desk, window, book, fan, candle, armchair, bottle, earbuds, whisk, light strip, power bank, ball, blender, SSD and pen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://0xhzsa.github.io/unpacked/assets/og.jpg">
-<meta name="twitter:title" content="UNPACKED — everything in the room, and what it took">
-<meta name="twitter:description" content="Pick an object in an ordinary room and zoom down its supply chain — plastic, steel, clay, glass — all the way to the mine, forest or well it came from.">
-<meta name="theme-color" content="#f6f7f2">
+<meta name="twitter:title" content="UNPACKED — pick a line, ride it to the ground">
+<meta name="twitter:description" content="Pick an object in an ordinary room and zoom down its supply chain: plastic, steel, clay, glass, all the way to the mine, forest or well it came from.">
+<meta name="theme-color" content="#0F0D10">
+<script defer src="js/content.js"></script>
+<script defer src="js/journey.js"></script>
+<script defer src="js/beats.js"></script>
+<script defer src="js/meta.js"></script>
+<script defer src="js/imgmap.js"></script>
+<script defer src="js/affiliate.js"></script>
+<script defer src="js/app.js"></script>
 </head>
 <body>
-
-<!-- ============ FULL-BLEED SCENE STAGE (two layers = zoom transition) ============ -->
-<div id="stage">
-  <div class="slide" data-layer="cur"><div class="img"></div></div>
-  <div class="slide" data-layer="next"><div class="img"></div></div>
-</div>
-
-<div id="grade"></div>
-<div id="scrim"></div>
-
-<!-- leader-line callouts -->
-<div id="anno"></div>
-
-<!-- ============ TEXT COLUMN (one idea per screen; detail on demand) ============ -->
-<div id="content">
-  <div id="kicker"></div>
-  <h1 id="headline"></h1>
-  <p id="narration"></p>
-  <div id="actions"></div>
-  <button id="details-toggle" type="button">The details +</button>
-  <div id="details">
-    <div id="specs"></div>
-    <div id="history"></div>
+<noscript>
+  <div style="font-family: monospace; padding: 2rem; color: #F2EFE9; background: #0F0D10;">
+    UNPACKED needs JavaScript. Every photo and stat on this site is real; the ride itself runs in the browser.
   </div>
-</div>
-
-<!-- ============ DIVE AFFORDANCE (unmissable "go deeper" cue) ============ -->
-<div id="cue" role="button" tabindex="0" aria-label="Go deeper">
-  <span class="cwrap"><span class="carr">↓</span><span class="carr ghost">↓</span></span>
-  <span class="cw" id="cue-text">Scroll to dive in</span>
-</div>
-
-<!-- ============ DEPTH METER ============ -->
-<nav id="depth" aria-hidden="true"></nav>
-
-<!-- ============ PROGRESS ============ -->
-<div id="pips"></div>
-
-<!-- ============ CONTROLS ============ -->
-<div id="controls">
-  <button class="cbtn ghost" id="btn-back">↑ Back</button>
-  <button class="cbtn primary" id="btn-next">Descend ↓</button>
-</div>
-
-<!-- ============ HEADER ============ -->
-<header>
-  <div class="brand">
-    <span class="mk"></span>
-    <span class="nm">UNPACKED</span>
-    <span class="sub" id="brand-sub">an engineer's “I, Pencil”</span>
-  </div>
-  <div class="hbtns">
-    <button class="hbtn" id="btn-objects">All objects</button>
-    <button class="hbtn" id="btn-room">The whole room</button>
-  </div>
-</header>
-
-<!-- ============ HOME ============ -->
-<div id="home">
-  <div class="eyebrow">POV: your desk is a supply chain</div>
-  <div class="htitle">UN&shy;<span>PACKED</span></div>
-  <div class="hlead">
-    19 ordinary objects, chased part by part down to the ground they came from.
-    The keycap was oil. The mug was a mountain. The window was sand. Pick one. Descend.
-  </div>
-  <div class="hows">
-    <div class="how"><span class="ni">01</span><b>Pick an object</b><i>Anything here carries its whole past.</i></div>
-    <div class="how"><span class="ni">02</span><b>Descend</b><i>Zoom inward, one part at a time.</i></div>
-    <div class="how"><span class="ni">03</span><b>Touch the ground</b><i>Every story ends in a mine, a well or a grove.</i></div>
-  </div>
-  <div class="hkeys">or press 1–9 · 0 · – = · q–u · g for the whole room</div>
-  <div id="picker"></div>
-  <div class="pfoot">Photos: Wikimedia Commons · CC BY / CC BY-SA · per-file credits in RECOVERY-NOTE.md</div>
-</div>
-
-<!-- ============ STORY: the scroll-through field note ============ -->
-<div id="story" aria-hidden="true"></div>
-
-<!-- ============ FINALE: THE WHOLE ROOM ============ -->
-<div id="finale">
-  <div class="fhead">
-    <div class="brand"><span class="mk"></span><span class="nm" id="finale-title">THE WHOLE ROOM</span></div>
-    <div class="hbtns">
-      <button class="hbtn" id="finale-toggle">This object only</button>
-      <button class="hbtn" id="finale-close">Back ↓</button>
-    </div>
-  </div>
-  <canvas id="full-graph"></canvas>
-  <div class="quote" id="finale-quote"></div>
-</div>
-
-<!-- ============ PRESS SIM OVERLAY ============ -->
-<div id="press-overlay">
-  <div class="panel">
-    <div class="ph">
-      <span class="nm mono" id="press-title">INJECTION MOLDING CYCLE</span>
-      <span class="hbtns">
-        <button class="hbtn" data-speed="0.5">0.5×</button>
-        <button class="hbtn" data-speed="1">1×</button>
-        <button class="hbtn" data-speed="2">2×</button>
-        <button class="hbtn" id="press-close">Close ✕</button>
-      </span>
-    </div>
-    <canvas id="press-canvas"></canvas>
-    <div class="cap" id="press-cap"></div>
-  </div>
-</div>
-
-<div id="grain"></div>
-
-<script src="js/content.js"></script>
-<script src="js/journey.js"></script>
-<script src="js/graph.js"></script>
-<script src="js/press.js"></script>
-<script src="js/affiliate.js"></script>
-<script src="js/descent.js"></script>
-<script src="js/story.js"></script>
+</noscript>
+<div id="app" class="min-h-dvh"></div>
 </body>
 </html>
