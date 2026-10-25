@@ -19,7 +19,7 @@
     "keyboard-01": "keyboard",
     "keyboard-spring-01": "spring",
     "keyboard-keycap-01": "keycap",
-    "keyboard-inj-02": "press",
+    "keyboard-inj-02": "press-a",
     "keyboard-mold-tooling": "mold",
     "keyboard-abs-03": "pellets",
     "keyboard-petroleum-04": "oil",
@@ -36,7 +36,7 @@
     "office-chair-room": "room",
     "office-chair-01": "chair",
     "office-chair-base-01": "chaibase",
-    "office-chair-injection-02": "press",
+    "office-chair-injection-02": "press-b",
     "office-chair-pa-03": "pellets",
     "office-chair-petroleum-04": "oil",
 
@@ -46,7 +46,7 @@
     "ceramic-mug-body-01": "kiln",
     "ceramic-mug-pugmill-02": "pugmill",
     "ceramic-mug-kaolin-03": "clay",
-    "ceramic-mug-kaolinmine-04": "mine",
+    "ceramic-mug-kaolinmine-04": "minekaolin",
 
     // steel desk
     "steel-desk-room": "room",
@@ -54,7 +54,7 @@
     "steel-desk-top-01": "steel",
     "steel-desk-press-02": "stamping",
     "steel-desk-spcc-03": "foundry",
-    "steel-desk-ironore-04": "mine",
+    "steel-desk-ironore-04": "mineiron2",
 
     // float glass window
     "glass-window-room": "room",
@@ -82,7 +82,7 @@
     "ceiling-fan-hardware-01": "screw",
     "ceiling-fan-stamping-02": "stamping",
     "ceiling-fan-magwire-03": "magwire",
-    "ceiling-fan-copper-04": "mine",
+    "ceiling-fan-copper-04": "minecopper",
 
     // candle
     "candle-room": "room",
@@ -108,7 +108,7 @@
     "insulated-bottle-lid-01": "lid",
     "insulated-bottle-press-02": "stamping",
     "insulated-bottle-coil-03": "coil",
-    "insulated-bottle-ironmine-04": "mine",
+    "insulated-bottle-ironmine-04": "mineiron3",
     // wireless earbuds
     "wireless-earbuds-room": "room",
     "wireless-earbuds-01": "earbuds",
@@ -116,7 +116,7 @@
     "wireless-earbuds-cell-01": "battery",
     "wireless-earbuds-coiler-02": "magwire",
     "wireless-earbuds-magnets-03": "magnets",
-    "wireless-earbuds-coppermine-04": "mine",
+    "wireless-earbuds-coppermine-04": "minecopper3",
 
     // matcha whisk
     "matcha-whisk-room": "room",
@@ -133,7 +133,7 @@
     "led-strip-fpcb-01": "pcb",
     "led-strip-smt-02": "cnc",
     "led-strip-copper-03": "magwire",
-    "led-strip-mine-04": "mine",
+    "led-strip-mine-04": "minecopper2",
 
     // magnetic power bank
     "magnet-power-bank-room": "room",
@@ -142,13 +142,13 @@
     "magnet-power-bank-board-01": "pb-internals",
     "magnet-power-bank-smt-02": "cnc",
     "magnet-power-bank-magnets-03": "magnets",
-    "magnet-power-bank-saltlake-04": "sand",
+    "magnet-power-bank-saltlake-04": "saltflat",
 
     // slow-rebound ball
     "slow-rebound-ball-room": "room",
     "slow-rebound-ball-01": "stressball",
     "slow-rebound-ball-mold-tooling": "mold",
-    "slow-rebound-ball-mill-02": "press",
+    "slow-rebound-ball-mill-02": "castfoam",
     "slow-rebound-ball-foam-03": "pellets",
     "slow-rebound-ball-oil-04": "oil",
 
@@ -157,14 +157,14 @@
     "mini-blender-01": "blender",
     "mini-blender-motor-01": "coil",
     "mini-blender-blades-01": "stamping",
-    "mini-blender-inj-02": "press",
+    "mini-blender-inj-02": "press-c",
     "mini-blender-pellets-03": "pellets",
     "mini-blender-oil-04": "oil",
 
     // portable ssd
     "portable-ssd-room": "room",
     "portable-ssd-01": "ssd",
-    "portable-ssd-controller-01": "pb-internals",
+    "portable-ssd-controller-01": "ssdpcb",
     "portable-ssd-nand-01": "pcb",
     "portable-ssd-smt-02": "cnc",
     "portable-ssd-alum-03": "aluminum",
@@ -177,7 +177,7 @@
     "ballpoint-pen-spring-01": "spring",
     "ballpoint-pen-grinder-02": "cnc",
     "ballpoint-pen-carbide-03": "carbide",
-    "ballpoint-pen-mine-04": "mine"
+    "ballpoint-pen-mine-04": "mineiron"
   };
   window.UnpackedIMG = IMG;   // shared with story.js (single source of truth)
 

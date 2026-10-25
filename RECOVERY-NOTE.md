@@ -728,4 +728,86 @@ cross-reference; phrase as "the 19 chains end in 13 grounds".
 
 ### Honest-count facts (verify with stats.js pattern before citing)
 
-19 chains · 210 nodes · 223 links · 66 photo files · 126 descent stops.
+19 chains · 210 nodes · 223 links · 77 photo files · 126 descent stops.
+
+## Session 19 (2026-10-25) - design v2 "blend" skin, shipped and pushed (07dcaef)
+
+Third full re-art-direction, shipped live: B's stage-consumption layout merged with
+session-18's ink/annotation identity. `css/style.css` v2 under the same selector
+contract (no layout markup moved); fonts switched to Fontshare `cabinet-grotesk@
+500,600,700,800` + `general-sans@400,500,600` + IBM Plex Mono (Cabinet 600 silently
+dropped by Fontshare - harmless, CSS uses 500/700/800); hero eyebrow "POV: your desk
+is a supply chain", wordmark brick "PACKED", lede "The keycap was oil. The mug was a
+mountain. The window was sand. Pick one. Descend."; header opacity 0.97 (kills the
+chapter-text ghost scrolling under the bar). Index cards open STORY (`openStory`);
+the scroll-descent in descent.js is dead code while story.js exists. QA at
+1280x900 + 390x844: home, story hero, story ledger, finale all green. Known item
+queued for the hooks pass: story tagline/narration duplication ("Eighty-seven tiny
+machines" shows twice in the keyboard story).
+
+## Session 20 (2026-10-25/27) - image re-sourcing pass (15 flagged slots -> real Commons photography)
+
+Replaced the remaining placeholder/wrong photos with sourced, verified Commons files.
+Pipeline identical to the attribution-recovery pass above: browser UA, >= 6 s pacing
+between Commons ops, byte-verify originals (local SHA-1 == API sha1) or standard-width
+thumbs (1920/1280 via API `thumburl`; verify JPEG magic FFD8FF + width within +/-4 of
+the requested standard width). No fabricated attribution anywhere; notes are kept
+because `amp;` entities / 40-char truncation can mangle artist strings in the fetch log.
+
+### IMG map rewiring (js/descent.js, 13 keyed edits; window.UnpackedIMG is shared with story.js)
+
+- 7 `mine` slots -> per-mineral files: mug `kaolinmine-04`->minekaolin; steel desk
+  `ironore-04`->mineiron2; ceiling fan `copper-04`->minecopper; bottle `ironmine-04`->
+  mineiron3; earbuds `coppermine-04`->minecopper3; LED strip `mine-04`->minecopper2;
+  ballpoint pen `mine-04`->mineiron.
+- 3 `press` slots -> press-a (keyboard `inj-02`), press-b (office chair `injection-02`),
+  press-c (mini blender `inj-02`).
+- slow-rebound ball `mill-02`->castfoam ("The Casting Line", RIM + molded PU foam).
+- power bank `saltlake-04`->saltflat (was WRONGLY showing sand.jpg).
+- portable SSD `controller-01`->ssdpcb.
+- Files overwritten in place (no map change needed): sand.jpg (Leziate quarry; serves
+  window + candle stops), magnets.jpg, ledreel.jpg, ssd.jpg.
+- Deleted after rewiring: `assets/img/mine.jpg`, `assets/img/press.jpg`.
+- Gates green after the pass: `check-journey` ALL OK (19 chains); `check-imgs` missing[]
+  unused[] mapped 77 / files 77.
+
+### Final shipped sources (17 files) - title | artist | license | verify | dims | size
+
+| file | Commons title (exact) | artist | license | verify | dims | size |
+|---|---|---|---|---|---|---|
+| minekaolin.jpg | China clay pit, Wheal Martyn 1.jpg | AtticTapestry | CC BY-SA 4.0 | original SHA-1 | 1600x1200 | 615 KB |
+| mineiron.jpg | 2025-01-18 Hull-Rust-Mahoning Open Pit Iron Mine, view from visitor center.jpg | Minnesota Historical Society Heritage Preservation Department | CC BY 4.0 | 1920px thumb (orig 4624x2729) | 1920x1133 | (git history) |
+| mineiron2.jpg | Schefferville open pit mining for iron ore.jpg | Matti&Keti; Lorenz.King at JLU Giessen | CC BY-SA 4.0 | 1920px thumb | 1920x1280 | 593 KB |
+| mineiron3.jpg | One of the iron ore mines in Keonjhar district.jpg | Bikashkumargiri1997 | CC BY-SA 4.0 | 1920px thumb | 1920x1440 | 440 KB |
+| minecopper.jpg | 2019 Bingham Canyon Mine 02.jpg | Farragutful | CC BY-SA 4.0 | 1920px thumb | 1920x1440 | 1252 KB |
+| minecopper2.jpg | Elshitsa-open-pit-copper-mine.jpg | Edal Anton Lefterov | CC BY-SA 3.0 | 1920px thumb | 1920x1280 | 444 KB |
+| minecopper3.jpg | Mina de Chuquicamata, Calama, Chile, 2016-02-01, DD 110-112 PAN.JPG | Diego Delso | CC BY-SA 4.0 | 1920px thumb | 1920x957 | 675 KB |
+| press-a.jpg | Arburg-swiss plastic 2026.jpg | Bricetofly | CC0 | 1920px thumb | 1920x1278 | 361 KB |
+| press-b.jpg | Injection Molding Machine with a robot arm.jpg | The robotic engineer1 | CC BY-SA 4.0 | 1920px thumb | 1920x1081 | 675 KB |
+| press-c.jpg | Machine injection platique Engel (4).jpg | Bricetofly | CC0 | 1920px thumb | 1920x2886 | 658 KB |
+| castfoam.jpg | Molded polyurethane foam.JPG | Silverchemist at English Wikipedia | CC BY-SA 3.0 | 1920px thumb | 1920x1440 | 221 KB |
+| saltflat.jpg | Salar de Olaroz, Jujuy, Argentina.jpg | Coordenação-Geral de Observação da Terra/INPE | CC BY-SA 2.0 | 1920px thumb | 1920x1079 | 519 KB |
+| ssdpcb.jpg | Intenso 2.5- 128 GB SATA III SSD - board - Silicon Motion SM2246EN-40585.jpg | Raimond Spekking | CC BY-SA 4.0 | 1280px thumb | 1280x1280 | 492 KB |
+| sand.jpg | Silica sand excavation, Leziate, Norfolk - geograph.org.uk - 2050948.jpg | Richard Humphrey | CC BY-SA 2.0 | 1920px thumb | 1920x1440 | 829 KB |
+| magnets.jpg | Bar-magnets-attracting-iron-filings max.jpg | MikeRun, Vera Wurmsdobler | CC BY-SA 4.0 | 1920px thumb | 1920x1102 | 661 KB |
+| ledreel.jpg | Light blue LED strip.jpg | Nashucks | CC0 | 1920px thumb | 1920x1100 | 414 KB |
+| ssd.jpg | SanDisk Extreme Portable SSD 1 TB - front view.jpg | ITEagle Europe - Sebastiaan Broekhoven | CC BY-SA 4.0 | 1280px thumb | 1280x1280 | 348 KB |
+
+(mineiron2 artist recorded from extmetadata; the fetch log truncates the raw entity
+"Matti&amp;Keti; Lorenz.King at JLU Giess..." at 40 chars - the decoded form is
+written here. mineiron credits recovered via a second imageinfo query because the
+first run's log line was lost.)
+
+### Fetched-then-rejected (NOT shipped; superseded by the table above)
+
+- "Injection moulding machine.jpeg" (Justjainz) -> first press-b; rejected on visual
+  quality (grimy/blurry) in review.
+- "Injection molding machine clamping unit.jpg" (PedroCalamaro) -> first press-c;
+  flat vector cutaway with baked-in "Clamping Unit" text - clashes with the
+  all-photography image set.
+- "Neodymium magnet 1140509.jpg" (Nevit Dilmen) -> first magnets.jpg; foil-wrapped
+  object in a glass bowl, zero magnet read.
+
+### Session 20 facts base (updated honest-count)
+
+19 chains x 210 nodes x 223 links x **77 photo files** x 126 descent stops.
