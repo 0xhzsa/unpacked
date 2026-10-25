@@ -163,7 +163,7 @@ window.addEventListener('resize', function () { if (placement) placement(); });
 
 /* ================= WALL ================= */
 function WallView() {
-  var root = el('div', 'relative min-h-dvh');
+  var root = el('div', 'relative min-h-dvh overflow-x-hidden');
 
   var back = el('div', 'fixed inset-0');
   back.appendChild(shotLayer('assets/img/room.jpg', 'absolute inset-0 wallkbd'));
