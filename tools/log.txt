@@ -1,0 +1,10 @@
+SIZED Weipa-bauxite-mine.jpg dim={'h': 209, 'w': 314} bytes=44564
+SIZED BauxiteUSGOV.jpg dim={'h': 451, 'w': 600} bytes=79406
+OK bauxite.jpg <- Bauxite_with_unweathered_rock_core._C_021.jpg | Werner Schellmann | CC BY-SA 2.5 | 1280x830 | 307536B | https://commons.wikimedia.org/wiki/File:Bauxite_with_unweathered_rock_core._C_021.jpg
+OK clay.jpg <- Kaolinite from Twiggs County in Georgia in USA.jpg | James St. John   https://www.flickr.com/people/jsjgeology?rb=1 | CC BY 2.0 | 1280x892 | 240427B | https://commons.wikimedia.org/wiki/File:Kaolinite_from_Twiggs_County_in_Georgia_in_USA.jpg
+OK batch.jpg <- Pitted sand grains Western Desert.jpg | Wilson44691 | CC0 | 1280x960 | 265762B | https://commons.wikimedia.org/wiki/File:Pitted_sand_grains_Western_Desert.jpg
+SIZED Screws.jpg dim={'h': 198, 'w': 300} bytes=32980
+OK screw.jpg <- Lag screw (05).jpg | Rasbak | CC BY-SA 3.0 | 1280x1814 | 356391B | https://commons.wikimedia.org/wiki/File:Lag_screw_(05).jpg
+SIZED Chalot tenons mortaises.jpg dim={'h': 413, 'w': 550} bytes=77546
+OK frame.jpg <- Stool with woven seat MET 14.10.3 view 4.jpg |  | CC0 | 1280x1029 | 223836B | https://commons.wikimedia.org/wiki/File:Stool_with_woven_seat_MET_14.10.3_view_4.jpg
+OK carbide.jpg <- Tungsten carbide inserts.jpg | Mauro Cateb | CC BY-SA 4.0 | 1280x1095 | 241937B | https://commons.wikimedia.org/wiki/File:Tungsten_carbide_inserts.jpg
