@@ -147,13 +147,13 @@ function WallView() {
   var back = el('div', 'fixed inset-0');
   back.appendChild(shotLayer('assets/img/room.jpg', 'absolute inset-0'));
   var fade = el('div', 'fixed inset-0 pointer-events-none');
-  fade.style.background = 'linear-gradient(to bottom, rgba(15,13,16,.86) 0%, rgba(15,13,16,.55) 35%, rgba(15,13,16,.9) 100%)';
+  fade.style.background = 'linear-gradient(to bottom, rgba(15,13,16,.8) 0%, rgba(15,13,16,.44) 38%, rgba(15,13,16,.88) 100%)';
   root.appendChild(back); root.appendChild(fade);
 
   var content = div('relative max-w-2xl mx-auto px-4 pt-10 pb-14 min-h-dvh');
 
-  var head = div('flex items-end justify-between gap-3 mb-2 a-rise', [
-    fill(el('h1', 'font-disp font-bold text-4xl tracking-tight'), [SERIES.name || 'UNPACKED']),
+  var head = div('flex flex-wrap items-end justify-between gap-x-3 gap-y-2 mb-2 a-rise', [
+    fill(el('h1', 'font-disp font-bold text-3xl sm:text-4xl tracking-tight'), [SERIES.name || 'UNPACKED']),
     meterChip()
   ]);
   var sub = el('p', 'text-fog text-sm mb-8');
@@ -163,14 +163,20 @@ function WallView() {
   var grid = el('div', 'grid grid-cols-1 sm:grid-cols-2 gap-3');
   chains.forEach(function (ch, i) {
     var m = LINES[ch.id] || {};
-    var card = btn('press text-left bg-ink2/75 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:border-white/25 transition-colors', null, function () { go('#/line/' + ch.id); });
+    var card = btn('press text-left relative overflow-hidden bg-ink2/80 border border-white/10 rounded-xl pl-4 pr-9 py-4 hover:border-white/25 transition-colors', null, function () { go('#/line/' + ch.id); });
     card.style.animationDelay = (i * 28) + 'ms';
     card.classList.add('a-rise');
+    card.style.borderLeft = '3px solid ' + (m.acc || '#F2EFE9');
+    var num = span('absolute top-1 right-2 font-disp font-bold text-4xl select-none pointer-events-none');
+    num.textContent = String(i + 1).padStart(2, '0');
+    num.style.color = m.acc || '#F2EFE9';
+    num.style.opacity = '.22';
+    card.appendChild(num);
     var topRow = div('flex items-center justify-between gap-2 mb-2', [
       chipCode(m.code || '??', m.acc || '#F2EFE9'),
       pill((ch.stops.length - 1) + ' STOPS DEEP')
     ]);
-    var name = fill(el('h2', 'font-disp font-semibold text-xl leading-snug'), [ch.name]);
+    var name = fill(el('h2', 'font-disp font-semibold text-2xl leading-snug tracking-tight'), [ch.name]);
     var tag = el('p', 'text-fog text-[13px] leading-snug mt-1');
     tag.textContent = ch.tagline || '';
     var foot = div('flex items-center justify-between mt-3 text-[11px] font-tech', []);
@@ -198,8 +204,15 @@ function WallView() {
 
   function meterChip() {
     var c = btn(null, null, function () { go('#/map'); });
-    c.className = 'font-tech text-[11px] tracking-[.14em] px-3 py-2 rounded-full border border-white/15 bg-ink2/70 backdrop-blur press';
-    fill(c, [span(null, [String(claimedSet.size) + '/' + tour.lines]), span('text-dim', [' GROUNDS'])]);
+    c.className = 'press flex items-center gap-2 px-3 py-2 rounded-full border border-white/15 bg-ink2/70 backdrop-blur';
+    var segs = div('flex gap-[2px]', []);
+    chains.forEach(function (ch2) {
+      var seg = el('i', 'block w-[4px] h-3 rounded-[1px]');
+      var lm = LINES[ch2.id] || {};
+      seg.style.background = claimedSet.has(ch2.id) ? (lm.acc || '#F2EFE9') : 'rgba(255,255,255,.14)';
+      segs.appendChild(seg);
+    });
+    fill(c, [segs, span('font-tech text-[10px] tracking-[.14em] text-fog', [claimedSet.size + '/' + tour.lines + ' GROUNDS'])]);
     return c;
   }
 }
@@ -229,6 +242,10 @@ function RideView(chainId, idx) {
   if (leaving) { baseLayer = shotLayer(leaving, 'absolute inset-0 is on'.replace(' is', '')); baseLayer.classList.add('s'); baseLayer.classList.add('on'); stage.appendChild(baseLayer); }
   var curLayer = shotLayer(src, 'absolute inset-0 s');
   stage.appendChild(curLayer);
+  var vivid = function () { curLayer.classList.add('on'); };
+  var cim = curLayer.querySelector('img');
+  if (cim.complete && cim.naturalWidth > 0) vivid();
+  else { cim.addEventListener('load', vivid); cim.addEventListener('error', vivid); }
 
   var wrap = el('div', 'fixed inset-0 overflow-hidden bg-ink');
   wrap.appendChild(stage);
@@ -241,20 +258,36 @@ function RideView(chainId, idx) {
       var box = currentBox(), src2 = imgSrc(me.id);
       holder.replaceChildren();
       if (!beat || !beat.call || !src2) return;
+      /* safe rect: keep pins clear of the top chrome and the bottom card */
+      var safeTop = 64, safeSide = 12;
+      var cardEl = wrap.querySelector(':scope > .absolute.bottom-0');
+      var safeBottom = cardEl ? Math.max(safeTop + 40, cardEl.getBoundingClientRect().top - 44) : box.h - 24;
       var file = IMG[me.id];
       dimsFor('assets/img/' + file + '.jpg', function (dim) {
         beat.call.forEach(function (c) {
           var pt = coverPoint({ x: c.x, y: c.y }, box, dim);
+          var x = Math.min(Math.max(pt.x, safeSide), box.w - safeSide);
+          var y = Math.min(Math.max(pt.y, safeTop), safeBottom);
           var pin = div('pin', null);
-          pin.style.left = pt.x + 'px'; pin.style.top = pt.y + 'px';
-          var dot = el('span', 'pdot block');
-          var lb = el('span', 'plb block ml-3');
+          pin.style.left = x + 'px'; pin.style.top = y + 'px';
+          var dot = el('span', 'pdot');
+          var lb = el('span', 'plb');
           lb.textContent = c.label;
           var s2 = span('plsub', [c.sub]); lb.appendChild(s2);
           pin.appendChild(dot); pin.appendChild(lb);
           holder.appendChild(pin);
+          var lw = lb.offsetWidth || 110;
+          var roomRight = box.w - safeSide - (x + 17 + lw);
+          var roomLeft = (x - 17 - lw) - safeSide;
+          if (roomRight < 0 && roomLeft > roomRight) pin.classList.add('flip');
         });
         placement = place;
+        if (document.fonts && document.fonts.addEventListener) {
+          document.fonts.addEventListener('loadingdone', function once() {
+            document.fonts.removeEventListener('loadingdone', once);
+            if (placement === place) place();
+          });
+        }
       });
     }
     place();
@@ -283,7 +316,7 @@ function RideView(chainId, idx) {
     var lm = LINES[stopMeta[st.id].chainId];
     var kickRow = div('flex items-center justify-between gap-2 mb-2', [
       div('flex items-center gap-2', [
-        pill(st.kind === 'room' ? 'START HERE' : (st.kind || '').toUpperCase() || 'STOP'),
+        pill(st.kind === 'room' ? 'START HERE' : (st.kind || '').toUpperCase() || 'STOP', 'font-tech text-[10px] tracking-[.2em] px-3 py-1.5 rounded-full border border-white/25 text-bone/95 bg-white/12'),
         span('font-tech text-[10px] tracking-[.2em] text-dim', ['STOP ' + (stopMeta[st.id].idx + 1) + '/' + stops.length])
       ]),
       chipCode(lm.code, lm.acc)
@@ -341,6 +374,7 @@ function RideView(chainId, idx) {
   }
 
   wrap.appendChild(card);
+  if (placement) placement();
 
   function advance() {
     if (idx >= stops.length - 1) { go('#/ground/' + chainId); return; }
@@ -391,7 +425,7 @@ function GroundView(chainId) {
 
   var src = imgSrc(gStop.id) || 'assets/img/room.jpg';
   var wrap = el('div', 'fixed inset-0 overflow-hidden bg-ink');
-  wrap.appendChild(shotLayer(src, 'absolute inset-0'));
+  wrap.appendChild(shotLayer(src, 'absolute inset-0 shot-scrim'));
 
   var content = div('absolute inset-0 z-20 flex flex-col items-center justify-end text-center px-6', null);
   content.style.paddingBottom = 'max(2rem, env(safe-area-inset-bottom))';
