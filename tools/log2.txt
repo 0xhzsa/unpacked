@@ -1,0 +1,10 @@
+OK press-a.jpg <- PlasticsInjectionMoulderJones.jpg |  | CC BY-SA 2.5 | 1280x910 | 292190B | https://commons.wikimedia.org/wiki/File:PlasticsInjectionMoulderJones.jpg
+OK press-b.jpg <- LegoSpritzguss.JPG | Arne Hückelheim | CC BY 3.0 | 1280x853 | 217688B | https://commons.wikimedia.org/wiki/File:LegoSpritzguss.JPG
+OK stamping.jpg <- Deep Draw Line example by Pressteck Italy.jpg | Presteck S.p.A Italy | CC BY-SA 2.0 | 1173x407 | 58361B | https://commons.wikimedia.org/wiki/File:Deep_Draw_Line_example_by_Pressteck_Italy.jpg
+OK pen.jpg <- 03-BICcristal2008-03-26.jpg | Trounce | CC BY 3.0 | 1280x857 | 62466B | https://commons.wikimedia.org/wiki/File:03-BICcristal2008-03-26.jpg
+SIZED SMT-Bestueckung.jpg dim={'h': 400, 'w': 600} bytes=77263
+SIZED PlaceC5.jpg dim={'h': 188, 'w': 350} bytes=25562
+OK portable-ssd-smt-02.jpg <- Smt_closeup.jpg | en:User:John Fader | CC BY-SA 3.0 | 1024x800 | 209519B | https://commons.wikimedia.org/wiki/File:Smt_closeup.jpg
+SIZED Inserti_widia.jpg dim={'h': 532, 'w': 656} bytes=101579
+SIZED Schneidplättchen aus Widia.jpg dim={'h': 326, 'w': 903} bytes=48572
+OK carbide.jpg <- Tungsten carbide.jpg | Splarka at English Wikipedia | Public domain | 1200x500 | 97918B | https://commons.wikimedia.org/wiki/File:Tungsten_carbide.jpg

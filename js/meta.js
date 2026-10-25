@@ -84,5 +84,10 @@ window.UNPACKED_CREDITS = {
   "batch":    { title: "Pitted sand grains Western Desert.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Pitted_sand_grains_Western_Desert.jpg" },
   "screw":    { title: "Lag screw (05).jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Lag_screw_(05).jpg" },
   "frame":    { title: "Stool with woven seat MET 14.10.3 view 4.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Stool_with_woven_seat_MET_14.10.3_view_4.jpg" },
-  "carbide":  { title: "Tungsten carbide inserts.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Tungsten_carbide_inserts.jpg" }
+  "carbide":  { title: "Tungsten carbide.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Tungsten_carbide.jpg" },
+  "press-a":  { title: "PlasticsInjectionMoulderJones.jpg", licc: "CC BY-SA 2.5", url: "https://commons.wikimedia.org/wiki/File:PlasticsInjectionMoulderJones.jpg" },
+  "press-b":  { title: "LegoSpritzguss.JPG", licc: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:LegoSpritzguss.JPG" },
+  "stamping": { title: "Deep Draw Line example by Pressteck Italy.jpg", licc: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Deep_Draw_Line_example_by_Pressteck_Italy.jpg" },
+  "pen":      { title: "03-BICcristal2008-03-26.jpg", licc: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:03-BICcristal2008-03-26.jpg" },
+  "portable-ssd-smt-02": { title: "Smt_closeup.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Smt_closeup.jpg" }
 };

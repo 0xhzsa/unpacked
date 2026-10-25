@@ -1,5 +1,5 @@
-/* ============================================================
-   UNPACKED v3 — app shell (no reload), hash router.
+﻿/* ============================================================
+   UNPACKED v3 â€” app shell (no reload), hash router.
    Views: Wall -> Ride the Line -> Touch the Ground, Transit Map, Station sheet.
    Data: content.js (210-node graph), journey.js (126 audited stops),
          beats.js (v3 copy), meta.js (design system), imgmap.js (photos).
@@ -87,7 +87,7 @@ function dimsFor(src, cb) {
   probe.onload = function () { DIMS[src] = { w: probe.naturalWidth, h: probe.naturalHeight }; if (cb) cb(DIMS[src]); };
   probe.src = src;
 }
-function imgSrc(stopId) { return IMG[stopId] ? 'assets/img/' + IMG[stopId] + '.jpg?v=3' : null; }
+function imgSrc(stopId) { return IMG[stopId] ? 'assets/img/' + IMG[stopId] + '.jpg?v=5' : null; }
 function animateNum(node, raw) {
   var str = String(raw);
   var mm = str.match(/^([\d,.]+)(.*)$/);
@@ -166,7 +166,7 @@ function WallView() {
   var root = el('div', 'relative min-h-dvh overflow-x-hidden');
 
   var back = el('div', 'fixed inset-0');
-  back.appendChild(shotLayer('assets/img/room.jpg', 'absolute inset-0 wallkbd'));
+  back.appendChild(shotLayer('assets/img/room.jpg?v=5', 'absolute inset-0 wallkbd'));
   var fade = el('div', 'fixed inset-0 pointer-events-none');
   fade.style.background = 'linear-gradient(to bottom, rgba(15,13,16,.8) 0%, rgba(15,13,16,.44) 38%, rgba(15,13,16,.88) 100%)';
   root.appendChild(back); root.appendChild(fade);
@@ -268,7 +268,7 @@ function RideView(chainId, idx) {
   visited.add(me.id); saveSet('up3.visited', visited);
   try { localStorage.setItem('up3.last', me.id); } catch (e) {}
 
-  var src = imgSrc(me.id) || 'assets/img/room.jpg';
+  var src = imgSrc(me.id) || 'assets/img/room.jpg?v=5';
   var leaving = null;
   if (lastStopId && lastStopId !== me.id && stopMeta[lastStopId] && stopMeta[lastStopId].chainId === chainId) {
     leaving = imgSrc(lastStopId);
@@ -306,7 +306,7 @@ function RideView(chainId, idx) {
       var cardEl = wrap.querySelector(':scope > .absolute.bottom-0');
       var safeBottom = cardEl ? Math.max(safeTop + 40, cardEl.getBoundingClientRect().top - 44) : box.h - 24;
       var file = IMG[me.id];
-      dimsFor('assets/img/' + file + '.jpg?v=3', function (dim) {
+      dimsFor('assets/img/' + file + '.jpg?v=5', function (dim) {
         beat.call.forEach(function (c) {
           var pt = coverPoint({ x: c.x, y: c.y }, box, dim);
           var x = Math.min(Math.max(pt.x, safeSide), box.w - safeSide);
@@ -454,7 +454,7 @@ function RideView(chainId, idx) {
 
   /* preload next photo + dims */
   if (idx < stops.length - 1) { var ns = imgSrc(stops[idx + 1].id); if (ns) { var p = new Image(); p.src = ns; } }
-  var cf = IMG[me.id]; if (cf) dimsFor('assets/img/' + cf + '.jpg?v=3');
+  var cf = IMG[me.id]; if (cf) dimsFor('assets/img/' + cf + '.jpg?v=5');
 
   return wrap;
 }
@@ -469,7 +469,7 @@ function GroundView(chainId) {
   visited.add(gStop.id); saveSet('up3.visited', visited);
   lastStopId = null;
 
-  var src = imgSrc(gStop.id) || 'assets/img/room.jpg';
+  var src = imgSrc(gStop.id) || 'assets/img/room.jpg?v=5';
   var wrap = el('div', 'fixed inset-0 overflow-hidden bg-ink');
   wrap.appendChild(shotLayer(src, 'absolute inset-0 shot-scrim'));
 
