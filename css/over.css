@@ -21,8 +21,8 @@
 }
 /* slow camera drift on the ride's live layer */
 @keyframes drift {
-  from { transform: scale(1.03) translateY(0); }
-  to   { transform: scale(1.085) translateY(-1.1%); }
+  from { transform: scale(1.02) translateY(0); }
+  to   { transform: scale(1.05) translateY(-0.8%); }
 }
 .stage > .s.on > img { animation: 17s ease-in-out infinite alternate drift; will-change: transform; }
 @media (prefers-reduced-motion: reduce) {
@@ -93,6 +93,7 @@
   opacity: .35;
   mix-blend-mode: multiply;
 }
+/* wall card number: faint but present */
 .lvl-n {
   position: absolute;
   top: -14px;
@@ -101,7 +102,7 @@
   font-weight: 700;
   font-size: 58px;
   line-height: 1;
-  opacity: .13;
+  opacity: .17;
   pointer-events: none;
   user-select: none;
 }
@@ -127,7 +128,7 @@
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: rgba(255,255,255,.15);
+  background: rgba(255,255,255,.26);
   transition: background .3s;
 }
 .lvl-dot.on { background: var(--lineacc, #f2efe9); box-shadow: 0 0 6px var(--lineacc, transparent); }
@@ -198,6 +199,29 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .burst { display: none; }
+}
+
+/* ---------- ride card: photo-first, peek by default ---------- */
+.rcard {
+  max-height: 47dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: max-height .28s ease;
+}
+.rcard.open {
+  max-height: 88dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.bodyclamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rcard { transition: none; }
 }
 
 /* ---------- tinted statplate inside stamp ---------- */

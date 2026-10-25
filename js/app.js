@@ -198,9 +198,8 @@ function WallView() {
 
   var content = div('relative max-w-2xl mx-auto px-4 pt-9 pb-14 min-h-dvh');
 
-  var head = div('flex flex-wrap items-end justify-between gap-x-3 gap-y-2 mb-2 a-rise', [
-    fill(el('h1', 'font-disp font-bold text-3xl sm:text-4xl tracking-tight'), [SERIES.name || 'UNPACKED']),
-    meterChip()
+  var head = div('mb-2 a-rise', [
+    fill(el('h1', 'font-disp font-bold text-3xl sm:text-4xl tracking-tight'), [SERIES.name || 'UNPACKED'])
   ]);
   var sub = el('p', 'text-fog text-sm mb-7');
   sub.textContent = (SERIES.tag || 'every ordinary thing starts somewhere') + '. Pick a line and ride it to the ground.';
@@ -215,7 +214,10 @@ function WallView() {
   hud1.appendChild(hb1);
   hud1.appendChild(span(null, [' /' + tour.stops]));
   hud.appendChild(hud1);
-  var hud2 = span('hudchip', []);
+  var hud2 = span('hudchip');
+  hud2.style.cursor = 'pointer';
+  hud2.title = 'open the transit map';
+  hud2.addEventListener('click', function () { go('#/map'); });
   hud2.appendChild(span(null, ['GROUNDS ']));
   var hb2 = span(null, [claimedSet.size + '/' + tour.lines]); hb2.style.color = '#F2EFE9'; hb2.style.fontWeight = '700';
   hud2.appendChild(hb2);
@@ -295,11 +297,15 @@ function WallView() {
       dots.appendChild(el('i', 'lvl-dot' + (visited.has(s4.id) ? ' on' : '')));
     });
     var foot = div('lvl-foot', []);
-    var g = span(null, []);
+    var g = span('min-w-0 flex-1', []);
+    g.style.overflow = 'hidden';
+    g.style.textOverflow = 'ellipsis';
+    g.style.whiteSpace = 'nowrap';
     g.textContent = '\u2192 ' + (m.ground || '');
     g.style.color = done ? acc : '';
     if (done) g.style.fontWeight = '700';
     var fam = pill((FAMS[m.fam] || {}).label || '');
+    fam.classList.add('shrink-0');
     foot.appendChild(g); foot.appendChild(fam);
     fill(mid, [topRow, name, tag, dots, foot]);
     card.appendChild(mid);
@@ -312,20 +318,6 @@ function WallView() {
   content.appendChild(notes);
   root.appendChild(content);
   return root;
-
-  function meterChip() {
-    var c = btn(null, null, function () { go('#/map'); });
-    c.className = 'press flex items-center gap-2 px-3 py-2 rounded-full border border-white/15 bg-ink2/70 backdrop-blur';
-    var segs = div('flex gap-[2px]', []);
-    chains.forEach(function (ch2) {
-      var seg = el('i', 'block w-[4px] h-3 rounded-[1px]');
-      var lm = LINES[ch2.id] || {};
-      seg.style.background = claimedSet.has(ch2.id) ? (lm.acc || '#F2EFE9') : 'rgba(255,255,255,.14)';
-      segs.appendChild(seg);
-    });
-    fill(c, [segs, span('font-tech text-[10px] tracking-[.14em] text-fog', [claimedSet.size + '/' + tour.lines + ' GROUNDS'])]);
-    return c;
-  }
 }
 
 /* ================= RIDE ================= */
@@ -422,8 +414,8 @@ function RideView(chainId, idx) {
   chrome.appendChild(chipCode((m.code || '') + ' ' + (idx + 1) + '/' + stops.length, m.acc || '#F2EFE9'));
   wrap.appendChild(chrome);
 
-  /* card */
-  var card = div('absolute inset-x-0 bottom-0 z-20 rounded-t-xl border-t border-white/10 bg-ink/85 backdrop-blur-xl px-5 pt-4', null);
+  /* card: photo-first, peek by default, expand for the full story */
+  var card = div('absolute inset-x-0 bottom-0 z-20 rounded-t-xl border-t border-white/10 bg-ink/85 backdrop-blur-xl px-5 pt-4 rcard', null);
   card.style.paddingBottom = 'max(1.4rem, env(safe-area-inset-bottom))';
 
   function renderCard(st, b) {
@@ -435,7 +427,7 @@ function RideView(chainId, idx) {
       ]),
       chipCode(lm.code, lm.acc)
     ]);
-    var head = fill(el('h1', 'font-disp font-semibold text-2xl leading-tight'), [b.h || st.name]);
+    var head = fill(el('h1', 'font-disp font-semibold text-2xl leading-tight'), [st.kind === 'room' ? (ch.name || b.h || st.name) : (b.h || st.name)]);
     var statRow = div('flex items-baseline gap-2 mt-3 font-tech', []);
   var num = span('font-bold leading-none', ['\u00A0']);
   animateNum(num, b.stat.v);
@@ -449,17 +441,28 @@ function RideView(chainId, idx) {
     }
     var lab = el('p', 'font-tech text-[12px] tracking-wide text-fog mt-1');
     lab.textContent = b.stat.l || '';
-    var body = el('p', 'text-[15px] leading-relaxed text-bone/85 mt-3 max-w-prose');
+    var body = el('p', 'text-[15px] leading-relaxed text-bone/85 mt-3 max-w-prose bodyclamp');
     body.textContent = b.b || '';
-    var cta = null;
+    var cta = div('mt-2 flex items-center justify-between gap-3 flex-wrap', []);
     if (stopMeta[st.id].idx === stops.length - 1) {
-      cta = div('mt-4 flex items-center gap-3', [
-        btn('font-tech text-[12px] tracking-[.18em] px-5 py-3 rounded-full font-bold press', ['TOUCH THE GROUND \u2192'], function () { go('#/ground/' + chainId); })
-      ]);
-      var ctb = cta.firstChild;
-      ctb.style.background = 'var(--acc)';
-      ctb.style.color = '#141118';
+      var gb = btn('font-tech text-[12px] tracking-[.18em] px-5 py-3 rounded-full font-bold press', ['TOUCH THE GROUND \u2192'], function () { go('#/ground/' + chainId); });
+      gb.style.background = 'var(--acc)';
+      gb.style.color = '#141118';
+      cta.appendChild(gb);
+    } else {
+      var nb = btn('font-tech text-[12px] tracking-[.18em] px-5 py-3 rounded-full border press', ['NEXT STOP \u25B8'], function () { advance(); });
+      nb.style.borderColor = 'var(--acc)';
+      nb.style.color = 'var(--acc)';
+      cta.appendChild(nb);
     }
+    var more = span('font-tech text-[10px] tracking-[.2em] text-fog press cursor-pointer py-2', ['READ MORE \u25BE']);
+    more.addEventListener('click', function () {
+      var open = card.classList.toggle('open');
+      body.classList.toggle('bodyclamp', !open);
+      more.textContent = open ? 'READ LESS \u25B4' : 'READ MORE \u25BE';
+      if (placement) placement();
+    });
+    cta.appendChild(more);
     card.replaceChildren(kickRow, head, statRow, lab, body);
     if (cta) card.appendChild(cta);
     card.classList.remove('a-rise');
@@ -468,13 +471,7 @@ function RideView(chainId, idx) {
   }
   renderCard(me, beat || { h: me.name, b: '', stat: { v: '', u: '', l: '' }, call: [] });
 
-  /* advance affordance */
-  var hint = span('font-tech text-[10px] tracking-[.2em] text-bone/75 tapcue a-fade', ['TAP TO CONTINUE']);
-  wrap.appendChild(hint);
-  hint.style.position = 'absolute';
-  hint.style.bottom = 'max(1rem, env(safe-area-inset-bottom))';
-  hint.style.right = '1.25rem';
-  hint.style.zIndex = '30';
+  wrap.appendChild(card);
 
   /* affiliate on object stops (renders only when a tag is configured) */
   if (stopMeta[me.id].idx === 1 && me.kind !== 'room') {
@@ -502,11 +499,10 @@ function RideView(chainId, idx) {
     goQuiet('#/stop/' + stops[idx - 1].id);
   }
 
-  wrap.addEventListener('click', function () {
-    hint.classList.add('hidden');
+  wrap.addEventListener('click', function (e) {
+    if (e.target.closest('.rcard') || e.target.closest('button') || e.target.closest('a')) return;
     advance();
   });
-  card.addEventListener('click', function () { advance(); });
 
   function keyHandler(e) {
     if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); advance(); }
@@ -518,7 +514,7 @@ function RideView(chainId, idx) {
   wrap.addEventListener('touchstart', function (e) { lastTouch = e.changedTouches[0].clientX; }, { passive: true });
   wrap.addEventListener('touchend', function (e) {
     var dx = e.changedTouches[0].clientX - lastTouch;
-    if (Math.abs(dx) > 56) { hint.classList.add('hidden'); if (dx < 0) advance(); else back(); }
+    if (Math.abs(dx) > 56) { if (dx < 0) advance(); else back(); }
   }, { passive: true });
 
   reg(function () { document.removeEventListener('keydown', keyHandler); });
@@ -821,10 +817,9 @@ function MapView() {
   var H = padTop + rows * rowH + padBot;
 
   var bar = div('sticky top-0 z-30 bg-ink/90 backdrop-blur-lg border-b border-white/10 px-4 py-3 flex items-center gap-3', [
-    btn('press w-9 h-9 rounded-full border border-white/15 bg-ink2 text-bone font-tech', ['\u2190'], function () { go('#/'); }),
-    fill(el('h1', 'font-disp font-semibold text-xl'), ['The Transit Map']),
-    span('flex-1', []),
-    pill(tour.lines + ' LINES \u00B7 ' + tour.stops + ' STATIONS \u00B7 ' + tour.nodes + ' NODES \u00B7 ' + tour.grounds + ' GROUNDS', 'font-tech text-[10px] tracking-[.12em] px-3 py-1.5 rounded-full bg-white/5 text-fog border border-white/10')
+    btn('press w-9 h-9 shrink-0 rounded-full border border-white/15 bg-ink2 text-bone font-tech', ['\u2190'], function () { go('#/'); }),
+    fill(el('h1', 'font-disp font-semibold text-lg whitespace-nowrap shrink-0'), ['TRANSIT MAP']),
+    pill(tour.lines + ' LINES \u00B7 ' + tour.stops + ' STOPS \u00B7 ' + tour.grounds + ' GROUNDS', 'font-tech text-[9.5px] tracking-[.06em] px-3 py-1.5 rounded-full bg-white/5 text-fog border border-white/10 truncate min-w-0 flex-1 text-right')
   ]);
   root.appendChild(bar);
 
@@ -867,7 +862,6 @@ function MapView() {
 
   var legend = div('px-4 pb-10 pt-2 max-w-4xl mx-auto', []);
   var lgTitle = el('p', 'font-tech text-[11px] tracking-[.2em] text-dim mt-6 mb-2');
-  lgTitle.textContent = 'EQUELON ROWS 0-4 \u00B7 SOLID = ON THE RIDE \u00B7 RING = INTERCHANGE (SAME NODE NAME ON TWO LINES) \u00B7 TAP ANY NODE';
   lgTitle.textContent = 'ECHELON ROWS 0-4 \u00B7 SOLID = ON THE RIDE \u00B7 RING = INTERCHANGE (SAME NAME ON 2+ LINES) \u00B7 TAP ANY NODE';
   legend.appendChild(lgTitle);
   var famRow = div('flex flex-wrap gap-2', []);
@@ -891,12 +885,12 @@ function MapView() {
     var acc = meta.acc || '#F2EFE9';
     var cx = padX + ci * colW + colW / 2;
 
+    var claimed = claimedSet.has(ch.id);
     svg.appendChild(mtext(cx, padTop - 34, meta.code || '', { fill: acc, 'font-size': '20', 'font-weight': '700' }));
     svg.appendChild(mtext(cx, padTop - 16, String(ci + 1).padStart(2, '0'), { fill: '#6E6670', 'font-size': '9' }));
     if (claimed) svg.appendChild(mtext(cx, padTop - 52, 'CLAIMED', { fill: hexA(acc, .8), 'font-size': '7', 'letter-spacing': '2' }));
 
     var nodes = (C.chains.find(function (x) { return x.id === ch.id; }) || { nodes: [] }).nodes || [];
-    var claimed = claimedSet.has(ch.id);
     var linkOp = claimed ? '.8' : '.35';
     var linkW = claimed ? '7' : '5';
     var posById = {};
@@ -914,7 +908,7 @@ function MapView() {
       if (!ids) return;
       var k = ids.length;
       if (k < 2) return;
-      var step = k >= 3 ? 24 : 30;
+      var step = k >= 3 ? 33 : 38;
       ids.forEach(function (id, i2) {
         slotK[id] = k;
         posById[id].y += i2 * step;
@@ -938,7 +932,7 @@ function MapView() {
       }
       g.appendChild(mk('circle', {
         cx: p.x, cy: p.y, r: isStop ? 7 : 4.5,
-        fill: isStop ? acc : 'color-mix(in srgb, ' + acc + ' 38%, transparent)',
+        fill: isStop ? acc : hexA(acc, .38),
         stroke: isStop ? '#0F0D10' : acc, 'stroke-width': isStop ? 2.5 : 1.2
       }));
       g.appendChild(mk('title', {}, [])).textContent = nd.name + (isStop ? ' \u00B7 station' : ' \u00B7 map-only node');
