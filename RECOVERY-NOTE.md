@@ -1222,3 +1222,46 @@ Photo sweep (tools/hunt2.js -> Openverse CC-only search, manifest MERGE no-clobb
 - Cache-bust ?v=7 -> ?v=8 everywhere (app.js x8 incl dimsFor/imgSrc/preload, index scripts,
   grid). over.css stays v=4.
 - Gates: check-beats 133/133 OK, check-journey ALL OK, check-imgs 87/87, --check clean.
+
+SESSION 28 (2026-10-26) - card UI rebuild (v9) + round-2 product-photo sweep via Commons
+Card UI (js/app.js renderCard, css/over.css; over.css v4->v5, journey/beats/app ?v=8->v9 in
+index+grid, app.js internal asset refs ->v9):
+- kickRow rebuilt as editorial marker: .kickdot (8px accent square + glow) + spaced-caps kind
+  label + .kickrule hairline; room stops blank the count text (was redundant "START" beside
+  START HERE).
+- READ MORE/LESS is now a .morebtn bordered pill with rotating .chev; body wrapped in bodyWrap +
+  .bodyfade bottom gradient that auto-hides (rAF scrollHeight check) when copy fits unclamped.
+- Desktop >=900px: .rcard becomes a centered 680px dossier panel (inset+margin-auto centering to
+  avoid the a-rise transform conflict; padding 2.25rem, radius 1.25rem). Verified qb-ui-desk*.png.
+Round-2 photo sweep: Openverse hard rate-walled (403/timeouts) -> tools/hunt3.js, Wikimedia
+Commons API (keyless, gsrsearch filetype:bitmap, iiurlwidth=1400 thumbs, extmetadata license
+whitelist CC BY/BY-SA/CC0/PD; candidates saved -D/-E/-F so hunt2's -A/-B/-C never clobber;
+HUNT_MINW env raises the width floor for one-off runs). hunt2 queries retuned + license_type
+param added before the wall made it moot.
+- SWAPPED (assets/img): window -> window-D.jpg (Jason Trbovich, CC BY 2.0, rain-on-glass bokeh),
+  candle -> candle-D.jpg (Rolf Schweizer, CC BY 2.0, pillar candle on black),
+  keyboard -> keyboard-F.jpg (Raysonho, CC0, keycap macro with blue Enter),
+  slow-rebound-ball -> stressball-D.jpg (Maj. Olha Vandergriff, PD, two-tone ball in open palm),
+  fridge-player -> turntable-E.jpg (Franz van Duns, CC BY-SA 4.0, B&W stylus-in-groove panorama;
+  re-downloaded at 2400w via Special:FilePath?width= because a 2.5-aspect image cover-crops on
+  height and the 1400w thumb upscales at 390x844).
+- KEPT (deliberate - hunt candidates all worse): fan (Veera.sj white-ceiling 3-blade series vs
+  the walnut 8-blade), book (library-stack corridors vs gold-stamped antique leather cover),
+  led-strip (wiring flat-lay + scanner teardown vs glowing teal coil), armchair (patio/street
+  shots), chasen (bright branded kit shots), desk-lamp (W.carter keyboard zoom-bursts, wrong
+  subject), office-chair (Carl Larsson painting), steel-desk (NASA satellites), powerbank
+  (memorial leek / plasma gun), bottle (USDA salmon / antique museum bottles), blender (Blender-3D
+  render + bright scenes; dark granite kept).
+- Rejected on honesty/quality: keyboard-E (rusted typewriter = wrong object), keyboard-D (piano
+  keys), window-E (burned-in watermark), first turntable-D (1024x683 source, 34KB asset, mush at
+  mobile crop), stressball-F (blood-donation scene), candle-A (Snoopy candelabra), candle-C
+  (matches, not a candle), blender-D (CGI render posing as photo).
+- Re-pins + captions (beats.call / journey.annotations / journey.zoom / journey.image):
+  keyboard keycaps (49,17) + return (46,40) zoom(46,40); window droplets (44,28) + pane (56,44)
+  zoom(50,38); candle flame (47,33) + wax (47,48) zoom(47,44); ball ball (50,40) + skin (52,48,
+  relabeled "The skin / cast PU, painted" - no mold seam identifiable in the cover window);
+  fridge record (45,47) + tonearm (57,28) zoom(48,52).
+- meta.js UNPACKED_CREDITS: candle/turntable updated; window/keyboard/stressball entries ADDED
+  (they were missing entirely); meta.js ?v=6 -> v=7 in index.html (grid.html has no meta.js ref).
+- Gates: check-beats 133/133 OK (2 manual-ok pre-existing), check-journey ALL OK, check-imgs
+  87/87, --check clean. Ride shots qb-sw-*.png + qb-tt-*.png (390x844; fridge also 1440x900).

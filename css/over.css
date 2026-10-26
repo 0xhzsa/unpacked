@@ -273,8 +273,66 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+/* editorial kick marker (dot + spaced caps + hairline rule) */
+.kickdot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background: var(--acc, #F2EFE9);
+  border-radius: 2px;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--acc, #F2EFE9) 55%, transparent);
+}
+.kickrule {
+  flex: 1 1 12px;
+  min-width: 12px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,.3), rgba(255,255,255,.05));
+}
+/* read-more affordance */
+.morebtn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05);
+  border-radius: 999px;
+  color: rgba(242,239,233,.85);
+}
+.chev { display: inline-block; transition: transform .25s ease; }
+.morebtn.on { border-color: color-mix(in srgb, var(--acc, #F2EFE9) 45%, transparent); color: #F2EFE9; }
+.morebtn.on .chev { transform: rotate(180deg); }
+.bodyfade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.8rem;
+  background: linear-gradient(to bottom, rgba(23,20,27,0), rgba(23,20,27,.95) 82%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .28s ease;
+}
 @media (prefers-reduced-motion: reduce) {
+  .chev, .bodyfade { transition: none; }
   .rcard { transition: none; }
+}
+/* desktop: the card is a centered dossier panel, not a full-bleed sheet */
+@media (min-width: 900px) {
+  .rcard {
+    left: 0;
+    right: 0;
+    bottom: 2.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: min(680px, calc(100vw - 4rem));
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-bottom-color: rgba(255, 255, 255, .16);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .6);
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
+  }
+  .rcard.open { max-height: 78dvh; }
 }
 
 /* ---------- tinted statplate inside stamp ---------- */

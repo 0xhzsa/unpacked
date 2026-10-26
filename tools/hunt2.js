@@ -39,9 +39,38 @@ const QUERIES = {
   "mini-blender-alt": "blender smoothie dark",
   "portable-ssd": "ssd drive electronics macro dark",
   "portable-ssd-alt": "hard drive black macro",
-  "fridge-player": "record player turntable vinyl dark",
-  "fridge-player-alt": "turntable vinyl night",
-  "keyboard": "mechanical keyboard keycaps macro"
+  "keyboard": "mechanical keyboard keycaps macro",
+  "keyboard-alt": "mechanical keyboard backlit closeup",
+  "desk-lamp": "led desk lamp glowing dark",
+  "desk-lamp-alt": "desk lamp black studio",
+  "office-chair": "gaming office chair dark studio",
+  "office-chair-alt": "ergonomic chair black product",
+  "steel-desk": "steel table industrial workbench",
+  "steel-desk-alt": "metal table black studio",
+  "glass-window": "rain window night bokeh",
+  "glass-window-alt": "condensation window dark moody",
+  "hardcover-book": "hardcover book dark moody",
+  "hardcover-book-alt": "stack of books dark still life",
+  "ceiling-fan": "ceiling fan blades closeup",
+  "ceiling-fan-alt": "fan blades ceiling minimal",
+  "candle": "candle flame dark macro",
+  "candle-alt": "lit candle black background",
+  "armchair": "rattan armchair studio",
+  "armchair-alt": "wicker chair rattan product",
+  "insulated-bottle": "insulated steel bottle black",
+  "insulated-bottle-alt": "steel tumbler water bottle product",
+  "matcha-whisk": "matcha whisk chasen bamboo",
+  "matcha-whisk-alt": "matcha whisk dark",
+  "led-strip": "led strip light glow closeup",
+  "led-strip-alt": "rgb led strip macro dark",
+  "magnet-power-bank": "magnetic power bank black",
+  "magnet-power-bank-alt": "power bank minimal black product",
+  "slow-rebound-ball": "stress ball squeeze macro",
+  "slow-rebound-ball-alt": "foam ball macro dark",
+  "mini-blender": "portable blender dark moody",
+  "mini-blender-alt": "blender glass closeup dark kitchen",
+  "fridge-player": "vinyl record turntable dark",
+  "fridge-player-alt": "turntable stylus closeup"
 };
 const FILTER = process.argv.slice(2);
 const UA = "unpackedsite/1.0 (educational demo; contact via github 0xhzsa/unpacked)";
@@ -56,7 +85,7 @@ function stopInfo(chainId) {
 }
 
 async function openverse(q) {
-  const url = "https://api.openverse.org/v1/images/?q=" + encodeURIComponent(q) + "&page_size=16&filter_dead=false";
+  const url = "https://api.openverse.org/v1/images/?q=" + encodeURIComponent(q) + "&page_size=16&filter_dead=false&license_type=commercial,modification";
   const res = await fetch(url, { headers: { "User-Agent": UA, "Accept": "application/json" }, signal: AbortSignal.timeout(TMO) });
   if (!res.ok) throw new Error("openverse " + res.status);
   const j = await res.json();

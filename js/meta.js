@@ -75,7 +75,7 @@ window.UNPACKED_CREDITS = {
   "earbuds":     { title: "Macro Mondays theme Mesh — two earbuds with mesh grilles, photo by rawpixel", licc: "CC0", url: "https://www.rawpixel.com/image/11189649/macro-mondays-theme-mesh" },
   "chasen":      { title: "Chasen-side-fs PNr°0499.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Chasen-side-fs_PNr%C2%B00499.jpg" },
   "chair":       { title: "At Tenerife 2023 1612.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:At_Tenerife_2023_1612.jpg" },
-  "candle":      { title: "19. Coffee Shop (12644020424).jpg", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:19._Coffee_Shop_(12644020424).jpg" },
+  "candle":      { title: "Pourquoi. Lit candle. — photo by Rolf Schweizer", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Pourquoi._Lit_candle._(22590133777).jpg" },
   "fan":         { title: "Ceiling fan (brown).jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Ceiling_fan_(brown).jpg" },
   "penball":     { title: "Ballpoint Macro.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Ballpoint_Macro.jpg" },
   "chasenk":     { title: "Chasen kusenaoshi with and without chasen-top oblique-fs PNr°0506.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Chasen_kusenaoshi_with_and_without_chasen-top_oblique-fs_PNr%C2%B00506.jpg" },
@@ -98,9 +98,12 @@ window.UNPACKED_CREDITS = {
   "stamping": { title: "Deep Draw Line example by Pressteck Italy.jpg", licc: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Deep_Draw_Line_example_by_Pressteck_Italy.jpg" },
   "pen":      { title: "Ballpoint pen macro — gold biro tip, photo by nayukim", licc: "CC BY 2.0", url: "https://www.flickr.com/photos/41506934@N03/5274433697" },
   "portable-ssd-smt-02": { title: "Smt_closeup.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Smt_closeup.jpg" },
-  "turntable": { title: "Crosley_Record_Player.jpg", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Crosley_Record_Player.jpg" },
+  "turntable": { title: "Groove and needle in close embrace from beginning to end — photo by Franz van Duns", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Groove_and_needle_in_close_embrace_from_beginning_to_end.jpg" },
   "speaker": { title: "Lautsprecher 4-wege 2.jpg", licc: "CC BY-SA 2.5", url: "https://commons.wikimedia.org/wiki/File:Lautsprecher_4-wege_2.jpg" },
   "neomagnet": { title: "NeoCube.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:NeoCube.jpg" },
   "neodymium": { title: "Rareearthoxides.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Rareearthoxides.jpg" },
-  "mine": { title: "Baiyunebo ast 2006181.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Baiyunebo_ast_2006181.jpg" }
+  "mine": { title: "Baiyunebo ast 2006181.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Baiyunebo_ast_2006181.jpg" },
+  "window":     { title: "Perfect night (drizzle remix) (Explored) — photo by Jason Trbovich", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Perfect_night_(drizzle_remix)_(Explored)_-_Flickr_-_Real_Cowboys_Drive_Cadillacs.jpg" },
+  "keyboard":   { title: "LenovoKeyboard-Closeup3 — photo by Raysonho", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:LenovoKeyboard-Closeup3.jpg" },
+  "stressball": { title: "Program symbol Stress Ball (3) — photo by Maj. Olha Vandergriff", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Program_symbol_Stress_Ball_(3).jpg" }
 };
