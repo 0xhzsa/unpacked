@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><body style="background:#0F0D10;color:#eee;font:12px/1.35 'Courier New',monospace;margin:0;padding:14px">
+<div id="note" style="color:#8a838a;margin-bottom:10px">object thumbs grid</div>
+<div id="g" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div>
+<script src="js/journey.js?v=7"></script>
+<script src="js/imgmap.js?v=6"></script>
+<script>
+(function () {
+  var OBJ = (window.JOURNEY && JOURNEY.objects) || [], IMG = window.UnpackedIMG || {}, g = document.getElementById('g');
+  OBJ.forEach(function (ch, i) {
+    var oStop = null;
+    ch.stops.forEach(function (s) { if (!oStop && IMG[s.id] && IMG[s.id] !== 'room') oStop = s; });
+    var d = document.createElement('div');
+    if (oStop) {
+      d.innerHTML = '<img style="width:100%;height:150px;object-fit:cover;display:block" src="assets/img/' + IMG[oStop.id] + '.jpg?v=7">' +
+        '<b style="color:#F2EFE9">' + String(i + 1).padStart(2, '0') + ' ' + ch.name + '</b><br>' +
+        '<span style="color:#8a838a;font-size:10px">' + oStop.id + ' &rarr; ' + IMG[oStop.id] + '</span>';
+    } else {
+      d.innerHTML = '<b style="color:#F2EFE9">' + ch.name + '</b><br><span style="color:#f66">MISSING IMG</span>';
+    }
+    g.appendChild(d);
+  });
+  document.getElementById('note').textContent = 'object thumbs grid \u00B7 ' + OBJ.length + ' lines';
+})();
+</script>
+</body></html>

@@ -1079,3 +1079,59 @@ dots above the ride sheet (~61%), so low pins stay visible; ssd controller dot
 nudged 35 -> 38 after the first shot landed at the screen edge (chip cut by the
 window). Gates: check-beats 133/133 OK (2 manual-ok), check-journey ALL OK,
 check-imgs 86/86 mapped. wmo8/9/10.py kept as the fetch pipeline pattern.
+
+## Session 25 (2026-10-26) - photo sweep phase 2: 6 swaps + desk recrop + re-pins
+
+Follows 4ead54f (UX pass). Hunt pipeline: wmo14.py round-6 (cand3-*, sheet11,
+log11) picked the chasen-set; wmo15.py round-7 (cand4-*, sheet12, log12) gave
+bottle only (metal EMPTY, glass EMPTY -> metaldesk/window EXISTING kept).
+
+Shipped assets (all processed via C:\Users\stagh\mcu\.venv python, PIL 12.3.0;
+note: system PIL Image.py was NUL-byte corrupted -> reinstall before use):
+- chair.jpg 700x1000 = crop(560,560,1260,1560) of "At Tenerife 2023 1612.jpg"
+  (Mike Peel, CC BY-SA 4.0). First cut (full frame) put the chair at right edge
+  behind a dominating desk -> recropped to chair-first.
+- candle.jpg 960x793 = crop(320,60,1280,853) of "19. Coffee Shop (12644020424)
+  .jpg" (spurekar, CC BY 2.0). LESSON: crop box y=969 > 853 source height =>
+  PIL pads BLACK; first render had a 13% black footer. Always clamp crop to
+  source bounds.
+- fan.jpg 1280x1288 "Ceiling fan (brown).jpg" (Spancham75, CC BY-SA 4.0).
+- penball.jpg 700x700 = crop(0,45,700,745) of "Ballpoint Macro.jpg"
+  (Prosthetic Head, CC BY-SA 4.0). Pre-crop pins clamped at left edge -> crops
+  re-center subjects, then re-pin.
+- chasenk.jpg 680x1119 = crop(600,0,1280,1119) of "Chasen kusenaoshi with and
+  without chasen-top oblique-fs PNr°0506.jpg" (D-Kuru, CC BY-SA 4.0). Knot
+  stop gets its own image; imgmap "matcha-whisk-knot-01" chasen->chasenk (was
+  a duplicate of matcha-whisk-01).
+- bottle.jpg 1280x960 "Niksun stainless steel water bottle.jpg" (Jonathan
+  Schilling, CC BY-SA 4.0). cand4 round winner (sheet12; bottle-1 red bg,
+  bottle-4/5 people rejected).
+- metaldesk.jpg full re-crop x2: (0,0,1090,960) removed a distant PERSON
+  (people-free rule breach found in the 20-thumb grid sweep), then
+  (40,385,720,960) -> 680x575 desk-first comp. Same Commons file as before,
+  no credit change.
+
+Pins re-authored + verified at 390x844 rides (final shots tracked):
+- office-chair-01: (56,28) mesh back; (23,39) seat. zoom(45,35,1.5)
+- candle-01: (55,48) flame; (56,64) wax. zoom(54,53,1.6)
+- ceiling-fan-01: (82,54) blades; (50,23) downrod. zoom(50,58,1.5)
+- ballpoint-pen-ball-01: (42,39) ball; (54,44) socket. zoom(46,40,2.2)
+- matcha-whisk-knot-01: (52,62) hips; (51,42) knot (black silk = 2 bands as
+  copy says). zoom(51,48,2.0)
+- insulated-bottle-01: (54,34) wall; (56,56) sticker. zoom(54,44,1.5).
+  Original "The boot" label dropped: silicone boot not visible in photo and
+  the pin clamps above the card onto the sticker -> relabeled honestly
+  "The sticker / brand on the wall".
+- steel-desk-01: (46,18) top; (47,55) legs. "Steel legs" previously pointed
+  at the wooden lectern - re-aimed onto the actual welded tube.
+- journey image descriptions updated for chair/bottle (photo-matched).
+
+meta.js UNPACKED_CREDITS: +6 entries (chair, candle, fan, penball, chasenk,
+bottle) with exact Commons titles/licenses (log11/log12 quotes).
+app.js/grid.html image version bump ?v=6 -> ?v=7 (cache-bust).
+Gates: check-beats 133/133 OK (2 manual-ok pre-existing), check-journey ALL
+OK, check-imgs 87/87 mapped. Grid sweep: grid.html 20 thumbs (qa-p6-grid)
+- only metaldesk needed action, lamp keep confirmed again.
+Open: metaldesk/window photo could still be better out (rounds 5-7 found
+nothing people-free and subject-correct); next hunt can try Category:Steel
+furniture browsing rather than search.

@@ -109,7 +109,7 @@ window.UnpackedIMG = {
     "matcha-whisk-room": "room",
     "matcha-whisk-01": "chasen",
     "matcha-whisk-tines-01": "bamboo",
-    "matcha-whisk-knot-01": "chasen",
+    "matcha-whisk-knot-01": "chasenk",
     "matcha-whisk-splitter-02": "splitter",
     "matcha-whisk-grove-04": "bamboo",
 
