@@ -71,13 +71,13 @@ function div(cls, kids) { return fill(el('div', cls), kids); }
 function span(cls, kids) { return fill(el('span', cls), kids); }
 function btn(cls, kids, fn) { var b = fill(el('button', cls), kids); if (fn) b.addEventListener('click', function (e) { e.stopPropagation(); fn(); }); return b; }
 function chipCode(code, acc) {
-  var s = span('font-tech text-[10px] font-bold tracking-[.18em] px-2.5 py-1 rounded-full', [code]);
+  var s = span('font-tech text-[11px] font-bold tracking-[.18em] px-2.5 py-1 rounded-full', [code]);
   s.style.background = 'color-mix(in srgb, ' + acc + ' 20%, transparent)';
   s.style.color = acc;
   s.style.border = '1px solid color-mix(in srgb, ' + acc + ' 45%, transparent)';
   return s;
 }
-function pill(txt, cls) { return span(cls || 'font-tech text-[10px] tracking-[.16em] px-2.5 py-1 rounded-full bg-white/5 text-fog border border-white/10', [txt]); }
+function pill(txt, cls) { return span(cls || 'font-tech text-[11px] tracking-[.16em] px-2.5 py-1 rounded-full bg-white/5 text-fog border border-white/10', [txt]); }
 
 /* ---------------- photos: natural dims + cover-map pins ---------------- */
 var DIMS = {};
@@ -324,6 +324,7 @@ function WallView() {
 function RideView(chainId, idx) {
   var m = LINES[chainId], ch = chainById[chainId];
   var stops = ch.stops;
+  var zi = (stops[0] && stops[0].kind === 'room') ? 1 : 0;
   idx = Math.max(0, Math.min(idx, stops.length - 1));
   var me = stops[idx];
   var beat = BEATS[me.id] || null;
@@ -355,10 +356,39 @@ function RideView(chainId, idx) {
   wrap.appendChild(stage);
   wrap.appendChild(div('beatwash absolute inset-0', []));
 
-  /* pins */
+  /* pins: labeled dots you can tap to zoom into the named detail */
+  var stageZoom = { on: false };
+  var releaseStage = null;
   function renderPins() {
     var holder = el('div', 'absolute inset-0 z-10 pointer-events-none');
     wrap.appendChild(holder);
+    var ztip = div('zoomtip', ['TAP THE PHOTO TO RELEASE']);
+    wrap.appendChild(ztip);
+    function zoomTo(c, dim, pinEl) {
+      var box = currentBox();
+      var pt = coverPoint({ x: c.x, y: c.y }, box, dim);
+      var z = (me.zoom && me.zoom.scale > 1) ? Math.min(me.zoom.scale, 2.8) : 1.8;
+      var tx = box.w / 2 - z * pt.x, ty = box.h * .42 - z * pt.y;
+      tx = Math.min(0, Math.max(box.w * (1 - z), tx));
+      ty = Math.min(0, Math.max(box.h * (1 - z), ty));
+      curLayer.style.transformOrigin = '0 0';
+      curLayer.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(' + z.toFixed(2) + ')';
+      stageZoom.on = true;
+      holder.classList.add('zooming');
+      var act = holder.querySelector('.pin.pz');
+      if (act) act.classList.remove('pz');
+      pinEl.classList.add('pz');
+      ztip.classList.add('on');
+    }
+    releaseStage = function () {
+      if (!stageZoom.on) return;
+      curLayer.style.transform = '';
+      stageZoom.on = false;
+      holder.classList.remove('zooming');
+      var act = holder.querySelector('.pin.pz');
+      if (act) act.classList.remove('pz');
+      ztip.classList.remove('on');
+    };
     function place() {
       var box = currentBox(), src2 = imgSrc(me.id);
       holder.replaceChildren();
@@ -381,6 +411,11 @@ function RideView(chainId, idx) {
           lb.textContent = c.label;
           var s2 = span('plsub', [c.sub]); lb.appendChild(s2);
           pin.appendChild(dot); pin.appendChild(lb);
+          pin.addEventListener('click', function (ev) {
+            ev.stopPropagation();
+            if (stageZoom.on) { releaseStage(); return; }
+            zoomTo(c, dim, pin);
+          });
           holder.appendChild(pin);
           var lw = lb.offsetWidth || 110;
           var roomRight = box.w - safeSide - (x + 17 + lw);
@@ -405,13 +440,13 @@ function RideView(chainId, idx) {
     btn('press w-10 h-10 shrink-0 rounded-full border border-white/15 bg-ink/60 backdrop-blur text-bone font-tech text-lg', ['\u2190'], function () { go('#/'); })
   ]);
   var rails = div('flex-1 flex gap-1 items-center');
-  for (var i = 0; i < stops.length; i++) {
+  for (var i = zi; i < stops.length; i++) {
     var r = el('span', 'rail' + (i <= idx ? ' on' : ''));
     r.appendChild(el('i'));
     rails.appendChild(r);
   }
   chrome.appendChild(rails);
-  chrome.appendChild(chipCode((m.code || '') + ' ' + (idx + 1) + '/' + stops.length, m.acc || '#F2EFE9'));
+  chrome.appendChild(chipCode((m.code || '') + ' ' + (idx < zi ? 'START' : ((idx - zi + 1) + '/' + (stops.length - zi))), m.acc || '#F2EFE9'));
   wrap.appendChild(chrome);
 
   /* card: photo-first, peek by default, expand for the full story */
@@ -420,10 +455,12 @@ function RideView(chainId, idx) {
 
   function renderCard(st, b) {
     var lm = LINES[stopMeta[st.id].chainId];
+    var sIdx = stopMeta[st.id].idx;
+    var cntTxt = sIdx < zi ? 'START' : 'STOP ' + (sIdx - zi + 1) + '/' + (stops.length - zi);
     var kickRow = div('flex items-center justify-between gap-2 mb-2', [
       div('flex items-center gap-2', [
-        pill(st.kind === 'room' ? 'START HERE' : (st.kind || '').toUpperCase() || 'STOP', 'font-tech text-[10px] tracking-[.2em] px-3 py-1.5 rounded-full border border-white/25 text-bone/95 bg-white/12'),
-        span('font-tech text-[10px] tracking-[.2em] text-dim', ['STOP ' + (stopMeta[st.id].idx + 1) + '/' + stops.length])
+        pill(st.kind === 'room' ? 'START HERE' : (st.kind || '').toUpperCase() || 'STOP', 'font-tech text-[11px] tracking-[.2em] px-3 py-1.5 rounded-full border border-white/25 text-bone/95 bg-white/12'),
+        span('font-tech text-[11px] tracking-[.2em] text-dim', [cntTxt])
       ]),
       chipCode(lm.code, lm.acc)
     ]);
@@ -455,7 +492,7 @@ function RideView(chainId, idx) {
       nb.style.color = 'var(--acc)';
       cta.appendChild(nb);
     }
-    var more = span('font-tech text-[10px] tracking-[.2em] text-fog press cursor-pointer py-2', ['READ MORE \u25BE']);
+    var more = span('font-tech text-[11px] tracking-[.2em] text-fog press cursor-pointer py-2', ['READ MORE \u25BE']);
     more.addEventListener('click', function () {
       var open = card.classList.toggle('open');
       body.classList.toggle('bodyclamp', !open);
@@ -488,36 +525,45 @@ function RideView(chainId, idx) {
 
   wrap.appendChild(card);
   if (placement) placement();
+  /* re-place pins once the card's rise animation has settled so the safe rect is final */
+  setTimeout(function () { if (placement) placement(); }, 700);
 
   function advance() {
     if (navigator.vibrate && !matchMedia('(prefers-reduced-motion: reduce)').matches) { try { navigator.vibrate(8); } catch (e) {} }
     if (idx >= stops.length - 1) { go('#/ground/' + chainId); return; }
-    goQuiet('#/stop/' + stops[idx + 1].id);
+    go('#/stop/' + stops[idx + 1].id);
   }
   function back() {
     if (idx <= 0) { go('#/'); return; }
-    goQuiet('#/stop/' + stops[idx - 1].id);
+    go('#/stop/' + stops[idx - 1].id);
   }
 
   wrap.addEventListener('click', function (e) {
     if (e.target.closest('.rcard') || e.target.closest('button') || e.target.closest('a')) return;
+    if (stageZoom.on && releaseStage) { releaseStage(); return; }
     advance();
   });
 
   function keyHandler(e) {
     if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); advance(); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); back(); }
-    if (e.key === 'Escape') { go('#/'); }
+    if (e.key === 'Escape') { if (stageZoom.on && releaseStage) { releaseStage(); return; } go('#/'); }
   }
   document.addEventListener('keydown', keyHandler);
+  var onResize = function () { if (placement) placement(); };
+  window.addEventListener('resize', onResize);
   var lastTouch = 0;
   wrap.addEventListener('touchstart', function (e) { lastTouch = e.changedTouches[0].clientX; }, { passive: true });
   wrap.addEventListener('touchend', function (e) {
+    if (stageZoom.on && releaseStage) { releaseStage(); return; }
     var dx = e.changedTouches[0].clientX - lastTouch;
     if (Math.abs(dx) > 56) { if (dx < 0) advance(); else back(); }
   }, { passive: true });
 
-  reg(function () { document.removeEventListener('keydown', keyHandler); });
+  reg(function () {
+    document.removeEventListener('keydown', keyHandler);
+    window.removeEventListener('resize', onResize);
+  });
 
   /* preload next photo + dims */
   if (idx < stops.length - 1) { var ns = imgSrc(stops[idx + 1].id); if (ns) { var p = new Image(); p.src = ns; } }
@@ -819,7 +865,7 @@ function MapView() {
   var bar = div('sticky top-0 z-30 bg-ink/90 backdrop-blur-lg border-b border-white/10 px-4 py-3 flex items-center gap-3', [
     btn('press w-9 h-9 shrink-0 rounded-full border border-white/15 bg-ink2 text-bone font-tech', ['\u2190'], function () { go('#/'); }),
     fill(el('h1', 'font-disp font-semibold text-lg whitespace-nowrap shrink-0'), ['TRANSIT MAP']),
-    pill(tour.lines + ' LINES \u00B7 ' + tour.stops + ' STOPS \u00B7 ' + tour.grounds + ' GROUNDS', 'font-tech text-[9.5px] tracking-[.06em] px-3 py-1.5 rounded-full bg-white/5 text-fog border border-white/10 truncate min-w-0 flex-1 text-right')
+    pill(tour.lines + ' LINES \u00B7 ' + tour.stops + ' STOPS \u00B7 ' + tour.grounds + ' GROUNDS', 'font-tech text-[11px] tracking-[.06em] px-3 py-1.5 rounded-full bg-white/5 text-fog border border-white/10 truncate min-w-0 flex-1 text-right')
   ]);
   root.appendChild(bar);
 
@@ -836,7 +882,7 @@ function MapView() {
   var fadeR = el('div', 'pointer-events-none absolute inset-y-0 right-0 w-20 z-10');
   fadeR.style.background = 'linear-gradient(to left, #0F0D10 22%, rgba(15,13,16,0) 100%)';
   mapWrap.appendChild(fadeL); mapWrap.appendChild(fadeR);
-  var hint = el('div', 'pointer-events-none absolute bottom-2 right-4 z-10 font-tech text-[10px] tracking-[.2em] text-dim');
+  var hint = el('div', 'pointer-events-none absolute bottom-2 right-4 z-10 font-tech text-[11px] tracking-[.2em] text-dim');
   hint.textContent = 'SCROLL TO EXPLORE \u2192';
   mapWrap.appendChild(hint);
   scroll.addEventListener('scroll', function () {
@@ -855,7 +901,7 @@ function MapView() {
     return n;
   }
   function mtext(x, y, s, attrs) {
-    var t = mk('text', Object.assign({ x: x, y: y, fill: '#A9A2A8', 'font-family': '"JetBrains Mono", monospace', 'font-size': '9', 'text-anchor': 'middle' }, attrs || {}));
+    var t = mk('text', Object.assign({ x: x, y: y, fill: '#A9A2A8', 'font-family': '"JetBrains Mono", monospace', 'font-size': '11', 'text-anchor': 'middle' }, attrs || {}));
     t.textContent = s;
     return t;
   }
@@ -870,7 +916,7 @@ function MapView() {
     var chips = chains.filter(function (c) { return (LINES[c.id] || {}).fam === f; });
     if (!chips.length) return;
     var p = pill(fdata.label.toUpperCase() + ' \u00B7 ' + chips.length + ' LINE' + (chips.length > 1 ? 'S' : ''),
-      'font-tech text-[10px] tracking-[.12em] px-3 py-1.5 rounded-full bg-white/5 text-fog border border-white/10');
+      'font-tech text-[11px] tracking-[.12em] px-3 py-1.5 rounded-full bg-white/5 text-fog border border-white/10');
     famRow.appendChild(p);
   });
   legend.appendChild(famRow);
@@ -887,7 +933,7 @@ function MapView() {
 
     var claimed = claimedSet.has(ch.id);
     svg.appendChild(mtext(cx, padTop - 34, meta.code || '', { fill: acc, 'font-size': '20', 'font-weight': '700' }));
-    svg.appendChild(mtext(cx, padTop - 16, String(ci + 1).padStart(2, '0'), { fill: '#6E6670', 'font-size': '9' }));
+    svg.appendChild(mtext(cx, padTop - 16, String(ci + 1).padStart(2, '0'), { fill: '#6E6670', 'font-size': '10' }));
     if (claimed) svg.appendChild(mtext(cx, padTop - 52, 'CLAIMED', { fill: hexA(acc, .8), 'font-size': '7', 'letter-spacing': '2' }));
 
     var nodes = (C.chains.find(function (x) { return x.id === ch.id; }) || { nodes: [] }).nodes || [];
@@ -941,7 +987,7 @@ function MapView() {
         var kk = slotK[nd.id] || 1;
         var maxc = kk > 1 ? 12 : 16;
         var nm = nd.name.length > maxc ? nd.name.slice(0, maxc - 1) + '\u2026' : nd.name;
-        g.appendChild(mtext(p.x, p.y + 18, nm, { fill: isStop ? '#F2EFE9' : '#6E6670', 'font-size': kk > 1 ? '9' : (isStop ? '10' : '9') }));
+        g.appendChild(mtext(p.x, p.y + 18, nm, { fill: isStop ? '#F2EFE9' : '#6E6670', 'font-size': '11' }));
       }
       g.addEventListener('click', function () { go('#/station/' + nd.id); });
       svg.appendChild(g);
@@ -981,11 +1027,12 @@ function StationView(nodeId) {
 
   sheet.appendChild(fill(el('h1', 'font-disp font-semibold text-3xl leading-tight'), [node.name]));
   if (isStop) {
-    var pos = span('font-tech text-[10px] tracking-[.2em] text-dim mt-2 block', []);
-    pos.textContent = 'STATION ' + (sm.idx + 1) + '/' + sm.chain.stops.length + ' ON THE ' + (m.code || '') + ' LINE';
+    var zi2 = (sm.chain.stops[0] && sm.chain.stops[0].kind === 'room') ? 1 : 0;
+    var pos = span('font-tech text-[11px] tracking-[.2em] text-dim mt-2 block', []);
+    pos.textContent = 'STATION ' + (sm.idx - zi2 + 1) + '/' + (sm.chain.stops.length - zi2) + ' ON THE ' + (m.code || '') + ' LINE';
     sheet.appendChild(pos);
   } else {
-    var pos2 = span('font-tech text-[10px] tracking-[.2em] text-dim mt-2 block', []);
+    var pos2 = span('font-tech text-[11px] tracking-[.2em] text-dim mt-2 block', []);
     pos2.textContent = 'MAP-ONLY NODE \u00B7 ECHELON ' + node.echelon + ' \u00B7 THE ' + (m.code || '') + ' LINE';
     sheet.appendChild(pos2);
   }

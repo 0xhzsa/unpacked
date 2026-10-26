@@ -1135,3 +1135,57 @@ OK, check-imgs 87/87 mapped. Grid sweep: grid.html 20 thumbs (qa-p6-grid)
 Open: metaldesk/window photo could still be better out (rounds 5-7 found
 nothing people-free and subject-correct); next hunt can try Category:Steel
 furniture browsing rather than search.
+
+------------------------------------------------------------
+SESSION 26 - interactive UX fixes (double-tap + counter lies + dead pins)
+------------------------------------------------------------
+User verdict: "still not fixed at all" -> root-caused the ride itself, not
+photos. Local instrumentation (shot.js evalfile: audit-advance/zoom/end/map)
+replaced Hermes browser delegation (its browser-use provider needs
+BROWSER_USE_API_KEY; local fallback wants Edge quit + close-profile - needs
+user approval). Both Hermes audit attempt and local findings recorded.
+
+Proven bugs (tools/audit-advance.js evidence):
+1. DEAD-TAP: advance()/back() used goQuiet() (suppressRoute=true, no
+   in-place stepper exists - renderCard called exactly once). Tap 1 changed
+   URL but froze counter/photo/head for 2s; tap 2 rendered the stop wanted
+   on tap 1. Every stop cost two taps. FIX: goQuiet -> go in both.
+2. COUNTER OFF-BY-ONE: stops[0] is the invisible room stop; stopMeta[] idx
+   counts it. Deep link #/stop/keyboard-01 showed "STOP 2/9".
+   FIX: zi = (stops[0].kind==='room') ? 1 : 0; sites: top chip (START /
+   n/(len-zi)), kickRow counter, rails loop (8 segments), StationView
+   STATION n/m.
+3. PINS WERE DECORATIVE: holder pointer-events-none, renderCard never
+   re-called, zoom data unused. FIX: tap pin -> stage layer transform
+   translate to the pin photo-point at stop zoom scale (clamped so photo
+   edges stay covered), .pz dot glow, other pins dim via filter, zoomtip
+   "TAP THE PHOTO TO RELEASE"; tap stage/swipe/Esc releases (release-first
+   short-circuits advance). Hit target .pin::before 48px disc. CSS in
+   over.css (stage transform transition; dim via filter because pinin
+   animation fill:both pins opacity, defeating transitions).
+4. ROOM PIN UNDER CARD: safe recct computed while card mid-rise, no
+   re-place. FIX: placement() re-run at 700ms settle + window resize
+   re-place (inside single reg() cleanup - reg overwrites).
+5. TINY TEXT: map header pill 9.5 -> 11px, hint 10 -> 11, mtext default
+   9 -> 11 (node rows + drawer names), fam pills 10 -> 11, station pos
+   10 -> 11, kickRow/READ MORE/chipCode/pill defaults/hudchip 10/10.5 -> 11,
+   lvl-done 9 -> 10. Map smallText audit now empty.
+
+Verification (390x844, tools/qa-fix-*.png):
+- audit-advance: tap 1 -> hash spring + counter STOP 2/8 + head "The
+  Spring" agree at 120ms (was frozen till tap 2, off-by-one 3/9).
+- audit-zoom: pin pe=auto cursor=pointer; tap -> translate scale(1.8),
+  zoomtip on, zooming class, pz dot; stage tap -> release (transform
+  cleared); next stop keeps counter/head/hash lockstep, transform reset.
+- audit-end: keyboard line walks 1..8 single taps, TOUCH THE GROUND ->
+  ground claims. audit-map2: Keycap row (9px) clicks to station; station
+  counter fixed.
+- Room stop re-place: pin 523 -> 473 = cardTop-44 (qa-fix-room pins clear).
+- Gates: node check-beats 133/133 OK (2 manual-ok pre-existing),
+  check-journey ALL OK, check-imgs 87/87. app.js --check clean. No Tailwind
+  rebuild (11px utility already compiled); over.css bump v=2 -> v=3 only.
+
+Wall "broken images" note: 8 ?v=7 thumbs flagged incomplete at 2s cut are
+loading='lazy' timing false-positives (URLs gate-checked 87/87), not 404s.
+Left for next session: consider production verify pass + optional zoom on
+pin DragHint for desktop hover.
