@@ -1189,3 +1189,36 @@ Wall "broken images" note: 8 ?v=7 thumbs flagged incomplete at 2s cut are
 loading='lazy' timing false-positives (URLs gate-checked 87/87), not 404s.
 Left for next session: consider production verify pass + optional zoom on
 pin DragHint for desktop hover.
+
+SESSION 27 (2026-10-26) - cinematic editorial art pass (v4) + license-clean photo sweep
+Art pass (css/over.css marked "v3 cinematic editorial" block, app.js wall/ride edits):
+- photo grade: .shot img saturate 1.2 / contrast 1.14 / brightness .97; grain .14 -> .09.
+- wall: kicker chip "N OBJECTS / ONE ROOM", mast-title clamp 2.9-4.1rem, mast-bar accent glow,
+  mast-sub, hudbar glass (rgba blur), .sect "PICK AN OBJECT" rule; cards .lvl-th 112x138,
+  .lvl-name 1.5rem, ghost .lvl-n 96px @ .09 opacity; grid gap 3.5.
+- ride: .stage::before top cinema scrim, beatwash accent-graded bottom wash, .ride-head clamp,
+  ground .shot-scrim::after deep ink fade; map .scroller saturate(1.12), .mnode drop-shadow.
+- index.html over.css?v=4. Ken Burns transformOrigin from stop.zoom on base+cur layers (app.js).
+Photo sweep (tools/hunt2.js -> Openverse CC-only search, manifest MERGE no-clobber, tools/uns):
+- SWAPPED: mug -> tools/uns/mug-A.jpg (green tea top-down, craigCloutier, CC BY-SA 2.0),
+  pen -> pen-A.jpg (gold biro tip macro, nayukim, CC BY 2.0),
+  earbuds -> earbuds-A.jpg (two buds mesh macro, rawpixel, CC0; webp->jpg via tools/uns/convert.py
+  uv --with pillow since rawpixel serves WEBP bytes inside .jpg name).
+- Copy fix: mug "coffee" -> "tea" in beats b + journey narration (photo shows green tea).
+- Re-pins + re-anchors for mug/pen/earbuds in beats.call / journey.annotations + journey.zoom:
+  mug wall (27,52) + glaze (72,50) zoom(50,54,1.9); pen ball (34,38)+socket (39,32) zoom(30,30,1.6);
+  earbuds bud (33,55)+mesh (63,53) zoom(48,50,1.1). RIDE MECHANIC FACT: ride kbz is scale 1.02-1.05
+  only (css drift keyframes); journey.zoom.scale is the TAP-ZOOM magnitude. Base cover window on
+  390x844 for 1.25-aspect images = imgX ~31.6-68.4 only -> pins must live near window center;
+  pairs resisted wander via 3 shot iterations (qb-sw-*). 
+- REJECTED (license or honesty): metaldesk A (bar with people) B/C (themed rooms), lamp A/B
+  (floor lamp/room scenes), fan A (gazebo) B (nc-nd) C (nc-sa), turntable-A (candle not a player),
+  blender-A (bright pale-wood smoothie; current dark granite blender kept), chair B/C nc,
+  earbuds-B (Sony Ericsson phone logo, not buds), book-B nc, window A/B/C nc, candle A/C nd,
+  bottle-A antique mismatch + B nc, chasen A/B nc-sa, ssd toy cars, chair-A (current kept, nc),
+  armchair-A rawpixel (fabric wingback != rattan story; current peacock rattan kept).
+- Openverse rate limits: retry + 7s inter-chain backoff enough; 403s hard-blocked armchair rerun
+  (armchair manifest entry now empty candidates; files+credits for old picks survive in meta.js).
+- Cache-bust ?v=7 -> ?v=8 everywhere (app.js x8 incl dimsFor/imgSrc/preload, index scripts,
+  grid). over.css stays v=4.
+- Gates: check-beats 133/133 OK, check-journey ALL OK, check-imgs 87/87, --check clean.

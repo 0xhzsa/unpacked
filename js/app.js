@@ -87,7 +87,7 @@ function dimsFor(src, cb) {
   probe.onload = function () { DIMS[src] = { w: probe.naturalWidth, h: probe.naturalHeight }; if (cb) cb(DIMS[src]); };
   probe.src = src;
 }
-function imgSrc(stopId) { return IMG[stopId] ? 'assets/img/' + IMG[stopId] + '.jpg?v=7' : null; }
+function imgSrc(stopId) { return IMG[stopId] ? 'assets/img/' + IMG[stopId] + '.jpg?v=8' : null; }
 function animateNum(node, raw) {
   var str = String(raw);
   var mm = str.match(/^([\d,.]+)(.*)$/);
@@ -191,23 +191,25 @@ function WallView() {
   var root = el('div', 'relative min-h-dvh overflow-x-hidden');
 
   var back = el('div', 'fixed inset-0');
-  back.appendChild(shotLayer('assets/img/room.jpg?v=7', 'absolute inset-0 wallkbd'));
+  back.appendChild(shotLayer('assets/img/room.jpg?v=8', 'absolute inset-0 wallkbd'));
   var fade = el('div', 'fixed inset-0 pointer-events-none');
-  fade.style.background = 'linear-gradient(to bottom, rgba(15,13,16,.87) 0%, rgba(15,13,16,.5) 38%, rgba(15,13,16,.93) 100%)';
+  fade.style.background = 'linear-gradient(to bottom, rgba(13,11,15,.58) 0%, rgba(15,13,16,.4) 30%, rgba(15,13,16,.88) 58%, rgba(15,13,16,.97) 100%)';
   root.appendChild(back); root.appendChild(fade);
 
-  var content = div('relative max-w-2xl mx-auto px-4 pt-9 pb-14 min-h-dvh');
+  var content = div('relative max-w-2xl mx-auto px-4 pt-14 pb-14 min-h-dvh');
 
-  var head = div('mb-2 a-rise', [
-    fill(el('h1', 'font-disp font-bold text-3xl sm:text-4xl tracking-tight'), [SERIES.name || 'UNPACKED'])
-  ]);
-  var sub = el('p', 'text-fog text-sm mb-7');
+  var head = div('a-rise', []);
+  var kick = span('font-tech text-[11px] tracking-[.24em] px-3 py-1.5 rounded-full border border-white/20 bg-ink/45 backdrop-blur inline-flex items-center gap-2', [chains.length + ' OBJECTS \u00B7 ONE ROOM']);
+  var mh = fill(el('h1', 'font-disp mast-title mt-3'), [SERIES.name || 'UNPACKED']);
+  var mbar = div('mast-bar', []);
+  var sub = el('p', 'mast-sub');
   sub.textContent = (SERIES.tag || 'every ordinary thing starts somewhere') + '. Pick a line and ride it to the ground.';
-  content.appendChild(head); content.appendChild(sub);
+  fill(head, [kick, mh, mbar, sub]);
+  content.appendChild(head);
 
   /* career HUD: stops ridden + grounds claimed */
   var stopsRidden = Math.min(visited.size, tour.stops);
-  var hud = div('flex flex-wrap items-center gap-2 mb-7 a-rise', []);
+  var hud = div('hudbar a-rise', []);
   var hud1 = span('hudchip', []);
   hud1.appendChild(span(null, ['STOPS RIDDEN ']));
   var hb1 = span(null, [String(stopsRidden)]); hb1.style.color = '#F2EFE9'; hb1.style.fontWeight = '700';
@@ -257,7 +259,9 @@ function WallView() {
     }
   }
 
-  var grid = el('div', 'grid grid-cols-1 sm:grid-cols-2 gap-3');
+  var sect = div('sect a-rise', ['PICK AN OBJECT']);
+  content.appendChild(sect);
+  var grid = el('div', 'grid grid-cols-1 sm:grid-cols-2 gap-3.5');
   chains.forEach(function (ch, i) {
     var m = LINES[ch.id] || {};
     var acc = m.acc || '#F2EFE9';
@@ -271,7 +275,7 @@ function WallView() {
     var th = div('lvl-th', []);
     if (oStop) {
       var im = el('img');
-      im.src = 'assets/img/' + IMG[oStop.id] + '.jpg?v=7';
+      im.src = 'assets/img/' + IMG[oStop.id] + '.jpg?v=8';
       im.alt = ''; im.decoding = 'async'; im.loading = 'lazy'; im.draggable = false;
       th.appendChild(im);
     } else {
@@ -331,7 +335,7 @@ function RideView(chainId, idx) {
   visited.add(me.id); saveSet('up3.visited', visited);
   try { localStorage.setItem('up3.last', me.id); } catch (e) {}
 
-  var src = imgSrc(me.id) || 'assets/img/room.jpg?v=7';
+  var src = imgSrc(me.id) || 'assets/img/room.jpg?v=8';
   var leaving = null;
   if (lastStopId && lastStopId !== me.id && stopMeta[lastStopId] && stopMeta[lastStopId].chainId === chainId) {
     leaving = imgSrc(lastStopId);
@@ -344,11 +348,12 @@ function RideView(chainId, idx) {
   /* stage: two crossfading layers */
   var stage = el('div', 'stage');
   var baseLayer = null;
-  if (leaving) { baseLayer = shotLayer(leaving, 'absolute inset-0 is on'.replace(' is', '')); baseLayer.classList.add('s'); baseLayer.classList.add('on'); stage.appendChild(baseLayer); }
+  if (leaving) { baseLayer = shotLayer(leaving, 'absolute inset-0 is on'.replace(' is', '')); baseLayer.classList.add('s'); baseLayer.classList.add('on'); var bim = baseLayer.querySelector('img'); var bz = stopMeta[lastStopId] && stopMeta[lastStopId].stop.zoom; if (bz && bim) bim.style.transformOrigin = bz.x + '% ' + bz.y + '%'; stage.appendChild(baseLayer); }
   var curLayer = shotLayer(src, 'absolute inset-0 s');
   stage.appendChild(curLayer);
   var vivid = function () { curLayer.classList.add('on'); };
   var cim = curLayer.querySelector('img');
+  if (me.zoom) cim.style.transformOrigin = me.zoom.x + '% ' + me.zoom.y + '%';
   if (cim.complete && cim.naturalWidth > 0) vivid();
   else { cim.addEventListener('load', vivid); cim.addEventListener('error', vivid); }
 
@@ -398,7 +403,7 @@ function RideView(chainId, idx) {
       var cardEl = wrap.querySelector(':scope > .absolute.bottom-0');
       var safeBottom = cardEl ? Math.max(safeTop + 40, cardEl.getBoundingClientRect().top - 44) : box.h - 24;
       var file = IMG[me.id];
-      dimsFor('assets/img/' + file + '.jpg?v=7', function (dim) {
+      dimsFor('assets/img/' + file + '.jpg?v=8', function (dim) {
         beat.call.forEach(function (c) {
           var pt = coverPoint({ x: c.x, y: c.y }, box, dim);
           var x = Math.min(Math.max(pt.x, safeSide), box.w - safeSide);
@@ -464,7 +469,7 @@ function RideView(chainId, idx) {
       ]),
       chipCode(lm.code, lm.acc)
     ]);
-    var head = fill(el('h1', 'font-disp font-semibold text-2xl leading-tight'), [st.kind === 'room' ? (ch.name || b.h || st.name) : (b.h || st.name)]);
+    var head = fill(el('h1', 'font-disp font-semibold ride-head leading-tight'), [st.kind === 'room' ? (ch.name || b.h || st.name) : (b.h || st.name)]);
     var statRow = div('flex items-baseline gap-2 mt-3 font-tech', []);
   var num = span('font-bold leading-none', ['\u00A0']);
   animateNum(num, b.stat.v);
@@ -567,7 +572,7 @@ function RideView(chainId, idx) {
 
   /* preload next photo + dims */
   if (idx < stops.length - 1) { var ns = imgSrc(stops[idx + 1].id); if (ns) { var p = new Image(); p.src = ns; } }
-  var cf = IMG[me.id]; if (cf) dimsFor('assets/img/' + cf + '.jpg?v=7');
+  var cf = IMG[me.id]; if (cf) dimsFor('assets/img/' + cf + '.jpg?v=8');
 
   return wrap;
 }
@@ -582,7 +587,7 @@ function GroundView(chainId) {
   visited.add(gStop.id); saveSet('up3.visited', visited);
   lastStopId = null;
 
-  var src = imgSrc(gStop.id) || 'assets/img/room.jpg?v=7';
+  var src = imgSrc(gStop.id) || 'assets/img/room.jpg?v=8';
   var wrap = el('div', 'fixed inset-0 overflow-hidden bg-ink');
   wrap.appendChild(shotLayer(src, 'absolute inset-0 shot-scrim'));
 
@@ -770,7 +775,7 @@ async function buildShare(chainId) {
       var im = new Image();
       im.onload = function () { res(im); };
       im.onerror = function () { res(null); };
-      im.src = 'assets/img/' + f2 + '.jpg?v=7';
+      im.src = 'assets/img/' + f2 + '.jpg?v=8';
     });
   }));
   for (var ti = 0; ti < 3; ti++) {

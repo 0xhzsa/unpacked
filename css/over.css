@@ -7,14 +7,14 @@
 
 /* ---------- photo grade: same photos, but they finally look art-directed ---------- */
 .shot > img {
-  filter: saturate(1.14) contrast(1.06);
+  filter: saturate(1.2) contrast(1.14) brightness(.97);
 }
 /* film grain on every photo surface */
 .walked-grain {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: .14;
+  opacity: .09;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
@@ -68,10 +68,10 @@
 .lvl-th {
   position: relative;
   flex: none;
-  width: 78px;
-  min-height: 92px;
-  margin: .55rem 0 .55rem .55rem;
-  border-radius: 10px;
+  width: 112px;
+  min-height: 138px;
+  margin: .6rem 0 .6rem .6rem;
+  border-radius: 12px;
   overflow: hidden;
   background: #17141b;
 }
@@ -81,8 +81,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.18) contrast(1.06);
-  transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+  filter: saturate(1.22) contrast(1.12) brightness(.95);
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1);
 }
 .lvl:hover .lvl-th img { transform: scale(1.09); }
 .lvl-th::after {
@@ -96,28 +96,29 @@
 /* wall card number: faint but present */
 .lvl-n {
   position: absolute;
-  top: -14px;
-  right: -4px;
+  top: -18px;
+  right: -6px;
   font-family: var(--font-disp);
   font-weight: 700;
-  font-size: 58px;
+  font-size: 96px;
   line-height: 1;
-  opacity: .17;
+  opacity: .09;
   pointer-events: none;
   user-select: none;
 }
 .lvl-name {
   font-family: var(--font-disp);
   font-weight: 600;
-  font-size: 1.28rem;
-  line-height: 1.18;
-  letter-spacing: -.01em;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -.015em;
   color: #f2efe9;
+  text-shadow: 0 2px 18px rgba(0,0,0,.4);
 }
 .lvl-tag {
-  font-size: 12.5px;
-  line-height: 1.35;
-  color: #a9a2a8;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #b9b2b8;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -327,3 +328,101 @@
   background: var(--acc, #FF6B8B);
   color: #141118;
 }
+
+/* ============================================================
+   v3 — cinematic editorial: masthead, hud bar, cinema ride, ground fade
+   ============================================================ */
+
+/* ---- wall masthead ---- */
+.mast-title {
+  font-family: var(--font-disp);
+  font-weight: 800;
+  font-size: clamp(2.9rem, 13.5vw, 4.1rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: #f2efe9;
+  text-shadow: 0 10px 44px rgba(0,0,0,.55);
+}
+.mast-bar {
+  width: 54px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--wallacc, #FF6B8B);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--wallacc, #FF6B8B) 70%, transparent);
+  margin: .8rem 0 .65rem;
+}
+.mast-sub {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #cfc8ce;
+  max-width: 34ch;
+}
+.hudbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: .95rem 0 1.1rem;
+  padding: .45rem .55rem;
+  border-radius: 16px;
+  background: rgba(15,13,16,.58);
+  border: 1px solid rgba(255,255,255,.11);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.hudbar .hudchip { background: transparent; border-color: transparent; padding: .25rem .4rem; }
+.sect {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-tech);
+  font-size: 11px;
+  letter-spacing: .3em;
+  color: #8e878e;
+  margin-bottom: .85rem;
+}
+.sect::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, rgba(255,255,255,.22), transparent);
+}
+
+/* ---- feature-card finish ---- */
+.lvl {
+  border-radius: 18px;
+  min-height: 152px;
+}
+.lvl:active { transform: scale(.985); }
+.lvl.done { border-color: color-mix(in srgb, var(--lineacc, #f2efe9) 45%, rgba(255,255,255,.1)); }
+
+/* ---- ride: cinema top-rail + restrained accent wash ---- */
+.stage::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 92px;
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(15,13,16,.88), rgba(15,13,16,.45) 55%, rgba(15,13,16,0));
+}
+.beatwash {
+  background: linear-gradient(to top, rgba(15,13,16,.72) 0%, color-mix(in srgb, var(--acc, #FF6B8B) 18%, rgba(15,13,16,.42)) 20%, rgba(15,13,16,0) 46%);
+}
+.ride-head { font-size: clamp(1.6rem, 6vw, 1.95rem); }
+
+/* ---- ground: the photo dies into the ink so the claim is the only thing lit ---- */
+.shot-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,13,16,.18) 20%, rgba(15,13,16,.6) 42%, rgba(15,13,16,.92) 60%, #0F0D10 74%);
+}
+
+/* ---- map: soft neon lift ---- */
+.scroller { filter: saturate(1.12); }
+.mnode circle { filter: drop-shadow(0 0 5px rgba(0,0,0,.85)); }

@@ -53,7 +53,7 @@ window.UNPACKED_META = {
 // filenames; artists/licenses as recorded in the fetch logs (no fabrication).
 window.UNPACKED_CREDITS = {
   "room":        { title: "Laptop and lamp on table (Unsplash).jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Laptop_and_lamp_on_table_(Unsplash).jpg" },
-  "mug":         { title: "Polka-dot mug (Unsplash).jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Polka-dot_mug_(Unsplash).jpg" },
+  "mug":         { title: "Green tea in a ceramic cup, top-down — photo by craigCloutier", licc: "CC BY-SA 2.0", url: "https://www.flickr.com/photos/23656277@N00/3139316219" },
   "minekaolin":  { title: "China clay pit, Wheal Martyn 1.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:China_clay_pit,_Wheal_Martyn_1.jpg" },
   "mineiron":    { title: "2025-01-18 Hull-Rust-Mahoning Open Pit Iron Mine, view from visitor center.jpg", licc: "CC BY 4.0", url: "https://commons.wikimedia.org/wiki/File:2025-01-18_Hull-Rust-Mahoning_Open_Pit_Iron_Mine,_view_from_visitor_center.jpg" },
   "mineiron2":   { title: "Schefferville open pit mining for iron ore.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Schefferville_open_pit_mining_for_iron_ore.jpg" },
@@ -72,7 +72,7 @@ window.UNPACKED_CREDITS = {
   "ledreel":     { title: "Light blue LED strip.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Light_blue_LED_strip.jpg" },
   "ledstrip":    { title: "LED strip closeup.jpg", licc: "CC BY 4.0", url: "https://commons.wikimedia.org/wiki/File:LED_strip_closeup.jpg" },
   "ssd":         { title: "2018 Pamięć Intel Optane 32GB.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:2018_Pami%C4%99%C4%87_Intel_Optane_32GB.jpg" },
-  "earbuds":     { title: "Fifth-generation AirPods in their charging case.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Fifth-generation_AirPods_in_their_charging_case.jpg" },
+  "earbuds":     { title: "Macro Mondays theme Mesh — two earbuds with mesh grilles, photo by rawpixel", licc: "CC0", url: "https://www.rawpixel.com/image/11189649/macro-mondays-theme-mesh" },
   "chasen":      { title: "Chasen-side-fs PNr°0499.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Chasen-side-fs_PNr%C2%B00499.jpg" },
   "chair":       { title: "At Tenerife 2023 1612.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:At_Tenerife_2023_1612.jpg" },
   "candle":      { title: "19. Coffee Shop (12644020424).jpg", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:19._Coffee_Shop_(12644020424).jpg" },
@@ -96,7 +96,7 @@ window.UNPACKED_CREDITS = {
   "press-a":  { title: "PlasticsInjectionMoulderJones.jpg", licc: "CC BY-SA 2.5", url: "https://commons.wikimedia.org/wiki/File:PlasticsInjectionMoulderJones.jpg" },
   "press-b":  { title: "LegoSpritzguss.JPG", licc: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:LegoSpritzguss.JPG" },
   "stamping": { title: "Deep Draw Line example by Pressteck Italy.jpg", licc: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Deep_Draw_Line_example_by_Pressteck_Italy.jpg" },
-  "pen":      { title: "Ballpoint pen macro.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Ballpoint_pen_macro.jpg" },
+  "pen":      { title: "Ballpoint pen macro — gold biro tip, photo by nayukim", licc: "CC BY 2.0", url: "https://www.flickr.com/photos/41506934@N03/5274433697" },
   "portable-ssd-smt-02": { title: "Smt_closeup.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Smt_closeup.jpg" },
   "turntable": { title: "Crosley_Record_Player.jpg", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Crosley_Record_Player.jpg" },
   "speaker": { title: "Lautsprecher 4-wege 2.jpg", licc: "CC BY-SA 2.5", url: "https://commons.wikimedia.org/wiki/File:Lautsprecher_4-wege_2.jpg" },
