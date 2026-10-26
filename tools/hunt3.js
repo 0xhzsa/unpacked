@@ -19,36 +19,44 @@ const J = sandbox.window.JOURNEY, IMG = sandbox.window.UnpackedIMG;
 const QUERIES = {
   "keyboard": "keyboard keys closeup",
   "keyboard-alt": "computer keyboard black",
-  "desk-lamp": "led desk lamp glowing dark",
-  "desk-lamp-alt": "desk lamp black studio",
-  "office-chair": "gaming office chair dark studio",
-  "office-chair-alt": "ergonomic chair black product",
-  "steel-desk": "steel table industrial workbench",
-  "steel-desk-alt": "metal table black studio",
+  "fridge-player": "Technics SL-1200 turntable",
+  "fridge-player-alt": "record player vinyl closeup",
   "glass-window": "rain window night bokeh",
   "glass-window-alt": "condensation window dark moody",
-  "hardcover-book": "book stack",
-  "hardcover-book-alt": "books still life",
-  "ceiling-fan": "ceiling fan",
-  "ceiling-fan-alt": "fan blades",
   "candle": "candle flame dark macro",
   "candle-alt": "lit candle black background",
-  "armchair": "rattan armchair studio",
-  "armchair-alt": "wicker chair rattan product",
-  "insulated-bottle": "steel water bottle",
-  "insulated-bottle-alt": "vacuum flask",
-  "matcha-whisk": "matcha whisk chasen bamboo",
-  "matcha-whisk-alt": "matcha whisk dark",
-  "led-strip": "led strip",
-  "led-strip-alt": "led light strip",
-  "magnet-power-bank": "magnetic power bank black",
-  "magnet-power-bank-alt": "power bank minimal black product",
   "slow-rebound-ball": "stress ball",
   "slow-rebound-ball-alt": "squishy ball",
-  "mini-blender": "blender kitchen",
-  "mini-blender-alt": "portable blender",
-  "fridge-player": "Technics SL-1200 turntable",
-  "fridge-player-alt": "record player vinyl closeup"
+  "ceiling-fan": "ceiling fan dark",
+  "ceiling-fan-alt": "ceiling fan wood blades dusk",
+  "hardcover-book": "old book still life dark",
+  "hardcover-book-alt": "antique leather book moody",
+  "led-strip": "led strip light glowing dark",
+  "led-strip-alt": "led lights night macro",
+  "armchair": "armchair dark interior",
+  "armchair-alt": "lounge chair leather studio",
+  "matcha-whisk": "chasen bamboo whisk dark",
+  "matcha-whisk-alt": "bamboo whisk matcha still life",
+  "desk-lamp": "desk lamp glowing dark",
+  "desk-lamp-alt": "anglepoise lamp",
+  "office-chair": "office chair black studio",
+  "office-chair-alt": "swivel chair product photography",
+  "steel-desk": "steel desk dark",
+  "steel-desk-alt": "metal desk industrial vintage",
+  "magnet-power-bank": "power bank black",
+  "magnet-power-bank-alt": "portable charger closeup black",
+  "insulated-bottle": "steel bottle black background",
+  "insulated-bottle-alt": "vacuum flask dark still life",
+  "mini-blender": "blender dark still life",
+  "mini-blender-alt": "kitchen blender dark moody",
+  "ceramic-mug": "ceramic mug dark still life",
+  "ceramic-mug-alt": "coffee cup dark moody",
+  "wireless-earbuds": "earbuds case black",
+  "wireless-earbuds-alt": "wireless earphones macro",
+  "portable-ssd": "portable ssd drive aluminum",
+  "portable-ssd-alt": "external hard drive black",
+  "ballpoint-pen": "ballpoint pen macro dark",
+  "ballpoint-pen-alt": "pen still life dark"
 };
 
 const UA = "unpackedsite/1.0 (https://github.com/0xhzsa/unpacked; product-photo research; contact via repo)";
@@ -82,6 +90,26 @@ async function apiSearch(q) {
   return (j.query && j.query.pages || []).filter(p => p.imageinfo && p.imageinfo[0]);
 }
 
+const CATS = {
+  "insulated-bottle": ["Water bottles", "Vacuum flasks"],
+  "magnet-power-bank": ["Power banks"],
+  "portable-ssd": ["Solid-state drives", "External hard disk drives"],
+  "desk-lamp": ["Desk lamps"],
+  "office-chair": ["Office chairs"],
+  "armchair": ["Armchairs"],
+  "steel-desk": ["Desks"]
+};
+
+async function apiCategory(cat) {
+  const url = "https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2" +
+    "&generator=categorymembers&gcmtitle=" + encodeURIComponent("Category:" + cat) +
+    "&gcmtype=file&gcmlimit=80&prop=imageinfo&iiprop=url%7Csize%7Cextmetadata&iiurlwidth=1400";
+  const res = await fetch(url, { headers: { "User-Agent": UA, "Accept": "application/json" }, signal: AbortSignal.timeout(25000) });
+  if (!res.ok) throw new Error("catapi " + res.status);
+  const j = await res.json();
+  return (j.query && j.query.pages || []).filter(p => p.imageinfo && p.imageinfo[0]);
+}
+
 async function dl(srcUrl, dest) {
   const res = await fetch(srcUrl, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(25000) });
   if (!res.ok) throw new Error("img " + res.status);
@@ -102,13 +130,20 @@ async function dl(srcUrl, dest) {
     const base = info.file;
     try {
       let pages = [];
-      for (let attempt = 0; attempt < 2 && !pages.length; attempt++) {
-        try {
-          if (attempt) await new Promise(r => setTimeout(r, 3000));
-          pages = await apiSearch(q);
-          if (!pages.length && QUERIES[chainId + "-alt"]) pages = await apiSearch(QUERIES[chainId + "-alt"]);
-        } catch (e) { console.log("  search retry", chainId, e.message); }
+      for (const cat of (CATS[chainId] || [])) {
+        try { const cp = await apiCategory(cat); if (cp.length) pages = pages.concat(cp); } catch (e) { console.log("  cat skip", chainId, e.message); }
       }
+      if (pages.length < 6) {
+        for (let attempt = 0; attempt < 2 && pages.length < 6; attempt++) {
+          try {
+            if (attempt) await new Promise(r => setTimeout(r, 3000));
+            pages = pages.concat(await apiSearch(q));
+            if (QUERIES[chainId + "-alt"]) pages = pages.concat(await apiSearch(QUERIES[chainId + "-alt"]));
+          } catch (e) { console.log("  search retry", chainId, e.message); }
+        }
+      }
+      const seenT = {};
+      pages = pages.filter(p => (seenT[p.title] ? false : (seenT[p.title] = 1)));
       await new Promise(r => setTimeout(r, 1200));
       let em = manifest[chainId] || (manifest[chainId] = { stopId: info.st.id, file: base, query: q, candidates: [] });
       em.c3 = [];

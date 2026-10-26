@@ -1265,3 +1265,42 @@ param added before the wall made it moot.
   (they were missing entirely); meta.js ?v=6 -> v=7 in index.html (grid.html has no meta.js ref).
 - Gates: check-beats 133/133 OK (2 manual-ok pre-existing), check-journey ALL OK, check-imgs
   87/87, --check clean. Ride shots qb-sw-*.png + qb-tt-*.png (390x844; fridge also 1440x900).
+
+SESSION 29 (2026-10-26) - round-3: interaction proof + room redesign (v10) + museum-grade photo sweep
+Interaction verdict: both user-reported "dead" controls PROVEN working on the LIVE site via
+synthesized real-pointer events (tools/qa-live-more.js, tools/qa-live-pin.js; elementFromPoint +
+pointerdown/up/click/touch, not programmatic .click()):
+- READ MORE: body 73->146px, card max-height 396.68->742.72px, fade 1->0, label flipped READ LESS.
+- pin tap: transform matrix(2.2,0,0,2.2,-234,-388.2), zoomtip on, zooming on. Live HTML serves
+  ?v=9 -> stale device cache was the likely cause on the user's side; hard-refresh instructions
+  given. Hardening shipped anyway: morebtn + bodyfade auto-hide (display:none) when copy fits
+  unclamped (rAF check) in app.js.
+Room redesign: room.jpg background REMOVED per round-3 ("picture I don't need") -> .roombg
+typographic opener (over.css v6): accent-glow radials + giant ghost chain word (--roomword) +
+walked-grain; app.js room branch sets it, room pins auto-skip (place() room guard), crossfade
+INTO room stops suppressed. room.jpg still serves the home wall + fallback so check-imgs stays
+green. ?v=10 bumps: index.html (over v6 / journey+beats v10 / meta v8 / app v10), grid.html.
+Photo sweep round-3: Commons CATEGORY listing beats full-text search (hunt3.js CATS + apiCategory;
+new tools/uns/grab.js search|cat|title|titlefile modes - titlefile because non-ASCII titles
+mangle in PS 5.1 argv; tools/uns/probe-cats.js; HUNT_MINW=1600). Categories that don't exist on
+Commons: "Power banks", "Powerbank", "Anglepoise", "Task lamps", "Thermos flasks".
+- SWAPPED: armchair -> Rijksmuseum CC0 catalog shot (BK-1994-36: tropical-hardwood armchair,
+  loose cane seat frame, S-colonnettes, pierced lotus tendrils; 4874x4874). Re-wired
+  journey.js armchair-01 (image/annotations crest 52,15 + webbing 48,52 / zoom 50,35; narration
+  cushion clause -> "carved with lotus tendrils"), beats.js armchair-01 body+calls, meta.js
+  UNPACKED_CREDITS "armchair" ADDED. Teak kept (museum says "tropisch hout" - not contradicted;
+  Teak Frame child stop depends on it). Cover-crop rule: 390x844 shows central ~46% of a square
+  photo's width -> pins must sit x 27-73.
+- KEPT (narration-locked, honest-beats-prettier): office-chair ("mesh back / 113 kg / five
+  wheels" copy; Gispen 355 + Eames EA 119 candidates would falsify), insulated-bottle ("forty
+  ounces of steel"; NIKSUN sticker pin at 56,56 is copy-integrated; Loewy chrome Model 3750 +
+  Termoverken mismatch), desk-lamp (LED story load-bearing: head stop = LED array on aluminum
+  MCPCB, SMT line next; 1935 incandescent Anglepoise candidates would falsify the chain),
+  steel-desk, chair, book, fan, ledreel, pen, chasen, blender, ssd (Intel Optane; round-2 brand
+  precedent), powerbank (ROMOSS).
+- Rejected: lamp-G-K (Type 1228 = same museum placards as current), lamp-E/F (blue plastic
+  halogen, toy-like), metaldesk-D (clerk in frame), chair-D (street junk), ledreel-D (vendor in
+  frame), pen-D/E/F (LOC civil-war maps, word collision), blender-D/E (CGI cafe).
+- Verified: tools/qa-r3b-room.png (ghost MECH opener), tools/qa-r3b-armchair.png (pins land on
+  crest carving + cane seat; card copy matches). Gates: check-beats 133/133 OK (2 manual-ok),
+  check-journey ALL OK, check-imgs 87/87, --check clean.

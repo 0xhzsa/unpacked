@@ -254,6 +254,30 @@
   .zoomtip { transition: opacity .3s ease; }
 }
 
+/* ---------- room entry: typographic chapter opener, no photo ---------- */
+.roombg {
+  background:
+    radial-gradient(130% 95% at 50% 118%, color-mix(in srgb, var(--acc, #F2EFE9) 15%, transparent), transparent 62%),
+    radial-gradient(90% 70% at 82% -8%, rgba(242, 239, 233, .05), transparent 58%),
+    linear-gradient(180deg, #1a1622 0%, #110d18 52%, #0a0810 100%);
+}
+.roombg::after {
+  content: var(--roomword, "");
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%);
+  max-width: 94%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-disp, system-ui);
+  font-weight: 800;
+  font-size: clamp(88px, 30vw, 230px);
+  letter-spacing: .01em;
+  color: rgba(242, 239, 233, .05);
+  pointer-events: none;
+}
+
 /* ---------- ride card: photo-first, peek by default ---------- */
 .rcard {
   max-height: 47dvh;

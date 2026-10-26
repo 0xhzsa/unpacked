@@ -75,6 +75,7 @@ window.UNPACKED_CREDITS = {
   "earbuds":     { title: "Macro Mondays theme Mesh — two earbuds with mesh grilles, photo by rawpixel", licc: "CC0", url: "https://www.rawpixel.com/image/11189649/macro-mondays-theme-mesh" },
   "chasen":      { title: "Chasen-side-fs PNr°0499.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Chasen-side-fs_PNr%C2%B00499.jpg" },
   "chair":       { title: "At Tenerife 2023 1612.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:At_Tenerife_2023_1612.jpg" },
+  "armchair":    { title: "Armstoel van tropisch hout met los zitraam met riet bespannen, BK-1994-36.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Armstoel_van_tropisch_hout_met_los_zitraam_met_riet_bespannen,_de_stoel_heeft_o.m._geslingerde_colonetten_en_is_versierd_met_gestoken_lotusranken_en_kabelranden,_BK-1994-36.jpg" },
   "candle":      { title: "Pourquoi. Lit candle. — photo by Rolf Schweizer", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Pourquoi._Lit_candle._(22590133777).jpg" },
   "fan":         { title: "Ceiling fan (brown).jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Ceiling_fan_(brown).jpg" },
   "penball":     { title: "Ballpoint Macro.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Ballpoint_Macro.jpg" },
