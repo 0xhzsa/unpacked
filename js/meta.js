@@ -24,6 +24,14 @@ window.UNPACKED_META = {
     re:      { label: "Rare earth", gives: "neodymium magnets" },
     rubber:  { label: "Natural rubber", gives: "soles, grip, bounce" }
   },
+  covers: {
+    "keyboard": [50, 50], "desk-lamp": [50, 24], "office-chair": [50, 44], "ceramic-mug": [50, 50],
+    "steel-desk": [50, 55], "glass-window": [54, 34], "hardcover-book": [50, 50], "ceiling-fan": [50, 30],
+    "candle": [50, 50], "armchair": [50, 42], "insulated-bottle": [62, 50], "wireless-earbuds": [50, 50],
+    "matcha-whisk": [50, 40], "led-strip": [50, 50], "magnet-power-bank": [50, 52], "slow-rebound-ball": [50, 50],
+    "mini-blender": [50, 50], "portable-ssd": [50, 50], "ballpoint-pen": [50, 55], "fridge-player": [32, 50],
+    "pickleball": [50, 45], "skillet": [50, 50], "sneaker": [50, 50], "gimbal": [50, 45]
+  },
   lines: {
     "keyboard":         { code: "KB", acc: "#FF6B8B", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "Every switch in the room began this story in this hole.",                         tagline: "Eighty-seven tiny machines, none of them from the same place." },
     "desk-lamp":        { code: "LT", acc: "#FFD34D", fam: "bauxite", ground: "A bauxite mine",    kind: "Mine",   quip: "Red dirt melted into metal, still carrying the electricity it cost.",             tagline: "450 lumens, traced back to red dirt and a bolt of lightning." },

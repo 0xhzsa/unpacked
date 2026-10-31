@@ -30,6 +30,7 @@ chains.forEach(function (ch) {
   });
 });
 var nodeById = {}, nameBucket = {};
+var feeds = {};
 var tour = { lines: chains.length, stops: Object.keys(stopMeta).length, nodes: 0, links: 0, procs: 0, shared: 0, grounds: 0 };
 (function () {
   var gset = {};
@@ -50,6 +51,12 @@ var tour = { lines: chains.length, stops: Object.keys(stopMeta).length, nodes: 0
   });
 });
 Object.keys(nameBucket).forEach(function (n) { if (nameBucket[n].length > 1) tour.shared++; });
+Object.keys(nodeById).forEach(function (id) {
+  (nodeById[id].inputs || []).forEach(function (inp) {
+    if (!nodeById[inp]) return;
+    (feeds[inp] = feeds[inp] || []).push(id);
+  });
+});
 
 /* ---------------- local state ---------------- */
 function loadSet(k) { try { return new Set(JSON.parse(localStorage.getItem(k) || '[]')); } catch (e) { return new Set(); } }
@@ -88,6 +95,17 @@ function dimsFor(src, cb) {
   probe.src = src;
 }
 function imgSrc(stopId) { return IMG[stopId] ? 'assets/img/' + IMG[stopId] + '.jpg?v=10' : null; }
+/* cover anchors live in meta.js: tuned to keep the object in a 4:3 card */
+var COVER = META.covers || {};
+function coverFor(chainId) { var c = COVER[chainId]; return c ? { x: c[0], y: c[1] } : null; }
+function zoomOf(id) { var sm = stopMeta[id]; return (sm && sm.stop && sm.stop.zoom) || null; }
+function softZoom(id) {
+  var z = zoomOf(id);
+  return z ? { x: 50 + (z.x - 50) * 0.65, y: 50 + (z.y - 50) * 0.65 } : null;
+}
+function applyFocus(im, focus) {
+  if (im && focus && focus.x !== undefined && focus.x !== null) im.style.objectPosition = focus.x + '% ' + focus.y + '%';
+}
 function animateNum(node, raw) {
   var str = String(raw);
   var mm = str.match(/^([\d,.]+)(.*)$/);
@@ -116,9 +134,10 @@ function coverPoint(pct, box, dim) {
   var offX = (dim.w - visW) / 2, offY = (dim.h - visH) / 2;
   return { x: (pct.x / 100 * dim.w - offX) * scale, y: (pct.y / 100 * dim.h - offY) * scale };
 }
-function shotLayer(src, cls) {
+function shotLayer(src, cls, focus) {
   var d = el('div', 'shot ' + (cls || 'absolute inset-0'));
   var im = el('img'); im.src = src; im.alt = ''; im.decoding = 'async'; im.draggable = false;
+  applyFocus(im, focus);
   d.appendChild(im);
   d.appendChild(el('div', 'walked-grain'));
   return d;
@@ -178,6 +197,11 @@ function route() {
   else if ((parts[0] === 'stop') && stopMeta[parts[1]]) { applyAcc(stopMeta[parts[1]].chainId); v = RideView(stopMeta[parts[1]].chainId, stopMeta[parts[1]].idx); }
   else if ((parts[0] === 'ground') && LINES[parts[1]]) { applyAcc(parts[1]); v = GroundView(parts[1]); }
   else if ((parts[0] === 'station') && nodeById[parts[1]]) v = StationView(parts[1]);
+  else if ((parts[0] === 'obj') && LINES[parts[1]]) {
+    applyAcc(parts[1]);
+    v = RideView(parts[1], 0);
+    try { history.replaceState(null, '', '#/line/' + parts[1]); } catch (e) {}
+  }
   else v = WallView();
   app.replaceChildren(v);
 }
@@ -278,6 +302,7 @@ function WallView() {
       var im = el('img');
       im.src = 'assets/img/' + IMG[oStop.id] + '.jpg?v=11';
       im.alt = ''; im.decoding = 'async'; im.loading = 'lazy'; im.draggable = false;
+      applyFocus(im, coverFor(ch.id));
       th.appendChild(im);
     } else {
       th.style.background = 'linear-gradient(160deg, ' + acc + ', rgba(255,255,255,0))';
@@ -333,13 +358,16 @@ function RideView(chainId, idx) {
   var src = isRoom ? null : (imgSrc(me.id) || 'assets/img/room.jpg?v=10');
   /* room openers wear the object's own photo as a cover, never an empty stage */
   var heroSrc = src;
+  var heroStop = isRoom ? null : me;
+  var heroFocus = (isRoom || idx === zi) ? coverFor(chainId) : zoomOf(me.id);
   if (!heroSrc) {
     for (var hk = 0; hk < stops.length; hk++) {
-      if (IMG[stops[hk].id] && IMG[stops[hk].id] !== 'room') { heroSrc = imgSrc(stops[hk].id); break; }
+      if (IMG[stops[hk].id] && IMG[stops[hk].id] !== 'room') { heroSrc = imgSrc(stops[hk].id); heroStop = stops[hk]; break; }
     }
   }
-  var leaving = null;
+  var leaving = null, leavingId = null;
   if (lastStopId && lastStopId !== me.id && stopMeta[lastStopId] && stopMeta[lastStopId].chainId === chainId) {
+    leavingId = lastStopId;
     leaving = (stopMeta[lastStopId].stop && stopMeta[lastStopId].stop.kind === 'room') ? null : imgSrc(lastStopId);
   }
   lastStopId = me.id;
@@ -350,8 +378,8 @@ function RideView(chainId, idx) {
   /* stage: two crossfading layers; room stops get a typographic opener, not a photo */
   var stage = el('div', 'stage');
   var baseLayer = null;
-  if (leaving) { baseLayer = shotLayer(leaving, 'absolute inset-0 is on'.replace(' is', '')); baseLayer.classList.add('s'); baseLayer.classList.add('on'); var bim = baseLayer.querySelector('img'); var bz = stopMeta[lastStopId] && stopMeta[lastStopId].stop.zoom; if (bz && bim) bim.style.transformOrigin = bz.x + '% ' + bz.y + '%'; stage.appendChild(baseLayer); }
-  var curLayer = heroSrc ? shotLayer(heroSrc, 'absolute inset-0 s') : div('roombg s', [el('div', 'walked-grain')]);
+  if (leaving) { baseLayer = shotLayer(leaving, 'absolute inset-0 is on'.replace(' is', ''), zoomOf(leavingId)); baseLayer.classList.add('s'); baseLayer.classList.add('on'); var bim = baseLayer.querySelector('img'); var bz = leavingId && stopMeta[leavingId] && stopMeta[leavingId].stop.zoom; if (bz && bim) bim.style.transformOrigin = bz.x + '% ' + bz.y + '%'; stage.appendChild(baseLayer); }
+  var curLayer = heroSrc ? shotLayer(heroSrc, 'absolute inset-0 s', heroFocus) : div('roombg s', [el('div', 'walked-grain')]);
   if (!heroSrc) curLayer.style.setProperty('--roomword', JSON.stringify(String(ch.name || me.name || '').toUpperCase()));
   stage.appendChild(curLayer);
   var vivid = function () { curLayer.classList.add('on'); };
@@ -627,7 +655,7 @@ function GroundView(chainId) {
 
   var src = imgSrc(gStop.id) || 'assets/img/room.jpg?v=10';
   var wrap = el('div', 'fixed inset-0 overflow-hidden bg-ink');
-  wrap.appendChild(shotLayer(src, 'absolute inset-0 shot-scrim'));
+  wrap.appendChild(shotLayer(src, 'absolute inset-0 shot-scrim', softZoom(gStop.id)));
 
   var content = div('absolute inset-0 z-20 flex flex-col items-center justify-end text-center px-6', null);
   content.style.paddingBottom = 'max(2rem, env(safe-area-inset-bottom))';
@@ -1070,11 +1098,24 @@ function StationView(nodeId) {
   function kick(t) {
     return div('skick', [el('i', 'kickdot'), span(null, [t])]);
   }
+  function nodeChip(id2, withCode) {
+    var other = nodeById[id2];
+    if (!other) return null;
+    var om = LINES[other.chainId] || {};
+    var label = (withCode ? (om.code || '') + ' \u00B7 ' : '') + other.name;
+    var c2 = btn('font-tech text-[10px] tracking-[.14em] px-3 py-1.5 rounded-full border press relbtn', [label], function () { go('#/station/' + id2); });
+    c2.style.borderColor = 'color-mix(in srgb, ' + om.acc + ' 45%, transparent)';
+    c2.style.color = om.acc || '#F2EFE9';
+    c2.style.background = 'color-mix(in srgb, ' + om.acc + ' 12%, transparent)';
+    return c2;
+  }
 
   /* hero: the photo is the page, the title sits in it */
   var hero = div('shero', []);
   var photo = imgSrc(nodeId);
-  if (photo) hero.appendChild(shotLayer(photo, 'absolute inset-0'));
+  var ziS = (isStop && sm.chain.stops[0] && sm.chain.stops[0].kind === 'room') ? 1 : 0;
+  var heroFocus = (isStop && sm.idx === ziS) ? coverFor(node.chainId) : softZoom(nodeId);
+  if (photo) hero.appendChild(shotLayer(photo, 'absolute inset-0', heroFocus));
   else {
     hero.classList.add('compact');
     hero.appendChild(div('shero-null', []));
@@ -1125,6 +1166,24 @@ function StationView(nodeId) {
     main.appendChild(bodyCard);
   }
 
+  /* graph relationships: real upstream/downstream links, not decoration */
+  var ins = (node.inputs || []).filter(function (id2) { return !!nodeById[id2]; });
+  var outs = (feeds[nodeId] || []).filter(function (id2) { return !!nodeById[id2]; });
+  if (ins.length || outs.length) {
+    var chCard = div('scard', []);
+    chCard.appendChild(kick('THE CHAIN'));
+    function relGroup(label, ids) {
+      chCard.appendChild(div('rellabel', [label]));
+      var row = div('relrow', []);
+      ids.slice(0, 8).forEach(function (id2) { var c = nodeChip(id2); if (c) row.appendChild(c); });
+      if (ids.length > 8) row.appendChild(pill('+' + (ids.length - 8) + ' MORE'));
+      chCard.appendChild(row);
+    }
+    if (ins.length) relGroup('INPUTS', ins);
+    if (outs.length) relGroup('OUTPUTS', outs);
+    main.appendChild(chCard);
+  }
+
   /* specs as label/value tiles */
   if ((node.specs || []).length) {
     var spCard = div('scard', []);
@@ -1170,15 +1229,7 @@ function StationView(nodeId) {
     var shCard = div('scard', []);
     shCard.appendChild(kick('SHARED WITH ' + others.length + ' OTHER NODE' + (others.length > 1 ? 'S' : '')));
     var shRow = div('srow', []);
-    others.forEach(function (id2) {
-      var other = nodeById[id2];
-      var om = LINES[other.chainId] || {};
-      var c2 = btn('font-tech text-[10px] tracking-[.14em] px-3 py-1.5 rounded-full border press', [(om.code || '') + ' \u00B7 ' + other.name], function () { go('#/station/' + id2); });
-      c2.style.borderColor = 'color-mix(in srgb, ' + om.acc + ' 45%, transparent)';
-      c2.style.color = om.acc || '#F2EFE9';
-      c2.style.background = 'color-mix(in srgb, ' + om.acc + ' 12%, transparent)';
-      shRow.appendChild(c2);
-    });
+    others.forEach(function (id2) { var c2 = nodeChip(id2, true); if (c2) shRow.appendChild(c2); });
     shCard.appendChild(shRow);
     main.appendChild(shCard);
   }

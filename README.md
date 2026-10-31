@@ -10,34 +10,33 @@ the live 30-second press cycle &rarr; the whole-room supply-chain graph.
 ![UNPACKED demo: pick a keyboard, descend to its machines and materials, then the whole room](docs/demo.gif)
 
 It is an interactive, scroll-through field note — an engineer's answer to *"I, Pencil."*
-You start in one ordinary room. Pick any of the 19 objects and the story walks you down
+You start in one ordinary room. Pick any of the 24 objects and the line walks you down
 its supply chain: the part, the machine that made it, the material the machine shaped,
 until you reach the mine, oil well, forest or quarry it finally came from.
 
-**19 objects · 210 processes · 223 links**
-Four chains end in crude oil, three in iron ore, three in copper. One place where the steel desk, the hardcover book and the ceiling fan all spill into
-*the same iron mine*.
+**24 objects · 232 processes · 15 grounds**
+Five lines end in crude oil, three in iron ore, two in copper. The steel desk, the insulated bottle and the cast-iron skillet all end in
+*the same iron ore mine*.
 
 ## How to use it
 
-- **Click any object card** on the home sheet — each opens a scroll story
-  (the whole object's journey is one page; chapter plates flag the machine parts).
-- **Appendix** at the end: every node in the chain with its verified specs, process
-  and history in ledger form. Nothing in the picture is left unexplained.
-- **The whole room** (button top-right, `G`, or the dashed card): all 210 processes
-  in one graph — see where the 19 chains merge, split and reuse each other.
-- **Keyboard**: `1–9`, `0`, `-`, `=` and `q`–`u` open objects Nº1–19, `G` = whole room,
-  `Escape` backs out one layer. Every story also has a **real URL**: open one and the
-  address becomes `/#obj/<id>`, "Copy link" copies it, and the `story/` door pages
-  (one per object) carry the object's own link-preview card when a link is shared.
-- Machine chapters can **run the 30-second injection cycle** as a live simulation.
+- **Pick an object** on the wall — its card opens the line at the room, then every stop
+  is a station sheet: the number that matters, what happens there, what feeds it, what
+  it feeds, the verified specs and the history.
+- **Transit map** ("TRANSIT MAP" in the header, or on any line): all 24 lines on one
+  diagram — see where they merge, split and reuse each other.
+- **Keyboard**: `→` / `Enter` / `Space` advance a stop, `←` backs up, `Escape` returns
+  to the wall. Every view is a real URL: `/#/line/<id>`, `/#/stop/<id>`,
+  `/#/station/<id>`, `/#/ground/<id>`, and "SHARE THE CARD" renders the line as an image.
+- **Link previews**: each object has a `story/<id>/` door page carrying its own 1200×630
+  card, so a shared link opens with the object, not the homepage.
 
 ## What's in the box
 
-Zero frameworks. One flat pile of browser JS (`content.js`, `journey.js`, `descent.js`,
-`story.js`, `graph.js`, `press.js`, `affiliate.js`), one stylesheet, and 66 Wikimedia
-photographs (CC BY / CC0 / public domain — credits per file in `RECOVERY-NOTE.md`,
-strip on the home page). Everything is a static file; deploy is any static host.
+Zero frameworks. One flat pile of browser JS (`content.js`, `journey.js`, `beats.js`,
+`meta.js`, `imgmap.js`, `app.js`), two stylesheets, and 97 Wikimedia photographs
+(CC BY / CC0 / public domain — credits per file in `RECOVERY-NOTE.md`, strip on the
+home page). Everything is a static file; deploy is any static host.
 
 | Home sheet | Story | Appendix ledger |
 | --- | --- | --- |

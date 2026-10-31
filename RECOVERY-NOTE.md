@@ -1593,4 +1593,26 @@ tail anchor (...inputs: [], }, ], }, ], };) consumed by the append.
  - Visual (tools/qa30/): 108/109 room openers (fridge + skillet), 110 expanded room,
    96/107 station card stacks, 106 map-only compact hero, 98 ground claim card,
    99 map 2-line labels, 111 landing + 112 grid unchanged, 113 station desktop.
- - Live: https://0xhzsa.github.io/unpacked/ - pages build watched after push.
+ - Live: https://0xhzsa.github.io/unpacked/ - pages build watched after push.   ROUND 6B - every public page + image framing + station information (over.css v11,
+   app.js v14, meta.js v13):
+ - 404.html rebuilt in the app's dark card design (room photo, dark card, absolute
+   /unpacked/ paths); old beige Alegreya 404 removed.
+ - 19 story/ redirect doors repointed from dead #obj/<id> to canonical #/line/<id>;
+   legacy 'obj' router alias retained as a shim. 5 new chains (fridge-player, pickleball,
+   skillet, sneaker, gimbal) now have doors too -> 24/24 coverage.
+ - Focal system: META.covers (24 entries, object-position) for object-level surfaces
+   (landing card, room opener, station hero, grid) no longer reuses ride-pin zoom points.
+   Deeper stops use ride zoomOf(id); station hero + ground use damped softZoom(id)
+   (65% blend toward center). Landing card now uses coverFor(ch.id); lamp shade fixed.
+ - Station page adds a THE CHAIN card with real INPUTS/OUTPUTS chips (node.inputs and
+   feeds[] graph edges), plus refactored SHARED WITH to the same nodeChip helper.
+ - Grid: full taglines (no mid-sentence clamp), object focal points, links to
+   #/line/<id>, align-items:start, softened grade. 24 cards.
+ - Photo grade softened: .shot > img saturate(1.08) contrast(1.06) brightness(1.04);
+   .lvl-th img saturate(1.08) contrast(1.05) brightness(1.03).
+ - 24 dark OG cards (1200x630) regenerated into docs/og/*.jpg; all story doors now
+   carry the dark card and canonical story URL.
+ - README counts fixed (24 objects / 232 processes / 15 grounds), route #obj -> #/line.
+ - Sitemap now 26 URLs (home + grid + 24 stories).
+ - Gates: node --check app.js + meta.js OK; journey 153 stops, zoom 153/0, beats 153/0,
+   mirror 0. Versions bumped in index/grid: over v11, meta v13, app v14.

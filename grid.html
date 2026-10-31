@@ -6,7 +6,7 @@
 <title>UNPACKED - the wall of lines</title>
 <link rel="stylesheet" href="css/fonts.css?v=5">
 <link rel="stylesheet" href="css/app.css?v=5">
-<link rel="stylesheet" href="css/over.css?v=9">
+<link rel="stylesheet" href="css/over.css?v=11">
 <style>
   :root { color-scheme: dark; }
   html, body { margin: 0; background: #0F0D10; }
@@ -36,6 +36,7 @@
   .wall {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    align-items: start;
     gap: 16px;
     margin-top: 26px;
   }
@@ -55,7 +56,7 @@
     box-shadow: 0 14px 34px rgba(0,0,0,.45);
   }
   .thumb { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #17131c; }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.08) contrast(1.05) brightness(1.03); transition: transform .35s ease; }
   .card:hover .thumb img { transform: scale(1.045); }
   .idx {
     position: absolute; left: 10px; bottom: 6px;
@@ -75,7 +76,6 @@
     font-size: 15.5px; line-height: 1.2; letter-spacing: -.01em; color: #F2EFE9;
   }
   .tag {
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     margin: 0; font-size: 11.5px; line-height: 1.5; color: #b5adb5;
   }
   .ground {
@@ -104,7 +104,7 @@
 </div>
 <script defer src="js/journey.js?v=12"></script>
 <script defer src="js/imgmap.js?v=11"></script>
-<script defer src="js/meta.js?v=11"></script>
+<script defer src="js/meta.js?v=13"></script>
 <script>
 (function () {
   function go() {
@@ -118,17 +118,19 @@
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
     chains.forEach(function (ch, i) {
       var ln = (M.lines || {})[ch.id] || {};
-      var img = '';
+      var img = '', focus = '';
       for (var k = 0; k < ch.stops.length; k++) {
         var v = IM[ch.stops[k].id];
         if (v && v !== 'room') { img = v; break; }
       }
+      var cov = (M.covers || {})[ch.id];
+      if (cov) focus = ' style="object-position:' + cov[0] + '% ' + cov[1] + '%"';
       var a = document.createElement('a');
       a.className = 'card';
       a.style.setProperty('--acc', ln.acc || '#F2EFE9');
-      a.href = './index.html#/stop/' + ch.stops[0].id;
+      a.href = './index.html#/line/' + ch.id;
       a.innerHTML =
-        '<span class="thumb"><img loading="lazy" src="assets/img/' + img + '.jpg?v=11" alt="' + esc(ch.name) + '">' +
+        '<span class="thumb"><img loading="lazy" src="assets/img/' + img + '.jpg?v=11" alt="' + esc(ch.name) + '"' + focus + '>' +
         '<b class="idx">' + String(i + 1).padStart(2, '0') + '</b><b class="code">' + esc(ln.code || '') + '</b></span>' +
         '<span class="meta"><h2>' + esc(ch.name) + '</h2><span class="tag">' + esc(ch.tagline || '') + '</span>' +
         '<span class="ground">&rarr; ' + esc(ln.ground || '') + '</span></span>';

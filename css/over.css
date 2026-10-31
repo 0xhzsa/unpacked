@@ -7,7 +7,7 @@
 
 /* ---------- photo grade: same photos, but they finally look art-directed ---------- */
 .shot > img {
-  filter: saturate(1.2) contrast(1.14) brightness(.97);
+  filter: saturate(1.08) contrast(1.06) brightness(1.04);
 }
 /* film grain on every photo surface */
 .walked-grain {
@@ -81,7 +81,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.18) contrast(1.08) brightness(.97);
+  filter: saturate(1.08) contrast(1.05) brightness(1.03);
   transition: transform .55s cubic-bezier(.34,1.56,.64,1);
 }
 .lvl:hover .lvl-th img { transform: scale(1.05); }
@@ -653,6 +653,14 @@
 .spec .k { font-family: var(--font-tech); font-size: 9.5px; letter-spacing: .14em; color: #8e878e; }
 .spec .v { font-family: var(--font-tech); font-size: 13.5px; font-weight: 700; color: #f2efe9; margin-top: 3px; }
 .srow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.rellabel {
+  font-family: var(--font-tech);
+  font-size: 9.5px; letter-spacing: .2em; color: #8e878e;
+  margin: 14px 0 7px;
+}
+.scard .rellabel:first-of-type { margin-top: 2px; }
+.relrow { display: flex; flex-wrap: wrap; gap: 7px; }
+.relbtn { background: rgba(255,255,255,.04); }
 .sstep { display: flex; gap: 10px; font-size: 14px; color: rgba(242,239,233,.86); line-height: 1.5; }
 .sstep i { font-family: var(--font-tech); font-style: normal; font-size: 10px; color: #6e6670; padding-top: 3px; }
 .snav { display: grid; gap: 8px; }
