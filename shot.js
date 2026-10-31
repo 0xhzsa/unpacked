@@ -1,9 +1,9 @@
 /* shot.js — real-viewport screenshot + layout-overflow check via Chrome DevTools Protocol.
    Fixes the --window-size floor (~492px) in headless Edge by using Emulation.setDeviceMetricsOverride.
 
-   usage: node shot.js <url> <width> <height> <outPng> [waitMs] [--evalfile <file>]
+   usage: node shot.js <url> <width> <height> <outPng> [waitMs] [--evalfile <file>] [--clip x,y,w,h]
    prints: { iw, sw, sh, bad[] } — bad = elements whose right edge exceeds the viewport.
-   waitMs must cover app boot + driver timers (this runs in REAL time, no virtual-time budget). */
+   --clip captures an arbitrary page rectangle via captureBeyondViewport (ignores scroll). */
 const { spawn, spawnSync } = require("child_process");
 const http = require("http");
 const fs = require("fs");
@@ -14,8 +14,12 @@ const EDGE = process.env.EDGE || "C:\\Program Files (x86)\\Microsoft\\Edge\\Appl
 const args = process.argv.slice(2);
 const evalIdx = args.indexOf("--evalfile");
 const evalFile = evalIdx > -1 ? args[evalIdx + 1] : null;
-const skipIdx = evalIdx > -1 ? evalIdx + 1 : -1;
-const positional = args.filter((a, i) => !a.startsWith("--") && i !== skipIdx);
+const clipIdx = args.indexOf("--clip");
+const clipRaw = clipIdx > -1 ? args[clipIdx + 1] : null;
+const usedIds = [];
+if (evalIdx > -1) usedIds.push(evalIdx, evalIdx + 1);
+if (clipIdx > -1) usedIds.push(clipIdx, clipIdx + 1);
+const positional = args.filter((a, i) => !a.startsWith("--") && !usedIds.includes(i));
 const [url, W, H, out, waitMs] = positional;
 if (!url || !W || !H || !out) {
   console.error("usage: node shot.js <url> <width> <height> <outPng> [waitMs] [--evalfile <file>]");
@@ -99,7 +103,13 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     const geo = await send("Runtime.evaluate", { expression: geoExpr, returnByValue: true });
     console.log("GEO:", JSON.stringify(geo.result && geo.result.result && geo.result.result.value));
 
-    const shot = await send("Page.captureScreenshot", { format: "png" });
+    const clipParts = clipRaw ? clipRaw.split(",").map(Number) : null;
+    const shotOpts = { format: "png" };
+    if (clipParts && clipParts.length === 4) {
+      shotOpts.clip = { x: clipParts[0], y: clipParts[1], width: clipParts[2], height: clipParts[3], scale: 1 };
+      shotOpts.captureBeyondViewport = true;
+    }
+    const shot = await send("Page.captureScreenshot", shotOpts);
     fs.writeFileSync(out, Buffer.from(shot.result.data, "base64"));
     console.log("WROTE:", out);
     ws.close();

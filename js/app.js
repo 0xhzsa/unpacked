@@ -1,8 +1,8 @@
 ﻿/* ============================================================
    UNPACKED v3 â€” app shell (no reload), hash router.
    Views: Wall -> Ride the Line -> Touch the Ground, Transit Map, Station sheet.
-   Data: content.js (210-node graph), journey.js (126 audited stops),
-         beats.js (v3 copy), meta.js (design system), imgmap.js (photos).
+   Data: content.js (232-node graph), journey.js (153 audited stops),
+         beats.js (153 stops), meta.js (design system), imgmap.js (photos).
    ============================================================ */
 (function () {
 'use strict';
@@ -261,7 +261,7 @@ function WallView() {
 
   var sect = div('sect a-rise', ['PICK AN OBJECT']);
   content.appendChild(sect);
-  var grid = el('div', 'grid grid-cols-1 sm:grid-cols-2 gap-3.5');
+  var grid = el('div', 'grid grid-cols-1 sm:grid-cols-2 gap-4');
   chains.forEach(function (ch, i) {
     var m = LINES[ch.id] || {};
     var acc = m.acc || '#F2EFE9';
@@ -269,29 +269,25 @@ function WallView() {
     var card = btn('lvl a-rise', null, function () { go('#/line/' + ch.id); });
     card.style.setProperty('--lineacc', acc);
     card.style.animationDelay = (i * 30) + 'ms';
+    if (done) card.classList.add('done');
 
     var oStop = null;
     ch.stops.forEach(function (s4) { if (!oStop && IMG[s4.id] && IMG[s4.id] !== 'room') oStop = s4; });
     var th = div('lvl-th', []);
     if (oStop) {
       var im = el('img');
-      im.src = 'assets/img/' + IMG[oStop.id] + '.jpg?v=10';
+      im.src = 'assets/img/' + IMG[oStop.id] + '.jpg?v=11';
       im.alt = ''; im.decoding = 'async'; im.loading = 'lazy'; im.draggable = false;
       th.appendChild(im);
     } else {
       th.style.background = 'linear-gradient(160deg, ' + acc + ', rgba(255,255,255,0))';
     }
+    th.appendChild(span('lvl-code', [m.code || '??']));
+    th.appendChild(span('lvl-n', [String(i + 1).padStart(2, '0')]));
+    if (done) th.appendChild(span('lvl-done', ['\u2713 GROUND CLAIMED']));
     card.appendChild(th);
 
-    var num = span('lvl-n', [String(i + 1).padStart(2, '0')]);
-    num.style.color = acc;
-    card.appendChild(num);
-
-    var mid = div('flex-1 min-w-0 flex flex-col py-2.5 pr-3', []);
-    var topRow = div('flex items-center gap-2', [
-      chipCode(m.code || '??', acc),
-      done ? span('lvl-done', ['GROUND CLAIMED']) : pill((ch.stops.length - 1) + ' STOPS DEEP')
-    ]);
+    var body = div('lvl-body', []);
     var name = el('h2', 'lvl-name');
     name.textContent = ch.name;
     var tag = el('p', 'lvl-tag');
@@ -300,19 +296,17 @@ function WallView() {
     ch.stops.forEach(function (s4) {
       dots.appendChild(el('i', 'lvl-dot' + (visited.has(s4.id) ? ' on' : '')));
     });
+    var metaRow = div('flex items-center justify-between gap-2 mt-1', [
+      dots,
+      span('lvl-stops', [(ch.stops.length - 1) + ' STOPS'])
+    ]);
     var foot = div('lvl-foot', []);
-    var g = span('min-w-0 flex-1', []);
-    g.style.overflow = 'hidden';
-    g.style.textOverflow = 'ellipsis';
-    g.style.whiteSpace = 'nowrap';
+    var g = span('lvl-ground', []);
     g.textContent = '\u2192 ' + (m.ground || '');
-    g.style.color = done ? acc : '';
-    if (done) g.style.fontWeight = '700';
-    var fam = pill((FAMS[m.fam] || {}).label || '');
-    fam.classList.add('shrink-0');
+    var fam = span('lvl-fam', [((FAMS[m.fam] || {}).label || '').toUpperCase()]);
     foot.appendChild(g); foot.appendChild(fam);
-    fill(mid, [topRow, name, tag, dots, foot]);
-    card.appendChild(mid);
+    fill(body, [name, tag, metaRow, foot]);
+    card.appendChild(body);
     grid.appendChild(card);
   });
   content.appendChild(grid);

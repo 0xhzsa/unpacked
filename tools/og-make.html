@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- og-make.html — renders the 1200x630 share image from live repo data.
+     usage: node shot.js "file:///C:/Users/stagh/unpacked/tools/og-make.html" 1200 630 og-new.png 3500
+     then convert og-new.png to assets/og.jpg via System.Drawing (JPEG q92). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../css/fonts.css?v=5">
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(90% 70% at 8% -10%, rgba(177,140,255,.14), transparent 55%),
+      radial-gradient(80% 60% at 30% 108%, rgba(255,107,139,.10), transparent 60%),
+      linear-gradient(150deg, #191420 0%, #120F17 52%, #0F0D10 100%);
+    font-family: "Clash Display", sans-serif;
+    color: #F2EFE9;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .left { position: absolute; left: 76px; top: 96px; width: 500px; }
+  .kick { display: flex; align-items: center; gap: 12px; font-family: "JetBrains Mono", monospace; font-size: 15px; font-weight: 700; letter-spacing: .34em; color: #FF6B8B; }
+  .kick i { display: block; width: 34px; height: 2px; background: #FF6B8B; }
+  .word { margin-top: 26px; font-size: 88px; font-weight: 700; letter-spacing: -.02em; line-height: 1; color: #F2EFE9; }
+  .word b { color: #FF6B8B; font-weight: 700; }
+  .copy { margin-top: 26px; font-size: 23px; line-height: 1.52; color: #C9C2C6; max-width: 480px; }
+  .copy b { color: #F2EFE9; font-weight: 600; }
+  .stats { margin-top: 34px; font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: .18em; color: #8E878E; }
+  .stats b { color: #F2EFE9; font-weight: 700; }
+  .stats div + div { margin-top: 9px; }
+  .url { position: absolute; left: 76px; bottom: 46px; font-family: "JetBrains Mono", monospace; font-size: 16px; font-weight: 700; letter-spacing: .12em; color: #FF6B8B; }
+  .grid {
+    position: absolute; right: 40px; top: 26px; bottom: 26px; width: 520px;
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .tile { position: relative; border-radius: 10px; overflow: hidden; background: #1D1826; }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.12) contrast(1.06); }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="kick"><i></i>AN ILLUSTRATED SUPPLY-CHAIN GAME</div>
+    <div class="word">UNPACKED<b>.</b></div>
+    <p class="copy">Pick an ordinary thing and ride it down: <b>plastic, steel, clay, glass</b> — machine by machine, all the way back to the mine, forest or well it came from.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="url">0xhzsa.github.io/unpacked</div>
+  <div class="grid" id="grid"></div>
+<script defer src="../js/content.js?v=7"></script>
+<script defer src="../js/journey.js?v=12"></script>
+<script defer src="../js/imgmap.js?v=11"></script>
+<script>
+(function () {
+  function go() {
+    var J = window.JOURNEY, IM = window.UnpackedIMG || {}, C = window.CONTENT;
+    if (!J || !IM || !C) return;
+    var chains = J.objects || [];
+    var stops = 0, links = 0;
+    chains.forEach(function (c) { stops += c.stops.length; });
+    (C.chains || []).forEach(function (c) { (c.nodes || []).forEach(function (nd) { links += (nd.inputs || []).length; }); });
+    document.getElementById('stats').innerHTML =
+      '<div><b>' + chains.length + '</b>&nbsp; OBJECTS &middot; <b>' + stops + '</b>&nbsp; STATIONS &middot; <b>' + links + '</b>&nbsp; LINKS</div>' +
+      '<div>EVERY STAT VERIFIED</div>';
+    var grid = document.getElementById('grid');
+    chains.forEach(function (ch) {
+      var img = '';
+      for (var k = 0; k < ch.stops.length; k++) {
+        var v = IM[ch.stops[k].id];
+        if (v && v !== 'room') { img = v; break; }
+      }
+      var d = document.createElement('div');
+      d.className = 'tile';
+      d.innerHTML = '<img src="../assets/img/' + img + '.jpg?v=12" alt="">';
+      grid.appendChild(d);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+})();
+</script>
+</body>
+</html>

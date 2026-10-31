@@ -5055,15 +5055,15 @@ window.CONTENT = {
     // =====================================================================
     {
       id: "fridge-player",
-      name: "Fridge Record Player",
+      name: "Magnetic Fridge Record Player",
       color: "#170F14",
       nodes: [
         {
           id: "fridge-player-01",
-          name: "Fridge Record Player",
+          name: "Magnetic Fridge Record Player",
           echelon: 0,
           description:
-            "A palm-sized copy of this suitcase player, built to hang on the fridge door by magnet. Nine NFC discs ride its platter; tapping one picks the song stored on the 128 MB card while an LED pulses with the music.",
+            "A palm-sized record player that hangs on the fridge door by its magnetic back. Nine color-coded NFC records stand beside it; set one on the platter and its assigned track plays off the 128 MB card while an LED pulses with the music.",
           specs: [
             { label: "Discs", value: "9", unit: "NFC" },
             { label: "Memory", value: "128", unit: "MB" },
@@ -5194,6 +5194,310 @@ window.CONTENT = {
             "Ship to the separation plant",
           ],
           color: "#181410",
+          inputs: [],
+        },
+      ],
+    },
+
+    // =====================================================================
+    // OBJECT: Pickleball Paddle (object #21, session 30)
+    // Echelon 0: object -> 1: mold -> 2: material -> 3: source
+    // =====================================================================
+    {
+      id: "pickleball",
+      name: "Pickleball Paddle",
+      color: "#12130D",
+      nodes: [
+        {
+          id: "pickleball-01",
+          name: "A Pickleball Paddle",
+          echelon: 0,
+          description:
+            "I'm a pickleball paddle: a polymer honeycomb heart between two graphite skins, pressed flat and finished with a printed target. Hit the middle and the whole sheet answers at once.",
+          specs: [
+            { label: "Core", value: "Polymer honeycomb", unit: "" },
+            { label: "Face", value: "Graphite skin", unit: "" },
+            { label: "Sport founded", value: "1965", unit: "" },
+          ],
+          history:
+            "Pickleball was improvised on Bainbridge Island in 1965 with plywood paddles; molded polymer cores arrived in the 1970s and standardized the bounce.",
+          color: "#12130D",
+          inputs: ["pickleball-mold-01"],
+        },
+        {
+          id: "pickleball-mold-01",
+          name: "The Rim Mold",
+          echelon: 1,
+          description:
+            "The paddle's edge rim is injection molded: hot polymer shot into a shut steel mold. The plate in this photo prints toy-figure torsos twelve at a time - different shape, same trick. Carve steel once, print parts forever.",
+          specs: [
+            { label: "Shots per cycle", value: "12", unit: "figures" },
+            { label: "Mold steel", value: "Tool steel", unit: "" },
+            { label: "First molding patent", value: "1872", unit: "" },
+          ],
+          history:
+            "John Wesley Hyatt patented the first injection molding machine in 1872, to make billiard balls out of plastic instead of ivory.",
+          color: "#12130D",
+          inputs: ["pickleball-pellets-01"],
+        },
+        {
+          id: "pickleball-pellets-01",
+          name: "Polymer Pellets",
+          echelon: 2,
+          description:
+            "Before any paddle there are pellets: polypropylene lentils, extruded warm and cut to size. The core's honeycomb and the rim both start as buckets of these beads; pigment goes in before pelleting, which is why the heap is one color.",
+          specs: [
+            { label: "Core resin", value: "Polypropylene", unit: "" },
+            { label: "Pelletizing", value: "Extruded, cut", unit: "" },
+            { label: "Melt", value: "160", unit: "°C" },
+          ],
+          history:
+            "Polypropylene was polymerized into a useful solid by Giulio Natta in 1954 and was in production by 1957.",
+          color: "#12130D",
+          inputs: ["pickleball-petroleum-04"],
+        },
+        {
+          id: "pickleball-petroleum-04",
+          name: "Crude Oil Well",
+          echelon: 3,
+          description:
+            "Polypropylene is crude oil rearranged: drilled, refined to naphtha, cracked into propylene, chained into beads. The pumpjack in this photo nods above a well that reaches three thousand meters down.",
+          specs: [
+            { label: "Well depth", value: "3000", unit: "m" },
+            { label: "Cracked to", value: "Propylene", unit: "" },
+            { label: "First well", value: "1859", unit: "" },
+          ],
+          history:
+            "The pumpjacks around Dickinson nod over the Williston Basin, tapped commercially since 1951. The first commercial oil well anywhere was Titusville, 1859.",
+          color: "#12130D",
+          inputs: [],
+        },
+      ],
+    },
+
+    // =====================================================================
+    // OBJECT: Cast Iron Skillet (object #22, session 30)
+    // Echelon 0: object -> 1: mold -> 2: machine -> 3: source
+    // =====================================================================
+    {
+      id: "skillet",
+      name: "Cast Iron Skillet",
+      color: "#150F0D",
+      nodes: [
+        {
+          id: "skillet-01",
+          name: "A Cast Iron Skillet",
+          echelon: 0,
+          description:
+            "I'm a cast iron skillet: one pour of iron into a sand mold, then a lifetime of seasoning. The spout at my lip was cast in, not cut; the handle came out of the same sand. Cook on it for years and the black is the pan.",
+          specs: [
+            { label: "Cast from", value: "Gray iron", unit: "" },
+            { label: "Poured at", value: "1400", unit: "°C" },
+            { label: "Brand founded", value: "1865", unit: "" },
+          ],
+          history:
+            "Griswold cast its first pans in Erie, Pennsylvania in 1865; its smooth finish made it the collector's favorite.",
+          color: "#150F0D",
+          inputs: ["skillet-mold-02"],
+        },
+        {
+          id: "skillet-mold-02",
+          name: "The Sand Mold",
+          echelon: 1,
+          description:
+            "Skillets are still green-sand cast: two flasks of packed sand, cope on top and drag below, with baked sand cores set in for anything the pour can't reach. Shut them and the cavity is the pan, filled in one pour.",
+          specs: [
+            { label: "Halves", value: "Cope and drag", unit: "" },
+            { label: "Bonded with", value: "Clay and water", unit: "" },
+            { label: "Cores", value: "Baked sand", unit: "" },
+          ],
+          history:
+            "Green sand casting is old enough that no one names its inventor; the cope-and-drag pair in this photo is a foundry's daily bread.",
+          color: "#150F0D",
+          inputs: ["skillet-pour-03"],
+        },
+        {
+          id: "skillet-pour-03",
+          name: "The Pour Line",
+          echelon: 2,
+          description:
+            "On the pouring line a ladle tips, and iron runs at fourteen hundred degrees into the sprue of each mold down the rail. In this foundry the stream is being inoculated as it falls - additives mixed mid-air to tune the iron's grain.",
+          specs: [
+            { label: "Poured at", value: "1400", unit: "°C" },
+            { label: "Dosing", value: "In-stream", unit: "" },
+            { label: "Grain", value: "Tuned by inoculant", unit: "" },
+          ],
+          history:
+            "Inoculation, feeding silicon into the falling stream, spread through the 1920s to make gray iron's graphite flake fine and even.",
+          color: "#150F0D",
+          inputs: ["skillet-iron-04"],
+        },
+        {
+          id: "skillet-iron-04",
+          name: "Schefferville",
+          echelon: 3,
+          description:
+            "The iron in this pan is ore like Schefferville's: sixty-two percent metal, terraced into benches and hauled down for the furnace. Cast iron is this rock re-melted with carbon and silicon until it pours like syrup.",
+          specs: [
+            { label: "Iron in the ore", value: "62", unit: "%" },
+            { label: "Re-melted with", value: "Carbon, silicon", unit: "" },
+            { label: "Mining began", value: "1954", unit: "" },
+          ],
+          history:
+            "Schefferville was opened in 1954 by the Iron Ore Company of Canada and mined out by the early 1980s; its benches still ring in every cast pan.",
+          color: "#150F0D",
+          inputs: [],
+        },
+      ],
+    },
+
+    // =====================================================================
+    // OBJECT: Sneaker (object #23, session 30)
+    // Echelon 0: object -> 1: component -> 2: material -> 3: source
+    // =====================================================================
+    {
+      id: "sneaker",
+      name: "Sneaker",
+      color: "#0F1410",
+      nodes: [
+        {
+          id: "sneaker-01",
+          name: "A Sneaker",
+          echelon: 0,
+          description:
+            "I'm a sneaker: leather and mesh panels stitched over a compression-molded midsole, riding on a gum rubber outsole. The company behind this pair opened in Boston in 1906, selling arch supports.",
+          specs: [
+            { label: "Upper", value: "Leather, mesh", unit: "" },
+            { label: "Midsole", value: "Molded EVA", unit: "" },
+            { label: "Company founded", value: "1906", unit: "" },
+          ],
+          history:
+            "New Balance opened in Boston in 1906, fitting arch supports; by the 1960s its running shoes were on track teams.",
+          color: "#0F1410",
+          inputs: ["sneaker-layers-01"],
+        },
+        {
+          id: "sneaker-layers-01",
+          name: "The Stack",
+          echelon: 1,
+          description:
+            "Torn open, a sneaker is a laminated stack: textile over foam over rubber, each layer glued and stitched to the next. The wavy line in the midsole is mold texture; the orange stitches are the seam holding the upper down.",
+          specs: [
+            { label: "Layers", value: "3", unit: "stacked" },
+            { label: "Bonded by", value: "Adhesive, stitch", unit: "" },
+            { label: "Midsole made", value: "Compression-molded", unit: "" },
+          ],
+          history:
+            "Bill Bowerman poured urethane into his wife's waffle iron in 1971 and the modern outsole tread was born.",
+          color: "#0F1410",
+          inputs: ["sneaker-tap-02"],
+        },
+        {
+          id: "sneaker-tap-02",
+          name: "The Tapping Cut",
+          echelon: 2,
+          description:
+            "Natural rubber starts as latex: a thin spiral cut into the bark, a cup hung below, and the tree fills it overnight, one cut per tree every two days. The white stream settles into the rubber that grips this outsole.",
+          specs: [
+            { label: "Tapped every", value: "2", unit: "days" },
+            { label: "Spiral cut", value: "Half the bark", unit: "" },
+            { label: "Latex", value: "30", unit: "% rubber" },
+          ],
+          history:
+            "Henry Wickham smuggled 70,000 rubber seeds out of the Amazon in 1876, and Kew's plantings seeded Asia's plantations.",
+          color: "#0F1410",
+          inputs: ["sneaker-rubber-04"],
+        },
+        {
+          id: "sneaker-rubber-04",
+          name: "Munnoorppilly",
+          echelon: 3,
+          description:
+            "The line ends in a plantation: rows of rubber trees, each wrapped with a collection skirt, tapped on rotation. Munnoorppilly sits in Kerala's rubber belt, where smallholder rows like these feed outsoles worldwide.",
+          specs: [
+            { label: "Tapped every", value: "2", unit: "days" },
+            { label: "Trees per hectare", value: "400", unit: "" },
+            { label: "Seeded by", value: "Kew, 1876", unit: "" },
+          ],
+          history:
+            "Kew's 1876 plantings came from Wickham's 70,000-seed Amazon haul; Kerala's smallholders now grow most of India's rubber.",
+          color: "#0F1410",
+          inputs: [],
+        },
+      ],
+    },
+
+    // =====================================================================
+    // OBJECT: Camera Gimbal (object #24, session 30)
+    // Echelon 0: object -> 1: machine -> 2: component -> 3: source
+    // =====================================================================
+    {
+      id: "gimbal",
+      name: "Camera Gimbal",
+      color: "#0D0F15",
+      nodes: [
+        {
+          id: "gimbal-01",
+          name: "A Camera Gimbal",
+          echelon: 0,
+          description:
+            "I'm a camera gimbal: three brushless motors, one per axis, holding the camera still while your hand shakes. The camera in this photo states its own optics around the lens: 20mm equivalent, f/2.8, a 94 degree view.",
+          specs: [
+            { label: "Motors", value: "3", unit: "brushless" },
+            { label: "Axes", value: "Pitch, roll, yaw", unit: "" },
+            { label: "Lens", value: "20mm equiv.", unit: "" },
+          ],
+          history:
+            "Steadicam arrived in 1975; handheld brushless gimbals industrialized the idea in the 2010s.",
+          color: "#0D0F15",
+          inputs: ["gimbal-motor-01"],
+        },
+        {
+          id: "gimbal-motor-01",
+          name: "The Motor Type",
+          echelon: 1,
+          description:
+            "Every axis is an external-rotor brushless motor, the same layout as this Papst motor from a 1957 Grundig: the drum spins around the stator, magnets outside, windings inside. Only the size has changed.",
+          specs: [
+            { label: "Layout", value: "External rotor", unit: "" },
+            { label: "Built", value: "1957", unit: "" },
+            { label: "In my gimbal", value: "Brushless", unit: "" },
+          ],
+          history:
+            "External-rotor motors date to the 1950s - Papst built fan motors this way; the same drum-on-stator layout now spins every gimbal axis.",
+          color: "#0D0F15",
+          inputs: ["gimbal-magnet-01"],
+        },
+        {
+          id: "gimbal-magnet-01",
+          name: "The Magnets",
+          echelon: 2,
+          description:
+            "Inside every axis drum: arc segments of sintered neodymium, the same powder as this cube of spheres. Pressed in a field, baked, plated, magnetized - a few grams of it hold each drum's torque.",
+          specs: [
+            { label: "Material", value: "NdFeB", unit: "" },
+            { label: "Process", value: "Sintered", unit: "" },
+            { label: "Industrialized", value: "1984", unit: "" },
+          ],
+          history:
+            "General Motors' Magnequench industrialized sintered NdFeB in 1984; fridge discs and gimbal drums share it.",
+          color: "#0D0F15",
+          inputs: ["gimbal-re-04"],
+        },
+        {
+          id: "gimbal-re-04",
+          name: "Bayan Obo",
+          echelon: 3,
+          description:
+            "The magnets in those drums are neodymium, and the descent ends at Bayan Obo: the pit that holds over forty percent of the world's rare earths, seen here from orbit, benches and tailings laid out across tan desert.",
+          specs: [
+            { label: "World reserves", value: "40+", unit: "%" },
+            { label: "Discovered", value: "1927", unit: "" },
+            { label: "Earths recognized", value: "1935", unit: "" },
+          ],
+          history:
+            "Geologists came for the iron in 1927; the seventeen rare earths hiding in the same carbonatite were named in 1935.",
+          color: "#0D0F15",
           inputs: [],
         },
       ],

@@ -26,7 +26,7 @@ window.JOURNEY = {
           id: "keyboard-room", stop: 0, echelon: 0, kind: "room",
           name: "The Room",
           kicker: "Start here",
-          narration: "Twenty things in this room have no idea how they got here. Pick one. I'll take you down into it, all the way to the ground it came from.",
+          narration: "Twenty-four things in this room have no idea how they got here. Pick one. I'll take you down into it, all the way to the ground it came from.",
           specs: [{ label: "Objects in room", value: "24", unit: "" }, { label: "How deep we go", value: "9", unit: "stops" }, { label: "We end at", value: "A crude oil well", unit: "" }],
           history: "In 1751, Denis Diderot's Encyclopedie spent hundreds of plates showing people how ordinary things were actually made. That's the idea here.",
           image: "warm-lit modern home office at dusk with a mechanical keyboard on a wooden desk",

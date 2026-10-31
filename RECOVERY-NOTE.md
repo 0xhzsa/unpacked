@@ -1512,3 +1512,53 @@ E. EXECUTION CHECKLIST (in order)
    check-beats still OK (9 vs Discs 9 NFC spec; 128 vs Memory 128 MB spec).
    Stale note lines corrected this pass: "Running Shoe" -> "Sneaker";
    gimbal-01 2006 -> 3 motors. Live-verify results appended after push.
+
+   LIVE-VERIFY (post-push, Pages run 41181287077 success 46s; shot.js
+   390x844, 5000ms wait, tools/qa30/40-43): 40-live-fp01 = fridge card
+   renders corrected "Magnetic Fridge Record Player" (title, 9 NFC discs
+   stat, fridge-door body, pins on tonearm/record); 41-live-sn04 =
+   Munnoorppilly plantation ground, rubbertrees photo live, pins separated;
+   42-live-gb01 = A Camera Gimbal live ("3 motors", pins on lens/motor);
+   43-live-wall = wall + grid render "24 OBJECTS · ONE ROOM", STOPS 0/153,
+   GROUNDS 0/24, bad[] clean. Shipped as commit b798e65 (a341d9b..b798e65
+   main), 20 files.
+
+
+## Session 30, round 5 - EXECUTED (owner: modify it across all of the pages; make them as cards)
+WHAT:
+- content.js (v7): round 4 added the 4 new chains (pickleball/skillet/sneaker/gimbal) to
+  journey/beats but NEVER to content.js - live transit map rendered 4 EMPTY columns, new
+  station sheets were unreachable (#/station falls through the router), counts stale.
+  Appended 16 nodes built ONLY from audited journey data (narration to description,
+  specs/history copied verbatim, inputs chained stop to stop, no process arrays - all
+  stops are BEATS so process never renders). Graph: 232 nodes / 241 links / 24 chains.
+- content.js renames: chain + node "Fridge Record Player" -> "Magnetic Fridge Record
+  Player" (kept color #170F14); node description rewritten fridge-accurate (magnetic
+  back, 9 color-coded NFC records, 128 MB card, LED).
+- Landing WallView redesigned as PHOTO-FIRST CARDS: full-bleed 4:3 thumb, code chip
+  top-left, 42px display numeral bottom-right, GROUND CLAIMED chip when claimed; body
+  = name / 2-line tagline / dots + N STOPS / ground (accent, full text) + fam label.
+  over.css v8 (.lvl rewritten, duplicate finish block trimmed); app.js v11 (markup ->
+  lvl-th/lvl-code/lvl-n/lvl-body/lvl-foot). Grid kept sm:grid-cols-2.
+- OG SHARE IMAGE rebuilt (was 20 objects / 126 / 229 + old 20-tile mosaic): new
+  tools/og-make.html renders 1200x630 from live data -> shot.js PNG -> System.Drawing
+  JPEG q92 -> assets/og.jpg (163 KB). 24 real tiles incl. the 4 new products; counts
+  24 OBJECTS / 153 STATIONS / 241 LINKS; brand fonts + colors.
+- Copy counts: index.html description now Twenty-four; og:alt lists all 24 names;
+  journey.js L29 room narration Twenty -> Twenty-four.
+- Bumps: over.css?v=8, content.js?v=7, journey.js?v=12 (index+grid), app.js?v=11,
+  og.jpg?v=3 (og:image + twitter:image). app.js header says 232-node / 153 audited.
+  shot.js: new --clip x,y,w,h flag (captureBeyondViewport).
+GATES (green pre-push): node --check content/journey/app/beats OK; check-journey ALL
+OK; check-beats OK; check-imgs missing:[] unused:[] mapped:97; mirror-check 153 props
+0 mismatches; SVG mapdump shows all 24 chains with full columns (FP Rare Earth Mine,
+PL Crude Oil Well, SK Schefferville, SN Munnoorppilly, GB Bayan Obo).
+VISUAL (tools/qa30/): 50-og (final OG), 60-wall-top, 68-wall-full (390x10600 full
+wall: ALL 24 thumbs paint incl. 4 new chains), 71-grid-full, 70/72-skillet ride+stop
+(SK 5 stops + skillet.jpg with spout/face pins).
+HARNESS NOTES (do not burn tokens re-learning): loading=lazy thumbs below the layout
+viewport never paint in captureBeyondViewport clip shots even when preloaded (delib-
+erate Chromium behavior; use tall-viewport 390x10600 shots instead). img.decode()
+eval HANGS CDP. PS strips double quotes: eval files must be quote-free via
+String.fromCharCode. Standing: serve.js bg on :8931; wall 10510px @390w; content.js
+tail anchor (...inputs: [], }, ], }, ], };) consumed by the append.
