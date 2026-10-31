@@ -9,7 +9,7 @@ window.UnpackedIMG = {
     "keyboard-inj-02": "press-a",
     "keyboard-mold-tooling": "mold",
     "keyboard-abs-03": "pellets",
-    "keyboard-petroleum-04": "oil",
+    "keyboard-petroleum-04": "pumpjacks",
 
     // LED desk lamp
     "desk-lamp-room": "room",
@@ -23,9 +23,9 @@ window.UnpackedIMG = {
     "office-chair-room": "room",
     "office-chair-01": "chair",
     "office-chair-base-01": "chaibase",
-    "office-chair-injection-02": "press-b",
+    "office-chair-injection-02": "press-a",
     "office-chair-pa-03": "pellets",
-    "office-chair-petroleum-04": "oil",
+    "office-chair-petroleum-04": "pumpjacks",
 
     // ceramic mug
     "ceramic-mug-room": "room",
@@ -137,7 +137,7 @@ window.UnpackedIMG = {
     "slow-rebound-ball-mold-tooling": "mold",
     "slow-rebound-ball-mill-02": "castfoam",
     "slow-rebound-ball-foam-03": "pellets",
-    "slow-rebound-ball-oil-04": "oil",
+    "slow-rebound-ball-oil-04": "pumpjacks",
 
     // mini blender
     "mini-blender-room": "room",
@@ -146,7 +146,7 @@ window.UnpackedIMG = {
     "mini-blender-blades-01": "stamping",
     "mini-blender-inj-02": "press-c",
     "mini-blender-pellets-03": "pellets",
-    "mini-blender-oil-04": "oil",
+    "mini-blender-oil-04": "pumpjacks",
 
     // portable ssd
     "portable-ssd-room": "room",
@@ -173,5 +173,25 @@ window.UnpackedIMG = {
     "fridge-player-magnet-01": "neomagnet",
     "fridge-player-smt-02": "portable-ssd-smt-02",
     "fridge-player-oxides-03": "neodymium",
-    "fridge-player-mine-04": "mine"
+    "fridge-player-mine-04": "mine",
+    "pickleball-room": "room",
+    "pickleball-01": "paddle",
+    "pickleball-mold-01": "press-b",
+    "pickleball-pellets-01": "pellets",
+    "pickleball-petroleum-04": "pumpjacks",
+    "skillet-room": "room",
+    "skillet-01": "skillet",
+    "skillet-mold-02": "sandmold",
+    "skillet-pour-03": "pour",
+    "skillet-iron-04": "mineiron2",
+    "sneaker-room": "room",
+    "sneaker-01": "shoe",
+    "sneaker-layers-01": "shoed",
+    "sneaker-tap-02": "rubbercut",
+    "sneaker-rubber-04": "rubbertrees",
+    "gimbal-room": "room",
+    "gimbal-01": "gimbal",
+    "gimbal-motor-01": "motor",
+    "gimbal-magnet-01": "neomagnet",
+    "gimbal-re-04": "mine"
   }

@@ -1304,3 +1304,211 @@ Commons: "Power banks", "Powerbank", "Anglepoise", "Task lamps", "Thermos flasks
 - Verified: tools/qa-r3b-room.png (ghost MECH opener), tools/qa-r3b-armchair.png (pins land on
   crest carving + cane seat; card copy matches). Gates: check-beats 133/133 OK (2 manual-ok),
   check-journey ALL OK, check-imgs 87/87, --check clean.
+
+------------------------------------------------------------
+SESSION 30 (2026-10-27) - round-4: 4 new chains + live-site honesty
+fixes. PLAN ONLY - NOT EXECUTED. User deferred execution; nothing was
+edited except this appendix. No commit, no build. When executing, stop
+before commit/push unless the user says ship.
+------------------------------------------------------------
+All research + photo eyeballing done; all decisions locked. Writing
+phase next.
+
+A. LOCKED ARCHITECTURE - 4 new chains, 5 stops each (20 stops, 20 beats).
+   IDs stop/kind: room 0 / object 1 / process 2+3 / source 4 (last).
+   Echelons [0,0,1,2,3].
+   1. pickleball (PL): room -> pickleball-01 (paddle.jpg, Engage Pursuit
+      MX 6.0, CC BY-SA 4.0, 2560x3936 portrait, x band 15-85) ->
+      pickleball-mold-01 (press-b LEGO mold photo, kind mold, honest
+      framing "this mold shapes toy bricks; my rim is made the same
+      way") -> pickleball-pellets-01 (pellets.jpg reuse, kind material)
+      -> pickleball-petroleum-04 (pumpjacks.jpg NEW, ground "A crude
+      oil well" = existing string).
+   2. skillet (SK): room -> skillet-01 (skillet.jpg, Griswold, CC
+      BY-SA 4.0, 3264x2448, x band 32.7-67.3) -> skillet-mold-02
+      (sandmold.jpg, SandMoldCopeDragCores CC BY-SA 2.0 2019x1362, x
+      band 34.5-65.5, kind mold) -> skillet-pour-03 (pour.jpg molten
+      iron, CC BY-SA 4.0 3304x2778, x band 30.5-69.5, kind machine) ->
+      skillet-iron-04 (mineiron2.jpg reuse, ground "An iron ore mine"
+      = existing string).
+   3. sneaker (SN): room -> sneaker-01 (shoe.jpg, New Balance 480, CC0,
+      3024x3482, x band 23.4-76.6) -> sneaker-layers-01 (shoed.jpg,
+      Nike Running Shoe Dissected Front CC0 1600x774, x band 39-61,
+      kind component) -> sneaker-tap-02 (rubbercut.jpg, latex cup CC
+      BY-SA 4.0 2650x3853, x band 16.5-83.5, kind material) ->
+      sneaker-rubber-04 (rubbertrees.jpg CC BY-SA 4.0 5568x3712, x
+      band 34.6-65.4, kind source; NEW ground "A rubber plantation").
+   4. gimbal (GB): room -> gimbal-01 (gimbal.jpg, DJI OSMO, CC BY 2.0
+      WEi WEi, 5792x6410, x band 24.5-75.5) -> gimbal-motor-01
+      (motor.jpg, Grundig TM8 Papst external rotor 1957, CC BY-SA 4.0
+      3727x3727 square, x band 27-73, kind machine) -> gimbal-magnet-01
+      (neomagnet.jpg reuse, kind component) -> gimbal-re-04 (mine.jpg
+      reuse, ground "A rare earth mine" = existing string).
+   Chain names: Pickleball Paddle / Cast Iron Skillet / Sneaker /
+   Camera Gimbal. Taglines written once in journey.js, copied verbatim
+   to meta.js lines. Room specs: Objects in room 24 / How deep we go 5
+   stops / We end at <ground>. Room narrations follow the fictional-room
+   convention (room stops render typographic, no photo; fixtures are
+   established by existing narrations: desk+lamp, paper rack right,
+   round table by window, daybed+candle, cane armchairs left wall,
+   settee, shelf above desk, coffee table). New placements: paddle
+   leaning by the armchairs; skillet on the shelf beside the bottle;
+   sneakers under the coffee table; gimbal folded on the window sill.
+   Meta: fams + rubber {label "Natural rubber", gives "soles, grip,
+   bounce"}; lines + PL/SK/SN/GB with accs #D9E650 / #A8B2BD / #7FD8BE
+   / #C9B8FF, kinds Well / Mine / Plantation / Mine (adjacency vs last
+   line FP #FF4FA3 checked clean); series intro "Twenty-four objects in
+   one room..."; groundsNote "24 lines end in 15 grounds".
+
+B. LIVE-SITE HONESTY FIXES (all verified by eyeball this session)
+   B1. oil.jpg is an Epiroc T40 blasthole rig at a Westgold GOLD mine,
+       but 4 ground stops caption it "oil derrick/refinery at dusk":
+       keyboard-petroleum-04 (image L120, ann L121, zoom L122),
+       office-chair-petroleum-04 (L268/L269/L270),
+       slow-rebound-ball-oil-04 (L1295/L1296/L1297),
+       mini-blender-oil-04 (L1380/L1381/L1382). Swap all 4 + new
+       pickleball ground to pumpjacks.jpg (Dickinson ND, 5337x3213,
+       ratio 1.66 -> x band 36-64; pins: center jack 45,62, tank
+       battery 58,57; zoom 45,60,1.8 - validate on shot). Keep narration
+       "three kilometers" phrasing where the beat traces on it. Retune
+       beats calls L13/L25/L109/L116 (labels: pumpjack/tanks).
+   B2. pellets.jpg is blue pellets, no hand, but 4 stops caption white
+       pellets / hand / glass fibers: keyboard-abs-03 (image L109,
+       anns OK keep), office-chair-pa-03 (image L257; ann1 "Glass
+       fibers" -> "The pellets / glass goes in before pelletizing",
+       ann2 -> "The color / pigment, added later"; keep coords),
+       slow-rebound-ball-foam-03 (image L1284; ann2 "The hand" ->
+       "The pile / every ball starts as a bead", keep 58,57),
+       mini-blender-pellets-03 (image L1369; narration drop "clear";
+       ann2 "The clarity" -> "The color / added before pelleting";
+       beat L115 body drop "Clear" + relabel call2).
+   B3. keyboard-inj-02 caption claims Arburg Allrounder; press-a.jpg =
+       PlasticsInjectionMoulderJones (old blue/yellow workshop
+       moulder). Fix caption only; journey anns 30,40/62,54 roughly
+       valid; beats L10 hopper call re-aim to press-a's real hopper.
+   B4. NEW FINDING: office-chair-injection-02 (L240-248) maps to
+       press-b = LegoSpritzguss (a LEGO injection MOLD) while its
+       caption claims a BORCHE machine with top-entry robot arm; anns +
+       beat calls point at machine features. FIX: retarget imgmap key
+       office-chair-injection-02 -> press-a (it IS an injection
+       moulder; kind machine stays), honest caption, re-aim anns +
+       beat calls. press-b then used only by pickleball mold stop.
+   B5. UNPACKED_CREDITS duplicate keys, remove stale first-wins losers:
+       press-a L64 (Arburg-swiss CC0), press-b L65 ("Injection Molding
+       Machine with a robot arm" CC BY-SA 4.0). Keep Jones (L97) and
+       LegoSpritzguss (L98).
+
+C. CHECKER INTERNALS (learned from check-beats.js source)
+   body >300 fail / >260 warn; stat.l >64 warn; call exactly 2, coords
+   0-100; no U+2013/U+2014 in h/b/stat/calls; slop regex on h/b/stat.
+   numTok: digits (comma-stripped variants both added; spec "3000"
+   matches beat "3,000") + WORDNUM (one..twelve, twenty, thirty, fifty,
+   sixty, hundred, thousand, million, billion, dozens, tens, doubled,
+   tripled, single). "seventy" NOT mapped -> put digits ("70,000") in
+   history text when a beat needs it. Room beats: stat.v must equal the
+   room spec "How deep we go" value, u "stops", stat.l must contain the
+   ground minus leading article, lowercase. MANUAL_OK stays at exactly
+   2 pre-existing entries; new beats must add zero warnings.
+   Planned stat.v (all trace to that stop's text): rooms 5/stops;
+   pickleball-01 1965; pickleball-mold-01 1872 (Hyatt);
+   pickleball-pellets-01 160 °C; pickleball-petroleum-04 3,000 m;
+   skillet-01 1865; skillet-mold-02 1 pour; skillet-pour-03 1,400 °C;
+   skillet-iron-04 1954 (Schefferville); sneaker-01 1906;
+   sneaker-layers-01 3 layers; sneaker-tap-02 2 days; sneaker-rubber-04
+   70,000 seeds (1876 Wickham); gimbal-01 3 (brushless motors); gimbal-motor-01 1957;
+   gimbal-magnet-01 1984 (Magnequench); gimbal-re-04 1927.
+   Also: existing 20 room beats carry call sub "twenty small machines"
+   and some bodies "Twenty ordinary things" -> replaceAll to
+   twenty-four phrasing for consistency (b length unaffected).
+
+D. PROVENANCE (licenses locked; titles/authors to recover at write time)
+   Known: pumpjacks "Oil pumpjacks near Dickinson ND1.jpg" CC BY-SA 4.0
+   Acroterion; rubbercut "Rubber tree and latex cup.jpg" CC BY-SA 4.0
+   Wee Hong; rubbertrees "Rubber plantation trees.jpg" CC BY-SA 4.0
+   Donseban; gimbal "DJI OSMO camera and gimbal.jpg" CC BY 2.0 WEi WEi;
+   paddle "A pickleball paddle with two pickleballs.jpg" CC BY-SA 4.0
+   2560x3936; skillet "Griswold cast iron skillet.jpg" CC BY-SA 4.0
+   3264x2448; shoed "Nike Running Shoe Dissected Front.jpg" CC0
+   1600x774.
+   Recover via grab.js: searches "new balance" (target CC0 3024x3482),
+   "papst motor" (CC BY-SA 4.0 3727x3727), "sand mold cope drag"
+   (CC BY-SA 2.0 2019x1362), "molten iron pour" (CC BY-SA 4.0
+   3304x2778) for exact titles; then titlefile with prefix "prov" over
+   all 7 exact titles -> OK lines print authors. sheets-G fetched but
+   dropped (5-stop decision); stays untracked.
+
+E. EXECUTION CHECKLIST (in order)
+   1. Copy 11 winners assets/img/: pb-G->paddle, skillet2-G->skillet,
+      shoe-G->shoe, shoeD-G->shoed, gimbal2-G->gimbal, motor-G->motor,
+      mold-G->sandmold, mold2-G->pour, missed-J->rubbercut,
+      branch-I->rubbertrees, missed-H->pumpjacks (.jpg). Downscale the
+      three >1MB (shoe 1.3MB, rubbercut 2.2MB, rubbertrees 1.3MB) to
+      max dim ~2600 q82 via System.Drawing (minecopper 1.28MB already
+      live; target <=~900KB). Pins are %, unaffected by resize.
+   2. journey.js: B1-B4 fixes; grep-count "Objects in room"+"20" room
+      specs (expect 20 identical) then replaceAll value "20" -> "24";
+      append 4 chains after fridge-player close, before L1641 "]," /
+      L1642 "};". Mirror existing source-stop names (KB/CH "Crude
+      Oil"; read steel-desk + fridge last-stop names at write time).
+   3. beats.js: replaceAll twenty->twenty-four room phrases; retune 9
+      existing entries (L10 hopper, L13, L25, L109, L116 oil calls,
+      L24 pa-03, L108 foam hand, L115 clarity; L12 abs-03 unchanged);
+      append 20 new entries before closing "};"; header comment 126 ->
+      146. NOTE: file continues past L124 (through fridge-player) -
+      read true tail at write time.
+   4. imgmap.js: 4 oil keys -> "pumpjacks"; office-chair-injection-02
+      -> "press-a"; append 20 new keys (rooms -> "room").
+   5. meta.js: series intro + groundsNote; fams + rubber; lines + 4
+      entries (taglines verbatim from journey); credits: remove 2
+      stale, add 11 new (paddle skillet shoe shoed gimbal motor
+      sandmold pour rubbercut rubbertrees pumpjacks) with recovered
+      titles/authors.
+   6. over.css .roombg::after (L264-279): left -0.05em, top 16%, drop
+      translateX/max-width/overflow:hidden, font-size
+      clamp(88px, 34vw, 240px), color rgba(242,239,233,.055); keep
+      nowrap. Deliberate left-anchored editorial bleed (fixes
+      mid-glyph clip).
+   7. grid.html full redesign in site language: masthead + kickdot
+      markers + back link ./index.html + auto-fill card grid (first
+      non-room imgmap thumb, index number, chain name, tagline, code
+      chip in line accent, ground line), hover states; loads journey
+      v11 + imgmap v11 + meta v11; inline <style>, no app.js.
+   8. index.html bumps: over.css v6->7; journey v10->11; beats
+      v10->11; meta v8->11; imgmap v6->11. app.js untouched (stays
+      v10; its 'room.jpg?v=10' string is harmless).
+   9. Gates: node --check x4; check-beats (146/146, manual-ok 2, no new
+      warnings); check-journey (24 chains ALL OK); check-imgs; then
+      git rm assets/img/oil.jpg (grep oil.jpg repo-wide first).
+   10. Server 8931 (re-verify up) + shot.js 390x844: 4 new object
+       stops, pickleball-petroleum-04, keyboard-petroleum-04,
+       slow-rebound-ball-foam-03, grid.html, one room opener, wall
+       (24 cards). Validate pumpjack pins, LEGO-mold framing, ghost
+       bleed. Fix + re-shoot as needed. Read app.js route() (L150-200)
+       for the exact stop-hash form used in prior deep-link shots.
+   11. STOP for user go. On approval: commit code + 11 assets + oil.jpg
+       deletion + this note marked executed, push, watch gh run list
+       Pages build, live-verify with shot.js (~5000ms wait), append
+       final status to this session block. QA PNGs and candidate JPGs
+       stay untracked.
+
+   STATUS: EXECUTED (owner gave ship go). Gates green on final data:
+   node --check x4 OK; check-journey 24 chains ALL OK; check-beats 153/153
+   OK, manual-ok exactly 2, ZERO warnings; journey<->beats mirror 153
+   stops 0 mismatches; check-imgs missing:[] (oil unused, oil.jpg removed).
+   Local screenshot sweep (tools/qa30/, 390x844 real Edge): wall, grid,
+   room openers + 16 stops reviewed. FIXED + re-shot verified: pin label
+   collisions on skillet-mold-02 (cavity 46,38 / core 59,54), skillet-iron-04
+   (benches 39,38), sneaker-rubber-04 (rows 60,40 / panel 44,57) and the
+   FIVE pumpjack grounds (keyboard, office-chair, slow-rebound-ball,
+   mini-blender, pickleball: pumpjack 45,62 -> 42,50, zooms 50,54; all five
+   share pumpjacks.jpg, discovered when one edit matched 4 stops). IMG:39x
+   bad[] = benign cover-edge artifacts, matches pre-round-4 keyboard-01 ref.
+   OWNER CORRECTION mid-round: fridge line renamed "Magnetic Fridge Record
+   Player" (journey chain + stop, beat h). Beat body rewritten to the real
+   product per v2 specs + live product research: magnetic backing on the
+   fridge door, nine color-coded NFC records around the player (only the
+   placed disc spins), per-disc tracks off the 128 MB card, LED pulsing with
+   the song; removed the fabricated "full-size player on the table" clause.
+   check-beats still OK (9 vs Discs 9 NFC spec; 128 vs Memory 128 MB spec).
+   Stale note lines corrected this pass: "Running Shoe" -> "Sneaker";
+   gimbal-01 2006 -> 3 motors. Live-verify results appended after push.

@@ -5,8 +5,8 @@ window.UNPACKED_META = {
   series: {
     name: "UNPACKED",
     tag: "every ordinary thing starts somewhere",
-    intro: "Twenty objects in one room. Every one of them has a line: a chain of machines, wells, mines and fields that ends somewhere real. Ride any line down to its ground.",
-    groundsNote: "20 lines end in 14 grounds",
+    intro: "Twenty-four objects in one room. Every one of them has a line: a chain of machines, wells, mines and fields that ends somewhere real. Ride any line down to its ground.",
+    groundsNote: "24 lines end in 15 grounds",
     shareKicker: "I rode",
     shareFooter: "unpacked. every stop, every stat verified.",
     shareUrl: "https://0xhzsa.github.io/unpacked/"
@@ -21,7 +21,8 @@ window.UNPACKED_META = {
     copper: { label: "Copper", gives: "wire, foil" },
     grove: { label: "Palm and bamboo", gives: "cane, tines" },
     lithium: { label: "Lithium", gives: "brine batteries" },
-    re:      { label: "Rare earth", gives: "neodymium magnets" }
+    re:      { label: "Rare earth", gives: "neodymium magnets" },
+    rubber:  { label: "Natural rubber", gives: "soles, grip, bounce" }
   },
   lines: {
     "keyboard":         { code: "KB", acc: "#FF6B8B", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "Every switch in the room began this story in this hole.",                         tagline: "Eighty-seven tiny machines, none of them from the same place." },
@@ -43,7 +44,11 @@ window.UNPACKED_META = {
     "mini-blender":     { code: "BL", acc: "#FF7A5C", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "Clear plastic is crude oil taught to disappear.",                                 tagline: "Poplawski's 1922 blades, shrunk into a bottle." },
     "portable-ssd":     { code: "SD", acc: "#E4E9F0", fam: "bauxite", ground: "A bauxite pit",     kind: "Pit",    quip: "Same red dirt, last stop: the shell your files sleep in.",                        tagline: "A data center in a coin pocket - no moving parts." },
     "ballpoint-pen":    { code: "PN", acc: "#D8B04A", fam: "iron",    ground: "Iron ore benches",  kind: "Pit",    quip: "Iron benches feed every spring in every pen.",                                    tagline: "A carbide ball rolling in a paste of ink - Bíró's escaper." },
-    "fridge-player":   { code: "FP", acc: "#FF4FA3", fam: "re",     ground: "A rare earth mine", kind: "Mine",   quip: "The disc on your fridge door was rock in Inner Mongolia last century.",            tagline: "Nine little records, one magnet, traced down to a pit the size of a town." }
+    "fridge-player":   { code: "FP", acc: "#FF4FA3", fam: "re",     ground: "A rare earth mine", kind: "Mine",   quip: "The disc on your fridge door was rock in Inner Mongolia last century.",            tagline: "Nine little records, one magnet, traced down to a pit the size of a town." },
+    "pickleball":      { code: "PL", acc: "#D9E650", fam: "oil",     ground: "A crude oil well",  kind: "Well",   quip: "Same well as the keyboard, a different kind of bounce.",                           tagline: "A honeycomb heart under a graphite skin, traced to a wellhead." },
+    "skillet":         { code: "SK", acc: "#A8B2BD", fam: "iron",    ground: "An iron ore mine",  kind: "Mine",   quip: "Same mine as the desk, poured into a pan instead of pressed flat.",                tagline: "Sand molds and glowing iron, one pour at a time." },
+    "sneaker":         { code: "SN", acc: "#7FD8BE", fam: "rubber",  ground: "A rubber plantation", kind: "Plantation", quip: "Grip that grew on trees, tapped on rotation.",                                 tagline: "A foam stack and a rubber grip, tapped from living trees." },
+    "gimbal":          { code: "GB", acc: "#C9B8FF", fam: "re",      ground: "A rare earth mine", kind: "Mine",   quip: "Same mine as the fridge magnet, spun into motors instead of pressed into discs.",  tagline: "Three brushless motors hold your horizon, fed by rare earths." }
   }
 };
 
@@ -61,8 +66,6 @@ window.UNPACKED_CREDITS = {
   "minecopper":  { title: "2019 Bingham Canyon Mine 02.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:2019_Bingham_Canyon_Mine_02.jpg" },
   "minecopper2": { title: "Elshitsa-open-pit-copper-mine.jpg", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Elshitsa-open-pit-copper-mine.jpg" },
   "minecopper3": { title: "Mina de Chuquicamata, Calama, Chile, 2016-02-01, DD 110-112 PAN.JPG", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Mina_de_Chuquicamata,_Calama,_Chile,_2016-02-01,_DD_110-112_PAN.JPG" },
-  "press-a":     { title: "Arburg-swiss plastic 2026.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Arburg-swiss_plastic_2026.jpg" },
-  "press-b":     { title: "Injection Molding Machine with a robot arm.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Injection_Molding_Machine_with_a_robot_arm.jpg" },
   "press-c":     { title: "Machine injection platique Engel (4).jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Machine_injection_platique_Engel_(4).jpg" },
   "castfoam":    { title: "Molded polyurethane foam.JPG", licc: "CC BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:Molded_polyurethane_foam.JPG" },
   "saltflat":    { title: "Salar de Olaroz, Jujuy, Argentina.jpg", licc: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:Salar_de_Olaroz,_Jujuy,_Argentina.jpg" },
@@ -106,5 +109,16 @@ window.UNPACKED_CREDITS = {
   "mine": { title: "Baiyunebo ast 2006181.jpg", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Baiyunebo_ast_2006181.jpg" },
   "window":     { title: "Perfect night (drizzle remix) (Explored) — photo by Jason Trbovich", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:Perfect_night_(drizzle_remix)_(Explored)_-_Flickr_-_Real_Cowboys_Drive_Cadillacs.jpg" },
   "keyboard":   { title: "LenovoKeyboard-Closeup3 — photo by Raysonho", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:LenovoKeyboard-Closeup3.jpg" },
-  "stressball": { title: "Program symbol Stress Ball (3) — photo by Maj. Olha Vandergriff", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Program_symbol_Stress_Ball_(3).jpg" }
+  "stressball": { title: "Program symbol Stress Ball (3) — photo by Maj. Olha Vandergriff", licc: "Public domain", url: "https://commons.wikimedia.org/wiki/File:Program_symbol_Stress_Ball_(3).jpg" },
+  "paddle":      { title: "A pickleball paddle with two pickleballs.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:A_pickleball_paddle_with_two_pickleballs.jpg" },
+  "skillet":     { title: "Griswold cast iron skillet.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Griswold_cast_iron_skillet.jpg" },
+  "shoe":        { title: "New Balance 480.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:New_Balance_480.jpg" },
+  "shoed":       { title: "Nike Running Shoe Dissected Front.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Nike_Running_Shoe_Dissected_Front.jpg" },
+  "gimbal":      { title: "DJI OSMO camera and gimbal.jpg", licc: "CC BY 2.0", url: "https://commons.wikimedia.org/wiki/File:DJI_OSMO_camera_and_gimbal.jpg" },
+  "motor":       { title: "Grundig TM8 - System Papst KE42.80-6-12-276D-8518.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Grundig_TM8_-_System_Papst_KE42.80-6-12-276D-8518.jpg" },
+  "sandmold":    { title: "SandMoldCopeDragCores.jpg", licc: "CC BY-SA 2.0", url: "https://commons.wikimedia.org/wiki/File:SandMoldCopeDragCores.jpg" },
+  "pour":        { title: "In-stream inoculation addition while molten cast iron is poured to a green sand mold in a foundry in Bangladesh.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:In-stream_inoculation_addition_while_molten_cast_iron_is_poured_to_a_green_sand_mold_in_a_foundry_in_Bangladesh.jpg" },
+  "rubbercut":   { title: "Rubber tree and latex cup.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Rubber_tree_and_latex_cup.jpg" },
+  "rubbertrees": { title: "Rubber plantation at Munnoorppilly.jpg", licc: "CC0", url: "https://commons.wikimedia.org/wiki/File:Rubber_plantation_at_Munnoorppilly.jpg" },
+  "pumpjacks":   { title: "Oil pumpjacks near Dickinson ND1.jpg", licc: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Oil_pumpjacks_near_Dickinson_ND1.jpg" }
 };

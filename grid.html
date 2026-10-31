@@ -1,26 +1,142 @@
 <!DOCTYPE html>
-<html><body style="background:#0F0D10;color:#eee;font:12px/1.35 'Courier New',monospace;margin:0;padding:14px">
-<div id="note" style="color:#8a838a;margin-bottom:10px">object thumbs grid</div>
-<div id="g" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div>
-<script src="js/journey.js?v=10"></script>
-<script src="js/imgmap.js?v=6"></script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNPACKED - the wall of lines</title>
+<link rel="stylesheet" href="css/fonts.css?v=5">
+<link rel="stylesheet" href="css/app.css?v=5">
+<link rel="stylesheet" href="css/over.css?v=7">
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; background: #0F0D10; }
+  body {
+    min-height: 100vh;
+    color: #F2EFE9;
+    font-family: var(--font-tech, system-ui);
+    background:
+      radial-gradient(120% 60% at 18% -10%, rgba(177,140,255,.07), transparent 55%),
+      radial-gradient(90% 55% at 88% 4%, rgba(255,107,139,.06), transparent 55%),
+      linear-gradient(180deg, #1a1622 0%, #120f18 45%, #0F0D10 100%);
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 26px 16px 56px; }
+  .kickrow { display: flex; align-items: center; gap: 10px; margin: 6px 0 18px; }
+  .kicklabel { font-size: 10.5px; letter-spacing: .32em; color: #8e878e; white-space: nowrap; }
+  .back {
+    display: inline-flex; align-items: center; gap: .5rem;
+    margin-top: 14px; padding: .45rem .9rem;
+    border: 1px solid rgba(255,255,255,.16); border-radius: 999px;
+    background: rgba(255,255,255,.05);
+    color: rgba(242,239,233,.85); text-decoration: none;
+    font-size: 12px; letter-spacing: .08em;
+  }
+  .back:hover { color: #F2EFE9; border-color: rgba(255,255,255,.32); }
+  .mast { margin: 0 0 6px; }
+  .mast-sub { max-width: 46ch; }
+  .wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 16px;
+    margin-top: 26px;
+  }
+  .card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,.03);
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--acc, #F2EFE9) 60%, transparent);
+    box-shadow: 0 14px 34px rgba(0,0,0,.45);
+  }
+  .thumb { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #17131c; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+  .card:hover .thumb img { transform: scale(1.045); }
+  .idx {
+    position: absolute; left: 10px; bottom: 6px;
+    font-family: var(--font-disp, system-ui); font-weight: 800; font-size: 24px;
+    color: rgba(242,239,233,.92); text-shadow: 0 2px 12px rgba(0,0,0,.65);
+  }
+  .code {
+    position: absolute; right: 8px; top: 8px;
+    font-size: 10px; font-weight: 700; letter-spacing: .14em;
+    padding: 3px 7px; border-radius: 999px;
+    color: #0F0D10; background: var(--acc, #F2EFE9);
+  }
+  .meta { display: block; padding: 12px 12px 14px; }
+  .meta h2 {
+    margin: 0 0 4px;
+    font-family: var(--font-disp, system-ui); font-weight: 800;
+    font-size: 15.5px; line-height: 1.2; letter-spacing: -.01em; color: #F2EFE9;
+  }
+  .tag {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    margin: 0; font-size: 11.5px; line-height: 1.5; color: #b5adb5;
+  }
+  .ground {
+    display: block; margin-top: 8px;
+    font-size: 10.5px; letter-spacing: .08em;
+    color: color-mix(in srgb, var(--acc, #F2EFE9) 80%, #cfc8ce);
+  }
+  .foot {
+    margin-top: 34px; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-size: 11px; letter-spacing: .06em; color: #8e878e;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kickrow"><span class="kickdot"></span><span class="kickrule"></span><span class="kicklabel" id="kicklabel">THE WALL</span></div>
+  <header class="mast">
+    <h1 class="mast-title">UNPACKED</h1>
+    <div class="mast-bar"></div>
+    <p class="mast-sub" id="intro"></p>
+  </header>
+  <a class="back" href="./index.html">&larr; Back to the room</a>
+  <main class="wall" id="wall"></main>
+  <div class="foot" id="foot"></div>
+</div>
+<script defer src="js/journey.js?v=11"></script>
+<script defer src="js/imgmap.js?v=11"></script>
+<script defer src="js/meta.js?v=11"></script>
 <script>
 (function () {
-  var OBJ = (window.JOURNEY && JOURNEY.objects) || [], IMG = window.UnpackedIMG || {}, g = document.getElementById('g');
-  OBJ.forEach(function (ch, i) {
-    var oStop = null;
-    ch.stops.forEach(function (s) { if (!oStop && IMG[s.id] && IMG[s.id] !== 'room') oStop = s; });
-    var d = document.createElement('div');
-    if (oStop) {
-      d.innerHTML = '<img style="width:100%;height:150px;object-fit:cover;display:block" src="assets/img/' + IMG[oStop.id] + '.jpg?v=10">' +
-        '<b style="color:#F2EFE9">' + String(i + 1).padStart(2, '0') + ' ' + ch.name + '</b><br>' +
-        '<span style="color:#8a838a;font-size:10px">' + oStop.id + ' &rarr; ' + IMG[oStop.id] + '</span>';
-    } else {
-      d.innerHTML = '<b style="color:#F2EFE9">' + ch.name + '</b><br><span style="color:#f66">MISSING IMG</span>';
-    }
-    g.appendChild(d);
-  });
-  document.getElementById('note').textContent = 'object thumbs grid \u00B7 ' + OBJ.length + ' lines';
+  function go() {
+    var J = window.JOURNEY, IM = window.UnpackedIMG || {}, M = window.UNPACKED_META;
+    if (!J || !M) return;
+    var chains = J.objects || [];
+    document.getElementById('intro').textContent = M.series.intro;
+    document.getElementById('kicklabel').textContent = (M.series.groundsNote || 'THE WALL').toUpperCase();
+    document.getElementById('foot').textContent = (M.series.shareFooter || '') + ' photos: Wikimedia Commons, license-clean.';
+    var wall = document.getElementById('wall');
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    chains.forEach(function (ch, i) {
+      var ln = (M.lines || {})[ch.id] || {};
+      var img = '';
+      for (var k = 0; k < ch.stops.length; k++) {
+        var v = IM[ch.stops[k].id];
+        if (v && v !== 'room') { img = v; break; }
+      }
+      var a = document.createElement('a');
+      a.className = 'card';
+      a.style.setProperty('--acc', ln.acc || '#F2EFE9');
+      a.href = './index.html#/stop/' + ch.stops[0].id;
+      a.innerHTML =
+        '<span class="thumb"><img loading="lazy" src="assets/img/' + img + '.jpg?v=11" alt="' + esc(ch.name) + '">' +
+        '<b class="idx">' + String(i + 1).padStart(2, '0') + '</b><b class="code">' + esc(ln.code || '') + '</b></span>' +
+        '<span class="meta"><h2>' + esc(ch.name) + '</h2><span class="tag">' + esc(ch.tagline || '') + '</span>' +
+        '<span class="ground">&rarr; ' + esc(ln.ground || '') + '</span></span>';
+      wall.appendChild(a);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
 })();
 </script>
-</body></html>
+</body>
+</html>

@@ -264,17 +264,14 @@
 .roombg::after {
   content: var(--roomword, "");
   position: absolute;
-  left: 50%;
-  top: 15%;
-  transform: translateX(-50%);
-  max-width: 94%;
-  overflow: hidden;
+  left: -0.05em;
+  top: 16%;
   white-space: nowrap;
   font-family: var(--font-disp, system-ui);
   font-weight: 800;
-  font-size: clamp(88px, 30vw, 230px);
+  font-size: clamp(88px, 34vw, 240px);
   letter-spacing: .01em;
-  color: rgba(242, 239, 233, .05);
+  color: rgba(242, 239, 233, .055);
   pointer-events: none;
 }
 
