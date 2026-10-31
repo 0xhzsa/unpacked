@@ -553,3 +553,140 @@
 /* ---- map: soft neon lift ---- */
 .scroller { filter: saturate(1.12); }
 .mnode circle { filter: drop-shadow(0 0 5px rgba(0,0,0,.85)); }
+
+/* ============================================================
+   v4 - inner pages get the wall's card language
+   ============================================================ */
+
+/* ---- ride card: accent hairline + stat plate + room meta ---- */
+.rcard::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to right, transparent, var(--acc, #F2EFE9), transparent);
+  opacity: .6;
+  pointer-events: none;
+}
+.statblock {
+  margin-top: .9rem;
+  padding: .7rem .9rem .8rem;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px;
+  background: rgba(255,255,255,.035);
+}
+.rc-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .75rem; }
+.rc-tag { font-size: 14px; line-height: 1.5; color: #c9c2c6; margin-top: .65rem; }
+
+/* ---- station page: photo hero + card stack ---- */
+.station { min-height: 100dvh; background: #0F0D10; }
+.shero {
+  position: relative;
+  height: min(46vh, 430px);
+  min-height: 300px;
+  overflow: hidden;
+}
+.shero .shot { position: absolute; inset: 0; }
+.shero.compact { height: 216px; min-height: 0; }
+.shero-null {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 30% 0%, color-mix(in srgb, var(--acc, #F2EFE9) 18%, transparent), transparent 60%),
+    linear-gradient(180deg, #1a1622, #0F0D10);
+}
+.shero-grad {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(15,13,16,.62) 0%, rgba(15,13,16,.05) 26%, rgba(15,13,16,.08) 52%, rgba(15,13,16,.94) 100%);
+}
+.shero-top {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px 14px 0;
+}
+.shero-foot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 0 16px 20px; }
+.shero-title {
+  font-size: clamp(1.9rem, 8vw, 2.7rem);
+  line-height: 1.04;
+  letter-spacing: -.015em;
+  color: #F2EFE9;
+  text-shadow: 0 2px 26px rgba(0,0,0,.75);
+}
+.smain {
+  position: relative; z-index: 4;
+  margin: -18px auto 0;
+  max-width: 760px;
+  padding: 0 12px calc(56px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 10px;
+}
+.scard {
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 18px;
+  background: linear-gradient(165deg, rgba(32,28,38,.96), rgba(18,15,22,.94));
+  padding: 15px 16px 17px;
+}
+.skick {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-tech);
+  font-size: 10px; letter-spacing: .22em; color: #8e878e;
+  margin-bottom: 10px;
+}
+.skick .kickdot { width: 6px; height: 6px; box-shadow: none; }
+.ssbody { font-size: 15px; line-height: 1.62; color: rgba(242,239,233,.88); }
+.sstat { display: flex; align-items: flex-end; gap: 9px; }
+.sstat b {
+  font-family: var(--font-tech); font-weight: 700;
+  font-size: clamp(2.7rem, 11vw, 3.6rem); line-height: .95;
+  color: var(--acc, #F2EFE9);
+}
+.sstat span { font-size: 16px; color: #b9b2b8; padding-bottom: 4px; }
+.slab { margin-top: 4px; font-family: var(--font-tech); font-size: 12px; letter-spacing: .04em; color: #b9b2b8; }
+.specgrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+.spec {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.035);
+  padding: 9px 10px;
+}
+.spec .k { font-family: var(--font-tech); font-size: 9.5px; letter-spacing: .14em; color: #8e878e; }
+.spec .v { font-family: var(--font-tech); font-size: 13.5px; font-weight: 700; color: #f2efe9; margin-top: 3px; }
+.srow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.sstep { display: flex; gap: 10px; font-size: 14px; color: rgba(242,239,233,.86); line-height: 1.5; }
+.sstep i { font-family: var(--font-tech); font-style: normal; font-size: 10px; color: #6e6670; padding-top: 3px; }
+.snav { display: grid; gap: 8px; }
+.snavbtn {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-family: var(--font-tech); font-size: 11.5px; letter-spacing: .05em;
+  color: #e7e2de;
+  cursor: pointer;
+}
+.snavbtn small { display: block; color: #8e878e; letter-spacing: .16em; font-size: 9px; margin-bottom: 2px; }
+.sbtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--font-tech);
+  font-size: 12px; letter-spacing: .16em; font-weight: 700;
+  padding: 13px 18px; border-radius: 999px;
+  cursor: pointer;
+}
+.sbtn.primary { background: var(--acc, #F2EFE9); color: #141118; }
+.sbtn.ghost { border: 1px solid rgba(255,255,255,.16); color: #e7e2de; background: rgba(255,255,255,.03); }
+.sbtn:active { transform: scale(.985); }
+
+/* ---- ground: claim card ---- */
+.claimcard {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid color-mix(in srgb, var(--acc, #F2EFE9) 30%, rgba(255,255,255,.12));
+  border-radius: 22px;
+  background: rgba(15,13,16,.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 20px 18px 22px;
+}

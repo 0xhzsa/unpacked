@@ -1562,3 +1562,35 @@ erate Chromium behavior; use tall-viewport 390x10600 shots instead). img.decode(
 eval HANGS CDP. PS strips double quotes: eval files must be quote-free via
 String.fromCharCode. Standing: serve.js bg on :8931; wall 10510px @390w; content.js
 tail anchor (...inputs: [], }, ], }, ], };) consumed by the append.
+
+   LIVE-VERIFY round 5 (Pages run 41184019638 success 44s, commit 600ce2f): fetched
+   og.jpg?v=3 = 163503 bytes (new render live); content.js?v=7 contains Pickleball
+   Paddle + Magnetic Fridge Record Player; index.html live has Twenty-four + og.jpg?v=3
+   + app.js?v=11; journey.js?v=12 has Twenty-four things; over.css?v=8 has .lvl-code.
+   Live shot 73-live-wall (390x844): deployed landing renders photo-first cards - KB
+   chip, 01 numeral, full tagline, 8 STOPS, full ground text -> A crude oil well, fam
+   CRUDE OIL; header 24 OBJECTS / STOPS 0/153 / GROUNDS 0/24; bad[] clean.
+   Local full-wall proof remains 68-wall-full (all 24 thumbs paint). Q3A pngs untracked
+
+   ROUND 6 - inner pages rebuilt in the wall's card language (over.css v9, app.js v12):
+ - RideView: room openers now use the first non-room stop's photo as a full-bleed hero
+   (fridge room shows the record player), no empty typographic stage. Room card adds
+   STOPS / ground / family chips + tagline + START. Stop cards keep the clamp but the
+   stat is now a bordered .statblock plate. READ MORE visibility no longer depends on
+   scrollHeight at first paint (line-clamp reports clamped height); long copy (>120
+   chars) always gets the control. Room CTA shortened to START so it shares one row
+   with READ MORE inside the 47dvh sheet.
+ - StationView: full rewrite as hero (photo + title + station counter + line/family)
+   and stacked .scard sections: THE NUMBER or THE NODE, THE STOP, SPECS tiles, HISTORY,
+   HOW IT IS MADE (map-only), SHARED WITH, actions (RIDE THE LINE / TRANSIT MAP),
+   clickable PREVIOUS/NEXT STATION, credit. Kills the dead black band under the photo.
+   No-photo map-only nodes get .shero.compact (216px) instead of a 300px void.
+ - GroundView: stamp/title/quip/meter wrapped in a glass .claimcard over the scrim.
+ - MapView: single-slot labels wrap to 2 lines at 15 chars; stacked nodes stay 1 line
+   at 12 chars. clipName/wrapName helpers.
+ - Gates: node --check app OK; check-journey ALL OK; check-beats OK; check-imgs
+   missing:[] unused:[] mapped:97; journey<->beats mirror 153/0.
+ - Visual (tools/qa30/): 108/109 room openers (fridge + skillet), 110 expanded room,
+   96/107 station card stacks, 106 map-only compact hero, 98 ground claim card,
+   99 map 2-line labels, 111 landing + 112 grid unchanged, 113 station desktop.
+ - Live: https://0xhzsa.github.io/unpacked/ - pages build watched after push.

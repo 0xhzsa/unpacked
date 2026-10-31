@@ -331,6 +331,13 @@ function RideView(chainId, idx) {
 
   var isRoom = me.kind === 'room';
   var src = isRoom ? null : (imgSrc(me.id) || 'assets/img/room.jpg?v=10');
+  /* room openers wear the object's own photo as a cover, never an empty stage */
+  var heroSrc = src;
+  if (!heroSrc) {
+    for (var hk = 0; hk < stops.length; hk++) {
+      if (IMG[stops[hk].id] && IMG[stops[hk].id] !== 'room') { heroSrc = imgSrc(stops[hk].id); break; }
+    }
+  }
   var leaving = null;
   if (lastStopId && lastStopId !== me.id && stopMeta[lastStopId] && stopMeta[lastStopId].chainId === chainId) {
     leaving = (stopMeta[lastStopId].stop && stopMeta[lastStopId].stop.kind === 'room') ? null : imgSrc(lastStopId);
@@ -344,8 +351,8 @@ function RideView(chainId, idx) {
   var stage = el('div', 'stage');
   var baseLayer = null;
   if (leaving) { baseLayer = shotLayer(leaving, 'absolute inset-0 is on'.replace(' is', '')); baseLayer.classList.add('s'); baseLayer.classList.add('on'); var bim = baseLayer.querySelector('img'); var bz = stopMeta[lastStopId] && stopMeta[lastStopId].stop.zoom; if (bz && bim) bim.style.transformOrigin = bz.x + '% ' + bz.y + '%'; stage.appendChild(baseLayer); }
-  var curLayer = src ? shotLayer(src, 'absolute inset-0 s') : div('roombg s', [el('div', 'walked-grain')]);
-  if (!src) curLayer.style.setProperty('--roomword', JSON.stringify(String(ch.name || me.name || '').toUpperCase()));
+  var curLayer = heroSrc ? shotLayer(heroSrc, 'absolute inset-0 s') : div('roombg s', [el('div', 'walked-grain')]);
+  if (!heroSrc) curLayer.style.setProperty('--roomword', JSON.stringify(String(ch.name || me.name || '').toUpperCase()));
   stage.appendChild(curLayer);
   var vivid = function () { curLayer.classList.add('on'); };
   var cim = curLayer.querySelector('img');
@@ -470,27 +477,45 @@ function RideView(chainId, idx) {
       span('font-tech text-[11px] tracking-[.2em] text-dim whitespace-nowrap', [cntTxt]),
       chipCode(lm.code, lm.acc)
     ]);
-    var head = fill(el('h1', 'font-disp font-semibold ride-head leading-tight'), [st.kind === 'room' ? (ch.name || b.h || st.name) : (b.h || st.name)]);
-    var statRow = div('flex items-baseline gap-2 mt-3 font-tech', []);
-  var num = span('font-bold leading-none', ['\u00A0']);
-  animateNum(num, b.stat.v);
-    num.style.color = 'var(--acc)';
-    num.style.fontSize = 'clamp(3rem, 11vw, 4.2rem)';
-    num.classList.add('statnum');
-    statRow.appendChild(num);
-    if (b.stat.u) {
-      var u = span('text-xl text-fog', [b.stat.u]);
-      statRow.appendChild(u);
-    }
-    var lab = el('p', 'font-tech text-[12px] tracking-wide text-fog mt-1');
-    lab.textContent = b.stat.l || '';
+    var room = st.kind === 'room';
+    var head = fill(el('h1', 'font-disp font-semibold ride-head leading-tight'), [room ? (ch.name || b.h || st.name) : (b.h || st.name)]);
     var body = el('p', 'text-[15px] leading-relaxed text-bone/85 mt-3 max-w-prose bodyclamp');
     body.textContent = b.b || '';
     var bodyWrap = div('relative', [body]);
     var bodyFade = div('bodyfade', []);
     bodyWrap.appendChild(bodyFade);
-    var cta = div('mt-2 flex items-center justify-between gap-3 flex-wrap', []);
-    if (stopMeta[st.id].idx === stops.length - 1) {
+    if (room) {
+      var metaRow = div('rc-meta', [
+        pill((stops.length - zi) + ' STOPS'),
+        pill('\u2192 ' + (lm.ground || '')),
+        pill(((FAMS[lm.fam] || {}).label || '').toUpperCase())
+      ]);
+      var tag = el('p', 'rc-tag');
+      tag.textContent = lm.tagline || '';
+      card.replaceChildren(kickRow, head, metaRow, tag, bodyWrap);
+    } else {
+      var statBox = div('statblock', []);
+      var statRow = div('flex items-baseline gap-2 font-tech', []);
+      var num = span('font-bold leading-none', ['\u00A0']);
+      animateNum(num, b.stat.v);
+      num.style.color = 'var(--acc)';
+      num.style.fontSize = 'clamp(2.6rem, 9vw, 3.4rem)';
+      num.classList.add('statnum');
+      statRow.appendChild(num);
+      if (b.stat.u) statRow.appendChild(span('text-base text-fog', [b.stat.u]));
+      var lab = el('p', 'font-tech text-[12px] tracking-wide text-fog mt-1');
+      lab.textContent = b.stat.l || '';
+      statBox.appendChild(statRow);
+      statBox.appendChild(lab);
+      card.replaceChildren(kickRow, head, statBox, bodyWrap);
+    }
+    var cta = div('mt-3 flex items-center justify-between gap-3 flex-wrap', []);
+    if (room) {
+      var sb2 = btn('font-tech text-[12px] tracking-[.18em] px-5 py-3 rounded-full font-bold press', ['START \u25B8'], function () { advance(); });
+      sb2.style.background = 'var(--acc)';
+      sb2.style.color = '#141118';
+      cta.appendChild(sb2);
+    } else if (stopMeta[st.id].idx === stops.length - 1) {
       var gb = btn('font-tech text-[12px] tracking-[.18em] px-5 py-3 rounded-full font-bold press', ['TOUCH THE GROUND \u2192'], function () { go('#/ground/' + chainId); });
       gb.style.background = 'var(--acc)';
       gb.style.color = '#141118';
@@ -511,14 +536,17 @@ function RideView(chainId, idx) {
       if (placement) placement();
     });
     cta.appendChild(more);
-    card.replaceChildren(kickRow, head, statRow, lab, bodyWrap);
     if (cta) card.appendChild(cta);
     card.classList.remove('a-rise');
     void card.offsetWidth;
     card.classList.add('a-rise');
     /* the fade and the button only make sense when the copy actually clamps */
     requestAnimationFrame(function () {
-      try { var need = body.scrollHeight > body.clientHeight + 2; bodyFade.style.display = need ? 'block' : 'none'; more.style.display = need ? '' : 'none'; } catch (e) {}
+      try {
+        var need = (b.b || '').length > 120 || body.scrollHeight > body.clientHeight + 2;
+        bodyFade.style.display = need ? 'block' : 'none';
+        more.style.display = need ? '' : 'none';
+      } catch (e) {}
     });
   }
   renderCard(me, beat || { h: me.name, b: '', stat: { v: '', u: '', l: '' }, call: [] });
@@ -616,7 +644,7 @@ function GroundView(chainId) {
   quip.textContent = m.quip || '';
   quip.style.animationDelay = '120ms';
 
-  var meter = div('mt-7 w-full max-w-sm', [
+  var meter = div('mt-6 w-full', [
     span('block text-center font-tech text-[11px] tracking-[.16em] text-dim leading-relaxed mb-2', ['GROUNDS CLAIMED ' + claimedSet.size + '/' + tour.lines + ' \u00B7 ' + (SERIES.groundsNote || '')]),
     meterBar()
   ]);
@@ -647,7 +675,7 @@ function GroundView(chainId) {
     btn('font-tech text-[11px] tracking-[.16em] text-fog px-4 py-2 rounded-full press', ['STATION SHEET'], function () { go('#/station/' + gStop.id); })
   ]);
 
-  fill(content, [top, stamp, gname, quip, meter, row, backRow]);
+  fill(content, [div('claimcard a-rise', [top, stamp, gname, quip, meter]), row, backRow]);
   wrap.appendChild(content);
 
   /* coin-burst on claim */
@@ -909,6 +937,20 @@ function MapView() {
   root.appendChild(mapWrap);
 
   var NS = 'http://www.w3.org/2000/svg';
+  function clipName(name, maxc) {
+    return name.length > maxc ? name.slice(0, maxc - 1) + '\u2026' : name;
+  }
+  function wrapName(name, maxc) {
+    var words = name.split(' '), lines = [], cur = '';
+    words.forEach(function (w) {
+      if (!cur) cur = w;
+      else if ((cur + ' ' + w).length <= maxc) cur += ' ' + w;
+      else { lines.push(cur); cur = w; }
+    });
+    if (cur) lines.push(cur);
+    if (lines.length > 2) lines = [lines[0], lines.slice(1).join(' ')];
+    return lines.slice(0, 2).map(function (l) { return clipName(l, maxc); });
+  }
   function mk(tag, attrs, kids) {
     var n = document.createElementNS(NS, tag);
     Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
@@ -1000,9 +1042,10 @@ function MapView() {
       var label = isStop || isShared;
       if (label) {
         var kk = slotK[nd.id] || 1;
-        var maxc = kk > 1 ? 12 : 16;
-        var nm = nd.name.length > maxc ? nd.name.slice(0, maxc - 1) + '\u2026' : nd.name;
-        g.appendChild(mtext(p.x, p.y + 18, nm, { fill: isStop ? '#F2EFE9' : '#6E6670', 'font-size': '11' }));
+        var lines = kk > 1 ? [clipName(nd.name, 12)] : wrapName(nd.name, 15);
+        lines.forEach(function (ln, li2) {
+          g.appendChild(mtext(p.x, p.y + 18 + li2 * 13, ln, { fill: isStop ? '#F2EFE9' : '#6E6670', 'font-size': li2 ? '10' : '11', 'fill-opacity': li2 ? '.8' : '1' }));
+        });
       }
       g.addEventListener('click', function () { go('#/station/' + nd.id); });
       svg.appendChild(g);
@@ -1019,159 +1062,175 @@ function StationView(nodeId) {
   var ch = chainById[node.chainId];
   var isStop = !!BEATS[nodeId];
   var sm = stopMeta[nodeId];
+  var acc = m.acc || '#F2EFE9';
 
-  var root = el('div', 'min-h-dvh relative');
+  var root = el('div', 'station');
+  root.style.setProperty('--acc', acc);
 
-  var photo = imgSrc(nodeId);
-  if (photo) {
-    var heroWrap = el('div', 'relative h-[46vh] min-h-[300px]');
-    heroWrap.appendChild(shotLayer(photo, 'absolute inset-0'));
-    root.appendChild(heroWrap);
-  } else {
-    var spacer = div('h-24', []);
-    root.appendChild(spacer);
+  function kick(t) {
+    return div('skick', [el('i', 'kickdot'), span(null, [t])]);
   }
 
-  var sheet = div('relative z-10 -mt-10 rounded-t-xl border-t border-white/10 bg-ink min-h-[54vh] px-5 pb-16 pt-5 max-w-2xl mx-auto', []);
-
-  var top = div('flex items-center justify-between gap-2 mb-4', [
-    btn('press w-9 h-9 rounded-full border border-white/15 bg-ink2 text-bone font-tech', ['\u2190'], function () { history.back(); }),
-    div('flex items-center gap-2', [chipCode(m.code || '', m.acc || '#F2EFE9'), pill((FAMS[m.fam] || {}).label || '')])
-  ]);
-  sheet.appendChild(top);
-
-  sheet.appendChild(fill(el('h1', 'font-disp font-semibold text-3xl leading-tight'), [node.name]));
+  /* hero: the photo is the page, the title sits in it */
+  var hero = div('shero', []);
+  var photo = imgSrc(nodeId);
+  if (photo) hero.appendChild(shotLayer(photo, 'absolute inset-0'));
+  else {
+    hero.classList.add('compact');
+    hero.appendChild(div('shero-null', []));
+  }
+  hero.appendChild(div('shero-grad', []));
+  hero.appendChild(div('shero-top', [
+    btn('press w-9 h-9 rounded-full border border-white/15 bg-ink/60 backdrop-blur text-bone font-tech', ['\u2190'], function () { history.back(); }),
+    div('flex items-center gap-2 bg-ink/60 border border-white/15 rounded-full pl-1.5 pr-2 py-1 backdrop-blur', [
+      chipCode(m.code || '', acc),
+      pill((FAMS[m.fam] || {}).label || '', 'font-tech text-[11px] tracking-[.16em] px-2.5 py-1 rounded-full bg-white/10 text-bone border border-white/15')
+    ])
+  ]));
+  var foot = div('shero-foot', []);
+  foot.appendChild(fill(el('h1', 'font-disp font-semibold shero-title'), [node.name]));
+  var pos = span('font-tech text-[11px] tracking-[.2em] text-fog mt-2 block', []);
   if (isStop) {
     var zi2 = (sm.chain.stops[0] && sm.chain.stops[0].kind === 'room') ? 1 : 0;
-    var pos = span('font-tech text-[11px] tracking-[.2em] text-dim mt-2 block', []);
     pos.textContent = 'STATION ' + (sm.idx - zi2 + 1) + '/' + (sm.chain.stops.length - zi2) + ' ON THE ' + (m.code || '') + ' LINE';
-    sheet.appendChild(pos);
   } else {
-    var pos2 = span('font-tech text-[11px] tracking-[.2em] text-dim mt-2 block', []);
-    pos2.textContent = 'MAP-ONLY NODE \u00B7 ECHELON ' + node.echelon + ' \u00B7 THE ' + (m.code || '') + ' LINE';
-    sheet.appendChild(pos2);
+    pos.textContent = 'MAP-ONLY NODE \u00B7 ECHELON ' + node.echelon + ' \u00B7 THE ' + (m.code || '') + ' LINE';
   }
+  foot.appendChild(pos);
+  hero.appendChild(foot);
+  root.appendChild(hero);
 
+  var main = div('smain', []);
+
+  /* identity + number */
+  var idCard = div('scard', []);
+  idCard.appendChild(kick(isStop ? 'THE NUMBER' : 'THE NODE'));
   if (isStop) {
     var beat = BEATS[nodeId];
-    var statRow = div('flex items-baseline gap-2 mt-4 font-tech', []);
-    var num = span('font-bold leading-none', [String(beat.stat.v)]);
-    num.style.color = 'var(--acc)';
-    num.style.fontSize = 'clamp(2.6rem, 9vw, 3.6rem)';
-    statRow.appendChild(num);
-    if (beat.stat.u) statRow.appendChild(span('text-lg text-fog', [beat.stat.u]));
-    sheet.appendChild(statRow);
-    var lab = el('p', 'font-tech text-[12px] tracking-wide text-fog mt-1');
-    lab.textContent = beat.stat.l || '';
-    sheet.appendChild(lab);
-    var body = el('p', 'text-[15px] leading-relaxed text-bone/90 mt-4');
-    body.textContent = beat.b;
-    sheet.appendChild(body);
+    var srow = div('sstat', []);
+    srow.appendChild(fill(el('b', null), [String(beat.stat.v)]));
+    if (beat.stat.u) srow.appendChild(span(null, [beat.stat.u]));
+    idCard.appendChild(srow);
+    idCard.appendChild(fill(el('p', 'slab'), [beat.stat.l || '']));
   } else {
-    var desc = el('p', 'text-[15px] leading-relaxed text-bone/85 mt-4');
-    desc.textContent = node.description || '';
-    sheet.appendChild(desc);
+    idCard.appendChild(div('ssbody', [node.description || '']));
+  }
+  main.appendChild(idCard);
+
+  /* the stop narration */
+  if (isStop) {
+    var bodyCard = div('scard', []);
+    bodyCard.appendChild(kick('THE STOP'));
+    bodyCard.appendChild(div('ssbody', [BEATS[nodeId].b || '']));
+    main.appendChild(bodyCard);
   }
 
-  /* specs */
+  /* specs as label/value tiles */
   if ((node.specs || []).length) {
-    var spTitle = el('p', 'font-tech text-[11px] tracking-[.2em] text-dim mt-7 mb-2');
-    spTitle.textContent = 'SPECS';
-    sheet.appendChild(spTitle);
-    var spGrid = div('flex flex-wrap gap-2', []);
+    var spCard = div('scard', []);
+    spCard.appendChild(kick('SPECS'));
+    var spGrid = div('specgrid', []);
     node.specs.forEach(function (s) {
-      spGrid.appendChild(pill(s.label.toUpperCase() + ': ' + s.value + (s.unit || ''), 'font-tech text-[11px] tracking-[.08em] px-3 py-1.5 rounded-full bg-white/5 text-bone/90 border border-white/10'));
+      var cell = div('spec', []);
+      cell.appendChild(div('k', [String(s.label || '').toUpperCase()]));
+      cell.appendChild(div('v', [String(s.value) + (s.unit ? ' ' + s.unit : '')]));
+      spGrid.appendChild(cell);
     });
-    sheet.appendChild(spGrid);
+    spCard.appendChild(spGrid);
+    main.appendChild(spCard);
   }
 
   /* history */
-  if (isStop && stopMeta[nodeId].stop.history) {
-    var hTitle = el('p', 'font-tech text-[11px] tracking-[.2em] text-dim mt-7 mb-2');
-    hTitle.textContent = 'HISTORY';
-    sheet.appendChild(hTitle);
-    var hBody = el('p', 'text-[14px] leading-relaxed text-fog');
-    hBody.textContent = stopMeta[nodeId].stop.history;
-    sheet.appendChild(hBody);
-  } else if (node.history) {
-    var hTitle2 = el('p', 'font-tech text-[11px] tracking-[.2em] text-dim mt-7 mb-2');
-    hTitle2.textContent = 'HISTORY';
-    sheet.appendChild(hTitle2);
-    var hBody2 = el('p', 'text-[14px] leading-relaxed text-fog');
-    hBody2.textContent = node.history;
-    sheet.appendChild(hBody2);
+  var hist = isStop ? stopMeta[nodeId].stop.history : node.history;
+  if (hist) {
+    var hCard = div('scard', []);
+    hCard.appendChild(kick('HISTORY'));
+    hCard.appendChild(div('ssbody', [hist]));
+    main.appendChild(hCard);
   }
 
   /* process (map-only nodes) */
   if (!isStop && (node.process || []).length) {
-    var pTitle = el('p', 'font-tech text-[11px] tracking-[.2em] text-dim mt-7 mb-2');
-    pTitle.textContent = 'HOW IT IS MADE';
-    sheet.appendChild(pTitle);
-    var ol = el('ol', 'space-y-1.5');
+    var pCard = div('scard', []);
+    pCard.appendChild(kick('HOW IT IS MADE'));
+    var steps = div('snav', []);
     node.process.forEach(function (s, i) {
-      var li = el('li', 'text-[14px] text-fog flex gap-2');
-      li.appendChild(span('font-tech text-[11px] text-dim mt-[3px]', [String(i + 1).padStart(2, '0')]));
-      li.appendChild(span(null, [s]));
-      ol.appendChild(li);
+      steps.appendChild(div('sstep', [
+        fill(el('i', null), [String(i + 1).padStart(2, '0')]),
+        span(null, [s])
+      ]));
     });
-    sheet.appendChild(ol);
+    pCard.appendChild(steps);
+    main.appendChild(pCard);
   }
 
   /* shared-name interchanges */
   var others = (nameBucket[node.name] || []).filter(function (id2) { return id2 !== nodeId; });
   if (others.length) {
-    var shTitle = el('p', 'font-tech text-[11px] tracking-[.2em] text-dim mt-7 mb-2');
-    shTitle.textContent = 'SHARED WITH ' + others.length + ' OTHER NODE' + (others.length > 1 ? 'S' : '');
-    sheet.appendChild(shTitle);
-    var shRow = div('flex flex-wrap gap-2', []);
+    var shCard = div('scard', []);
+    shCard.appendChild(kick('SHARED WITH ' + others.length + ' OTHER NODE' + (others.length > 1 ? 'S' : '')));
+    var shRow = div('srow', []);
     others.forEach(function (id2) {
       var other = nodeById[id2];
       var om = LINES[other.chainId] || {};
-      var c2 = btn(null, null, function () { go('#/station/' + id2); });
-      c2.className = 'font-tech text-[10px] tracking-[.14em] px-3 py-1.5 rounded-full border press';
+      var c2 = btn('font-tech text-[10px] tracking-[.14em] px-3 py-1.5 rounded-full border press', [(om.code || '') + ' \u00B7 ' + other.name], function () { go('#/station/' + id2); });
       c2.style.borderColor = 'color-mix(in srgb, ' + om.acc + ' 45%, transparent)';
       c2.style.color = om.acc || '#F2EFE9';
       c2.style.background = 'color-mix(in srgb, ' + om.acc + ' 12%, transparent)';
-      c2.textContent = (om.code || '') + ' \u00B7 ' + other.name;
       shRow.appendChild(c2);
     });
-    sheet.appendChild(shRow);
+    shCard.appendChild(shRow);
+    main.appendChild(shCard);
   }
+
+  /* actions + station-to-station nav */
+  var actCard = div('scard', []);
+  var actRow = div('srow', []);
+  if (isStop) {
+    actRow.appendChild(btn('sbtn primary', ['RIDE THE LINE \u2192'], function () { go('#/stop/' + nodeId); }));
+  }
+  actRow.appendChild(btn('sbtn ghost', ['TRANSIT MAP'], function () { go('#/map'); }));
+  actCard.appendChild(actRow);
+  if (isStop && sm.idx > 0) {
+    var prevS = sm.chain.stops[sm.idx - 1];
+    var backB = btn('snavbtn', [], function () { go('#/station/' + prevS.id); });
+    backB.appendChild(span(null, ['\u2190']));
+    var bw = div(null, []);
+    bw.appendChild(fill(el('small', null), ['PREVIOUS STATION']));
+    bw.appendChild(span(null, [prevS.name]));
+    backB.appendChild(bw);
+    actCard.appendChild(backB);
+  }
+  if (isStop && sm.idx < sm.chain.stops.length - 1) {
+    var nextS = sm.chain.stops[sm.idx + 1];
+    var nextB = btn('snavbtn', [], function () { go('#/station/' + nextS.id); });
+    var nw = div(null, []);
+    nw.appendChild(fill(el('small', null), ['NEXT STATION']));
+    nw.appendChild(span(null, [nextS.name]));
+    nextB.appendChild(nw);
+    nextB.appendChild(span(null, ['\u2192']));
+    actCard.appendChild(nextB);
+  }
+  main.appendChild(actCard);
 
   /* photo credit */
   var file = IMG[nodeId];
   if (file) {
-    var credit = el('p', 'font-tech text-[10px] tracking-wide text-dim mt-7');
+    var credit = el('p', 'font-tech text-[10px] tracking-wide text-dim px-2 pt-1');
     var man = window.UNPACKED_CREDITS && window.UNPACKED_CREDITS[file];
     var label = man ? ('PHOTO: ' + man.title + ' \u00B7 ' + man.licc) : 'PHOTO: WIKIMEDIA COMMONS \u00B7 SEE LOADED ATTRIBUTION LOG';
-    credit.textContent = label;
     if (man && man.url) {
       var a = el('a', 'underline hover:text-fog');
       a.textContent = label;
       a.href = man.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-      credit.replaceChildren(a);
+      credit.appendChild(a);
+    } else {
+      credit.textContent = label;
     }
-    sheet.appendChild(credit);
+    main.appendChild(credit);
   }
 
-  /* ride / neighbors */
-  var nav = div('mt-8 flex flex-wrap items-center gap-3', []);
-  if (isStop) {
-    var ride = btn('font-tech text-[12px] tracking-[.18em] font-bold px-5 py-3 rounded-full press', ['RIDE THE LINE \u2192'], function () { go('#/stop/' + nodeId); });
-    ride.style.background = 'var(--acc)';
-    ride.style.color = '#141118';
-    nav.appendChild(ride);
-    if (sm.idx > 0) nav.append(pill('\u2190 PREV: ' + sm.chain.stops[sm.idx - 1].name.toUpperCase()));
-    if (sm.idx < sm.chain.stops.length - 1) nav.append(pill('NEXT: ' + sm.chain.stops[sm.idx + 1].name.toUpperCase() + ' \u2192'));
-  }
-  sheet.appendChild(nav);
-
-  var mapRow = div('mt-6', [
-    btn('font-tech text-[11px] tracking-[.16em] text-fog px-4 py-2 rounded-full border border-white/10 press', ['SEE THE LINE ON THE TRANSIT MAP'], function () { go('#/map'); })
-  ]);
-  sheet.appendChild(mapRow);
-
-  root.appendChild(sheet);
+  root.appendChild(main);
   return root;
 }
 
